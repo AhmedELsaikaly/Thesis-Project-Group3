@@ -1,10 +1,10 @@
-# Raha App
+# Raha App 
 
 > Raha App
 
 ## Team
 
-- **Product Owner**: RBK
+- **Product Owner**: RBK-Anera
 - **Scrum Master**: Khaled Abousheikh
 - **Development Team Members**: Wael A. Abutaqia , Ahmed A. Elsaikaly ,Yousef M. Yasin ,Mohammed S. Abushabban and Khaled I. Abousheikh
 
