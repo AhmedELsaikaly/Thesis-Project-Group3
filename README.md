@@ -4,7 +4,7 @@
 
 ## Team
 
-- **Product Owner**: RBK
+- **Product Owner**: RBK-Anera
 - **Scrum Master**: Khaled Abousheikh
 - **Development Team Members**: Wael A. Abutaqia , Ahmed A. Elsaikaly ,Yousef M. Yasin ,Mohammed S. Abushabban and Khaled I. Abousheikh
 
@@ -34,30 +34,16 @@
 - nodemon
 - cors
 - express
-- airport-data
-- validator
-- is-empty
-- jsonwebtoken
-- jwt-decode
-- concurrently
 
 ### Frontend
 
 - axios
 - bcryptjs
-- classnames
-- emailjs-com
 - react
 - react-bootstrap
 - react-dom
-- react-firebaseui
 - react-router-dom
 - react-scripts
-- reactstrap
-- react-to-pdf
-- file-saver
-- firebase
-- React Credit cards
 
 ### Testing
 
@@ -69,7 +55,7 @@
 ## Development
 
 Heroku deployed link :
-https://flights-booking-v.herokuapp.com/
+https://111.herokuapp.com/
 
 ### Installing Dependencies
 
@@ -83,8 +69,8 @@ From within the root directory:
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/Flights-Booking-V2/flights-booking-v2/issues/)
+View the project roadmap [here](https://github.com/Thesis-Project-Group3/Thesis-Project-Group3/milestones)
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/Flights-Booking-V2/flights-booking-v2/blob/dev/_CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](https://github.com/Thesis-Project-Group3/Thesis-Project-Group3/blob/master/_CONTRIBUTING.md) for contribution guidelines.
