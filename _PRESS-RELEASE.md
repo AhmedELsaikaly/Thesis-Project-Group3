@@ -1,4 +1,4 @@
-# Expenses Tracker
+# Raha App
 
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -18,32 +18,32 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading
 
-Expenses Tracker
+Raha App
 
 > Heading
 
 ## Sub-Heading
 
-Expense Tracker is a simple expense tracking application. Allows you to monitor your spending pattern.
+Expense Tracker is a simple booking application. Allows you to book a beach facility suits your need and show services you would to have during your sea trip
 
 > Sub-Heading
 
 ## Summary
 
-It Helps You Stick to Your Budget. Tracking Your Expenses Can Reveal Spending Issues
-It Helps You Meet Your Financial Objectives.
+It Helps You Stick to Your Desires. Tracking Your Requirements Which Can Reveal Trip Needs
+It Helps You Meet Your Enjoying Your Trip Objectives.
 
 > Summary
 
 ## Problem
 
-A single page app that will allow users to record their expenses day by day without having to use pen and paper.
+A single page app that will allow users to explore beach facilities according to whaterver circumstances you want without using trational ways of booking.
 
 > Describe the problem your product solves.
 
 ## Solution
 
-We will display all expenses while allowing users to choose the type of the expenses on each time.
+We will display all information, details , services and even photos concerning beach facilities while allowing users to search for the best choice meet their desires .
 
 <!-- Users can also find their expenses by type of expenses. -->
 
@@ -51,22 +51,22 @@ We will display all expenses while allowing users to choose the type of the expe
 
 ## Quote from You
 
-> "We are amazing just the way we are"
+> "I’ll help you get the service you deserve "
 
 ## How to Get Started
 
-Simply register a new account and then login. start recording your expenses.
+Simply register a new account and then login. If you are a customer start searching for your desires.If you are an owner you can create an account and start fill your facility details
 
 > Describe how easy it is to get started.
 
 ## Customer Quote
 
-"Expenses record allows me to record my expenses easily.I like the idea"
+"Raha App allows me to explore beach facility easily and meet my desires.I like the idea"
 
 > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
 ## Closing and Call to Action
 
-If you like our idea, Please send us your feedback.
+If you like our idea, Please send us your feedback anytime you like.
 
 > Wrap it up and give pointers where the reader should go next.
