@@ -9,10 +9,10 @@ mongoose
     console.log(' Err when conecting To Facilities ', err);
   });
   const FacilSchema = new mongoose.Schema({
-    owner_id:{
+    ownerId:{
         type:String
     },
-    facilities_name:{
+    facilitiesName:{
         //////////1
         table:{
             img:{
@@ -24,7 +24,7 @@ mongoose
                 type:Number,
                 required:true
             },
-            their_number:{
+            quantity:{
                 type:Number,
                 required:true
             },
@@ -33,7 +33,7 @@ mongoose
                 required:true
             }
         },////////////2
-        tents_samll:{
+        tentsSamll:{
             img:{
                 data: Buffer, 
                 contentType: String,
@@ -43,7 +43,7 @@ mongoose
                 type:Number,
                 required:true
             },
-            their_number:{
+            quantity:{
                 type:Number,
                 required:true
             },
@@ -52,7 +52,7 @@ mongoose
                 required:true
             }
         },/////////3
-        tents_large:{
+        tentsLarge:{
             img:{
                 data: Buffer, 
                 contentType: String,
@@ -62,7 +62,7 @@ mongoose
                 type:Number,
                 required:true
             },
-            their_number:{
+            quantity:{
                 type:Number,
                 required:true
             },
@@ -74,9 +74,3 @@ mongoose
 
    
    }
-   
-   
-
-  })
-
-  module.exports = Facil = mongoose.model('Facil', FacilSchema);

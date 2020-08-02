@@ -12,13 +12,13 @@ mongoose
     owner_id:{
         type:String
     },
-   services_available:{
-    green_area:{type:Boolean ,required:true},
-    baby_swimming:{type:Boolean ,required:true},
+   servicesAvailable:{
+    greenArea:{type:Boolean ,required:true},
+    babySwimming:{type:Boolean ,required:true},
     resturant:{type:Boolean ,required:true},
-    drinks:{type:Boolean ,required:true},
-    line_barbecue:{type:Boolean ,required:true},
-    volleyball_court:{type:Boolean ,required:true},
+    softDrinks:{type:Boolean ,required:true},
+    lineBarbecue:{type:Boolean ,required:true},
+    volleyballCourt:{type:Boolean ,required:true},
     conditioning:{type:Boolean ,required:true}
    }
    

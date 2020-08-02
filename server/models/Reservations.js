@@ -9,7 +9,7 @@ mongoose
     console.log(' Err when conecting To Reservation ', err);
   });
   const ReservSchema = new mongoose.Schema({
-    customer_id:{
+    customerId:{
         type:String
     },
     date:{
@@ -19,20 +19,20 @@ mongoose
     status:{
         type:Boolean
     },
-    mobile_number:{
+    mobileNumber:{
         type:Number
     },
-    type_Reserv:{
+    typeReserv:{
         type:Array
     },
 
-    total_price:{
+    totalPrice:{
         type:Number
     },
-    place_name:{
+    placeName:{
         type:String
     },
-    number_of_person :{
+    numberOfperson :{
         type:Number,
         required:true
     }
