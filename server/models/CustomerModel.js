@@ -1,23 +1,61 @@
 //require mongoose
 const mongoose = require('mongoose');
 
-//create CustomerSchema
+mongoose
+  .connect('mongodb://localhost/customer', { useNewUrlParser: true })
+  .then(() => {
+    console.log(' Customer connecting Done ');
+  })
+  .catch(err => {
+    console.log(' Err when conecting To Customer ', err);
+  });
+
+
 const CustomerSchema = new mongoose.Schema({
-    name: {
+    fullName: {
         type: String,
         unique: true,
         required: true
+    },
+    password:{
+        type: String,
+        required: true,
+    
     },
     email: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        unique:true
     },
+      
+    mobileNumber:{
+        type:Number,
+        required:true,
+        unique:true
+    },
+    gender:{
+        type:String,
+        required:false
+    },
+    profileImg:{
+        data: Buffer, 
+        contentType: String,
+        required :false
+    },
+   
 
-    password:{
-        type: String,
-        required: true
+    address :{
+       type:String,
+       required:false
     },
+  
+    date:{
+        type:Date,
+        default:Date.now
+    }
+   
+    
 })
 
 //export Customer model
