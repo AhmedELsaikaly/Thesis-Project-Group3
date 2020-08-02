@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "dev": "concurrently \"nodemon index.js\" \"npm start\""
+    "dev": "concurrently  \"cd server && nodemon index.js\" \"npm start\""
   },
   "eslintConfig": {
     "extends": "react-app"
