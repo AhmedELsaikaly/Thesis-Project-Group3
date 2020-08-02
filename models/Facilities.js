@@ -13,9 +13,64 @@ mongoose
         type:String
     },
     facilities_name:{
-        table:{type:Number , required:true},
-        tents_samll:{type:Number , required: true},
-        tents_large:{type:Number , required: true},
+        //////////1
+        table:{
+            img:{
+                data: Buffer, 
+                contentType: String,
+                required :true  
+            },
+            price :{
+                type:Number,
+                required:true
+            },
+            their_number:{
+                type:Number,
+                required:true
+            },
+            capacity:{
+                type:Number,
+                required:true
+            }
+        },////////////2
+        tents_samll:{
+            img:{
+                data: Buffer, 
+                contentType: String,
+                required :true  
+            },
+            price :{
+                type:Number,
+                required:true
+            },
+            their_number:{
+                type:Number,
+                required:true
+            },
+            capacity:{
+                type:Number,
+                required:true
+            }
+        },/////////3
+        tents_large:{
+            img:{
+                data: Buffer, 
+                contentType: String,
+                required :true  
+            },
+            price :{
+                type:Number,
+                required:true
+            },
+            their_number:{
+                type:Number,
+                required:true
+            },
+            capacity:{
+                type:Number,
+                required:true
+            }
+        },
 
    
    }
