@@ -8,9 +8,9 @@ mongoose
   .catch(err => {
     console.log(' Err when conecting To Services ', err);
   });
-  const ReservSchema = new mongoose.Schema({
+  const ServicesSchema = new mongoose.Schema({
     owner_id:{
-        type:Number
+        type:String
     },
    services_available:{
     green_area:{type:Boolean ,required:true},
@@ -19,12 +19,11 @@ mongoose
     drinks:{type:Boolean ,required:true},
     line_barbecue:{type:Boolean ,required:true},
     volleyball_court:{type:Boolean ,required:true},
-    indoor_park:{type:Boolean ,required:true},
-    conditioning:{type:Boolean ,required:true},
+    conditioning:{type:Boolean ,required:true}
    }
    
    
 
   })
 
-  module.exports = Reserv = mongoose.model('Reserv', ReservSchema);
+  module.exports = Service = mongoose.model('Service', ServicesSchema);

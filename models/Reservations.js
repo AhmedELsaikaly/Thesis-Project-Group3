@@ -10,7 +10,7 @@ mongoose
   });
   const ReservSchema = new mongoose.Schema({
     customer_id:{
-        type:Number
+        type:String
     },
     date:{
         type:Date,
@@ -31,6 +31,10 @@ mongoose
     },
     place_name:{
         type:String
+    },
+    number_of_person :{
+        type:Number,
+        required:true
     }
 
   })
