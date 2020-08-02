@@ -6,8 +6,8 @@ const cors = require("cors"); //node module to allow requests from server to ser
 const mongoose = require("mongoose");
 
 //require models
-var Customer = require("./models/CustomerModel");
-var Owner = require("./models/OwnerModel");
+var Customer = require("../models/CustomerModel");
+var Owner = require("../models/OwnerModel");
 
 //require routes
 const users = require("./routes/api/users");
