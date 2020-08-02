@@ -20,9 +20,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    // "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    // "eject": "react-scripts eject",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "dev": "concurrently  \"cd server && nodemon index.js\" \"npm start\""
   },
