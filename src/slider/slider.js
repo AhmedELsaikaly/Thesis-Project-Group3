@@ -1,9 +1,15 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "@farbenmeer/react-spring-slider";
-// import one from './../landPage/one.jpg'
-// import "./style.css";
 
+//import CSS
+import "./slider.css";
+
+//import used files
+// import one from './../landPage/one.jpg'
+
+//create SliderCom Compo
 class SliderCom extends React.Component {
   constructor() {
     super();
@@ -11,7 +17,10 @@ class SliderCom extends React.Component {
       imgUrl: [],
     };
   }
+  //onSlideChange function
   onSlideChange = (index) => console.log(`changed to slide ${index}`);
+
+  //BulletComponent function
   BulletComponent = ({ onClick, isActive }) => (
     <li
       style={{
@@ -26,6 +35,7 @@ class SliderCom extends React.Component {
     />
   );
 
+  //ArrowComponent function
   ArrowComponent = ({ onClick, direction }) => {
     return (
       <div
@@ -41,10 +51,11 @@ class SliderCom extends React.Component {
     );
   };
 
+  //render SliderCom Compo
   render() {
     const { url } = this.props;
     return (
-      <div className ='card'>
+      <div className="card">
         <div
           style={{
             width: "100%",
@@ -64,7 +75,8 @@ class SliderCom extends React.Component {
             {url.map((dataIN, key) => {
               return (
                 <div style={{ width: "100%", height: "450px" }}>
-                  <div className ='card-body'
+                  <div
+                    className="card-body"
                     style={{
                       backgroundImage: `url(${dataIN})`,
                       height: "450px",
@@ -86,4 +98,7 @@ class SliderCom extends React.Component {
     );
   }
 }
+//export compo
 export { SliderCom };
+
+//Check and vaildate
