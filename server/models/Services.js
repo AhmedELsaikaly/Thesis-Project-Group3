@@ -16,7 +16,7 @@ mongoose
     greenArea:{type:Boolean ,required:true},
     babySwimming:{type:Boolean ,required:true},
     resturant:{type:Boolean ,required:true},
-    drinks:{type:Boolean ,required:true},
+    softDrinks:{type:Boolean ,required:true},
     lineBarbecue:{type:Boolean ,required:true},
     volleyballCourt:{type:Boolean ,required:true},
     conditioning:{type:Boolean ,required:true}
