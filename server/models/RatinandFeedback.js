@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/ratinfeedback', { useNewUrlParser: true })
+  .connect('mongodb://localhost/ratingfeedback', { useNewUrlParser: true })
   .then(() => {
-    console.log(' Ratin && Feedback connecting Done ');
+    console.log(' Rating && Feedback connecting Done ');
   })
   .catch(err => {
-    console.log(' Err when conecting To Ratin && Feedback ', err);
+    console.log(' Err when conecting To Rating && Feedback ', err);
   });
-  const RatinSchema = new mongoose.Schema({
-    customer_id:{
+  const RatingSchema = new mongoose.Schema({
+    customerId:{
         type:String
     },
    
@@ -26,10 +26,10 @@ mongoose
         type:Number,
         required:false
     },
-    place_name:{
+    placeName:{
         type:String
     }
 
   })
 
-  module.exports = RatingFeedback = mongoose.model('RatingFeedback', RatinSchema);
+  module.exports = RatingFeedback = mongoose.model('RatingFeedback', RatingSchema);

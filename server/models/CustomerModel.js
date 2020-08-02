@@ -11,13 +11,8 @@ mongoose
   });
 
 
-//create CustomerSchema
-//full_name ,password , email, mobilenumber>>Requird 
-//gender , profile_img , address>>> Not Requird
-///////full_name  , email  , mobilenumber  >>>Unique
-
 const CustomerSchema = new mongoose.Schema({
-    full_name: {
+    fullName: {
         type: String,
         unique: true,
         required: true
@@ -34,7 +29,7 @@ const CustomerSchema = new mongoose.Schema({
         unique:true
     },
       
-    mobilenumber:{
+    mobileNumber:{
         type:Number,
         required:true,
         unique:true
@@ -43,7 +38,7 @@ const CustomerSchema = new mongoose.Schema({
         type:String,
         required:false
     },
-    profile_img:{
+    profileImg:{
         data: Buffer, 
         contentType: String,
         required :false

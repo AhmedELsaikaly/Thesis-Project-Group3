@@ -1,4 +1,3 @@
-//require mongoose
 const mongoose = require('mongoose');
 mongoose
   .connect('mongodb://localhost/owner', { useNewUrlParser: true })
@@ -9,11 +8,9 @@ mongoose
     console.log(' Err when conecting To Owner :( ', err);
   });
 
-//create OwnerSchema
-//All data >>Requird 
-///////full_name  , email  ,facebook, mobilenumber ,place_name ,area, photo_license >>>Unique
+
 const OwnerSchema = new mongoose.Schema({
-    full_name: {
+    fullName: {
         type: String,
         unique: true,
         required: true
@@ -40,7 +37,7 @@ const OwnerSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    place_name :{
+    placeName :{
         type:String,
         required:true,
         unique:true
@@ -60,7 +57,7 @@ const OwnerSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    photo_license:{
+    photoLicense:{
         data: Buffer, 
         contentType: String,
         required :true,
