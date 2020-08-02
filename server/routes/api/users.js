@@ -141,4 +141,5 @@ router.delete("/customers/:name", function (req, res) {
     );
 });
 
+//export router module
 module.exports = router;
