@@ -24,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("build"));
 
 // connection to database
 mongoose
@@ -36,7 +37,7 @@ mongoose
 
 //herokuapp config. using static files presented after the build
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });

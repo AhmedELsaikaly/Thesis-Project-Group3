@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "build": "cd client && npm install && npm run build",
     "dev": "concurrently  \"cd server && nodemon index.js\" \"npm start\""
   },
   "eslintConfig": {
