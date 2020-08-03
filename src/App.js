@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import { SignIn } from "./Components/Signing/signIn";
-import { SignUp } from "./Components/Signing/signUp";
+import  {SignUp} from "./Components/Signup/signup.js";
 import { About } from "./Components/about/about";
 import { Contact } from "./Components/contact/contact";
 import LandPage from "./Components/landPage/landPage";

@@ -66,5 +66,4 @@ const FacilSchema = new mongoose.Schema({
   },
 });
 const Facility = mongoose.model("Facility", FacilSchema);
-
 module.exports = Facility;

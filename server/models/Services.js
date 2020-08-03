@@ -13,6 +13,11 @@ const ServicesSchema = new mongoose.Schema({
     volleyballCourt: { type: Boolean, required: true },
     conditioning: { type: Boolean, required: true },
   },
+  addNote:{
+    type:String,
+    required:false
+  }
+  
 });
 
 const Service = mongoose.model("Service", ServicesSchema);
