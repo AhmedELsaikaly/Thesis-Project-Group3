@@ -22,7 +22,7 @@
     "validator": "^13.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node index.js",
     "test": "react-scripts test",
     "build": "react-scripts build",
     "dev": "concurrently  \"cd server && nodemon index.js\" \"npm start\""
