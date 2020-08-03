@@ -1,13 +1,21 @@
+//import used technologies
 import React from "react";
-import "./style.css";
-import jessica from "./1.png";
 import { Link, Redirect } from "react-router-dom";
+
+//import CSS
+import "./ControlPanel.css";
+
+//import used files
+import jessica from "./1.png";
+
+//create ContolPanel Compo
 class ContolPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  //render ContolPanel Compo
   render() {
     return (
       <div>
@@ -63,5 +71,7 @@ class ContolPanel extends React.Component {
     );
   }
 }
-
+//export compo
 export default ContolPanel;
+
+//Check and vaildate

@@ -13,7 +13,7 @@ const validateSigninInput = require("../../validation/login");
 
 // require models
 var Customer = require("../../models/CustomerModel");
-var Owner = require("../../models/OwnerModel");
+// var Owner = require("../../models/OwnerModel");
 
 //----------------------SignIn and SignUp----------------------------//
 //router post request for signin
