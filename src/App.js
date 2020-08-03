@@ -1,17 +1,17 @@
 import React from "react";
 import logo from "./logo.svg";
-import { SignIn } from "./Signing/signIn";
-import { SignUp } from "./Signing/signUp";
-import { About } from "./about/about";
-import { Contact } from "./contact/contact";
+import { SignIn } from "./Components/Signing/signIn";
+import { SignUp } from "./Components/Signing/signUp";
+import { About } from "./Components/about/about";
+import { Contact } from "./Components/contact/contact";
+import LandPage from "./Components/landPage/landPage";
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-
-import LandPage from "./landPage/landPage";
 
 import "./App.css";
 
