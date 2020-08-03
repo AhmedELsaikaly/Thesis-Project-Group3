@@ -73,4 +73,8 @@ mongoose
         },
 
    
-   }
+   }}
+   )
+
+
+module.exports = Facility = mongoose.model('Facility', FacilSchema);

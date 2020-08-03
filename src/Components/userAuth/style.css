@@ -1,0 +1,88 @@
+*,
+.header {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.sign-in {
+  transform: translatey(25%);
+}
+
+.sign-in h1 {
+  text-align: center;
+  padding: 10px;
+  width: 700px;
+  margin: 20px auto;
+  border-radius: 25px;
+  border: 2px solid rgb(255, 255, 255);
+  transform: translatey(30px);
+  background-color: rgba(71, 71, 71, 0.507);
+  height: 70px;
+  font-weight: 850;
+  color: white;
+}
+
+.sign-in input {
+  width: 500px;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+  font-weight: 800;
+  padding: 25px;
+  margin: 10px auto;
+  text-align: center;
+  height: 55px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+}
+
+.sign-in input:focus {
+  box-shadow: 1px -1px 5px rgb(5, 224, 5);
+  border: 2px solid rgb(5, 224, 5);
+}
+
+label {
+  font-size: 1.4em;
+}
+
+.sign-in button {
+  background: rgb(0, 162, 255);
+  color: rgb(255, 255, 255);
+  border-radius: 44px;
+  cursor: pointer;
+  width: 20%;
+  padding: 5 16px;
+  height: 44px;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  font-family: "montserrat";
+  font-size: 1.5em;
+  margin: 8px auto;
+  font-weight: 700;
+  width: 270px;
+  height: 50px;
+  color: white;
+  transform: translatey(10px);
+}
+
+.sign-in .PTN a {
+  text-decoration: none;
+  color: white;
+}
+
+.sign-in button:hover {
+  color: black;
+  background-color: white;
+  transition: all 0.5s linear;
+}
+
+.sign-in button:hover a {
+  color: black;
+  transition: all 0.5s linear;
+}

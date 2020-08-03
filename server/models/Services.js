@@ -1,3 +1,4 @@
+const { strict } = require('assert');
 const mongoose = require('mongoose');
 
 mongoose
@@ -20,6 +21,10 @@ mongoose
     lineBarbecue:{type:Boolean ,required:true},
     volleyballCourt:{type:Boolean ,required:true},
     conditioning:{type:Boolean ,required:true}
+   },
+   addNote:{
+     type:String,
+     required:false
    }
    
    
