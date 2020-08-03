@@ -36,13 +36,13 @@ class ContolPanel extends React.Component {
             <i className="fas fa-desktop"></i>
             <span>Dashboard</span>
           </a>
-          <a href="/facility">
+          <a href="/service">
             <i className="fas fa-cogs"></i>
-            <span>Components</span>
+            <span>Services</span>
           </a>
-          <a href="#">
+          <a href="/facility">
             <i className="fas fa-table"></i>
-            <span>Tables</span>
+            <span>Facilities</span>
           </a>
           <a href="#">
             <i className="fas fa-th"></i>
