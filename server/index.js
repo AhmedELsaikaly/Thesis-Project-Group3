@@ -6,8 +6,8 @@ const cors = require("cors"); //node module to allow requests from server to ser
 const mongoose = require("mongoose");
 
 //require models
-var Customer = require("../models/CustomerModel");
-var Owner = require("../models/OwnerModel");
+// var Customer = require("./models/CustomerModel");
+// var Owner = require("./models/OwnerModel");
 
 //require routes
 const users = require("./routes/api/users");
@@ -24,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("build"));
 
 // connection to database
 mongoose
@@ -36,9 +37,9 @@ mongoose
 
 //herokuapp config. using static files presented after the build
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
 }
 
@@ -49,7 +50,7 @@ app.get("/", (req, res) => {
 });
 
 //declare port
-var port = process.env.PORT || 5001;
+var port = process.env.PORT || 6001;
 
 //listen to the port
 app.listen(port, function () {
