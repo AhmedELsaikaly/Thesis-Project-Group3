@@ -1,8 +1,14 @@
+//import used technologies
 import React from "react";
-import "./style.css";
 import axios from "axios";
+
+//import CSS
+import "./FacilityInput.css";
+
+//import used files
 import CheckBox from "./CheckBox.js";
 
+//create FacilityInput Compo
 class FacilityInput extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +27,7 @@ class FacilityInput extends React.Component {
     };
   }
 
+  // handleCheckChieldElement Function
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
@@ -29,6 +36,8 @@ class FacilityInput extends React.Component {
     });
     this.setState({ services: services });
   };
+
+  // handleSubmit Function
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -53,6 +62,7 @@ class FacilityInput extends React.Component {
       });
   };
 
+  //render FacilityInput Compo
   render() {
     return (
       <div className="content">
@@ -92,8 +102,7 @@ class FacilityInput extends React.Component {
               type="submit"
               className="btn btn-lg font-weight-bold btn-secondary btn-block"
             >
-              {" "}
-              Send Your Request{" "}
+              Send Your Request
             </button>
           </div>
         </fieldset>
@@ -102,4 +111,7 @@ class FacilityInput extends React.Component {
   }
 }
 
+//export FacilityInput Compo
 export default FacilityInput;
+
+//check and vaildate

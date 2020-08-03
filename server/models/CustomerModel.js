@@ -1,62 +1,57 @@
 //require mongoose
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose
-  .connect('mongodb://localhost/customer', { useNewUrlParser: true })
-  .then(() => {
-    console.log(' Customer connecting Done ');
-  })
-  .catch(err => {
-    console.log(' Err when conecting To Customer ', err);
-  });
-
+// mongoose
+//   .connect('mongodb://localhost/customer', { useNewUrlParser: true })
+//   .then(() => {
+//     console.log(' Customer connecting Done ');
+//   })
+//   .catch(err => {
+//     console.log(' Err when conecting To Customer ', err);
+//   });
 
 const CustomerSchema = new mongoose.Schema({
-    fullName: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    password:{
-        type: String,
-        required: true,
-    
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        unique:true
-    },
-      
-    mobileNumber:{
-        type:Number,
-        required:true,
-        unique:true
-    },
-    gender:{
-        type:String,
-        required:false
-    },
-    profileImg:{
-        data: Buffer, 
-        contentType: String,
-        required :false
-    },
-   
+  fullName: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
 
-    address :{
-       type:String,
-       required:false
-    },
-  
-    date:{
-        type:Date,
-        default:Date.now
-    }
-   
-    
-})
+  mobileNumber: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  gender: {
+    type: String,
+    required: false,
+  },
+  profileImg: {
+    data: Buffer,
+    contentType: String,
+    required: false,
+  },
+
+  address: {
+    type: String,
+    required: false,
+  },
+
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 //export Customer model
-module.exports = Customer = mongoose.model('Customer', CustomerSchema);
+const Customer = mongoose.model("Customer", CustomerSchema);
+module.exports = Customer;
