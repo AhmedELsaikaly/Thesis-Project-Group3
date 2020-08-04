@@ -1,16 +1,7 @@
 //import used technologies
 import React from "react";
-// import {
-//   Card,
-//   CardImg,
-//   CardText,
-//   CardBody,
-//   CardTitle,
-//   CardSubtitle,
-//   Button,
-//   CardLink,
-// } from "reactstrap";
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import { Filtter } from "./fillter";
+
 import { Link } from "react-router-dom";
 
 //import CSS
@@ -29,6 +20,7 @@ var axios = require("axios");
 class UserPage extends React.Component {
   constructor() {
     super();
+    // this.handleSubmet = this.handleSubmet.bind(this);
     this.state = {
       data: [
         {
@@ -80,7 +72,6 @@ class UserPage extends React.Component {
 
   //render UserPage Compo
   render() {
-    const { data } = this.state;
     return (
       <div className="NavBar__div">
         <nav className="nav">
@@ -95,10 +86,14 @@ class UserPage extends React.Component {
                 </Link>
               </ul>
             </div>
+            <br></br>
+            <br></br>
+
+            <Filtter />
           </div>
         </nav>
         <div>
-          {data.map((dataIN, key) => (
+          {this.state.data.map((dataIN, key) => (
             <div
               class="card"
               style={{
