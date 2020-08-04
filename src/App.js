@@ -1,21 +1,21 @@
 import React from "react";
 import logo from "./logo.svg";
-import { SignIn } from "./Components/Signing/signIn";
-import { SignUp } from "./Components/Signup/signup.js";
-import { About } from "./Components/about/About";
-import { Contact } from "./Components/contact/Contact";
-import LandPage from "./Components/landPage/landPage";
-import { UserPage } from "./Components/userPage/userPage";
-import { Reservation } from "./Components/userPage/reservation";
-import { Footer } from "./Components/Footer/Footer.js";
-import { Policy } from "./Components/Policy/Policy.js";
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+
+import { SignIn } from "./Components/Signing/signIn";
+import { SignUp } from "./Components/Signing/signUp.js";
+import { About } from "./Components/SubPages/About/About";
+import { Contact } from "./Components/SubPages/Contact/Contact";
+import LandPage from "./Components/landPage/landPage";
+import { UserPage } from "./Components/userPage/userPage";
+import { Reservation } from "./Components/userPage/reservation";
+import { Footer } from "./Components/SubPages/Footer/Footer.js";
+import { Policy } from "./Components/SubPages/Policy/Policy.js";
 
 import "./App.css";
 

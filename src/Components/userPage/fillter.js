@@ -1,10 +1,19 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+//import CSS
+import "./fillter.css";
+
+//import used files
+
 import one from "./../landPage/one.jpg";
 import two from "./../landPage/two.jpg";
 import three from "./../landPage/three.jpg";
-// import "./style.css";
+
+//fake names for testing
 const names = ["rani", "sma"];
+
+//create Filtter Compo
 class Filtter extends React.Component {
   constructor() {
     super();
@@ -46,11 +55,15 @@ class Filtter extends React.Component {
   //     // setTimeout(this.sta, 1000)
   //     onChange :this.handle
   //   }
+
+  //handle function
   handle = (e) => {
     console.log(e.target.id, "dddd");
     this.setState({ selectVal: e.target.name });
     this.setState({ second: this.state.filtter[e.target.id] }, () => {});
   };
+
+  //handleSelect function
   handleSelect = (e) => {
     this.setState({ selectSecVal: e.target.name });
   };
@@ -58,6 +71,7 @@ class Filtter extends React.Component {
   //     this.setState({ selectVal: e.target.value });
   //   };
 
+  //render Filtter Compo
   render() {
     const { data } = this.state;
     const { second } = this.state;
@@ -172,4 +186,7 @@ class Filtter extends React.Component {
     );
   }
 }
+//render Filtter Compo
 export { Filtter };
+
+//Check and vaildate

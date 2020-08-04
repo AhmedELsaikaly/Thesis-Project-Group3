@@ -1,10 +1,19 @@
 //import used technologies
 import React, { Component } from "react";
+
+//import used css
 import "./Policy.css";
+
+//import used files
+import Navbar from "../../Navbar/Navbar.js";
+
+//create and export Policy Compo
 export class Policy extends Component {
+  //render Policy Compo
   render() {
     return (
       <div>
+        <Navbar />
         <p>
           Privacy policy Salehly promises not to sell, rent, or share your
           personal information to any third party (except as provided in this
@@ -96,3 +105,5 @@ export class Policy extends Component {
     );
   }
 }
+
+//check and vaildate
