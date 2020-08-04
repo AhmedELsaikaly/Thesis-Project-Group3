@@ -1,16 +1,7 @@
 //import used technologies
 import React from "react";
-// import {
-//   Card,
-//   CardImg,
-//   CardText,
-//   CardBody,
-//   CardTitle,
-//   CardSubtitle,
-//   Button,
-//   CardLink,
-// } from "reactstrap";
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import { Filtter } from "./fillter";
+
 import { Link } from "react-router-dom";
 
 //import CSS
@@ -29,6 +20,7 @@ var axios = require("axios");
 class UserPage extends React.Component {
   constructor() {
     super();
+    // this.handleSubmet = this.handleSubmet.bind(this);
     this.state = {
       data: [
         {
@@ -80,7 +72,6 @@ class UserPage extends React.Component {
 
   //render UserPage Compo
   render() {
-    const { data } = this.state;
     return (
       <div className="NavBar__div">
         <nav className="nav">
@@ -95,39 +86,12 @@ class UserPage extends React.Component {
                 </Link>
               </ul>
             </div>
+            <br></br>
+            <br></br>
+
+            <Filtter />
           </div>
         </nav>
-        <div>
-          {data.map((dataIN, key) => (
-            <div
-              class="card"
-              style={{
-                width: "25%",
-                marginLeft: "90px",
-                marginTop: "90px",
-                float: "left",
-                padding: "10px",
-              }}
-            >
-              <img
-                class="card-img-top"
-                style={{ height: "200px" }}
-                src={dataIN.imgurl}
-                alt="Card image cap"
-              ></img>
-              <div class="card-body">
-                <h5 class="card-title">{dataIN.name}</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Details
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
