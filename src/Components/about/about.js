@@ -1,7 +1,9 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+//import used css
 import "./About.css";
-// import Footer from "./../FooterComponent/FooterComponent.js";
+//import used files
 import Navbar from "../Navbar/Navbar.js";
 
 class About extends React.Component {

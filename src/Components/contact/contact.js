@@ -1,9 +1,7 @@
+//import used technologies
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as emailjs from "emailjs-com";
-import "./Contact.css";
-import Navbar from "../Navbar/Navbar.js";
-// import "./style.css";
 import {
   Button,
   FormFeedback,
@@ -12,6 +10,10 @@ import {
   Label,
   Input,
 } from "reactstrap";
+//import used css
+import "./Contact.css";
+//import used files
+import Navbar from "../Navbar/Navbar.js";
 
 class Contact extends React.Component {
   state = {
