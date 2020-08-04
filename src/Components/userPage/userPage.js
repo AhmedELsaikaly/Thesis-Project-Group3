@@ -92,37 +92,6 @@ class UserPage extends React.Component {
             <Filtter />
           </div>
         </nav>
-        <div>
-          {this.state.data.map((dataIN, key) => (
-            <div
-              class="card"
-              style={{
-                width: "25%",
-                marginLeft: "90px",
-                marginTop: "90px",
-                float: "left",
-                padding: "10px",
-              }}
-            >
-              <img
-                class="card-img-top"
-                style={{ height: "200px" }}
-                src={dataIN.imgurl}
-                alt="Card image cap"
-              ></img>
-              <div class="card-body">
-                <h5 class="card-title">{dataIN.name}</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Details
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     );
   }
