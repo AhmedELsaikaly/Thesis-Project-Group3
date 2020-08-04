@@ -1,3 +1,4 @@
+//import used technologies
 import React from "react";
 // import {
 //   Card,
@@ -11,14 +12,20 @@ import React from "react";
 // } from "reactstrap";
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from "react-router-dom";
-import "./style.css";
+
+//import CSS
+import "./userPage.css";
+
+//import used files
 import one from "./../landPage/one.jpg";
 import two from "./../landPage/two.jpg";
 import three from "./../landPage/three.jpg";
 // import { url } from "inspector";
 
+// declare axios for routing
 var axios = require("axios");
 
+//create UserPage Compo
 class UserPage extends React.Component {
   constructor() {
     super();
@@ -35,24 +42,26 @@ class UserPage extends React.Component {
           Rating: "5",
         },
         {
-          imgurl: three ,
+          imgurl: three,
           name: "Ra7aa 3",
           Rating: "5",
         },
         {
-            imgurl: three ,
-            name: "Ra7aa 3",
-            Rating: "5",
-          }
+          imgurl: three,
+          name: "Ra7aa 3",
+          Rating: "5",
+        },
       ],
     };
-    this.handleSubmet = this.handleSubmet.bind(this);
-  }
-  componentDidMount() {
-    this.handleSubmet();
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmet = () => {
+  // componentDidMount function
+  componentDidMount() {
+    this.handleSubmit();
+  }
+  // handleSubmit function
+  handleSubmit = () => {
     axios
       .get("/")
       .then(function (response) {
@@ -68,6 +77,8 @@ class UserPage extends React.Component {
         // always executed
       });
   };
+
+  //render UserPage Compo
   render() {
     const { data } = this.state;
     return (
@@ -88,12 +99,19 @@ class UserPage extends React.Component {
         </nav>
         <div>
           {data.map((dataIN, key) => (
-            <div class="card" style={{ width: "25%",marginLeft :'90px',marginTop:'90px' ,float: 'left',
-            padding: '10px',
-             }}>
+            <div
+              class="card"
+              style={{
+                width: "25%",
+                marginLeft: "90px",
+                marginTop: "90px",
+                float: "left",
+                padding: "10px",
+              }}
+            >
               <img
                 class="card-img-top"
-                style={{height :'200px'}}
+                style={{ height: "200px" }}
                 src={dataIN.imgurl}
                 alt="Card image cap"
               ></img>
@@ -114,4 +132,8 @@ class UserPage extends React.Component {
     );
   }
 }
+
+//render UserPage Compo
 export { UserPage };
+
+//Check and vaildate

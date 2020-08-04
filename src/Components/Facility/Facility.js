@@ -1,9 +1,15 @@
+//import used technologies
 import React from "react";
 import axios from "axios";
+
+//import CSS
+import "./Facility.css";
+
+//import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
-import "./style.css";
 import jessica from "./1.png";
 
+//create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
     super(props);
@@ -18,10 +24,12 @@ class Facility extends React.Component {
       SmallTentPrice: "",
     };
   }
+  //handleChange function
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //getTableUrl function
   getTableUrl = (url) => {
     this.setState((prevState) => {
       let TableUrl = Object.assign({}, prevState.TableUrl);
@@ -30,6 +38,8 @@ class Facility extends React.Component {
       return { TableUrl };
     });
   };
+
+  //getSmallTentUrl function
   getSmallTentUrl = (url) => {
     this.setState((prevState) => {
       let SmallTentUrl = Object.assign({}, prevState.SmallTentUrl);
@@ -38,6 +48,8 @@ class Facility extends React.Component {
       return { SmallTentUrl };
     });
   };
+
+  //getLargeTentUrl function
   getLargeTentUrl = (url) => {
     this.setState((prevState) => {
       this.setState((prevState) => {
@@ -64,6 +76,7 @@ class Facility extends React.Component {
   //       });
   //   };
 
+  //render Facility Compo
   render() {
     return (
       <div className="Facility">
@@ -154,4 +167,7 @@ class Facility extends React.Component {
   }
 }
 
+//export compo
 export default Facility;
+
+//Check and vaildate

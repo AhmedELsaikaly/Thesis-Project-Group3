@@ -1,10 +1,15 @@
+//import used technologies
 import React from "react";
-import "./style.css";
 import axios from "axios";
+
+//import CSS
+import "./Service.css";
+
+//import used files
 import CheckBox from "./CheckBox.js";
 import Facility from "../Facility/Facility";
 
-
+//create Service Compo
 class Service extends React.Component {
   constructor(props) {
     super(props);
@@ -55,6 +60,7 @@ class Service extends React.Component {
       });
   };
 
+  //render Service Compo
   render() {
     return (
       <div className="content">
@@ -93,8 +99,7 @@ class Service extends React.Component {
               type="submit"
               className="btn btn-lg font-weight-bold btn-secondary btn-block"
             >
-              {" "}
-              Send Your Request{" "}
+              Send Your Request
             </button>
           </div>
         </fieldset>
@@ -103,4 +108,7 @@ class Service extends React.Component {
   }
 }
 
+//export compo
 export default Service;
+
+//Check and vaildate

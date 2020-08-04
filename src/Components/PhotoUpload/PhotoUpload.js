@@ -1,4 +1,11 @@
+//import used technologies
 import React from "react";
+
+//import CSS
+
+//import used files
+
+//create PhotoUpload Compo
 class PhotoUpload extends React.Component {
   state = {
     imageUrl: null,
@@ -29,6 +36,8 @@ class PhotoUpload extends React.Component {
       })
       .catch((err) => console.log(err));
   };
+
+  //render PhotoUpload Compo
   render() {
     const { imageUrl, imageAlt } = this.state;
 
@@ -62,5 +71,7 @@ class PhotoUpload extends React.Component {
     );
   }
 }
-
+//export compo
 export default PhotoUpload;
+
+//Check and vaildate
