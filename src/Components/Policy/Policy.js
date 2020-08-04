@@ -1,3 +1,4 @@
+//import used technologies
 import React, { Component } from "react";
 import "./Policy.css";
 export class Policy extends Component {
