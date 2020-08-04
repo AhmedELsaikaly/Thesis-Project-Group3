@@ -5,11 +5,14 @@ import face from "./face.png";
 import insta from "./insta.png";
 import twitter from "./twitter.png";
 import axios from "axios";
+
 //import used css
 import "./Footer.css";
-//import used files
-import Navbar from "../Navbar/Navbar.js";
 
+//import used files
+import Navbar from "../../Navbar/Navbar.js";
+
+//create Footer Compo
 export class Footer extends Component {
   state = {
     senderName: "",
@@ -17,9 +20,12 @@ export class Footer extends Component {
     senderMessage: "",
   };
 
+  // handleChange function
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  // handleSubmit function
   handleSubmit = (e) => {
     e.preventDefault();
     const { senderName, senderEmail, senderMessage } = this.state;
@@ -37,6 +43,8 @@ export class Footer extends Component {
         console.error(error);
       });
   };
+
+  //render Footer Compo
   render() {
     return (
       <div className="main">
@@ -48,8 +56,8 @@ export class Footer extends Component {
               <p>Tell us what you need and we will contact with you later</p>
               <address>578 Jalaa st. Gaza Remal Area</address>
               <p>
-                <strong>Email: </strong>CatAdopt@gmail.com <br />
-                <strong>Phone: </strong>+970596178618 <br />
+                <strong>Email: </strong>RahaApp@gmail.com <br />
+                <strong>Phone: </strong>+970597247464 <br />
               </p>
             </div>
 
@@ -79,7 +87,7 @@ export class Footer extends Component {
         </div>
         <div className="footer">
           <div className="container">
-            <span>Copyright &copy; 2020 AdoptCat</span>
+            <span>Copyright &copy; 2020 RahaApp</span>
             <ul>
               <li>
                 <img src={face} alt="face icon" />
@@ -101,4 +109,7 @@ export class Footer extends Component {
   }
 }
 
+//export Footer Compo
 export default Footer;
+
+//check and vaildate

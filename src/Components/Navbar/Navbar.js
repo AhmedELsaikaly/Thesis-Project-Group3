@@ -22,6 +22,9 @@ class NavBar extends React.Component {
             </div>
             <div className="main_list" id="mainListDiv">
               <ul>
+                <Link to="/">
+                  <li>Home </li>
+                </Link>
                 <Link to="/signUp">
                   <li>Sign Up </li>
                 </Link>
@@ -33,6 +36,9 @@ class NavBar extends React.Component {
                 </Link>
                 <Link to="/contact">
                   <li>Contact Us</li>
+                </Link>
+                <Link to="/Policy">
+                  <li>Policy</li>
                 </Link>
                 <Link to="/logout">
                   <li>Logout</li>

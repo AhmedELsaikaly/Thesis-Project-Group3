@@ -1,7 +1,6 @@
 //import used technologies
 import React from "react";
 import { Filtter } from "./fillter";
-
 import { Link } from "react-router-dom";
 
 //import CSS

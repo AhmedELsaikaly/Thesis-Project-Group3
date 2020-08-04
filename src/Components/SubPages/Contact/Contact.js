@@ -10,11 +10,14 @@ import {
   Label,
   Input,
 } from "reactstrap";
+
 //import used css
 import "./Contact.css";
-//import used files
-import Navbar from "../Navbar/Navbar.js";
 
+//import used files
+import Navbar from "../../Navbar/Navbar.js";
+
+//create About Compo
 class Contact extends React.Component {
   state = {
     name: "",
@@ -22,9 +25,13 @@ class Contact extends React.Component {
     address: "",
     message: "",
   };
+
+  //alertMessage function
   alertMessage() {
     alert("Your message has been sent");
   }
+
+  //handleSubmit function
   handleSubmit(e) {
     e.preventDefault();
     const { name, email, address, message } = this.state;
@@ -34,6 +41,7 @@ class Contact extends React.Component {
       address: address,
       message_html: message,
     };
+
     emailjs.send(
       "gmail",
       "flightsbookingv2",
@@ -42,6 +50,8 @@ class Contact extends React.Component {
     );
     this.resetForm();
   }
+
+  //resetForm function
   resetForm() {
     this.setState({
       name: "",
@@ -50,9 +60,13 @@ class Contact extends React.Component {
       message: "",
     });
   }
+
+  //handleChange function
   handleChange = (param, e) => {
     this.setState({ [param]: e.target.value });
   };
+
+  //render Contact Compo
   render() {
     return (
       <div className="al">
@@ -115,4 +129,7 @@ class Contact extends React.Component {
     );
   }
 }
+//render About Compo
 export { Contact };
+
+//Check and vaildate

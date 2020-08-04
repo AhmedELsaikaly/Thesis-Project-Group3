@@ -1,21 +1,24 @@
 //import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+
 //import used css
 import "./About.css";
-//import used files
-import Navbar from "../Navbar/Navbar.js";
 
+//import used files
+import Navbar from "../../Navbar/Navbar.js";
+
+//create About Compo
 class About extends React.Component {
   render() {
     return (
       <div className="wrapper row2">
         <Navbar />
-        <h1>("ABOUT US")</h1>
+        <h1>ABOUT US</h1>
         <div id="container" className="clear">
           <div id="about-us" className="clear">
             <section id="about-intro" className="clear">
-              <h2>About Us</h2>
+              {/* <h2>About Us</h2> */}
               <img
                 src={
                   "https://ca.slack-edge.com/TTW205AAU-U011K4W18A2-7ba92b624e7a-512"
@@ -27,21 +30,6 @@ class About extends React.Component {
             <section id="team">
               <h2>Our Team</h2>
               <ul className="clear">
-                <li className="one_third first">
-                  <figure>
-                    {" "}
-                    <img
-                      src={
-                        "https://ca.slack-edge.com/TTW205AAU-U011K4W18A2-7ba92b624e7a-512"
-                      }
-                      /*add the photo of the team members, I will try to get them from the slack */ alt=""
-                    />
-                    <figcaption>
-                      <p className="team_name">Mohammed AbuShaaban</p>
-                      <p className="team_title">{/*My job*/}</p>
-                    </figcaption>
-                  </figure>
-                </li>
                 <li className="one_third">
                   <figure>
                     <img
@@ -51,8 +39,8 @@ class About extends React.Component {
                       /*add the photo of the team members, I will try to get them from the slack */ alt=""
                     />
                     <figcaption>
-                      <p className="team_name">khaled AboShaish</p>
-                      <p className="team_title">Website Manager</p>
+                      <p className="team_name">Khaled Abousheik</p>
+                      <p className="team_title">Scrum Master</p>
                     </figcaption>
                   </figure>
                 </li>
@@ -66,7 +54,7 @@ class About extends React.Component {
                     />
                     <figcaption>
                       <p className="team_name">Ahmed ELsaikaly</p>
-                      <p className="team_title">{/*My job*/}</p>
+                      <p className="team_title">Full Stack Developer</p>
                     </figcaption>
                   </figure>
                 </li>
@@ -79,8 +67,8 @@ class About extends React.Component {
                       alt=""
                     />
                     <figcaption>
-                      <p className="team_name">yousif yasin</p>
-                      <p className="team_title">{/*My job*/} </p>
+                      <p className="team_name">Yousif Yasin</p>
+                      <p className="team_title">Full Stack Developer </p>
                     </figcaption>
                   </figure>
                 </li>
@@ -93,8 +81,23 @@ class About extends React.Component {
                       alt=""
                     />
                     <figcaption>
-                      <p className="team_name">Weal Takiya</p>
-                      <p className="team_title">{/*My job*/} </p>
+                      <p className="team_name">Wael Abutakiya</p>
+                      <p className="team_title">Full Stack Developer </p>
+                    </figcaption>
+                  </figure>
+                </li>
+                <li className="one_third first">
+                  <figure>
+                    {" "}
+                    <img
+                      src={
+                        "https://ca.slack-edge.com/TTW205AAU-U011K4W18A2-7ba92b624e7a-512"
+                      }
+                      /*add the photo of the team members, I will try to get them from the slack */ alt=""
+                    />
+                    <figcaption>
+                      <p className="team_name">Mohammed AbuShaaban</p>
+                      <p className="team_title">Full Stack Developer</p>
                     </figcaption>
                   </figure>
                 </li>
@@ -107,4 +110,7 @@ class About extends React.Component {
     );
   }
 }
+//render About Compo
 export { About };
+
+//Check and vaildate
