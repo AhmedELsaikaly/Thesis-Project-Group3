@@ -33,6 +33,14 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 
+//herokuapp config. using static files presented after the build
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+  });
+}
+
 // //require modules (express,body-parser,path,cors,mongoose)
 // const express = require("express");
 // const bodyParser = require("body-parser");
@@ -74,14 +82,6 @@ app.listen(port, () => {
 //   })
 //   .then(() => console.log("connected to database successfully"))
 //   .catch((err) => console.log("Error in connecting to database", err));
-
-// //herokuapp config. using static files presented after the build
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("build"));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-//   });
-// }
 
 // //using routers
 // app.use("/api", users);
