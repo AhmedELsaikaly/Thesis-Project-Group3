@@ -5,6 +5,9 @@ import  {SignUp} from "./Components/Signup/signup.js";
 import { About } from "./Components/about/about";
 import { Contact } from "./Components/contact/contact";
 import LandPage from "./Components/landPage/landPage";
+import {UserPage} from "./Components/userPage/userPage";
+import {Reservation} from "./Components/userPage/reservation";
+
 
 import {
   BrowserRouter as Router,
@@ -28,6 +31,9 @@ class App extends React.Component {
             <Route exact path="/signIn" component={SignIn}></Route>
             <Route exact path="/about" component={About}></Route>
             <Route exact path="/contact" component={Contact}></Route>
+            <Route exact path="/logout" component={UserPage}></Route>
+            <Route exact path="/reservation" component={Reservation}></Route>
+
           </Switch>
         </Router>
       </div>

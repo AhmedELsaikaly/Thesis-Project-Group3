@@ -25,7 +25,7 @@
     /* Navbar section */
     
     .nav{
-        width: 100%;
+        width: 90%;
         height: 65px;
         line-height: 65px;
         text-align: center;
@@ -57,7 +57,7 @@
     }
     
     .nav div.main_list{
-        width: 600px;
+        width: 670px;
         height: 65px;
         float: right;
     }

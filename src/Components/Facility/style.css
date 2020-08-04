@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+.Facility {
+  margin-left: 270px;
+  margin-top: 70px;
+  float: left;
+  width: 30%;
+}
+/* Clear floats after the columns */
+.Facility:after {
+  content: "";
+  display: table;
+  clear: both;
+}

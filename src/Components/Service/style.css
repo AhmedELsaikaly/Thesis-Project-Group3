@@ -1,0 +1,53 @@
+.content {
+  overflow: hidden;
+  margin-left: 250px;
+  /* background: url(background.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: 0.5s; */
+}
+.content p {
+  overflow: hidden;
+  float: center;
+  margin-top: 70px;
+  /* margin-left: 20px; */
+  font-weight: bold;
+  font-size: 20px;
+}
+p span {
+  display: block;
+}
+
+/* .content h2 {
+  overflow: hidden;
+  float: left;
+  margin-top: 100px;
+  margin-left: 10px;
+} */
+
+.form-group {
+  font-size: 20px;
+  font-weight: bold;
+  float: center;
+}
+.form-group textarea {
+  margin-left: 70px;
+  width: 80%;
+}
+.form-group button {
+  margin-top: 20px;
+  margin-left: 200px;
+  width: 50%;
+}
+
+#serviceElement {
+  margin-left: 30px;
+}
+#checkElement {
+  width: 35%;
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
