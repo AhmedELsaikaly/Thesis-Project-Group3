@@ -34,7 +34,7 @@ class NavBar extends React.Component {
                 <Link to="/contact">
                   <li>Contact Us</li>
                 </Link>
-                <Link to="/">
+                <Link to="/logout">
                   <li>Logout</li>
                 </Link>
               </ul>
