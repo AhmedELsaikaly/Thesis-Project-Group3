@@ -1,13 +1,21 @@
+//import used technologies
 import React from "react";
-import "./style.css";
-import jessica from "./1.png";
 import { Link, Redirect } from "react-router-dom";
+
+//import CSS
+import "./ControlPanel.css";
+
+//import used files
+import jessica from "./1.png";
+
+//create ContolPanel Compo
 class ContolPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  //render ContolPanel Compo
   render() {
     return (
       <div>
@@ -36,13 +44,13 @@ class ContolPanel extends React.Component {
             <i className="fas fa-desktop"></i>
             <span>Dashboard</span>
           </a>
-          <a href="/facility">
+          <a href="/service">
             <i className="fas fa-cogs"></i>
-            <span>Components</span>
+            <span>Services</span>
           </a>
-          <a href="#">
+          <a href="/facility">
             <i className="fas fa-table"></i>
-            <span>Tables</span>
+            <span>Facilities</span>
           </a>
           <a href="#">
             <i className="fas fa-th"></i>
@@ -63,5 +71,7 @@ class ContolPanel extends React.Component {
     );
   }
 }
-
+//export compo
 export default ContolPanel;
+
+//Check and vaildate

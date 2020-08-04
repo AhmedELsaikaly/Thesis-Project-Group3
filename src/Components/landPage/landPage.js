@@ -35,7 +35,6 @@ class LandPage extends React.Component {
   }
 }
 //export compo
-
 export default LandPage;
 
 //Check and vaildate

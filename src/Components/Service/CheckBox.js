@@ -1,7 +1,5 @@
-//import used technologies
 import React from "react";
 
-//Create CheckBox compo
 const CheckBox = (props) => {
   return (
     <div id="checkElement" className="form-check form-check-inline">
@@ -20,5 +18,4 @@ const CheckBox = (props) => {
   );
 };
 
-//export checkBox Compo
 export default CheckBox;
