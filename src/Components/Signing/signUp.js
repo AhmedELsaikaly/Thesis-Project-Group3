@@ -1,14 +1,21 @@
 //import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+
 
 //import CSS
 import "./signUp.css";
 
 //import used files
 import Navbar from "../Navbar/Navbar.js";
+///////////////////////////////////
 
-const axios = require("axios");
+////////////  Customer  ///////////
+
+///////////////////////////////////
+
+
 //create signup compo
 class SignUp extends React.Component {
   //constructor and state
@@ -37,7 +44,7 @@ class SignUp extends React.Component {
     e.preventDefault();
     //axios routing , then and catch
     axios
-      .post("/api/signup", {
+      .post("/signup", {
         fullName: this.state.fullName,
         password: this.state.password,
         email: this.state.email,
@@ -71,6 +78,7 @@ class SignUp extends React.Component {
       profileImg,
       address,
     } = this.state;
+
     const values = {
       fullName,
       password,
@@ -126,32 +134,7 @@ class SignUp extends React.Component {
               onChange={this.handleChange}
             ></input>
           </label>
-          <br></br>
-          {/* <div className="checkbox">
-         <h5>Grnder</h5>
-          <label>
-            <input
-            name ="gender"
-            type="checkbox" 
-            value={this.state.gender}
-            onChange={this.handleChange}
-           
-            />
-            Male
-          </label>
-        </div>
-        <div className="checkbox">
-          <label>
-            <input 
-             name ="gender"
-             type="checkbox" 
-             value={this.state.gender}
-             onChange={this.handleChange}
-             />
-            Female
-          </label>
-        </div> */}
-          <br></br>
+          <br></br>       
           <label>
             Address
             <input
