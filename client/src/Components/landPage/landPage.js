@@ -15,6 +15,7 @@ import four from "./four.jpg";
 import five from "./five.jpg";
 import { SignIn } from "../Signing/signIn";
 import Footer from "../SubPages/Footer/Footer.js";
+import SliderCom1 from "./../slider/slider2";
 
 //create LandPage Compo
 class LandPage extends React.Component {
@@ -29,8 +30,9 @@ class LandPage extends React.Component {
     return (
       <div className="container">
         <Navbar />
-        <SliderCom />
+        {/* <SliderCom /> */}
         {/* send the imageUrl array to sliderCom  */}
+        <SliderCom1 />
         <Footer />
       </div>
     );
