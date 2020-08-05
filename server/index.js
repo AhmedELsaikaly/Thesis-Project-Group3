@@ -14,24 +14,23 @@ app.use(cors());
 // validation for info on signup and login. Search for good module
 // handle errors and render to the user
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
-app.use(express.static(path.resolve(__dirname + "client", "build")));
+// app.use(express.static(path.resolve(__dirname + "client", "build")));
+// app.use(
+//   express.static(path.join(__dirname, "..", "client", "public", "index.html"))
+// );
 
+app.use(express.json());
 //take the data of the book that i seach about it and put in favorit list
-app.use(router);
+// app.use(router);
 
 // app.get('/', (req, res) => {
 //   res.send('works!')
 // })
 
-/// TODO:  authentication verrification/ check for token in every req for every user
-
 var port = 5000;
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
 
 //herokuapp config. using static files presented after the build
 if (process.env.NODE_ENV === "production") {
@@ -40,6 +39,10 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }
+/// TODO:  authentication verrification/ check for token in every req for every user
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 
 // //require modules (express,body-parser,path,cors,mongoose)
 // const express = require("express");
