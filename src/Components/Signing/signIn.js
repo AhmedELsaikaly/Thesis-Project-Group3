@@ -1,12 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 //import CSS
 import "./signUp.css";
 
 //import used files
 import Navbar from "../Navbar/Navbar.js";
+// const axios = require("axios");
+///////////////////////////////////
 
+////////////  Customer  ///////////
+
+///////////////////////////////////
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -27,10 +33,35 @@ class SignIn extends React.Component {
   //handleSubmit function
 
   handleSubmit(e) {
-    e.preventDefault();
+  
+    const { email, password } = this.state;
+    axios
+      .post(
+        `http://localhost:5000/loginCustomer`,
+        {
+          user: {
+            email: email,
+            password: password,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data === true) {
+          // this.props.setUserAuth(true);
+          // this.props.history.push('/auth/Search');
+        } else {
+          alert('LogIn faild . . Make sure the information is correct');
+        }
+      })
+      .catch((error) => {
+        console.log('login error', error);
+        // this.props.setUserAuth(false);
+      });
     ///////////need axios ????
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+    e.preventDefault();
   }
 
   render() {
