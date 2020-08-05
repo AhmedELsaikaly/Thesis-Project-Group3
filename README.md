@@ -55,7 +55,7 @@
 ## Development
 
 Heroku deployed link :
-https://111.herokuapp.com/
+https://raha-express.herokuapp.com/
 
 ### Installing Dependencies
 
