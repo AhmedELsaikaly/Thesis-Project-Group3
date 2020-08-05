@@ -16,6 +16,7 @@ import "./Contact.css";
 
 //import used files
 import Navbar from "../../Navbar/Navbar.js";
+import Footer from "../Footer/Footer.js";
 
 //create About Compo
 class Contact extends React.Component {
@@ -125,6 +126,7 @@ class Contact extends React.Component {
             Send message
           </Button>
         </Form>
+        <Footer />
       </div>
     );
   }

@@ -6,6 +6,7 @@ import "./Policy.css";
 
 //import used files
 import Navbar from "../../Navbar/Navbar.js";
+import Footer from "../Footer/Footer.js";
 
 //create and export Policy Compo
 export class Policy extends Component {
@@ -101,6 +102,7 @@ export class Policy extends Component {
           services. Salehly gives its customers an easy and enjoyable experience
           by saving the customer’s search trouble.
         </p>
+        <Footer />
       </div>
     );
   }

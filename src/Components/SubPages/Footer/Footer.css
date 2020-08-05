@@ -1,0 +1,30 @@
+.footer {
+  background-color: #23202e;
+  text-align: center;
+  color: #b2b2b2;
+  overflow: hidden;
+  position: absolute;
+  bottom: 10px;
+  width: 80%;
+  border: 2px solid #8ac007;
+}
+.footer span {
+  margin-top: 6px;
+  float: left;
+}
+.footer ul {
+  float: right;
+  list-style: none;
+  padding-left: 0;
+  margin: 5px 0 0;
+}
+.footer li {
+  display: inline-block;
+  margin-right: 3px;
+}
+.footer li img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(50%);
+  margin: 0px;
+}

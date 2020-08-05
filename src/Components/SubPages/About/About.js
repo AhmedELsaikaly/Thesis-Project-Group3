@@ -7,7 +7,7 @@ import "./About.css";
 
 //import used files
 import Navbar from "../../Navbar/Navbar.js";
-
+import Footer from "../Footer/Footer.js";
 //create About Compo
 class About extends React.Component {
   render() {
@@ -105,7 +105,7 @@ class About extends React.Component {
             </section>
           </div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }
