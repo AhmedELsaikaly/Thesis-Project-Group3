@@ -16,22 +16,11 @@ let CustomerSchema = mongoose.Schema({
     unique: true,
     required: true,
   },
-
   mobileNumber: {
     type: Number,
     required: true,
     unique: true,
   },
-  gender: {
-    type: String,
-    required: false,
-  },
-  profileImg: {
-    data: Buffer,
-    contentType: String,
-    required: false,
-  },
-
   address: {
     type: String,
     required: false,
