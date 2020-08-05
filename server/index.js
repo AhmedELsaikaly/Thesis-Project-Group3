@@ -18,9 +18,9 @@ app.use(cors());
 // app.use(bodyParser.json());
 
 // app.use(express.static(path.resolve(__dirname + "client", "build")));
-app.use(
-  express.static(path.join(__dirname, "..", "client", "public", "index.html"))
-);
+// app.use(
+//   express.static(path.join(__dirname, "..", "client", "public", "index.html"))
+// );
 
 app.use(express.json());
 //take the data of the book that i seach about it and put in favorit list
@@ -34,9 +34,9 @@ var port = 5000;
 
 //herokuapp config. using static files presented after the build
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
+  app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }
 /// TODO:  authentication verrification/ check for token in every req for every user
