@@ -18,10 +18,13 @@ app.use(cors());
 // app.use(bodyParser.json());
 
 // app.use(express.static(path.resolve(__dirname + "client", "build")));
+app.use(
+  express.static(path.join(__dirname, "..", "client", "public", "index.html"))
+);
 
-app.use(express.json())
+app.use(express.json());
 //take the data of the book that i seach about it and put in favorit list
-app.use(router);
+// app.use(router);
 
 // app.get('/', (req, res) => {
 //   res.send('works!')
@@ -40,7 +43,6 @@ if (process.env.NODE_ENV === "production") {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
 
 // //require modules (express,body-parser,path,cors,mongoose)
 // const express = require("express");

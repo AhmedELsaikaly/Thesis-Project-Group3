@@ -21,7 +21,7 @@ class LandPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      imgUrl: [one, two, three, four, five],
+      // imgUrl: [one, two, three, four, five],
     };
   }
   //render LandPage Compo
@@ -29,7 +29,7 @@ class LandPage extends React.Component {
     return (
       <div className="container">
         <Navbar />
-        <SliderCom url={this.state.imgUrl} />{" "}
+        <SliderCom />
         {/* send the imageUrl array to sliderCom  */}
         <Footer />
       </div>

@@ -2,7 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "@farbenmeer/react-spring-slider";
-
+import one from "./../landPage/one.jpg";
+import two from "./../landPage/two.jpg";
+import three from "./../landPage/three.jpg";
+import four from "./../landPage/four.jpg";
+import five from "./../landPage/five.jpg";
 //import CSS
 import "./slider.css";
 
@@ -14,9 +18,10 @@ class SliderCom extends React.Component {
   constructor() {
     super();
     this.state = {
-      imgUrl: [],
+      imgUrl: [one, two, three, four, five],
     };
   }
+
   //onSlideChange function
   onSlideChange = (index) => console.log(`changed to slide ${index}`);
 
@@ -53,7 +58,10 @@ class SliderCom extends React.Component {
 
   //render SliderCom Compo
   render() {
-    const { url } = this.props;
+    const { imgUrl } = this.state;
+
+    console.log(imgUrl, "asdf");
+
     return (
       <div className="card">
         <div
@@ -72,7 +80,7 @@ class SliderCom extends React.Component {
             ArrowComponent={this.ArrowComponent}
             onSlideChange={this.onSlideChange}
           >
-            {url.map((dataIN, key) => {
+            {imgUrl.map((dataIN, key) => {
               return (
                 <div style={{ width: "100%", height: "450px" }}>
                   <div
