@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import { SignIn } from "./Components/Signing/signIn";
-import { SignUp } from "./Components/Signing/signUp.js";
+import SignUp from "./Components/Signing/signUp.js";
 import { About } from "./Components/SubPages/About/About";
 import { Contact } from "./Components/SubPages/Contact/Contact";
 import LandPage from "./Components/landPage/landPage";
