@@ -1,3 +1,8 @@
+//require technologies
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+//require files
 const {
   CustomerModel,
   OwnerModel,
@@ -8,8 +13,6 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin

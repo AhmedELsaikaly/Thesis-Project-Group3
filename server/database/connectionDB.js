@@ -1,5 +1,8 @@
+//require technologies
 const mongoose = require("mongoose"); //inclode mongoose in our page
+
 // const config = require('./config');
+
 //connection to mongodb
 const db = mongoose
   .connect(
@@ -15,4 +18,6 @@ const db = mongoose
   .catch((err) => {
     console.log(" Error when connecting To Database :", err);
   });
+
+//export db
 module.exports = db;

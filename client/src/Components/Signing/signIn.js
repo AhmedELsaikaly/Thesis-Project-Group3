@@ -1,12 +1,14 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../Navbar/Navbar.js";
 import axios from "axios";
-import "./signIn.css";
 //import CSS
+import "./signIn.css";
 
 //import used files
+import Navbar from "../Navbar/Navbar.js";
 
+//create SignIn compo
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -31,6 +33,7 @@ class SignIn extends React.Component {
       input,
     });
   };
+
   //validate
   validate() {
     let input = this.state.input;
@@ -52,7 +55,6 @@ class SignIn extends React.Component {
   }
 
   //handleSubmit function
-
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.validate()) {
@@ -80,6 +82,7 @@ class SignIn extends React.Component {
     }
   };
 
+  //render SignIn compo
   render() {
     return (
       <div className="login-form">
@@ -132,4 +135,6 @@ class SignIn extends React.Component {
     );
   }
 }
+
+//export SignIn Compo
 export { SignIn };

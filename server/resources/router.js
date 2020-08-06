@@ -1,3 +1,4 @@
+//require technologies
 const router = require("express").Router();
 const controller = require("./controller");
 // login Router
@@ -8,4 +9,6 @@ router.post("/signUpOwner", controller.SignUpOwner);
 router.post("/loginCustomer", controller.SignInCustomer);
 // signUp Router
 router.post("/signUpCustomer", controller.SignUpCustomer);
+
+//export router
 module.exports = router;

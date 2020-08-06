@@ -1,3 +1,4 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,8 +7,8 @@ import "./signUp.css";
 
 //import used files
 import Navbar from "../Navbar/Navbar.js";
-
 const axios = require("axios");
+
 //create signup compo
 class SignUp extends React.Component {
   //constructor and state
@@ -247,10 +248,11 @@ class SignUp extends React.Component {
             onChange={this.handleSelect}
           >
             <option value="">Choose Your Place</option>
-            <option value="Rafah">Rafah</option>
-            <option value="Khan Younis">Khan Younis</option>
-            <option value="Middle Area">Middle Area</option>
             <option value="Gaza">Gaza</option>
+            <option value="North Gaza">North Gaza</option>
+            <option value="Middle Area">Middle Area</option>
+            <option value="Khan Younis">Khan Younis</option>
+            <option value="Rafah">Rafah</option>
             <option value="Another place">Another place</option>
           </select>
           <p className="text-danger">{this.state.errors.password}</p>
@@ -306,4 +308,5 @@ class SignUp extends React.Component {
     );
   }
 }
+//export SignUp Compo
 export default SignUp;

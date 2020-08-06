@@ -1,5 +1,7 @@
+//require technologies
 const mongoose = require("mongoose");
-//............................
+//..................................................
+
 //Customer Model
 let CustomerSchema = mongoose.Schema({
   fullName: {
@@ -30,6 +32,7 @@ let CustomerSchema = mongoose.Schema({
   },
 });
 let CustomerModel = mongoose.model("customer", CustomerSchema);
+
 //..................................................
 //Owner Schema
 let OwnerSchema = mongoose.Schema({
@@ -83,8 +86,8 @@ let OwnerSchema = mongoose.Schema({
 });
 const OwnerModel = mongoose.model("Owner", OwnerSchema);
 
-// //......................................................................
-// // Facilities Schema
+//..................................................
+// Facilities Schema
 let FacilitySchema = mongoose.Schema({
   ownerId: {
     type: String,
@@ -148,8 +151,9 @@ let FacilitySchema = mongoose.Schema({
   },
 });
 const FacilityModel = mongoose.model("Facility", FacilitySchema);
-// ////..............................................................................
-// //Services Schema
+
+//..................................................
+//Services Schema
 let ServicesSchema = mongoose.Schema({
   owner_id: {
     type: String,
@@ -170,8 +174,9 @@ let ServicesSchema = mongoose.Schema({
 });
 
 const ServicesModel = mongoose.model("Service", ServicesSchema);
-// //////.............................................................................
-// // Reservation Schema
+
+//..................................................
+//Reservation Schema
 let ReservationSchema = mongoose.Schema({
   customerId: {
     type: String,
@@ -204,8 +209,8 @@ let ReservationSchema = mongoose.Schema({
 
 const ReservationModel = mongoose.model("Reserv", ReservationSchema);
 
-// //// ....................................................
-// // Rating & FeedBack Schema
+//..................................................
+//Rating & FeedBack Schema
 
 let RatingSchema = mongoose.Schema({
   customerId: {
@@ -230,6 +235,9 @@ let RatingSchema = mongoose.Schema({
   },
 });
 const RFModel = mongoose.model("RatingFeedback", RatingSchema);
+
+//..................................................
+//export modules
 
 module.exports = {
   CustomerModel,
