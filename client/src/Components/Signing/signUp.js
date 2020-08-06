@@ -169,7 +169,7 @@ class SignUp extends React.Component {
       })
       .catch((err) => {
         // alert("please use a different email or user name");
-        console.log("ERROR FROM AXIOS ", err);
+        console.log("ERROR FROM AXIOS ", err.response.data);
         // this.props.history.push(`/Signup`);
       });
   };
