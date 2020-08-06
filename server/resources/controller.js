@@ -138,7 +138,7 @@ exports.SignInCustomer = function (req, res) {
     .then((customer) => {
       //check if customer exists
       if (!customer) {
-        return res.status(404).json({ emailnotfound: "Email not found" });
+        return res.status(404).json("Email not found");
       }
       //check password
       bcrypt
@@ -166,9 +166,7 @@ exports.SignInCustomer = function (req, res) {
               }
             );
           } else {
-            return res
-              .status(400)
-              .json({ passwordincorrect: "Password incorrect" });
+            return res.status(400).json("Password incorrect");
           }
         })
         .catch((err) => {
@@ -182,17 +180,18 @@ exports.SignInCustomer = function (req, res) {
 
 //............................SignUp Controller  For Costmer ..............................//
 exports.SignUpCustomer = function (req, res) {
+  console.log(req.body);
   //form validation
-  const { errors, isValid } = validateSignupInput(req.body);
-  //check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // const { errors, isValid } = validateSignupInput(req.body);
+  // //check validation
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
   //check Customer by email if exists
   CustomerModel.findOne({ email: req.body.email })
     .then((customer) => {
       if (customer) {
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json("Email already exists");
       } else {
         //create newCustomer
         const newCustomer = new CustomerModel({

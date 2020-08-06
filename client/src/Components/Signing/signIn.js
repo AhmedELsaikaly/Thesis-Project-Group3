@@ -1,18 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"
-
+import Navbar from "../Navbar/Navbar.js";
+import axios from "axios";
+import "./signIn.css";
 //import CSS
-import "./signUp.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
-// const axios = require("axios");
-///////////////////////////////////
 
-////////////  Customer  ///////////
-
-///////////////////////////////////
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -20,94 +14,120 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
+      input: {
+        email: "",
+        password: "",
+      },
+      errors: {},
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    let input = this.state.input;
+    input[e.target.name] = e.target.value;
+
+    this.setState({
+      input,
+    });
+  };
+  //validate
+  validate() {
+    let input = this.state.input;
+    let errors = {};
+    let isValid = true;
+    if (!input["email"]) {
+      isValid = false;
+      errors["email"] = "Please enter your email .";
+    }
+    if (!input["password"]) {
+      isValid = false;
+      errors["password"] = "Please enter your password.";
+    }
+    this.setState({
+      errors: errors,
+    });
+
+    return isValid;
   }
 
   //handleSubmit function
 
-  handleSubmit(e) {
-  
-    const { email, password } = this.state;
-    axios
-      .post(
-        `http://localhost:5000/loginCustomer`,
-        {
-          user: {
-            email: email,
-            password: password,
-          },
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        if (response.data === true) {
-          // this.props.setUserAuth(true);
-          // this.props.history.push('/auth/Search');
-        } else {
-          alert('LogIn faild . . Make sure the information is correct');
-        }
-      })
-      .catch((error) => {
-        console.log('login error', error);
-        // this.props.setUserAuth(false);
-      });
-    ///////////need axios ????
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
+  handleSubmit = (e) => {
     e.preventDefault();
-  }
+    if (this.validate()) {
+      let input = {};
+      input["password"] = "";
+      input["email"] = "";
+      this.setState({ input: input });
+      axios
+        .post("http://localhost:5000/loginCustomer", {
+          password: this.state.password,
+          email: this.state.email,
+        })
+        .then((response) => {
+          console.log(response);
+          // alert("sign up success please sign in");
+          // console.log("result   ", res);
+          // this.setState({ singup: "sign up success please sign in" });
+          this.props.history.push(`/`);
+        })
+        .catch((err) => {
+          // alert("please use a different email or user name");
+          console.log("ERROR FROM AXIOS ", err.response.data);
+          this.props.history.push(`/signUp`);
+        });
+    }
+  };
 
   render() {
     return (
-      <div className="singIn">
-        <Navbar />
-        <form
-          onSubmit={this.handleSubmit}
-          className="FormFields"
-          onSubmit={this.handleSubmit}
-        >
-          <div className="FormField">
-            <label>
-              E-Mail Address
-              <input
-                type="email"
-                id="email"
-                className="FormField__Input"
-                placeholder="Enter your email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
+      <div className="login-form">
+        <form>
+          <div className="avatar">
+            <i className="material-icons">&#xE7FF;</i>
+          </div>
+          <h4 className="modal-title">Login to Your Account</h4>
+          <div className="text-danger">{this.state.errors.email}</div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Email"
+              name="email"
+              onChange={this.handleChange}
+              value={this.state.input.email}
+            />
+          </div>
+          <div className="text-danger">{this.state.errors.email}</div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              value={this.state.input.Password}
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+          </div>
+          {/* <div className="form-group small clearfix">
+            <label className="checkbox-inline">
+              <input type="checkbox" /> Remember me
             </label>
-          </div>
-
-          <div className="FormField">
-            <label>
-              Password
-              <input
-                type="password"
-                id="password"
-                className="FormField__Input"
-                placeholder="Enter your password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </label>
-          </div>
-
-          <div className="FormField">
-            <button className="FormField__Button mr-20">Sign In</button>{" "}
-            <Link to="/">Create an account</Link>
-          </div>
+            <a href="#" className="forgot-link">
+              Forgot Password?
+            </a>
+          </div> */}
+          <input
+            type="submit"
+            className="btn btn-primary btn-block btn-lg"
+            value="Login"
+            onClick={this.handleSubmit}
+          />
         </form>
+        <div className="text-center large">
+          Don't have an account? <a href="/signUp">Sign up</a>
+        </div>
       </div>
     );
   }

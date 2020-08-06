@@ -24,7 +24,7 @@ app.use(cors());
 
 app.use(express.json());
 //take the data of the book that i seach about it and put in favorit list
-// app.use(router);
+app.use(router);
 
 // app.get('/', (req, res) => {
 //   res.send('works!')

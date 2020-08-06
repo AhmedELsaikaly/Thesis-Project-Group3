@@ -15,12 +15,20 @@ class SignUp extends React.Component {
     super(props);
     //change to shcema
     this.state = {
-      input: {},
+      input: {
+        fullName: "",
+        password: "",
+        Email: "",
+        mobileNumber: "",
+        address: "",
+        confirm: "",
+      },
+      serverRes: "",
       errors: {},
       message: "",
       fullName: "",
       password: "",
-      email: "",
+      Email: "",
       mobileNumber: "",
       address: "",
       confirm: "",
@@ -33,11 +41,8 @@ class SignUp extends React.Component {
       this.state.password !== "" &&
       this.state.confirm !== ""
     ) {
-      console.log("success");
       this.setState({ message: "The password is correct" });
     } else {
-      console.log("fail");
-
       this.setState({ message: "The two passwords in not confirmed" });
     }
   };
@@ -78,29 +83,34 @@ class SignUp extends React.Component {
       errors["address"] = "Please choose your Address.";
     }
 
-    if (!input["email"]) {
+    if (!input["Email"]) {
       isValid = false;
-      errors["email"] = "Please enter your email Address.";
+      errors["Email"] = "Please enter your email Address.";
     }
 
-    if (typeof input["email"] !== "undefined") {
+    if (typeof input["Email"] !== "undefined") {
       var pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
-      if (!pattern.test(input["email"])) {
+      if (!pattern.test(input["Email"])) {
         isValid = false;
-        errors["email"] = "Please enter valid email address.";
+        errors["Email"] = "Please enter valid email address.";
       }
     }
-
     if (!input["password"]) {
       isValid = false;
       errors["password"] = "Please enter your password.";
     }
+    if (typeof input["password"] !== "undefined") {
+      if (input["password"].length < 6) {
+        isValid = false;
+        errors["password"] = "Please add at least 6 charachter.";
+      }
+    }
 
-    if (!input["confirm_password"]) {
+    if (!input["confirm"]) {
       isValid = false;
-      errors["confirm_password"] = "Please enter your confirm password.";
+      errors["confirm"] = "Please enter your confirm password.";
     }
     if (!input["mobileNumber"]) {
       isValid = false;
@@ -140,38 +150,40 @@ class SignUp extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     //axios routing , then and catch
-
+    console.log(this.validate());
     if (this.validate()) {
-      console.log(this.state);
-
       let input = {};
-      input["name"] = "";
-      input["email"] = "";
+      input["fullName"] = "";
+      input["Email"] = "";
       input["password"] = "";
+      input["mobileNumber"] = "";
+      input["address"] = "";
       input["confirm"] = "";
+      this.setState({ message: "", serverRes: "" });
       this.setState({ input: input });
-
-      alert("Demo Form is submited");
+      axios
+        .post("http://localhost:5000/signUpCustomer", {
+          fullName: this.state.fullName,
+          password: this.state.password,
+          email: this.state.Email,
+          mobileNumber: this.state.mobileNumber,
+          address: this.state.address,
+        })
+        .then((response) => {
+          console.log(response);
+          // alert("sign up success please sign in");
+          // console.log("result   ", res);
+          // this.setState({ singup: "sign up success please sign in" });
+          this.props.history.push(`/signIn`);
+        })
+        .catch((err) => {
+          // console.log(err);
+          this.setState({ serverRes: err.response.data });
+          // alert(err.response.data);
+          console.log("ERROR FROM AXIOS ", err.response.data);
+          this.props.history.push(`/signUp`);
+        });
     }
-    axios
-      .post("http://localhost:5000/signUpCustomer", {
-        fullName: this.state.fullName,
-        password: this.state.password,
-        email: this.state.email,
-        mobileNumber: this.state.mobileNumber,
-        address: this.state.address,
-      })
-      .then((result) => {
-        // alert("sign up success please sign in");
-        console.log("result   ", result);
-        // this.setState({ singup: "sign up success please sign in" });
-        // this.props.history.push(`/Signin`);
-      })
-      .catch((err) => {
-        // alert("please use a different email or user name");
-        console.log("ERROR FROM AXIOS ", err.response.data);
-        // this.props.history.push(`/Signup`);
-      });
   };
   // rendering the compo
   render() {
@@ -214,13 +226,13 @@ class SignUp extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <p className="text-danger">{this.state.errors.email}</p>
+          <p className="text-danger">{this.state.errors.Email}</p>
           <div className="form-group">
             <input
               type="email"
               className="form-control"
-              name="email"
-              value={this.state.input.email}
+              name="Email"
+              value={this.state.input.Email}
               placeholder="Email"
               required="required"
               onChange={this.handleChange}
@@ -284,10 +296,11 @@ class SignUp extends React.Component {
             >
               Register Now
             </button>
+            <div className="text-danger"> {this.state.serverRes}</div>
           </div>
         </form>
         <div className="text-center">
-          Already have an account? <a href="#">Sign in</a>
+          Already have an account? <a href="/signIn">Sign in</a>
         </div>
       </div>
     );
