@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 let CustomerSchema = mongoose.Schema({
   fullName: {
     type: String,
-    unique: true,
     required: true,
   },
   password: {
@@ -23,7 +22,6 @@ let CustomerSchema = mongoose.Schema({
   },
   address: {
     type: String,
-    required: false,
   },
 
   date: {
