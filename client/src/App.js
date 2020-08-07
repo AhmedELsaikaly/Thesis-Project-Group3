@@ -16,6 +16,10 @@ import { UserPage } from "./Components/userPage/userPage";
 import { Reservation } from "./Components/userPage/reservation";
 import { Footer } from "./Components/SubPages/Footer/Footer.js";
 import { Policy } from "./Components/SubPages/Policy/Policy.js";
+import ContolPanel from "./Components/ControlPanel/ControlPanel";
+import Facility from "./Components/Facility/Facility";
+import Service from "./Components/Service/Service";
+import SignUpOwner from "./Components/SignUpOwner/SignUpOwner";
 
 import "./App.css";
 
@@ -27,15 +31,20 @@ class App extends React.Component {
       <div>
         <Router>
           <Switch>
-            <Route exact path="/" component={LandPage}></Route>
-            <Route exact path="/signUp" component={SignUp}></Route>
-            <Route exact path="/signIn" component={SignIn}></Route>
-            <Route exact path="/about" component={About}></Route>
-            <Route exact path="/contact" component={Contact}></Route>
-            <Route exact path="/logout" component={UserPage}></Route>
-            <Route exact path="/reservation" component={Reservation}></Route>
-            <Route exact path="/Footer" component={Footer}></Route>
-            <Route exact path="/Policy" component={Policy}></Route>
+            <Route exact path="/" component={LandPage} />
+            <Route exact path="/signUp" component={SignUp} />
+            <Route exact path="/signIn" component={SignIn} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/logout" component={UserPage} />
+            <Route exact path="/reservation" component={Reservation} />
+            <Route exact path="/Policy" component={Policy} />
+            <Route exact path="/SignUpOwner" component={SignUpOwner} />
+            <Route exact path="/ContolPanel" component={ContolPanel} />
+            <Route exact path="/Facility" component={Facility} />
+            <Route exact path="/Service" component={Service} />
+
+            {/* <Route exact path="/" component={booking}></Route> */}
           </Switch>
         </Router>
       </div>

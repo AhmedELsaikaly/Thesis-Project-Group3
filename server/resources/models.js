@@ -38,7 +38,6 @@ let CustomerModel = mongoose.model("customer", CustomerSchema);
 let OwnerSchema = mongoose.Schema({
   fullName: {
     type: String,
-    unique: true,
     required: true,
   },
   password: {
@@ -48,11 +47,9 @@ let OwnerSchema = mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true,
   },
-  facebook: {
+  facebookLink: {
     type: String,
-    required: true,
     unique: true,
   },
 
@@ -66,11 +63,6 @@ let OwnerSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-
-  location: {
-    type: String,
-    required: true,
-  },
   area: {
     type: { type: String },
     coordinates: { type: Number },
@@ -79,9 +71,9 @@ let OwnerSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  photoLicense: {
-    data: Buffer,
-    contentType: String,
+  licensePhoto: {
+    type: String,
+    required: true,
   },
 });
 const OwnerModel = mongoose.model("Owner", OwnerSchema);

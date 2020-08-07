@@ -1,52 +1,54 @@
 //import used technologies
 import React from "react";
-
-//import CSS
-import "./signUp.css";
-
-//import used files
-import Navbar from "../Navbar/Navbar.js";
+import "./SignUpOwner.css"; //import CSS
+import Navbar from "../Navbar/Navbar.js"; //import used files
+import PhotoUpload from "../PhotoUpload/PhotoUpload";
 const axios = require("axios");
 
 //create signup compo
-class SignUp extends React.Component {
+class SignUpOwner extends React.Component {
   //constructor and state
   constructor(props) {
     super(props);
     //change to shcema
     this.state = {
-      input: {
-        fullName: "",
-        password: "",
-        Email: "",
-        mobileNumber: "",
-        address: "",
-        confirm: "",
-      },
-      serverRes: "",
+      input: {},
       errors: {},
+      serverRes: "",
       message: "",
+      facebookLink: "",
+      placeName: "",
       fullName: "",
       password: "",
       Email: "",
       mobileNumber: "",
-      address: "",
+      licensePhoto: { url: null, isUploaded: false },
+      area: "",
       confirm: "",
     };
   }
-
+  // handle licensePhoto uploading
+  getLiecencePhotoUrl = (url) => {
+    this.setState((prevState) => {
+      let licensePhoto = Object.assign({}, prevState.TableUrl);
+      licensePhoto.url = url;
+      licensePhoto.isUploaded = true;
+      return { licensePhoto };
+    });
+  };
+  // handle the password confirmation
   handle = () => {
     if (
       this.state.confirm === this.state.password &&
       this.state.password !== "" &&
       this.state.confirm !== ""
     ) {
-      this.setState({ message: "The password is correct" });
+      this.setState({ message: "The Two passwords is matched" });
     } else {
-      this.setState({ message: "The two passwords in not confirmed" });
+      this.setState({ message: "The two passwords in not matched" });
     }
   };
-
+  // handle the change of inputs
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
@@ -58,9 +60,9 @@ class SignUp extends React.Component {
   };
   // handle select for Places
   handleSelect = (e) => {
-    this.setState({ address: e.target.value });
+    this.setState({ area: e.target.value });
     let input = this.state.input;
-    input["address"] = e.target.value;
+    input["area"] = e.target.value;
 
     this.setState({
       input,
@@ -78,14 +80,28 @@ class SignUp extends React.Component {
       errors["fullName"] = "Please enter your Full Name.";
     }
 
-    if (!input["address"] && input["address"] !== "") {
+    if (!input["placeName"]) {
       isValid = false;
-      errors["address"] = "Please choose your Address.";
+      errors["placeName"] = "Please enter your Place Name.";
+    }
+    if (!input["facebookLink"]) {
+      isValid = false;
+      errors["facebookLink"] = "Please enter your facebook Link.";
+    }
+
+    if (this.state.licensePhoto.isUploaded === false) {
+      isValid = false;
+      errors["licensePhoto"] =
+        "Your Liecence Photo is Still Uploading or you not Upload it";
+    }
+    if (!input["area"] && input["area"] !== "") {
+      isValid = false;
+      errors["area"] = "Please choose your area.";
     }
 
     if (!input["Email"]) {
       isValid = false;
-      errors["Email"] = "Please enter your email Address.";
+      errors["Email"] = "Please enter your email area.";
     }
 
     if (typeof input["Email"] !== "undefined") {
@@ -94,7 +110,7 @@ class SignUp extends React.Component {
       );
       if (!pattern.test(input["Email"])) {
         isValid = false;
-        errors["Email"] = "Please enter valid email address.";
+        errors["Email"] = "Please enter valid email area.";
       }
     }
     if (!input["password"]) {
@@ -150,6 +166,7 @@ class SignUp extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     //axios routing , then and catch
+    
     console.log(this.validate());
     if (this.validate()) {
       let input = {};
@@ -157,17 +174,20 @@ class SignUp extends React.Component {
       input["Email"] = "";
       input["password"] = "";
       input["mobileNumber"] = "";
-      input["address"] = "";
+      input["area"] = "";
       input["confirm"] = "";
       this.setState({ message: "", serverRes: "" });
       this.setState({ input: input });
       axios
-        .post("http://localhost:5000/signUpCustomer", {
+        .post("http://localhost:5000/SignUpOwner", {
           fullName: this.state.fullName,
           password: this.state.password,
           email: this.state.Email,
           mobileNumber: this.state.mobileNumber,
-          address: this.state.address,
+          area: this.state.area,
+          facebookLink: this.state.facebookLink,
+          placeName: this.state.placeName,
+          licensePhoto: this.state.licensePhoto.url,
         })
         .then((response) => {
           console.log(response);
@@ -181,19 +201,19 @@ class SignUp extends React.Component {
           this.setState({ serverRes: err.response.data });
           // alert(err.response.data);
           console.log("ERROR FROM AXIOS ", err.response.data);
-          this.props.history.push(`/signUp`);
+          this.props.history.push(`/SignUpOwner`);
         });
     }
   };
   // rendering the compo
   render() {
-    const { fullName, password, email, mobileNumber, address } = this.state;
+    const { fullName, password, email, mobileNumber, area } = this.state;
     const values = {
       fullName,
       password,
       email,
       mobileNumber,
-      address,
+      area,
     };
     return (
       <div className="signup-form">
@@ -211,6 +231,18 @@ class SignUp extends React.Component {
               placeholder="Full Name"
               required="required"
               value={this.state.input.fullName}
+              onChange={this.handleChange}
+            />
+          </div>
+          <p className="text-danger">{this.state.errors.placeName}</p>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              name="placeName"
+              placeholder="Place Name"
+              required="required"
+              value={this.state.input.placeName}
               onChange={this.handleChange}
             />
           </div>
@@ -238,12 +270,24 @@ class SignUp extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <p className="text-danger">{this.state.errors.address}</p>
+          <p className="text-danger">{this.state.errors.facebookLink}</p>
+          <div className="form-group">
+            <input
+              type="url"
+              className="form-control"
+              name="facebookLink"
+              value={this.state.input.facebookLink}
+              placeholder="Facebook Link"
+              required="required"
+              onChange={this.handleChange}
+            />
+          </div>
+          <p className="text-danger">{this.state.errors.area}</p>
           <select
             id="SelectOptions"
             className="mdb-select md-form"
             searchable="Search here.."
-            value={this.state.input.address}
+            value={this.state.input.area}
             onChange={this.handleSelect}
           >
             <option value="">Choose Your Place</option>
@@ -281,7 +325,7 @@ class SignUp extends React.Component {
           </div>
           <p
             style={
-              this.state.message === "The two passwords in not confirmed"
+              this.state.message === "The two passwords in not matched"
                 ? { color: "red" }
                 : { color: "green" }
             }
@@ -289,6 +333,9 @@ class SignUp extends React.Component {
             {" "}
             {this.state.message}
           </p>
+          <p className="text-danger">{this.state.errors.licensePhoto}</p>
+          <p>please Upload Your Liecence Photo</p>
+          <PhotoUpload handler={this.getLiecencePhotoUrl} />
           <div className="form-group">
             <button
               id="signUpBtn"
@@ -298,9 +345,6 @@ class SignUp extends React.Component {
             >
               Register Now
             </button>
-          </div>
-          <div className="text-center">
-            If You Owner Click here? <a href="/SignUpOwner">Sign Up Owner</a>
           </div>
           <div className="text-danger"> {this.state.serverRes}</div>
         </form>
@@ -312,4 +356,4 @@ class SignUp extends React.Component {
   }
 }
 //export SignUp Compo
-export default SignUp;
+export default SignUpOwner;

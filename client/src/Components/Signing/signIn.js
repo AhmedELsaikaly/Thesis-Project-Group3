@@ -16,10 +16,8 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
-      input: {
-        email: "",
-        password: "",
-      },
+      serverRes: "",
+      input: {},
       errors: {},
     };
   }
@@ -61,24 +59,51 @@ class SignIn extends React.Component {
       let input = {};
       input["password"] = "";
       input["email"] = "";
+      this.setState({ serverRes: "" });
       this.setState({ input: input });
-      axios
-        .post("http://localhost:5000/loginCustomer", {
-          password: this.state.password,
-          email: this.state.email,
-        })
-        .then((response) => {
-          console.log(response);
-          // alert("sign up success please sign in");
-          // console.log("result   ", res);
-          // this.setState({ singup: "sign up success please sign in" });
-          this.props.history.push(`/`);
-        })
-        .catch((err) => {
-          // alert("please use a different email or user name");
-          console.log("ERROR FROM AXIOS ", err.response.data);
-          this.props.history.push(`/signUp`);
-        });
+      if (document.getElementById("checkbox").checked) {
+        axios
+          .post("http://localhost:5000/loginOwner", {
+            password: this.state.password,
+            email: this.state.email,
+          })
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem("usertoken", response.data.token);
+            this.props.history.push(`/ContolPanel`);
+            return response.data;
+            // alert("sign up success please sign in");
+            // console.log("result   ", res);
+            // this.setState({ singup: "sign up success please sign in" });
+          })
+          .catch((err) => {
+            this.setState({ serverRes: err.response.data });
+            // alert("please use a different email or user name");
+            console.log("ERROR FROM AXIOS ", err.response.data);
+            this.props.history.push(`/signIn`);
+          });
+      } else {
+        axios
+          .post("http://localhost:5000/loginCustomer", {
+            password: this.state.password,
+            email: this.state.email,
+          })
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem("usertoken", response.data.token);
+            this.props.history.push(`/`);
+            return response.data;
+            // alert("sign up success please sign in");
+            // console.log("result   ", res);
+            // this.setState({ singup: "sign up success please sign in" });
+          })
+          .catch((err) => {
+            this.setState({ serverRes: err.response.data });
+            // alert("please use a different email or user name");
+            console.log("ERROR FROM AXIOS ", err.response.data);
+            this.props.history.push(`/signIn`);
+          });
+      }
     }
   };
 
@@ -121,6 +146,12 @@ class SignIn extends React.Component {
               Forgot Password?
             </a>
           </div> */}
+          <div class="form-group">
+            <label class="checkbox">
+              <input id="checkbox" type="checkbox" required="required" /> Login
+              as Owner
+            </label>
+          </div>
           <input
             type="submit"
             className="btn btn-primary btn-block btn-lg"
@@ -128,6 +159,7 @@ class SignIn extends React.Component {
             onClick={this.handleSubmit}
           />
         </form>
+        <p className="text-danger">{this.state.serverRes}</p>
         <div className="text-center large">
           Don't have an account? <a href="/signUp">Sign up</a>
         </div>

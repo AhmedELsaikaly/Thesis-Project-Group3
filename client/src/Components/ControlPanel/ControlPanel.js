@@ -1,12 +1,15 @@
 //import used technologies
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 //import CSS
 import "./ControlPanel.css";
 
 //import used files
 import jessica from "./1.png";
+
+//....................
+// extracting the data from token
 
 //create ContolPanel Compo
 class ContolPanel extends React.Component {
@@ -15,10 +18,15 @@ class ContolPanel extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    console.log(decoded);
+  }
   //render ContolPanel Compo
   render() {
     return (
-      <div>
+      <div className="ConrolPanel">
         <input type="checkbox" id="check" />
         <header>
           <label htmlFor="check">

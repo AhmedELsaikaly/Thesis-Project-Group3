@@ -17,6 +17,7 @@ const validateSigninInput = require("./validation/login");
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin
 exports.SignInOwner = function (req, res) {
+  console.log(req.body);
   //form validation
   const { errors, isValid } = validateSigninInput(req.body);
   //check validation
@@ -30,7 +31,7 @@ exports.SignInOwner = function (req, res) {
     .then((owner) => {
       //check if owner exists
       if (!owner) {
-        return res.status(404).json({ emailnotfound: "Email not found" });
+        return res.status(404).json("Email not found");
       }
       //check password
       bcrypt
@@ -48,7 +49,7 @@ exports.SignInOwner = function (req, res) {
               payload,
               process.env.SECRET_KEY,
               {
-                expiresIn: 2629746, // 1 month in seconds
+                expiresIn: "1h", // 1 month in seconds
               },
               (err, token) => {
                 res.json({
@@ -58,9 +59,7 @@ exports.SignInOwner = function (req, res) {
               }
             );
           } else {
-            return res
-              .status(400)
-              .json({ passwordincorrect: "Password incorrect" });
+            return res.status(400).json("Password incorrect");
           }
         })
         .catch((err) => {
@@ -76,28 +75,27 @@ exports.SignInOwner = function (req, res) {
 exports.SignUpOwner = function (req, res) {
   console.log(req.body);
   //form validation
-  const { errors, isValid } = validateSignupInput(req.body);
-  //check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // const { errors, isValid } = validateSignupInput(req.body);
+  // //check validation
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
   //check Owner by email if exists
   OwnerModel.findOne({ email: req.body.email })
     .then((owner) => {
       if (owner) {
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json("Email already exists");
       } else {
         //create newOwner
         const newOwner = new OwnerModel({
           fullName: req.body.fullName,
           password: req.body.password,
           email: req.body.email,
-          facebook: req.body.facebook,
+          facebookLink: req.body.facebookLink,
           mobileNumber: req.body.mobileNumber,
           placeName: req.body.placeName,
-          location: req.body.location,
           area: req.body.area,
-          photoLicense: req.body.photoLicense,
+          licensePhoto: req.body.licensePhoto,
         });
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -107,7 +105,7 @@ exports.SignUpOwner = function (req, res) {
             //save newOwner
             newOwner
               .save()
-              .then((owner) => res.json(owner))
+              .then(() => res.send("you signed up successfully"))
               .catch((err) =>
                 res.status(500).json({
                   error: err,
