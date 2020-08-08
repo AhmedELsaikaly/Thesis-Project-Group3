@@ -1,3 +1,4 @@
+//import used technologies
 import React from "react";
 import logo from "./logo.svg";
 import {
@@ -7,6 +8,10 @@ import {
   Redirect,
 } from "react-router-dom";
 
+//import CSS
+import "./App.css";
+
+//import used files
 import { SignIn } from "./Components/Signing/signIn";
 import SignUp from "./Components/Signing/signUp.js";
 import { About } from "./Components/SubPages/About/About";
@@ -25,12 +30,20 @@ import OwnerProfile from "./Components/ownerProfile/ownerProfile.js";
 import CustomerProfile from "./Components/customerProfile/customerProfile.js";
 import "./App.css";
 
+import { OwnerBooking } from "./Components/ownerBooking/ownerBooking.js";
+import { UserReservation } from "./Components/userReservation/userReservation.js";
+import { ProtectedRoute } from "./Components/RoutesType/ProtectedRoute";
+import { LoggedInRoute } from "./Components/RoutesType/LoggedInRoute";
+
+//create App Compo
 class App extends React.Component {
   state = {};
 
+  //render App Compo
   render() {
     return (
       <div>
+        {/* Routes , switching and private routers*/}
         <Router>
           <Switch>
             <Route exact path="/" component={LandPage} />
@@ -48,6 +61,12 @@ class App extends React.Component {
             <Route exact path="/resort/:id" component={Resort} />
             <Route exact path="/ownerProfile" component={OwnerProfile} />
             <Route exact path="/customerProfile" component={CustomerProfile} />
+            <Route exact path="/ownerBooking" component={OwnerBooking}></Route>
+            <Route
+              exact
+              path="/userReservation"
+              component={UserReservation}
+            ></Route>
 
             {/* <Route exact path="/" component={booking}></Route> */}
           </Switch>
@@ -57,4 +76,7 @@ class App extends React.Component {
   }
 }
 
+//export App
 export default App;
+
+//Check and validate
