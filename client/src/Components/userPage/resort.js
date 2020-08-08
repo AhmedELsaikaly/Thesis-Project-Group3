@@ -1,7 +1,9 @@
 //import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Resort.css";
 import axios from "axios";
+import Comment from "../Rating&Feedback/Comments";
 
 //import CSS
 
@@ -15,7 +17,6 @@ class Facility extends React.Component {
 
   //render Facility Compo
   render() {
-    console.log(Object.keys(this.props.faclitics));
     return (
       <div>
         {Object.keys(this.props.faclitics).length !== 0 ? (
@@ -65,7 +66,7 @@ class Resort extends React.Component {
     this.state = {
       service: [],
       faclitics: {},
-      owner: [],
+      ownerId: "",
       isFull: false,
     };
   }
@@ -82,7 +83,7 @@ class Resort extends React.Component {
             reight.push(key);
           }
         }
-        this.setState({ service: reight });
+        this.setState({ service: reight, ownerId: this.props.match.params.id });
       })
       .catch((err) => {
         console.log("ERROR from AXIOS =>", err);
@@ -117,26 +118,32 @@ class Resort extends React.Component {
           <div class="media-body">
             <h5 class="mt-0">ssss</h5>
           </div>
-        </div>
-        <div style={{ margin: "100px" }}>
-          <ul class="list-group">
-            <li
-              style={{ width: "400px", height: "50px" }}
-              class="list-group-item active"
-            >
-              Services
-            </li>
-            {service.map((dataIN, key) => (
+
+          <div style={{ margin: "100px" }}>
+            <ul class="list-group">
               <li
                 style={{ width: "400px", height: "50px" }}
-                class="list-group-item"
+                class="list-group-item active"
               >
-                {dataIN}
+                Services
               </li>
-            ))}
-          </ul>
+              {service.map((dataIN, key) => (
+                <li
+                  style={{ width: "400px", height: "50px" }}
+                  class="list-group-item"
+                >
+                  {dataIN}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <Facility faclitics={this.state.faclitics} />
+        <div className="facility">
+          <Facility faclitics={this.state.faclitics} />
+        </div>
+        <div className="rating">
+          <Comment OwnerId={this.state.ownerId} />
+        </div>
       </div>
     );
   }

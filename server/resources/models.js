@@ -188,6 +188,15 @@ const ReservationModel = mongoose.model("Reserv", ReservationSchema);
 let RatingSchema = mongoose.Schema({
   customerId: {
     type: String,
+    required: true,
+  },
+  ownerId: {
+    type: String,
+    required: true,
+  },
+  fullName: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,
@@ -195,14 +204,9 @@ let RatingSchema = mongoose.Schema({
   },
   feedback: {
     type: String,
-    required: false,
   },
   rating: {
     type: Number,
-    required: false,
-  },
-  placeName: {
-    type: String,
   },
 });
 const RFModel = mongoose.model("RatingFeedback", RatingSchema);
