@@ -4,9 +4,9 @@ const controller = require("./controller");
 // const controllerUserRservation = require("./controllerUserRservation")
 // login Router
 router.post("/loginOwner", controller.SignInOwner);
-// signUp Router
+// signUp Router For Owner
 router.post("/signUpOwner", controller.SignUpOwner);
-
+// Login Router for customer
 router.post("/loginCustomer", controller.SignInCustomer);
 // signUp Router
 router.post("/signUpCustomer", controller.SignUpCustomer);
@@ -20,11 +20,14 @@ router.get("/services/:id", controller.GetServices);
 router.get("/Facilites/:id", controller.GetFacilites);
 // get all resorts
 router.get("/AllOwner", controller.GetAllOwner);
-// get specific user
-router.get("/User/:id", controller.GetUser);
 // get specific owner
 router.get("/Owner/:id", controller.GetOwner);
-
+// get specific user
+router.get("/User/:id", controller.GetUser);
+// Add Comment
+router.post("/comment", controller.AddComment);
+// // Get All Comments
+router.get("/AllComents/:id", controller.GetComments);
 /////////////////////////////////////
 //////      RESERVATION     ////////
 ///////////////////////////////////
