@@ -242,6 +242,19 @@ exports.FacilitesStore = function (req, res) {
     .then(() => res.status(201).send("FacilitesSaved"))
     .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
 };
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 ///// ..............................................  get services  ........................//
 exports.GetServices = function (req, res) {
   const ownerId = req.params.id;
@@ -275,7 +288,7 @@ exports.GetAllOwner = function (req, res) {
       res.send(err);
     });
 };
-//// ...................................... get All ...............................//
+//// ...................................... get one Owner ...............................//
 exports.GetOwner = function (req, res) {
   // console.log(req.params,'+++++++++')
   const ownerId = req.params.id;
@@ -288,12 +301,80 @@ exports.GetOwner = function (req, res) {
       res.send(err);
     });
 };
+
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//// ...................................... Get All Comments ...............................//
+exports.GetComments = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const ownerId = req.params.id;
+  RFModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//// ...................................... Add One Comment ...............................//
+exports.AddComment = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
+  let CommentDoc = new RFModel({
+    customerId,
+    fullName,
+    ownerId,
+    date,
+    feedback,
+    rating,
+  });
+  CommentDoc.save()
+    .then(() => res.status(201).send("Comment Saved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Comment"));
+};
 //............. Store Reservation .................
 exports.ReservationStore = function (req, res) {
   console.log(req.body);
   console.log("I am inside reservation");
 
-  const { customerId, customerName,date, status,mobileNumber,table,SmallTents,LargeTents ,totalPrice,placeName} = req.body;
+  const {
+    customerId,
+    customerName,
+    date,
+    status,
+    mobileNumber,
+    table,
+    SmallTents,
+    LargeTents,
+    totalPrice,
+    placeName,
+  } = req.body;
+  // console.log(req.body);
+  const {
+    customerId,
+    customerName,
+    date,
+    status,
+    mobileNumber,
+    table,
+    SmallTents,
+    LargeTents,
+    totalPrice,
+    placeName,
+  } = req.body;
   let ReservationDoc = new ReservationModel({
     customerId,
     customerName,
@@ -302,181 +383,204 @@ exports.ReservationStore = function (req, res) {
     mobileNumber,
     table,
     SmallTents,
-    LargeTents ,
+    LargeTents,
     totalPrice,
-    placeName
+    placeName,
   });
   console.log(ReservationDoc);
-  
+
   ReservationDoc.save()
     .then(() => res.status(201).send("Reservation Saved"))
     .catch((err) => res.status(500).send(err + "err in Saving Reservation"));
 };
 ///..........Get Reservation............
-exports.GetReservation = function (req, res) { 
+exports.GetReservation = function (req, res) {
   const customerId = req.params.customerId;
   ReservationModel.find({ customerId: customerId })
-  .then(result=>{
-    console.log(result);
-      if(!result){
+    .then((result) => {
+      console.log(result);
+      if (!result) {
         console.log(result);
-        return res.status(404).end();}
-      return res.status(200).send(result)
-  })
-  .catch(err =>console.log(err))
-  
-}
+        return res.status(404).end();
+      }
+      return res.status(200).send(result);
+    })
+    .catch((err) => console.log(err));
+};
 
 ///////////////  Show data before  Updata Customer /////////////
 exports.ShowLastDataCustomer = function (req, res) {
-  const   customerId = req.params.id;
-   CustomerModel.findOneAndUpdate({ _id: customerId })
-   .then(result=>{
-    // res.render(result);
-    console.log(result);
-    res.status(200).send(result)
-   })
-   .catch(err =>res.status(200).send(err))
- }
+  const customerId = req.params.id;
+  CustomerModel.findOneAndUpdate({ _id: customerId })
+    .then((result) => {
+      // res.render(result);
+      console.log(result);
+      res.status(200).send(result);
+    })
+    .catch((err) => res.status(200).send(err));
+};
 
- /////////// Updata Customer//////////////
- exports.UpdateCustomer = function (req, res) {
-  const   customerId = req.params.id;
-   CustomerModel.findByIdAndUpdate({ _id: customerId },
+/////////// Updata Customer//////////////
+exports.UpdateCustomer = function (req, res) {
+  const customerId = req.params.id;
+  CustomerModel.findByIdAndUpdate(
+    { _id: customerId },
     {
       fullName: req.body.fullName,
       email: req.body.email,
       mobileNumber: req.body.mobileNumber,
-      address: req.body.address
-    },(err,docs)=>{
-      if(err){console.log(err);}
-      console.log(docs);
-      
-    })
-   .then(result=>{
-    //  console.log(result)
-    res.send(result);
-   })
-   .catch(err =>console.log(err))
- }
-
- ///////////////  Show data before  Updata Owner /////////////
-exports.ShowLastDataOwner = function (req, res) {
-  const   ownerId = req.params.id;
-   OwnerModel.findOneAndUpdate({ _id: ownerId })
-   .then(result=>{
-    
-    console.log(result);
-    res.status(200).send(result)
-   })
-   .catch(err =>res.status(200).send(err))
- }
-
- /////////// Updata Owner//////////////
- exports.UpdateOwner = function (req, res) {
-  const   ownerId = req.params.id;
-   OwnerModel.findByIdAndUpdate({ _id: ownerId },
-    {
-      fullName: req.body.fullName,
-      email: req.body.email,
-      mobileNumber: req.body.mobileNumber,
-      placeName:req.body.placeName,
-      area:req.body.area,
-      licensePhoto: req.body.licensePhoto
-    },(err,docs)=>{
-      if(err){console.log(err);}
-      console.log(docs);
-      
-    })
-   .then(result=>{
-      res.send(result);
-   })
-   .catch(err =>console.log(err))
- }
-
- ///////////////  Show data before  Updata Facility /////////////
-exports.ShowLastDataFacility = function (req, res) {
-  const   facilityId = req.params.id;
-   FacilityModel.findOneAndUpdate({ _id: facilityId })
-   .then(result=>{
-    
-    console.log(result);
-    res.status(200).send(result)
-   })
-   .catch(err =>res.status(200).send(err))
- }
-
- ///////// Updata Facility//////////////
- exports.UpdateFacility = function (req, res) {
-  const   facilityId = req.params.id;
-   FacilityModel.findByIdAndUpdate({ _id: facilityId },
-    {
-      facilities:{
-        table:{
-          img:req.body.img,
-          price:req.body.price,
-          quantity:req.body.quantity,
-        },
-        SmallTents:{
-          img:req.body.img,
-          price:req.body.price,
-          quantity:req.body.quantity,
-        },
-        LargeTents:{
-          img:req.body.img,
-          price:req.body.price,
-          quantity:req.body.quantity,
-        }
+      address: req.body.address,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
       }
-      
-    },(err,docs)=>{
-      if(err){console.log(err);}
       console.log(docs);
-      
-    })
-   .then(result=>{
+    }
+  )
+    .then((result) => {
+      //  console.log(result)
       res.send(result);
-   })
-   .catch(err =>console.log(err))
- }
+    })
+    .catch((err) => console.log(err));
+};
 
- ///////////////  Show data before  Updata Services /////////////
-exports.ShowLastDataServices = function (req, res) {
-  const   servicesId = req.params.id;
-   ServicesModel.findOneAndUpdate({ _id: servicesId })
-   .then(result=>{
-    
-    console.log(result);
-    res.status(200).send(result)
-   })
-   .catch(err =>res.status(200).send(err))
- }
+///////////////  Show data before  Updata Owner /////////////
+exports.ShowLastDataOwner = function (req, res) {
+  const ownerId = req.params.id;
+  OwnerModel.findOneAndUpdate({ _id: ownerId })
+    .then((result) => {
+      console.log(result);
+      res.status(200).send(result);
+    })
+    .catch((err) => res.status(200).send(err));
+};
 
- /////////// Updata Services//////////////
- exports.UpdateServices = function (req, res) {
-  const   servicesId = req.params.id;
-   ServicesModel.findByIdAndUpdate({ _id: servicesId },
+/////////// Updata Owner//////////////
+exports.UpdateOwner = function (req, res) {
+  const ownerId = req.params.id;
+  OwnerModel.findByIdAndUpdate(
+    { _id: ownerId },
     {
-      servicesAvailable:{
-      PlayGround: req.body.PlayGround,
-      SwimmingPool: req.body.SwimmingPool,
-      FoodOffer: req.body.FoodOffer,
-      SoftDrinks:req.body.SoftDrinks,
-      TV:req.body.TV,
-      GrillArea: req.body.GrillArea,
-      Shesha:req.body.Shesha,
-      GreenArea:req.body.GreenArea,
-      KidsArea: req.body.KidsArea
-      },
-      otherService:req.body.otherService,
-      
-    },(err,docs)=>{
-      if(err){console.log(err);}
+      fullName: req.body.fullName,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      placeName: req.body.placeName,
+      area: req.body.area,
+      licensePhoto: req.body.licensePhoto,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      }
       console.log(docs);
-      
-    })
-   .then(result=>{
+    }
+  )
+    .then((result) => {
       res.send(result);
-   })
-   .catch(err =>console.log(err))
- }
+    })
+    .catch((err) => console.log(err));
+};
+
+///////////////  Show data before  Updata Facility /////////////
+exports.ShowLastDataFacility = function (req, res) {
+  const facilityId = req.params.id;
+  FacilityModel.findOneAndUpdate({ _id: facilityId })
+    .then((result) => {
+      console.log(result);
+      res.status(200).send(result);
+    })
+    .catch((err) => res.status(200).send(err));
+};
+
+///////// Updata Facility//////////////
+exports.UpdateFacility = function (req, res) {
+  const facilityId = req.params.id;
+  FacilityModel.findByIdAndUpdate(
+    { _id: facilityId },
+    {
+      facilities: {
+        table: {
+          img: req.body.img,
+          price: req.body.price,
+          quantity: req.body.quantity,
+        },
+        SmallTents: {
+          img: req.body.img,
+          price: req.body.price,
+          quantity: req.body.quantity,
+        },
+        LargeTents: {
+          img: req.body.img,
+          price: req.body.price,
+          quantity: req.body.quantity,
+        },
+      },
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(docs);
+    }
+  )
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+};
+
+///////////////  Show data before  Updata Services /////////////
+exports.ShowLastDataServices = function (req, res) {
+  const servicesId = req.params.id;
+  ServicesModel.findOneAndUpdate({ _id: servicesId })
+    .then((result) => {
+      console.log(result);
+      res.status(200).send(result);
+    })
+    .catch((err) => res.status(200).send(err));
+};
+
+/////////// Updata Services//////////////
+exports.UpdateServices = function (req, res) {
+  const servicesId = req.params.id;
+  ServicesModel.findByIdAndUpdate(
+    { _id: servicesId },
+    {
+      servicesAvailable: {
+        PlayGround: req.body.PlayGround,
+        SwimmingPool: req.body.SwimmingPool,
+        FoodOffer: req.body.FoodOffer,
+        SoftDrinks: req.body.SoftDrinks,
+        TV: req.body.TV,
+        GrillArea: req.body.GrillArea,
+        Shesha: req.body.Shesha,
+        GreenArea: req.body.GreenArea,
+        KidsArea: req.body.KidsArea,
+      },
+      otherService: req.body.otherService,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(docs);
+    }
+  )
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
+};
+// exports.GetReservation = function (req, res) {
+//   const customerId = req.params.id;
+//   ReservationModel.find({ customerId: customerId })
+//     .then((reserv) => {
+//       if (!reserv) {
+//         console.log(reserv);
+//         return res.status(404).end();
+//       }
+//       return res.status.send(reserv);
+//     })
+//     .catch((err) => next(err));
+// };

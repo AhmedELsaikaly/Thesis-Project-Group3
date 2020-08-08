@@ -1,0 +1,35 @@
+.lll {
+  width: 65%;
+  float: right;
+  background-color: blanchedalmond;
+  height: auto;
+  padding: 25px 30px;
+  overflow-x: hidden;
+  height: auto;
+}
+
+.lll h1 {
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 350px;
+  margin: 5px auto;
+  background-color: burlywood;
+  padding: 10px;
+  border-radius: 15px;
+  color: rgb(141, 0, 47);
+  transform: translateY(-10px);
+}
+
+.lll h2 {
+  color: rgb(0, 0, 0);
+  line-height: 50px;
+  font-weight: bolder;
+  direction: ltr;
+  width: 600px;
+  padding: 3px;
+  padding-left: 15px;
+  border: 2px double #222;
+  border-radius: 15px;
+  margin: 10px auto;
+  background-color: rgb(255, 247, 241);
+}
