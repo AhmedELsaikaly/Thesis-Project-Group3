@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./style.css";
+import "./Resort.css";
 import axios from "axios";
+import Comment from "../Rating&Feedback/Comments";
 
 class Facility extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    console.log(Object.keys(this.props.faclitics));
     return (
       <div>
         {Object.keys(this.props.faclitics).length !== 0 ? (
@@ -31,7 +31,7 @@ class Facility extends React.Component {
                   alt="Card image cap"
                 ></img>
                 <div class="card-body">
-            <h5 class="card-title">{element}</h5>
+                  <h5 class="card-title">{element}</h5>
                   <p class="card-text">
                     Price {this.props.faclitics[element].price}
                   </p>
@@ -56,7 +56,7 @@ class Resort extends React.Component {
     this.state = {
       service: [],
       faclitics: {},
-      owner: [],
+      ownerId: "",
       isFull: false,
     };
   }
@@ -72,7 +72,7 @@ class Resort extends React.Component {
             reight.push(key);
           }
         }
-        this.setState({ service: reight });
+        this.setState({ service: reight, ownerId: this.props.match.params.id });
       })
       .catch((err) => {
         console.log("ERROR from AXIOS =>", err);
@@ -102,32 +102,39 @@ class Resort extends React.Component {
 
     return (
       <div>
-        <div class="media" style={{ margin: "100px" }}>
-          <img class="mr-3" src="..." alt="Generic placeholder image"></img>
-          <div class="media-body">
-            <h5 class="mt-0">ssss</h5>
-           
+        <div>
+          <div class="media" style={{ margin: "100px" }}>
+            <img class="mr-3" src="..." alt="Generic placeholder image"></img>
+            <div class="media-body">
+              <h5 class="mt-0">ssss</h5>
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "100px" }}>
-          <ul class="list-group">
-            <li
-              style={{ width: "400px", height: "50px" }}
-              class="list-group-item active"
-            >
-              Services
-            </li>
-            {service.map((dataIN, key) => (
+
+          <div style={{ margin: "100px" }}>
+            <ul class="list-group">
               <li
                 style={{ width: "400px", height: "50px" }}
-                class="list-group-item"
+                class="list-group-item active"
               >
-                {dataIN}
+                Services
               </li>
-            ))}
-          </ul>
+              {service.map((dataIN, key) => (
+                <li
+                  style={{ width: "400px", height: "50px" }}
+                  class="list-group-item"
+                >
+                  {dataIN}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <Facility faclitics={this.state.faclitics} />
+        <div className="facility">
+          <Facility faclitics={this.state.faclitics} />
+        </div>
+        <div className="rating">
+          <Comment OwnerId={this.state.ownerId} />
+        </div>
       </div>
     );
   }

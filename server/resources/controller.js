@@ -274,7 +274,7 @@ exports.GetAllOwner = function (req, res) {
       res.send(err);
     });
 };
-//// ...................................... get All ...............................//
+//// ...................................... get one Owner ...............................//
 exports.GetOwner = function (req, res) {
   // console.log(req.params,'+++++++++')
   const ownerId = req.params.id;
@@ -286,4 +286,48 @@ exports.GetOwner = function (req, res) {
     .catch((err) => {
       res.send(err);
     });
+};
+
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//// ...................................... Get All Comments ...............................//
+exports.GetComments = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const ownerId = req.params.id;
+  RFModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//// ...................................... Add One Comment ...............................//
+exports.AddComment = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
+  let CommentDoc = new RFModel({
+    customerId,
+    fullName,
+    ownerId,
+    date,
+    feedback,
+    rating,
+  });
+  CommentDoc.save()
+    .then(() => res.status(201).send("Comment Saved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Comment"));
 };
