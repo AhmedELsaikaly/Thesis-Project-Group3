@@ -15,27 +15,21 @@ router.post("/signUpCustomer", controller.SignUpCustomer);
 //////      RESERVATION     ////////
 ///////////////////////////////////
 // InfoPlace
-router.post("/facilitesStore",controller.FacilitesStore);
-router.get("/reservationPlace/:id", controllerReserfation.InfoPlace);
+router.post("/facilitesStore", controller.FacilitesStore);
 // Services in place
-router.post("/servicesStore",controller.ServicesStore);
-router.get("/reservationServer/:id", controllerReserfation.Services);
-Facilitiys
-ReservationStore
-router.post("/servicesStore",controller.ServicesStore);
+router.post("/servicesStore", controller.ServicesStore);
+
+router.post("/servicesStore", controller.ServicesStore);
 
 router.get("/reservationFacility/:ownerId", controller.GetFacilites);
 
 //Reservation Customer
-router.post("/reservationStore",controller.ReservationStore);
+router.post("/reservationStore", controller.ReservationStore);
 router.get("/reservationCustomer/:customerId", controller.GetReservation);
-
-
 
 // Facility
 // ReservationCustomer
 // Customer
-
 
 //export router
 module.exports = router;

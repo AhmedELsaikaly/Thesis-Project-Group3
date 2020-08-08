@@ -21,7 +21,8 @@ import Facility from "./Components/Facility/Facility";
 import Service from "./Components/Service/Service";
 import SignUpOwner from "./Components/SignUpOwner/SignUpOwner";
 import Resort from "./Components/userPage/resort";
-
+import { OwnerBooking } from "./Components/ownerBooking/ownerBooking.js";
+import { UserReservation } from "./Components/userReservation/userReservation.js";
 
 import "./App.css";
 
@@ -46,6 +47,12 @@ class App extends React.Component {
             <Route exact path="/Facility" component={Facility} />
             <Route exact path="/Service" component={Service} />
             <Route exact path="/resort/:id" component={Resort} />
+            <Route exact path="/ownerBooking" component={OwnerBooking}></Route>
+            <Route
+              exact
+              path="/userReservation"
+              component={UserReservation}
+            ></Route>
 
             {/* <Route exact path="/" component={booking}></Route> */}
           </Switch>
