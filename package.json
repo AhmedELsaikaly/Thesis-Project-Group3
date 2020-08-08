@@ -10,6 +10,7 @@
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "mongoose": "^5.9.25",
     "node": "^14.5.0",
     "nodemon": "^2.0.4",
