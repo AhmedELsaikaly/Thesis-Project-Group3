@@ -3,12 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 //import CSS
 import "./fillter.css";
-
+import Resort from "./resort";
+import axios from "axios";
 //import used files
-
-import one from "./../landPage/one.jpg";
-import two from "./../landPage/two.jpg";
-import three from "./../landPage/three.jpg";
 
 //fake names for testing
 const names = ["rani", "sma"];
@@ -18,30 +15,9 @@ class Filtter extends React.Component {
   constructor() {
     super();
     this.state = {
+      AllOwners: [],
       selectVal: "",
       selectSecVal: "",
-      data: [
-        {
-          imgurl: one,
-          name: "Ra7aa 1",
-          Rating: "5",
-        },
-        {
-          imgurl: two,
-          name: "Ra7aa 2",
-          Rating: "5",
-        },
-        {
-          imgurl: three,
-          name: "Ra7aa 3",
-          Rating: "5",
-        },
-        {
-          imgurl: three,
-          name: "Ra7aa 3",
-          Rating: "5",
-        },
-      ],
 
       filtter: [
         names,
@@ -51,10 +27,19 @@ class Filtter extends React.Component {
       second: [],
     };
   }
-  //   componentDidMount() {
-  //     // setTimeout(this.sta, 1000)
-  //     onChange :this.handle
-  //   }
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/AllOwner")
+      .then((res) => {
+        this.setState({ AllOwners: res.data });
+        // setTimeout(function () {
+        //   console.log(this.state.AllOwners, "ddd");
+        // }, 3000);
+      })
+      .catch((err) => {
+        console.log("ERROR from AXIOS =>", err);
+      });
+  }
 
   //handle function
   handle = (e) => {
@@ -75,6 +60,7 @@ class Filtter extends React.Component {
   render() {
     const { data } = this.state;
     const { second } = this.state;
+    const { AllOwners } = this.state;
     return (
       <div>
         <div
@@ -152,7 +138,7 @@ class Filtter extends React.Component {
           </div>
         </div>
         <div>
-          {data.map((dataIN, key) => (
+          {AllOwners.map((dataIN, key) => (
             <div
               class="card"
               style={{
@@ -166,18 +152,17 @@ class Filtter extends React.Component {
               <img
                 class="card-img-top"
                 style={{ height: "200px" }}
-                src={dataIN.imgurl}
+                src={dataIN.licensePhoto}
                 alt="Card image cap"
               ></img>
               <div class="card-body">
+                <h5 class="card-title">Place: {dataIN.placeName}</h5>
                 <h5 class="card-title">{dataIN.name}</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">
+                <h5 class="card-title">Mobile: {dataIN.mobileNumber}</h5>
+
+                <Link to={`resort/${dataIN._id}`} className="button is-warning">
                   Details
-                </a>
+                </Link>
               </div>
             </div>
           ))}
