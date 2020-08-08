@@ -1,8 +1,7 @@
 //require technologies
 const router = require("express").Router();
 const controller = require("./controller");
-const controllerReserfation = require("./controllerReservation");
-const controllerUserRservation = require("./controllerUserRservation")
+// const controllerUserRservation = require("./controllerUserRservation")
 // login Router
 router.post("/loginOwner", controller.SignInOwner);
 // signUp Router
@@ -16,13 +15,20 @@ router.post("/signUpCustomer", controller.SignUpCustomer);
 //////      RESERVATION     ////////
 ///////////////////////////////////
 // InfoPlace
+router.post("/facilitesStore",controller.FacilitesStore);
 router.get("/reservationPlace/:id", controllerReserfation.InfoPlace);
 // Services in place
+router.post("/servicesStore",controller.ServicesStore);
 router.get("/reservationServer/:id", controllerReserfation.Services);
-// Facilitiys
-router.get("/reservationFacility/:id", controllerUserRservation.Facility);
+Facilitiys
+ReservationStore
+router.post("/servicesStore",controller.ServicesStore);
+
+router.get("/reservationFacility/:ownerId", controller.GetFacilites);
+
 //Reservation Customer
-router.get("/reservationCustomer/:id", controllerUserRservation.ReservationCustomer);
+router.post("/reservationStore",controller.ReservationStore);
+router.get("/reservationCustomer/:customerId", controller.GetReservation);
 
 
 
