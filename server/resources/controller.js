@@ -406,39 +406,39 @@ exports.ShowLastDataFacility = function (req, res) {
    .catch(err =>res.status(200).send(err))
  }
 
- /////////// Updata Facility//////////////
-//  exports.UpdateFacility = function (req, res) {
-//   const   facilityId = req.params.id;
-//    FacilityModel.findByIdAndUpdate({ _id: facilityId },
-//     {
-//       facilities:{
-//         table:{
-//           img:req.body.img,
-//           price:req.body.price,
-//           quantity:req.body.quantity,
-//         },
-//         SmallTents:{
-//           img:req.body.img,
-//           price:req.body.price,
-//           quantity:req.body.quantity,
-//         },
-//         LargeTents:{
-//           img:req.body.img,
-//           price:req.body.price,
-//           quantity:req.body.quantity,
-//         }
-//       }
+ ///////// Updata Facility//////////////
+ exports.UpdateFacility = function (req, res) {
+  const   facilityId = req.params.id;
+   FacilityModel.findByIdAndUpdate({ _id: facilityId },
+    {
+      facilities:{
+        table:{
+          img:req.body.img,
+          price:req.body.price,
+          quantity:req.body.quantity,
+        },
+        SmallTents:{
+          img:req.body.img,
+          price:req.body.price,
+          quantity:req.body.quantity,
+        },
+        LargeTents:{
+          img:req.body.img,
+          price:req.body.price,
+          quantity:req.body.quantity,
+        }
+      }
       
-//     },(err,docs)=>{
-//       if(err){console.log(err);}
-//       console.log(docs);
+    },(err,docs)=>{
+      if(err){console.log(err);}
+      console.log(docs);
       
-//     })
-//    .then(result=>{
-//       res.send(result);
-//    })
-//    .catch(err =>console.log(err))
-//  }
+    })
+   .then(result=>{
+      res.send(result);
+   })
+   .catch(err =>console.log(err))
+ }
 
  ///////////////  Show data before  Updata Services /////////////
 exports.ShowLastDataServices = function (req, res) {

@@ -3,9 +3,6 @@
   text-align: center;
   color: #b2b2b2;
   overflow: hidden;
-  position: absolute;
-  bottom: 10px;
-  width: 80%;
   border: 2px solid #8ac007;
 }
 .footer span {

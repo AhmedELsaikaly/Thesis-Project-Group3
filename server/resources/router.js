@@ -21,7 +21,7 @@ router.post("/servicesStore",controller.ServicesStore);
 router.get("/reservationFacility/:ownerId", controller.GetFacilites);
 
 //Reservation Customer
-router.post("/reservationStore",controller.ReservationStore);
+router.post("/reservationStore", controller.ReservationStore);
 router.get("/reservationCustomer/:customerId", controller.GetReservation);
 //Updata Customer
 router.get("/showbeforupdata/:id",controller.ShowLastDataCustomer);
@@ -30,6 +30,13 @@ router.put("/updataCustomer/:id", controller.UpdateCustomer);
 router.get("/showLastDataOwner/:id",controller.ShowLastDataOwner);
 router.put("/updateOwner/:id", controller.UpdateOwner);
 
+//Update Facility
+router.get("/showLastDataFacility/:id",controller.ShowLastDataFacility);
+router.put("/updateFacility/:id", controller.UpdateFacility);
+
+//Update Servesis
+router.get("/showLastDataServesis/:id",controller.ShowLastDataServices);
+router.put("/updateServesis/:id", controller.UpdateServices);
 
 
 

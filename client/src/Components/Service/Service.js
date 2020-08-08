@@ -2,11 +2,14 @@
 import React from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+
 //import CSS
 import "./Service.css";
+
 //import used files
 import CheckBox from "./CheckBox.js";
 import Facility from "../Facility/Facility";
+
 //create Service Compo
 class Service extends React.Component {
   constructor(props) {
@@ -27,19 +30,21 @@ class Service extends React.Component {
       otherService: "",
     };
   }
-  //.................
+  //componentDidMount function
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     // console.log(decoded.id);
     this.setState({ ownerId: decoded.id });
   }
-  //............
+
+  //handleChange function
   handleChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
-  //..........
+
+  //handleCheckChieldElement function
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
@@ -48,7 +53,8 @@ class Service extends React.Component {
     });
     this.setState({ services: services });
   };
-  //...............
+
+  //handleSubmit function
   handleSubmit = (e) => {
     e.preventDefault();
     let checkArray = {};
@@ -70,6 +76,7 @@ class Service extends React.Component {
         console.error(error);
       });
   };
+
   //render Service Compo
   render() {
     return (
@@ -120,4 +127,5 @@ class Service extends React.Component {
 }
 //export compo
 export default Service;
+
 //Check and vaildate
