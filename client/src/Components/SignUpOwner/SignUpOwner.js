@@ -1,8 +1,13 @@
 //import used technologies
 import React from "react";
-import "./SignUpOwner.css"; //import CSS
-import Navbar from "../Navbar/Navbar.js"; //import used files
+
+//import CSS
+import "./SignUpOwner.css";
+
+//import used files
+import Navbar from "../Navbar/Navbar.js";
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
+
 const axios = require("axios");
 
 //create signup compo
@@ -27,7 +32,7 @@ class SignUpOwner extends React.Component {
       confirm: "",
     };
   }
-  // handle licensePhoto uploading
+  //handle licensePhoto uploading
   getLiecencePhotoUrl = (url) => {
     this.setState((prevState) => {
       let licensePhoto = Object.assign({}, prevState.TableUrl);
@@ -36,7 +41,7 @@ class SignUpOwner extends React.Component {
       return { licensePhoto };
     });
   };
-  // handle the password confirmation
+  //handle the password confirmation
   handle = () => {
     if (
       this.state.confirm === this.state.password &&
@@ -48,7 +53,8 @@ class SignUpOwner extends React.Component {
       this.setState({ message: "The two passwords in not matched" });
     }
   };
-  // handle the change of inputs
+
+  //handle the change of inputs
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
@@ -58,7 +64,8 @@ class SignUpOwner extends React.Component {
       input,
     });
   };
-  // handle select for Places
+
+  //handle select for Places
   handleSelect = (e) => {
     this.setState({ area: e.target.value });
     let input = this.state.input;
@@ -68,7 +75,7 @@ class SignUpOwner extends React.Component {
       input,
     });
   };
-  //....................................//
+
   // validate the fields
   validate() {
     let input = this.state.input;
@@ -161,12 +168,12 @@ class SignUpOwner extends React.Component {
 
     return isValid;
   }
-  //...................................//
+
   //handleSubmit function
   handleSubmit = (e) => {
     e.preventDefault();
     //axios routing , then and catch
-    
+
     console.log(this.validate());
     if (this.validate()) {
       let input = {};
@@ -357,3 +364,5 @@ class SignUpOwner extends React.Component {
 }
 //export SignUp Compo
 export default SignUpOwner;
+
+//check and validate

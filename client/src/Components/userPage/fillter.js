@@ -1,10 +1,12 @@
 //import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
+
 //import CSS
 import "./fillter.css";
 import Resort from "./resort";
 import axios from "axios";
+
 //import used files
 
 //fake names for testing

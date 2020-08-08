@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 //import CSS
 import "./signIn.css";
 
@@ -22,6 +23,7 @@ class SignIn extends React.Component {
     };
   }
 
+  //handleChange function
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
@@ -32,7 +34,7 @@ class SignIn extends React.Component {
     });
   };
 
-  //validate
+  //validate function
   validate() {
     let input = this.state.input;
     let errors = {};
@@ -170,3 +172,5 @@ class SignIn extends React.Component {
 
 //export SignIn Compo
 export { SignIn };
+
+//check and validate
