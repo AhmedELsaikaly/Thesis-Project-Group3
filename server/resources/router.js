@@ -18,7 +18,9 @@ router.get("/services/:id", controller.GetServices);
 router.get("/Facilites/:id", controller.GetFacilites);
 // get all resorts
 router.get("/AllOwner", controller.GetAllOwner);
+// get specific user
+router.get("/User/:id", controller.GetUser);
 // get specific owner
-router.get("/Owner:id", controller.GetOwner);
+router.get("/Owner/:id", controller.GetOwner);
 //export router
 module.exports = router;
