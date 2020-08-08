@@ -1,22 +1,14 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   transition: all 0.4s;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.container {
-  margin-left: 5%;
-  margin-right: 5%;
-}
 
 /* Navbar section */
 
 .nav {
-  width: 100%;
-  height: 65px;
   line-height: 65px;
   text-align: center;
   background-color: #404040;
@@ -25,14 +17,12 @@
 .nav div.logo {
   width: 300px;
   height: 10px;
-  position: absolute;
   font-weight: 700;
   font-size: 35px;
   color: #fff;
 }
 .nav div.logo span {
   color: #ff7129;
-  margin-right: 100px;
 }
 
 .nav div.logo a {
@@ -57,7 +47,6 @@
   height: 65px;
   display: flex;
   list-style: none;
-  margin-left: 150px;
 }
 
 .nav div.main_list ul li {

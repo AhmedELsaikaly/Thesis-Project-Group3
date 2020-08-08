@@ -331,3 +331,47 @@ exports.AddComment = function (req, res) {
     .then(() => res.status(201).send("Comment Saved"))
     .catch((err) => res.status(500).send(err + "err in Saving Comment"));
 };
+//............. Store Reservation .................
+exports.ReservationStore = function (req, res) {
+  // console.log(req.body);
+  const {
+    customerId,
+    customerName,
+    date,
+    status,
+    mobileNumber,
+    table,
+    SmallTents,
+    LargeTents,
+    totalPrice,
+    placeName,
+  } = req.body;
+  let ReservationDoc = new ReservationModel({
+    customerId,
+    customerName,
+    date,
+    status,
+    mobileNumber,
+    table,
+    SmallTents,
+    LargeTents,
+    totalPrice,
+    placeName,
+  });
+  ReservationDoc.save()
+    .then(() => res.status(201).send("Reservation Saved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Reservation"));
+};
+///..........Get Reservation............
+exports.GetReservation = function (req, res) {
+  const customerId = req.params.id;
+  ReservationModel.find({ customerId: customerId })
+    .then((reserv) => {
+      if (!reserv) {
+        console.log(reserv);
+        return res.status(404).end();
+      }
+      return res.status.send(reserv);
+    })
+    .catch((err) => next(err));
+};

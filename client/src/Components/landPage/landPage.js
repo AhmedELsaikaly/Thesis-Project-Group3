@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 //import CSS
-import { SliderCom } from "./../slider/slider";
 import "./landPage.css";
 
 //import used files

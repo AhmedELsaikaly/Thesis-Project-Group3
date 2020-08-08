@@ -63,7 +63,6 @@ const SliderCom1 = () => {
           width: "100%",
           height: "450px",
           marginLeft: "-250px",
-          marginTop: "100px",
         }}
       >
         <Slider

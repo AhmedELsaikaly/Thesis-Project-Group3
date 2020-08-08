@@ -1,13 +1,21 @@
+//import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Resort.css";
 import axios from "axios";
 import Comment from "../Rating&Feedback/Comments";
 
+//import CSS
+
+//import used files
+
+//create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  //render Facility Compo
   render() {
     return (
       <div>
@@ -50,6 +58,8 @@ class Facility extends React.Component {
     );
   }
 }
+
+//create Resort Compo
 class Resort extends React.Component {
   constructor() {
     super();
@@ -61,6 +71,7 @@ class Resort extends React.Component {
     };
   }
 
+  //componentDidMount Function
   componentDidMount() {
     axios
       .get(`http://localhost:5000/services/${this.props.match.params.id}`)
@@ -95,19 +106,17 @@ class Resort extends React.Component {
     //     console.log("ERROR from AXIOS =>", err);
     //   });
   }
-
+  //render Resort Compo
   render() {
     // const { id } = this.props.match.params.id;
     const { service } = this.state;
 
     return (
       <div>
-        <div>
-          <div class="media" style={{ margin: "100px" }}>
-            <img class="mr-3" src="..." alt="Generic placeholder image"></img>
-            <div class="media-body">
-              <h5 class="mt-0">ssss</h5>
-            </div>
+        <div class="media" style={{ margin: "100px" }}>
+          <img class="mr-3" src="..." alt="Generic placeholder image"></img>
+          <div class="media-body">
+            <h5 class="mt-0">ssss</h5>
           </div>
 
           <div style={{ margin: "100px" }}>
@@ -139,4 +148,8 @@ class Resort extends React.Component {
     );
   }
 }
+
+//render Filtter Compo
 export default Resort;
+
+//Check and vaildate
