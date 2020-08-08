@@ -1,5 +1,6 @@
+//require technologies
 const mongoose = require("mongoose");
-//............................
+//..................................................
 //Customer Model
 let CustomerSchema = mongoose.Schema({
   fullName: {
@@ -23,7 +24,6 @@ let CustomerSchema = mongoose.Schema({
   address: {
     type: String,
   },
-
   date: {
     type: Date,
     default: Date.now,
@@ -35,7 +35,6 @@ let CustomerModel = mongoose.model("customer", CustomerSchema);
 let OwnerSchema = mongoose.Schema({
   fullName: {
     type: String,
-    unique: true,
     required: true,
   },
   password: {
@@ -45,14 +44,7 @@ let OwnerSchema = mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true,
   },
-  facebook: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-
   mobileNumber: {
     type: Number,
     required: true,
@@ -63,11 +55,6 @@ let OwnerSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-
-  location: {
-    type: String,
-    required: true,
-  },
   area: {
     type: { type: String },
     coordinates: { type: Number },
@@ -76,71 +63,58 @@ let OwnerSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  photoLicense: {
-    data: Buffer,
-    contentType: String,
+  licensePhoto: {
+    type: String,
+    required: true,
   },
 });
 const OwnerModel = mongoose.model("Owner", OwnerSchema);
-
-// //......................................................................
-// // Facilities Schema
+//..................................................
+// Facilities Schema
 let FacilitySchema = mongoose.Schema({
   ownerId: {
     type: String,
   },
-  facilitiesName: {
+  facilities: {
     //////////1
     table: {
       img: {
-        data: Buffer,
-        contentType: String,
+        type: String,
+        required: true,
       },
       price: {
         type: Number,
         required: true,
       },
       quantity: {
-        type: Number,
-        required: true,
-      },
-      capacity: {
         type: Number,
         required: true,
       },
     }, ////////////2
-    tentsSamll: {
+    SmallTents: {
       img: {
-        data: Buffer,
-        contentType: String,
+        type: String,
+        required: true,
       },
       price: {
         type: Number,
         required: true,
       },
       quantity: {
-        type: Number,
-        required: true,
-      },
-      capacity: {
         type: Number,
         required: true,
       },
     }, /////////3
-    tentsLarge: {
+    LargeTents: {
       img: {
-        data: Buffer,
-        contentType: String,
+        type: String,
+        required: true,
       },
       price: {
         type: Number,
         required: true,
       },
       quantity: {
-        type: Number,
-        required: true,
-      },
-      capacity: {
         type: Number,
         required: true,
       },
@@ -148,30 +122,31 @@ let FacilitySchema = mongoose.Schema({
   },
 });
 const FacilityModel = mongoose.model("Facility", FacilitySchema);
-// ////..............................................................................
-// //Services Schema
+//..................................................
+//Services Schema
 let ServicesSchema = mongoose.Schema({
-  owner_id: {
+  ownerId: {
     type: String,
   },
   servicesAvailable: {
-    greenArea: { type: Boolean, required: true },
-    babySwimming: { type: Boolean, required: true },
-    resturant: { type: Boolean, required: true },
-    softDrinks: { type: Boolean, required: true },
-    lineBarbecue: { type: Boolean, required: true },
-    volleyballCourt: { type: Boolean, required: true },
-    conditioning: { type: Boolean, required: true },
+    PlayGround: { type: Boolean, required: true },
+    SwimmingPool: { type: Boolean, required: true },
+    FoodOffer: { type: Boolean, required: true },
+    SoftDrinks: { type: Boolean, required: true },
+    TV: { type: Boolean, required: true },
+    GrillArea: { type: Boolean, required: true },
+    Shesha: { type: Boolean, required: true },
+    GreenArea: { type: Boolean, required: true },
+    KidsArea: { type: Boolean, required: true },
   },
-  addNote: {
+  otherService: {
     type: String,
     required: false,
   },
 });
-
 const ServicesModel = mongoose.model("Service", ServicesSchema);
-// //////.............................................................................
-// // Reservation Schema
+//..................................................
+//Reservation Schema
 let ReservationSchema = mongoose.Schema({
   customerId: {
     type: String,
@@ -189,7 +164,6 @@ let ReservationSchema = mongoose.Schema({
   typeReserv: {
     type: Array,
   },
-
   totalPrice: {
     type: Number,
   },
@@ -201,22 +175,17 @@ let ReservationSchema = mongoose.Schema({
     required: true,
   },
 });
-
 const ReservationModel = mongoose.model("Reserv", ReservationSchema);
-
-// //// ....................................................
-// // Rating & FeedBack Schema
-
+//..................................................
+//Rating & FeedBack Schema
 let RatingSchema = mongoose.Schema({
   customerId: {
     type: String,
   },
-
   date: {
     type: Date,
     default: Date.now,
   },
-
   feedback: {
     type: String,
     required: false,
@@ -230,7 +199,8 @@ let RatingSchema = mongoose.Schema({
   },
 });
 const RFModel = mongoose.model("RatingFeedback", RatingSchema);
-
+//..................................................
+//export modules
 module.exports = {
   CustomerModel,
   OwnerModel,

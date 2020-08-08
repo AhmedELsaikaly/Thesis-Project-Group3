@@ -1,12 +1,39 @@
+//require technologies
 const express = require("express");
-let app = express();
-const router = require("./resources/router");
 const cors = require("cors");
-const db = require("./database/connectionDB");
 var bodyParser = require("body-parser");
 const path = require("path");
-//const bcrypt = require("bcrypt");
+let app = express();
 app.use(cors());
+
+//const bcrypt = require("bcrypt");
+
+//require used files
+
+const router = require("./resources/router");
+const db = require("./database/connectionDB");
+
+app.use(express.json());
+app.use(router);
+
+// app.get('/', (req, res) => {
+//   res.send('works!')
+// })
+
+//declare port
+var port = process.env.PORT || 5000;
+
+//herokuapp config. using static files presented after the build
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+  });
+}
+/// TODO:  authentication verrification/ check for token in every req for every user
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 
 /// circleCi  => test each push
 // cont deployment
@@ -21,29 +48,6 @@ app.use(cors());
 // app.use(
 //   express.static(path.join(__dirname, "..", "client", "public", "index.html"))
 // );
-
-app.use(express.json());
-//take the data of the book that i seach about it and put in favorit list
-app.use(router);
-
-// app.get('/', (req, res) => {
-//   res.send('works!')
-// })
-
-var port = 5000;
-
-//herokuapp config. using static files presented after the build
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-  });
-}
-/// TODO:  authentication verrification/ check for token in every req for every user
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
-
 // //require modules (express,body-parser,path,cors,mongoose)
 // const express = require("express");
 // const bodyParser = require("body-parser");
@@ -90,12 +94,4 @@ app.listen(port, () => {
 // app.use("/api", users);
 // app.get("/", (req, res) => {
 //   res.send("Backend server for Raha app");
-// });
-
-// //declare port
-// var port = process.env.PORT || 6001;
-
-// //listen to the port
-// app.listen(port, function () {
-//   console.log(`listening to port ${port}!`);
 // });

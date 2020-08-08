@@ -1,3 +1,7 @@
+//require technologies
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+//require files
 const {
   CustomerModel,
   OwnerModel,
@@ -8,12 +12,10 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin
 exports.SignInOwner = function (req, res) {
+  console.log(req.body);
   //form validation
   const { errors, isValid } = validateSigninInput(req.body);
   //check validation
@@ -27,7 +29,7 @@ exports.SignInOwner = function (req, res) {
     .then((owner) => {
       //check if owner exists
       if (!owner) {
-        return res.status(404).json({ emailnotfound: "Email not found" });
+        return res.status(404).json("Email not found");
       }
       //check password
       bcrypt
@@ -45,7 +47,7 @@ exports.SignInOwner = function (req, res) {
               payload,
               process.env.SECRET_KEY,
               {
-                expiresIn: 2629746, // 1 month in seconds
+                expiresIn: "1h", // 1 month in seconds
               },
               (err, token) => {
                 res.json({
@@ -55,9 +57,7 @@ exports.SignInOwner = function (req, res) {
               }
             );
           } else {
-            return res
-              .status(400)
-              .json({ passwordincorrect: "Password incorrect" });
+            return res.status(400).json("Password incorrect");
           }
         })
         .catch((err) => {
@@ -68,33 +68,30 @@ exports.SignInOwner = function (req, res) {
       console.log(err);
     });
 };
-
 //............................SignUp Controller  For Owner..............................//
 exports.SignUpOwner = function (req, res) {
   console.log(req.body);
   //form validation
-  const { errors, isValid } = validateSignupInput(req.body);
-  //check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // const { errors, isValid } = validateSignupInput(req.body);
+  // //check validation
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
   //check Owner by email if exists
   OwnerModel.findOne({ email: req.body.email })
     .then((owner) => {
       if (owner) {
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json("Email already exists");
       } else {
         //create newOwner
         const newOwner = new OwnerModel({
           fullName: req.body.fullName,
           password: req.body.password,
           email: req.body.email,
-          facebook: req.body.facebook,
           mobileNumber: req.body.mobileNumber,
           placeName: req.body.placeName,
-          location: req.body.location,
           area: req.body.area,
-          photoLicense: req.body.photoLicense,
+          licensePhoto: req.body.licensePhoto,
         });
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -104,7 +101,7 @@ exports.SignUpOwner = function (req, res) {
             //save newOwner
             newOwner
               .save()
-              .then((owner) => res.json(owner))
+              .then(() => res.send("you signed up successfully"))
               .catch((err) =>
                 res.status(500).json({
                   error: err,
@@ -177,7 +174,6 @@ exports.SignInCustomer = function (req, res) {
       console.log(err);
     });
 };
-
 //............................SignUp Controller  For Costmer ..............................//
 exports.SignUpCustomer = function (req, res) {
   console.log(req.body);
@@ -220,4 +216,74 @@ exports.SignUpCustomer = function (req, res) {
     });
 };
 //-------------------------------------------------------------------------------------
-//
+////............................Service Storing Controller  For Owner ..............................//
+exports.ServicesStore = function (req, res) {
+  // console.log(req.body);
+  const { ownerId, otherService, servicesAvailable } = req.body;
+  let ServiceDoc = new ServicesModel({
+    ownerId,
+    otherService,
+    servicesAvailable,
+  });
+  ServiceDoc.save()
+    .then(() => res.status(201).send("saved"))
+    .catch((err) => res.status(500).send(err + "err"));
+};
+///// .............................................. Facilites storin Schema for owner ........................//
+exports.FacilitesStore = function (req, res) {
+  // console.log(req.body);
+  const { ownerId, facilities } = req.body;
+  let ServiceDoc = new FacilityModel({
+    ownerId,
+    facilities,
+  });
+  ServiceDoc.save()
+    .then(() => res.status(201).send("FacilitesSaved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
+};
+///// ..............................................  get services  ........................//
+exports.GetServices = function (req, res) {
+  const ownerId = req.params.id;
+  ServicesModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
+};
+//// ...................................... get facilites ...............................//
+exports.GetFacilites = function (req, res) {
+  const ownerId = req.params.id;
+  FacilityModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
+};
+//// ...................................... get All ...............................//
+exports.GetAllOwner = function (req, res) {
+  OwnerModel.find({})
+    .then((result) => {
+      res.send(result);
+      console.log(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//// ...................................... get All ...............................//
+exports.GetOwner = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const ownerId = req.params.id;
+  OwnerModel.find({ _id: ownerId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};

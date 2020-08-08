@@ -1,6 +1,8 @@
+//require technologies
 const Validator = require("validator");
 const isEmpty = require("is-empty");
 
+//validateLoginInput function
 module.exports = function validateLoginInput(data) {
   let errors = {};
   //convert empty fields to an empty string so we can use validator functions
