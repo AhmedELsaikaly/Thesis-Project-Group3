@@ -241,6 +241,19 @@ exports.FacilitesStore = function (req, res) {
     .then(() => res.status(201).send("FacilitesSaved"))
     .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
 };
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 ///// ..............................................  get services  ........................//
 exports.GetServices = function (req, res) {
   const ownerId = req.params.id;

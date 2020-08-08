@@ -1,0 +1,37 @@
+.personal-info {
+  width: 65%;
+  float: right;
+  background-color: blanchedalmond;
+  height: auto;
+  padding: 25px 30px;
+  overflow-x: hidden;
+}
+
+.personal-info h2 {
+  color: rgb(0, 0, 0);
+  line-height: 50px;
+  font-weight: bolder;
+  direction: ltr;
+  transform: translate(300px);
+  width: auto;
+  padding: 10px;
+}
+
+.personal-info h1 {
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 350px;
+  margin: 20px auto;
+  background-color: burlywood;
+  padding: 10px;
+  border-radius: 15px;
+  color: rgb(141, 0, 47);
+}
+
+.personal-info img {
+  height: 400px;
+  width: 400px;
+  transform: translate(300px);
+  margin: 20px auto;
+  border-radius: 15px;
+}
