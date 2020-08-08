@@ -241,6 +241,19 @@ exports.FacilitesStore = function (req, res) {
     .then(() => res.status(201).send("FacilitesSaved"))
     .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
 };
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 ///// ..............................................  get services  ........................//
 exports.GetServices = function (req, res) {
   const ownerId = req.params.id;
@@ -274,7 +287,7 @@ exports.GetAllOwner = function (req, res) {
       res.send(err);
     });
 };
-//// ...................................... get All ...............................//
+//// ...................................... get one Owner ...............................//
 exports.GetOwner = function (req, res) {
   // console.log(req.params,'+++++++++')
   const ownerId = req.params.id;
@@ -287,10 +300,65 @@ exports.GetOwner = function (req, res) {
       res.send(err);
     });
 };
+
+//// ...................................... get one User ...............................//
+exports.GetUser = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const UserId = req.params.id;
+  CustomerModel.find({ _id: UserId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//// ...................................... Get All Comments ...............................//
+exports.GetComments = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const ownerId = req.params.id;
+  RFModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//// ...................................... Add One Comment ...............................//
+exports.AddComment = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
+  let CommentDoc = new RFModel({
+    customerId,
+    fullName,
+    ownerId,
+    date,
+    feedback,
+    rating,
+  });
+  CommentDoc.save()
+    .then(() => res.status(201).send("Comment Saved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Comment"));
+};
 //............. Store Reservation .................
 exports.ReservationStore = function (req, res) {
   // console.log(req.body);
-  const { customerId, customerName,date, status,mobileNumber,table,SmallTents,LargeTents ,totalPrice,placeName} = req.body;
+  const {
+    customerId,
+    customerName,
+    date,
+    status,
+    mobileNumber,
+    table,
+    SmallTents,
+    LargeTents,
+    totalPrice,
+    placeName,
+  } = req.body;
   let ReservationDoc = new ReservationModel({
     customerId,
     customerName,
@@ -299,24 +367,24 @@ exports.ReservationStore = function (req, res) {
     mobileNumber,
     table,
     SmallTents,
-    LargeTents ,
+    LargeTents,
     totalPrice,
-    placeName
+    placeName,
   });
   ReservationDoc.save()
     .then(() => res.status(201).send("Reservation Saved"))
     .catch((err) => res.status(500).send(err + "err in Saving Reservation"));
 };
 ///..........Get Reservation............
-exports.GetReservation = function (req, res) { 
+exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
-  .then(reserv=>{
-      if(!reserv){
+    .then((reserv) => {
+      if (!reserv) {
         console.log(reserv);
-        return res.status(404).end();}
-      return res.status.send(reserv)
-  })
-  .catch(err =>next(err));
-  
-}
+        return res.status(404).end();
+      }
+      return res.status.send(reserv);
+    })
+    .catch((err) => next(err));
+};
