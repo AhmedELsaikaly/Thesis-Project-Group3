@@ -1,8 +1,17 @@
+//import used technologies
 import React, { Component } from "react";
 import { element } from "prop-types";
+
+//import CSS
 import "./resList.css";
+
+//import used files
+
+//create UserReservation Compo
 export class ResList extends Component {
   state = {};
+
+  //render UserReservation Compo
   render() {
     const { reservations } = this.props;
     return (
@@ -26,8 +35,10 @@ export class ResList extends Component {
     );
   }
 }
-
+//export UserReservation Compo
 export default ResList;
+
+//Check and validate
 
 // {arr.map((obj, i) => {
 //     return (

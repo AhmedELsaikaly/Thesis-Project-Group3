@@ -1,6 +1,13 @@
+//import used technologies
 import React, { Component } from "react";
 import axiox from "axios";
+
+//import CSS
+
+//import used files
 import bookingLiss, { BookingList } from "./bookingLiss.js";
+
+//fakeData Array
 const arr = [
   {
     id: 1,
@@ -28,6 +35,7 @@ const arr = [
   },
 ];
 
+//create OwnerBooking Compo
 export class OwnerBooking extends Component {
   state = {
     booking: [],
@@ -36,6 +44,7 @@ export class OwnerBooking extends Component {
   handleSubmit(e) {
     // e.preventDefault();
 
+    //axios getting data from booking
     axiox
       .get("http://localhost:3000/FIX_ME") // Fix the route
       .then((result) => {
@@ -46,6 +55,8 @@ export class OwnerBooking extends Component {
         console.log("Error", err);
       });
   }
+
+  //render OwnerBooking Compo
   render() {
     return (
       <div>
@@ -56,5 +67,7 @@ export class OwnerBooking extends Component {
     );
   }
 }
-
+//export OwnerBooking Compo
 export default OwnerBooking;
+
+//check and validate

@@ -1,9 +1,15 @@
+//import used technologies
 import React, { Component } from "react";
 import { element } from "prop-types";
+
+//import CSS
 import "./bookingList.css";
 
+//create BookingList Compo
 export class BookingList extends Component {
   state = {};
+
+  //render BookingList Compo
   render() {
     const { booking } = this.props;
     return (
@@ -27,7 +33,10 @@ export class BookingList extends Component {
   }
 }
 
+//export BookingList Compo
 export default BookingList;
+
+//check and validate
 
 // {arr.map((obj, i) => {
 //     return (

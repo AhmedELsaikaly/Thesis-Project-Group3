@@ -1,3 +1,4 @@
+//import used technologies
 import React from "react";
 import logo from "./logo.svg";
 import {
@@ -7,6 +8,10 @@ import {
   Redirect,
 } from "react-router-dom";
 
+//import CSS
+import "./App.css";
+
+//import used files
 import { SignIn } from "./Components/Signing/signIn";
 import SignUp from "./Components/Signing/signUp.js";
 import { About } from "./Components/SubPages/About/About";
@@ -23,15 +28,18 @@ import SignUpOwner from "./Components/SignUpOwner/SignUpOwner";
 import Resort from "./Components/userPage/resort";
 import { OwnerBooking } from "./Components/ownerBooking/ownerBooking.js";
 import { UserReservation } from "./Components/userReservation/userReservation.js";
+import { ProtectedRoute } from "./Components/RoutesType/ProtectedRoute";
+import { LoggedInRoute } from "./Components/RoutesType/LoggedInRoute";
 
-import "./App.css";
-
+//create App Compo
 class App extends React.Component {
   state = {};
 
+  //render App Compo
   render() {
     return (
       <div>
+        {/* Routes , switching and private routers*/}
         <Router>
           <Switch>
             <Route exact path="/" component={LandPage} />
@@ -62,4 +70,7 @@ class App extends React.Component {
   }
 }
 
+//export App
 export default App;
+
+//Check and validate

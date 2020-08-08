@@ -35,6 +35,7 @@ class SignUp extends React.Component {
     };
   }
 
+  //handle function
   handle = () => {
     if (
       this.state.confirm === this.state.password &&
@@ -47,6 +48,7 @@ class SignUp extends React.Component {
     }
   };
 
+  //handle handleChange
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
@@ -56,7 +58,8 @@ class SignUp extends React.Component {
       input,
     });
   };
-  // handle select for Places
+
+  // handle select for facilities
   handleSelect = (e) => {
     this.setState({ address: e.target.value });
     let input = this.state.input;
@@ -66,7 +69,7 @@ class SignUp extends React.Component {
       input,
     });
   };
-  //....................................//
+
   // validate the fields
   validate() {
     let input = this.state.input;
@@ -145,7 +148,7 @@ class SignUp extends React.Component {
 
     return isValid;
   }
-  //...................................//
+
   //handleSubmit function
   handleSubmit = (e) => {
     e.preventDefault();
@@ -185,7 +188,8 @@ class SignUp extends React.Component {
         });
     }
   };
-  // rendering the compo
+
+  //rendering the compo
   render() {
     const { fullName, password, email, mobileNumber, address } = this.state;
     const values = {
@@ -313,3 +317,5 @@ class SignUp extends React.Component {
 }
 //export SignUp Compo
 export default SignUp;
+
+//check and validate

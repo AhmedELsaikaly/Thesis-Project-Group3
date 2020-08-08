@@ -1,6 +1,13 @@
+//import used technologies
 import React, { Component } from "react";
 import axiox from "axios";
+
+//import CSS
+
+//import used files
 import ResList from "./resList.js";
+
+//FackeData Array
 const arr = [
   {
     id: 1,
@@ -67,6 +74,7 @@ const arr = [
   },
 ];
 
+//create UserReservation Compo
 export class UserReservation extends Component {
   state = {
     reservations: [],
@@ -85,6 +93,7 @@ export class UserReservation extends Component {
         console.log("Error", err);
       });
   }
+  //render UserReservation Compo
   render() {
     return (
       <div>
@@ -98,4 +107,7 @@ export class UserReservation extends Component {
   }
 }
 
+//export UserReservation Compo
 export default UserReservation;
+
+//Check and validate
