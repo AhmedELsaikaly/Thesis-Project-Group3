@@ -32,21 +32,29 @@ router.get("/AllComents/:id", controller.GetComments);
 //////      RESERVATION     ////////
 ///////////////////////////////////
 // InfoPlace
-router.post("/facilitesStore", controller.FacilitesStore);
+router.post("/facilitesStore",controller.FacilitesStore);
 // Services in place
-router.post("/servicesStore", controller.ServicesStore);
-
-router.post("/servicesStore", controller.ServicesStore);
-
+router.post("/servicesStore",controller.ServicesStore);
 router.get("/reservationFacility/:ownerId", controller.GetFacilites);
 
 //Reservation Customer
 router.post("/reservationStore", controller.ReservationStore);
 router.get("/reservationCustomer/:customerId", controller.GetReservation);
+//Updata Customer
+router.get("/showbeforupdata/:id",controller.ShowLastDataCustomer);
+router.put("/updataCustomer/:id", controller.UpdateCustomer);
+//Updata Owner
+router.get("/showLastDataOwner/:id",controller.ShowLastDataOwner);
+router.put("/updateOwner/:id", controller.UpdateOwner);
 
-// Facility
-// ReservationCustomer
-// Customer
+//Update Facility
+router.get("/showLastDataFacility/:id",controller.ShowLastDataFacility);
+router.put("/updateFacility/:id", controller.UpdateFacility);
 
-//export router
+//Update Servesis
+router.get("/showLastDataServesis/:id",controller.ShowLastDataServices);
+router.put("/updateServesis/:id", controller.UpdateServices);
+
+
+
 module.exports = router;
