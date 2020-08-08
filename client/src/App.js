@@ -20,6 +20,8 @@ import ContolPanel from "./Components/ControlPanel/ControlPanel";
 import Facility from "./Components/Facility/Facility";
 import Service from "./Components/Service/Service";
 import SignUpOwner from "./Components/SignUpOwner/SignUpOwner";
+import Resort from "./Components/userPage/resort";
+
 
 import "./App.css";
 
@@ -43,6 +45,7 @@ class App extends React.Component {
             <Route exact path="/ContolPanel" component={ContolPanel} />
             <Route exact path="/Facility" component={Facility} />
             <Route exact path="/Service" component={Service} />
+            <Route exact path="/resort/:id" component={Resort} />
 
             {/* <Route exact path="/" component={booking}></Route> */}
           </Switch>

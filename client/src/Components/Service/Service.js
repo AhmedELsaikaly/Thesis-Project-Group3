@@ -1,19 +1,18 @@
 //import used technologies
 import React from "react";
 import axios from "axios";
-
+import jwt_decode from "jwt-decode";
 //import CSS
 import "./Service.css";
-
 //import used files
 import CheckBox from "./CheckBox.js";
 import Facility from "../Facility/Facility";
-
 //create Service Compo
 class Service extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      ownerId: "",
       services: [
         { id: 1, value: "PlayGround", isChecked: false },
         { id: 2, value: "SwimmingPool", isChecked: false },
@@ -25,9 +24,22 @@ class Service extends React.Component {
         { id: 8, value: "GreenArea", isChecked: false },
         { id: 9, value: "KidsArea", isChecked: false },
       ],
+      otherService: "",
     };
   }
-
+  //.................
+  componentDidMount() {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    // console.log(decoded.id);
+    this.setState({ ownerId: decoded.id });
+  }
+  //............
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  //..........
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
@@ -36,21 +48,20 @@ class Service extends React.Component {
     });
     this.setState({ services: services });
   };
+  //...............
   handleSubmit = (e) => {
     e.preventDefault();
-
-    let checkArray = [];
+    let checkArray = {};
     const services = this.state.services;
     for (var i = 0; i < services.length; i++) {
-      if (services[i].isChecked === true) {
-        checkArray.push(services[i].value);
-      }
+      checkArray[services[i].value] = services[i].isChecked;
     }
     let CheckedServices = checkArray;
-
     axios
-      .post("http://localhost:4000/FixMe", {
-        services: CheckedServices,
+      .post("http://localhost:5000/services", {
+        servicesAvailable: CheckedServices,
+        ownerId: this.state.ownerId,
+        otherService: this.state.otherService,
       })
       .then(function (response) {
         console.log(response);
@@ -59,7 +70,6 @@ class Service extends React.Component {
         console.error(error);
       });
   };
-
   //render Service Compo
   render() {
     return (
@@ -88,9 +98,9 @@ class Service extends React.Component {
             </label>
             <textarea
               className="form-control"
-              value={this.state.message}
               onChange={this.handleChange}
-              name="message"
+              value={this.state.otherService}
+              name="otherService"
               id="exampleTextarea"
               rows="2"
               placeholder="Write message"
@@ -98,6 +108,7 @@ class Service extends React.Component {
             <button
               type="submit"
               className="btn btn-lg font-weight-bold btn-secondary btn-block"
+              onClick={this.handleSubmit}
             >
               Send Your Request
             </button>
@@ -107,8 +118,6 @@ class Service extends React.Component {
     );
   }
 }
-
 //export compo
 export default Service;
-
 //Check and vaildate

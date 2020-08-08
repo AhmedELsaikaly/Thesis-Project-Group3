@@ -1,34 +1,40 @@
 //import used technologies
 import React from "react";
 import axios from "axios";
-
+import jwt_decode from "jwt-decode";
 //import CSS
 import "./Facility.css";
-
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import jessica from "./1.png";
-
 //create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      ownerId: "",
       TableUrl: { url: null, isUploaded: false },
       SmallTentUrl: { url: null, isUploaded: false },
       LargeTentUrl: { url: null, isUploaded: false },
       tableQuant: "",
       tablePrice: "",
       LargeTentQuant: "",
+      LargeTentPrice: "",
       SmallTentQuant: "",
       SmallTentPrice: "",
     };
+  }
+  // Take the id from token
+  componentDidMount() {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    // console.log(decoded.id);
+    this.setState({ ownerId: decoded.id });
   }
   //handleChange function
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   //getTableUrl function
   getTableUrl = (url) => {
     this.setState((prevState) => {
@@ -38,7 +44,6 @@ class Facility extends React.Component {
       return { TableUrl };
     });
   };
-
   //getSmallTentUrl function
   getSmallTentUrl = (url) => {
     this.setState((prevState) => {
@@ -48,7 +53,6 @@ class Facility extends React.Component {
       return { SmallTentUrl };
     });
   };
-
   //getLargeTentUrl function
   getLargeTentUrl = (url) => {
     this.setState((prevState) => {
@@ -60,22 +64,36 @@ class Facility extends React.Component {
       });
     });
   };
-
-  //   handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     for(var )
-  //     axios
-  //       .post("http://localhost:4000/FixMe", {
-  //         services: CheckedServices,
-  //       })
-  //       .then(function (response) {
-  //         console.log(response);
-  //       })
-  //       .catch(function (error) {
-  //         console.error(error);
-  //       });
-  //   };
-
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/Facilites", {
+        facilities: {
+          table: {
+            img: this.state.TableUrl.url,
+            price: this.state.tablePrice,
+            quantity: this.state.tableQuant,
+          },
+          SmallTents: {
+            img: this.state.SmallTentUrl.url,
+            price: this.state.SmallTentPrice,
+            quantity: this.state.SmallTentQuant,
+          },
+          LargeTents: {
+            img: this.state.LargeTentUrl.url,
+            price: this.state.LargeTentPrice,
+            quantity: this.state.LargeTentQuant,
+          },
+        },
+        ownerId: this.state.ownerId,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
   //render Facility Compo
   render() {
     return (
@@ -156,7 +174,7 @@ class Facility extends React.Component {
           <button
             type="submit"
             className="btn btn-lg font-weight-bold btn-secondary btn-block"
-            // onClick={}
+            onClick={this.handleSubmit}
           >
             {" "}
             Send Your Request{" "}
@@ -166,8 +184,6 @@ class Facility extends React.Component {
     );
   }
 }
-
 //export compo
 export default Facility;
-
-//Check and vaildate
+//Check and vaildates

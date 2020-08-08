@@ -16,7 +16,7 @@ class SignUpOwner extends React.Component {
       errors: {},
       serverRes: "",
       message: "",
-      facebookLink: "",
+      fblink: "",
       placeName: "",
       fullName: "",
       password: "",
@@ -84,9 +84,9 @@ class SignUpOwner extends React.Component {
       isValid = false;
       errors["placeName"] = "Please enter your Place Name.";
     }
-    if (!input["facebookLink"]) {
+    if (!input["fblink"]) {
       isValid = false;
-      errors["facebookLink"] = "Please enter your facebook Link.";
+      errors["fblink"] = "Please enter your facebook Link.";
     }
 
     if (this.state.licensePhoto.isUploaded === false) {
@@ -185,7 +185,7 @@ class SignUpOwner extends React.Component {
           email: this.state.Email,
           mobileNumber: this.state.mobileNumber,
           area: this.state.area,
-          facebookLink: this.state.facebookLink,
+          fblink: this.state.fblink,
           placeName: this.state.placeName,
           licensePhoto: this.state.licensePhoto.url,
         })
@@ -198,9 +198,9 @@ class SignUpOwner extends React.Component {
         })
         .catch((err) => {
           // console.log(err);
-          this.setState({ serverRes: err.response.data });
+          // this.setState({ serverRes: err.response.data });
           // alert(err.response.data);
-          console.log("ERROR FROM AXIOS ", err.response.data);
+          console.log("ERROR FROM AXIOS ", err);
           this.props.history.push(`/SignUpOwner`);
         });
     }
@@ -270,13 +270,13 @@ class SignUpOwner extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <p className="text-danger">{this.state.errors.facebookLink}</p>
+          <p className="text-danger">{this.state.errors.fblink}</p>
           <div className="form-group">
             <input
-              type="url"
+              type="text"
               className="form-control"
-              name="facebookLink"
-              value={this.state.input.facebookLink}
+              name="fblink"
+              value={this.state.input.fblink}
               placeholder="Facebook Link"
               required="required"
               onChange={this.handleChange}
@@ -346,7 +346,7 @@ class SignUpOwner extends React.Component {
               Register Now
             </button>
           </div>
-          <div className="text-danger"> {this.state.serverRes}</div>
+          {/* <div className="text-danger"> {this.state.serverRes}</div> */}
         </form>
         <div className="text-center">
           Already have an account? <a href="/signIn">Sign in</a>

@@ -16,13 +16,13 @@ class PhotoUpload extends React.Component {
     const formData = new FormData();
     formData.append("file", files[0]);
     // replace this with your upload preset name
-    formData.append("upload_preset", "dtm3d0erl");
+    formData.append("upload_preset", "xfaaoapt");
     const options = {
       method: "POST",
       body: formData,
     };
     return fetch(
-      "https://api.Cloudinary.com/v1_1/dtm3d0erl/image/upload",
+      "https://api.Cloudinary.com/v1_1/dplbducwt/image/upload",
       options
     )
       .then((res) => res.json())

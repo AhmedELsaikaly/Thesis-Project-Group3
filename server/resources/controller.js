@@ -1,7 +1,6 @@
 //require technologies
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 //require files
 const {
   CustomerModel,
@@ -13,7 +12,6 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
-
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin
 exports.SignInOwner = function (req, res) {
@@ -70,7 +68,6 @@ exports.SignInOwner = function (req, res) {
       console.log(err);
     });
 };
-
 //............................SignUp Controller  For Owner..............................//
 exports.SignUpOwner = function (req, res) {
   console.log(req.body);
@@ -91,7 +88,6 @@ exports.SignUpOwner = function (req, res) {
           fullName: req.body.fullName,
           password: req.body.password,
           email: req.body.email,
-          facebookLink: req.body.facebookLink,
           mobileNumber: req.body.mobileNumber,
           placeName: req.body.placeName,
           area: req.body.area,
@@ -178,7 +174,6 @@ exports.SignInCustomer = function (req, res) {
       console.log(err);
     });
 };
-
 //............................SignUp Controller  For Costmer ..............................//
 exports.SignUpCustomer = function (req, res) {
   console.log(req.body);
@@ -221,4 +216,74 @@ exports.SignUpCustomer = function (req, res) {
     });
 };
 //-------------------------------------------------------------------------------------
-//
+////............................Service Storing Controller  For Owner ..............................//
+exports.ServicesStore = function (req, res) {
+  // console.log(req.body);
+  const { ownerId, otherService, servicesAvailable } = req.body;
+  let ServiceDoc = new ServicesModel({
+    ownerId,
+    otherService,
+    servicesAvailable,
+  });
+  ServiceDoc.save()
+    .then(() => res.status(201).send("saved"))
+    .catch((err) => res.status(500).send(err + "err"));
+};
+///// .............................................. Facilites storin Schema for owner ........................//
+exports.FacilitesStore = function (req, res) {
+  // console.log(req.body);
+  const { ownerId, facilities } = req.body;
+  let ServiceDoc = new FacilityModel({
+    ownerId,
+    facilities,
+  });
+  ServiceDoc.save()
+    .then(() => res.status(201).send("FacilitesSaved"))
+    .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
+};
+///// ..............................................  get services  ........................//
+exports.GetServices = function (req, res) {
+  const ownerId = req.params.id;
+  ServicesModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
+};
+//// ...................................... get facilites ...............................//
+exports.GetFacilites = function (req, res) {
+  const ownerId = req.params.id;
+  FacilityModel.find({ ownerId: ownerId })
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
+};
+//// ...................................... get All ...............................//
+exports.GetAllOwner = function (req, res) {
+  OwnerModel.find({})
+    .then((result) => {
+      res.send(result);
+      console.log(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//// ...................................... get All ...............................//
+exports.GetOwner = function (req, res) {
+  // console.log(req.params,'+++++++++')
+  const ownerId = req.params.id;
+  OwnerModel.find({ _id: ownerId })
+    .then((result) => {
+      res.send(result);
+      console.log(result, "++++++");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
