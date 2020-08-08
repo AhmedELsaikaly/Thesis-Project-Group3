@@ -151,6 +151,9 @@ let ReservationSchema = mongoose.Schema({
   customerId: {
     type: String,
   },
+  customerName:{
+    type:String
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -161,8 +164,15 @@ let ReservationSchema = mongoose.Schema({
   mobileNumber: {
     type: Number,
   },
-  typeReserv: {
-    type: Array,
+  
+  table:{
+    type:Number,
+  },
+  SmallTents:{
+    type:Number,
+  },
+  LargeTents:{
+    type:Number,
   },
   totalPrice: {
     type: Number,
@@ -170,10 +180,7 @@ let ReservationSchema = mongoose.Schema({
   placeName: {
     type: String,
   },
-  numberOfperson: {
-    type: Number,
-    required: true,
-  },
+ 
 });
 const ReservationModel = mongoose.model("Reserv", ReservationSchema);
 //..................................................
