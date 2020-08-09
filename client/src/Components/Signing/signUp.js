@@ -202,7 +202,7 @@ class SignUp extends React.Component {
     return (
       <div className="signup-form">
         <form>
-          <h2>Register</h2>
+          <h2>Sign Up</h2>
           <p className="hint-text">
             Create your account. It's free and only takes a minute.
           </p>
@@ -256,7 +256,7 @@ class SignUp extends React.Component {
             <option value="Middle Area">Middle Area</option>
             <option value="Khan Younis">Khan Younis</option>
             <option value="Rafah">Rafah</option>
-            <option value="Another place">Another place</option>
+            <option value="Another place">Other</option>
           </select>
           <p className="text-danger">{this.state.errors.password}</p>
           <div className="form-group">
