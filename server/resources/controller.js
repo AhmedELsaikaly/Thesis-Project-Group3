@@ -349,19 +349,6 @@ exports.AddComment = function (req, res) {
 exports.ReservationStore = function (req, res) {
   console.log(req.body);
   console.log("I am inside reservation");
-
-  const {
-    customerId,
-    customerName,
-    date,
-    status,
-    mobileNumber,
-    table,
-    SmallTents,
-    LargeTents,
-    totalPrice,
-    placeName,
-  } = req.body;
   // console.log(req.body);
   const {
     customerId,
