@@ -5,9 +5,10 @@ const mongoose = require("mongoose"); //inclode mongoose in our page
 
 //connection to mongodb
 const db = mongoose
-  .connect("mongodb://localhost:27017/tree", {
+  .connect("mongodb+srv://wael:1234@cluster0.kpnvv.mongodb.net/reservation?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false ,
   })
   .then(() => {
     console.log("connected successfully DB");
