@@ -18,7 +18,7 @@ import { About } from "./Components/SubPages/About/About";
 import { Contact } from "./Components/SubPages/Contact/Contact";
 import LandPage from "./Components/landPage/landPage";
 import { UserPage } from "./Components/userPage/userPage";
-import { Reservation } from "./Components/userPage/reservation";
+// import { Reservation } from "./Components/userPage/reservation";
 import { Footer } from "./Components/SubPages/Footer/Footer.js";
 import { Policy } from "./Components/SubPages/Policy/Policy.js";
 import ContolPanel from "./Components/ControlPanel/ControlPanel";
@@ -52,7 +52,7 @@ class App extends React.Component {
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/logout" component={UserPage} />
-            <Route exact path="/reservation" component={Reservation} />
+            {/* <Route exact path="/reservation" component={Reservation} /> */}
             <Route exact path="/Policy" component={Policy} />
             <Route exact path="/SignUpOwner" component={SignUpOwner} />
             <Route exact path="/ContolPanel" component={ContolPanel} />
