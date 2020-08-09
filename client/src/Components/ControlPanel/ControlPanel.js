@@ -64,9 +64,9 @@ class ContolPanel extends React.Component {
             <i className="fas fa-th"></i>
             <span>My Profile</span>
           </a>
-          <a href="#">
+          <a href="/ownerBooking">
             <i className="fas fa-info-circle"></i>
-            <span>About</span>
+            <span>Bookings</span>
           </a>
           <a href="#">
             <i className="fas fa-sliders-h"></i>

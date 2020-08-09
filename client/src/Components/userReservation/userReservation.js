@@ -8,72 +8,6 @@ import axiox from "axios";
 import ResList from "./resList.js";
 
 //FackeData Array
-const arr = [
-  {
-    id: 1,
-    placeName: "mohammed",
-    date: "8/7/2000",
-    type: 599000000,
-    location: "Gaza",
-    price: 4,
-    status: "finished",
-  },
-  {
-    id: 2,
-    placeName: "yosif",
-    date: "9/7/2000",
-    type: 4546456456,
-    location: "Gazad",
-    price: 2,
-    status: "finished",
-  },
-  {
-    id: 1,
-    placeName: "sasda",
-    date: "8/7/2300",
-    type: 5554499500000,
-    location: "Gaza",
-    price: 3,
-    status: "finished",
-  },
-  {
-    id: 1,
-    placeName: "sasda",
-    date: "8/7/2300",
-    type: 5554499500000,
-    location: "Gaza",
-    price: 3,
-    status: "finished",
-  },
-  {
-    id: 1,
-    placeName: "sasda",
-    date: "8/7/2300",
-    type: 5554499500000,
-    location: "Gaza",
-    price: 3,
-    status: "finished",
-  },
-  {
-    id: 1,
-    placeName: "sasda",
-    date: "8/7/2300",
-    type: 5554499500000,
-    location: "Gaza",
-    price: 3,
-    status: "finished",
-  },
-  {
-    id: 1,
-    placeName: "sasda",
-    date: "8/7/2300",
-    type: 5554499500000,
-    location: "Gaza",
-    price: 3,
-    status: "finished",
-  },
-];
-
 //create UserReservation Compo
 export class UserReservation extends Component {
   state = {
@@ -101,7 +35,7 @@ export class UserReservation extends Component {
           Show all your reservations
         </button>
         <h1>Hello</h1>
-        <ResList reservations={arr} /> {/* FIX the arr to booking */}
+        <ResList reservations={this.state.reservations} />
       </div>
     );
   }
