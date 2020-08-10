@@ -31,7 +31,6 @@ class NavBar extends React.Component {
                 <Link to="/signIn">
                   <li className="lia"> Sign in </li>
                 </Link>
-
                 <Link to="/about">
                   <li className="lia">About Us </li>
                 </Link>
@@ -48,11 +47,12 @@ class NavBar extends React.Component {
                 <Link to="/customerProfile">
                   <li>My profile</li>
                 </Link> */}
-
+                <Link to="/Policy">
+                  <li className="lia">Policy</li>
+                </Link>
                 <Link to="/customerProfile">
                   <li className="lia">My profile</li>
                 </Link>
-
                 <Link to="/logout">
                   <li className="lia">Logout</li>
                 </Link>
