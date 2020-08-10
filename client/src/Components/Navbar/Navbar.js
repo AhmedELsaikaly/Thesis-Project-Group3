@@ -19,41 +19,41 @@ class NavBar extends React.Component {
           <div className="container">
             <div className="main_list" id="mainListDiv">
               <ul>
-              <li><span className="Logo">Ra7a</span></li>
+                <li>
+                  <span className="Logo">Ra7a</span>
+                </li>
                 <Link to="/">
                   <li className="lia">Home </li>
                 </Link>
                 <Link to="/signUp">
-                  <li  className="lia">Sign Up </li>
+                  <li className="lia">Sign Up </li>
                 </Link>
                 <Link to="/signIn">
-                  <li  className="lia"> Sign in </li>
+                  <li className="lia"> Sign in </li>
                 </Link>
-               
+
                 <Link to="/about">
                   <li className="lia">About Us </li>
                 </Link>
                 <Link to="/contact">
-                  <li  className="lia">Contact Us</li>
+                  <li className="lia">Contact Us</li>
                 </Link>
-<<<<<<< HEAD
-                 <Link to="/Policy">
-                  <li  className="lia">Policy</li>
-=======
-                <Link to="/contact">
+                <Link to="/Policy">
+                  <li className="lia">Policy</li>
+                </Link>
+                {/* <Link to="/contact">
                   <li>My Reservations</li>
                 </Link>
                 <Link to="/customerProfile">
                   <li>My profile</li>
->>>>>>> 5a091a08d36decc0749f21540bd22b7f7dc39bb5
-                </Link>
-                
+                </Link> */}
+
                 <Link to="/customerProfile">
-                  <li  className="lia">My profile</li>
+                  <li className="lia">My profile</li>
                 </Link>
-               
+
                 <Link to="/logout">
-                  <li  className="lia">Logout</li>
+                  <li className="lia">Logout</li>
                 </Link>
               </ul>
             </div>
