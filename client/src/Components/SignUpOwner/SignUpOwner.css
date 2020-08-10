@@ -22,7 +22,7 @@
 }
 .signup-form h2 {
   color: #636363;
-  margin: 0 0 15px;
+  margin: 0 0 0px;
   position: relative;
   text-align: center;
 }
@@ -33,7 +33,7 @@
   width: 30%;
   background: #d4d4d4;
   position: absolute;
-  top: 50%;
+  /* top: 50%; */
   z-index: 2;
 }
 .signup-form h2:before {
