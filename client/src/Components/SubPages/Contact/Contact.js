@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as emailjs from "emailjs-com";
+import nodemailer from "nodemailer";
+
 import {
   Button,
   FormFeedback,
@@ -20,114 +22,55 @@ import Footer from "../Footer/Footer.js";
 
 //create About Compo
 class Contact extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    address: "",
-    message: "",
-  };
-
-  //alertMessage function
-  alertMessage() {
-    alert("Your message has been sent");
+ 
+  onSubmitEmail = ()=>{
+    var obj = new XMLHttpRequest();
+    obj.onreadystatechange = ()=>{
+      if(obj.readyState == 4){
+        if(obj.status == 200){
+          var x = JSON.parse(obj.responseText);
+          alert(x.message);
+        }
+        else{
+          alert("XMLHttp Status :" +obj.status +" "+obj.statusText)
+        }
+      }
+    }
+    // obj.open("post", form.action , true);
+    // obj.setRequestHeader("Content-Type","application/json");
+    // obj.send(JSON.stringify({
+    //   name:form.name.value,
+    //   email:form.email.value,
+    //   message:form.message.value
+    // }))
+    return false;
   }
-
-  //handleSubmit function
-  handleSubmit(e) {
-    e.preventDefault();
-    const { name, email, address, message } = this.state;
-    let templateParams = {
-      from_name: email,
-      to_name: "<YOUR_EMAIL_ID>",
-      address: address,
-      message_html: message,
-    };
-
-    emailjs.send(
-      "gmail",
-      "flightsbookingv2",
-      { className: "text-primary" },
-      "user_YWb6SpcJUMxwFCBTUZfY2"
-    );
-    this.resetForm();
-  }
-
-  //resetForm function
-  resetForm() {
-    this.setState({
-      name: "",
-      email: "",
-      address: "",
-      message: "",
-    });
-  }
-
-  //handleChange function
-  handleChange = (param, e) => {
-    this.setState({ [param]: e.target.value });
-  };
-
   //render Contact Compo
   render() {
     return (
-      <div className="al">
-        <Navbar />
-        {/* <Navbar /> */}
-        {/* <Layout> */}
-        <h1>Contact Us</h1>
-        <div class="border"></div>
-        <Form onSubmit={this.handleSubmit.bind(this)}>
-          <FormGroup controlId="formBasicEmail">
-            {/* <Label className="text-muted">Email address</Label> */}
-            <Input
-              type="email"
-              name="email"
-              value={this.state.email}
-              className="text-primary"
-              onChange={this.handleChange.bind(this, "email")}
-              placeholder="Your email"
-            />
-          </FormGroup>
-          <FormGroup controlId="formBasicName">
-            {/* <Label className="text-muted">Name</Label> */}
-            <Input
-              type="text"
-              name="name"
-              value={this.state.name}
-              className="text-primary"
-              onChange={this.handleChange.bind(this, "name")}
-              placeholder="Your Name"
-            />
-          </FormGroup>
-          <FormGroup controlId="formBasicSubject">
-            {/* <Label className="text-muted">address</Label> */}
-            <Input
-              type="text"
-              name="address"
-              className="text-primary"
-              value={this.state.address}
-              onChange={this.handleChange.bind(this, "address")}
-              placeholder="address"
-              required
-            />
-          </FormGroup>
-          <FormGroup controlId="formBasicMessage">
-            {/* <Label className="text-muted">Message</Label> */}
-            <Input
-              type="textarea"
-              name="message"
-              className="text-primary"
-              value={this.state.message}
-              onChange={this.handleChange.bind(this, "message")}
-              placeholder=" Please leave your message here ..."
-            />
-          </FormGroup>
-          <Button variant="primary" type="submit" onClick={this.alertMessage}>
-            Send message
-          </Button>
-        </Form>
-        <Footer />
-      </div>
+     <div>
+     
+     
+	
+	<div class="contact" id="contact-id">
+  
+		<form class="contact-form">
+    <h3>Contact Us</h3>
+      <div>
+				<input type="text" name="name" placeholder="name" class="contact-form-input" required />
+			</div>
+			<div>
+				<input type="email" name="email" placeholder="email" class="contact-form-input" required />
+			</div>
+			<div>
+				<textarea name="message" class="contact-form-input" placeholder="MESSAGE" required></textarea>
+			</div>
+			<div>
+				<button type="submit">send</button>
+			</div>
+		</form>
+	</div>
+     </div>
     );
   }
 }

@@ -1,142 +1,45 @@
-* {
-  box-sizing: border-box;
-  transition: all 0.4s;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
+li {
+  float: left;
+}
+li span{
+  color: chocolate;
+  font-size: xx-large;
+  margin-left:20px;
+  margin-right:30px;
+  
 
-/* Navbar section */
-
-.nav {
-  line-height: 65px;
+}
+.lia{
+  display: inline-block;
+  color: white;
   text-align: center;
-  background-color: #404040;
-}
-
-.nav div.logo {
-  width: 300px;
-  height: 10px;
-  font-weight: 700;
-  font-size: 35px;
-  color: #fff;
-}
-.nav div.logo span {
-  color: #ff7129;
-}
-
-.nav div.logo a {
+  padding: 14px 16px;
   text-decoration: none;
-  color: #fff;
-  font-size: 1.8em;
-  text-transform: uppercase;
 }
-
-.nav div.logo a:hover {
-  color: #c0c0c0;
+.lia:hover{
+  background-color: rgb(38, 67, 161);
 }
-
-.nav div.main_list {
-  width: 670px;
-  height: 65px;
-  float: right;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
-
-.nav div.main_list ul {
-  width: 100%;
-  height: 65px;
-  display: flex;
-  list-style: none;
-}
-
-.nav div.main_list ul li {
-  width: 120px;
-  height: 65px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #fff;
-  float: right;
-}
-
-.nav div.main_list ul span {
-  width: 120px;
-  height: 65px;
-  font-size: 20px;
-  font-weight: 600;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.nav div.main_list ul li a {
+.a{
+  color: black;
+  padding: 12px 16px;
   text-decoration: none;
-  line-height: 65px;
-  text-transform: uppercase;
+  display: block;
+  text-align: left
 }
-
-.nav div.main_list ul li:hover {
-  color: #c0c0c0;
-}
-
-/* Home section */
-
-.home {
-  width: 100%;
-  height: 100vh;
-  background-color: #ddd;
-}
-
-/* Medai qurey section */
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    margin: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    margin: 0;
-  }
-
-  .nav div.logo {
-    margin-left: 15px;
-  }
-
-  .nav div.main_list {
-    width: 100%;
-    margin-top: 65px;
-    height: 0px;
-    overflow: hidden;
-  }
-
-  .nav div.show_list {
-    height: 200px;
-  }
-
-  .nav div.main_list ul {
-    flex-direction: column;
-    width: 100%;
-    height: 200px;
-    top: 80px;
-    right: 0;
-    left: 0;
-  }
-
-  .nav div.main_list ul li {
-    width: 100%;
-    height: 40px;
-    background-color: rgba(0, 0, 255, 0.8);
-  }
-
-  .nav div.main_list ul li {
-    text-align: center;
-    line-height: 40px;
-    width: 100%;
-    height: 40px;
-    display: table;
-  }
-
-  .nav div.media_button {
-    display: block;
-  }
-}
+.a:hover {background-color: #f1f1f1;}
