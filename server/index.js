@@ -15,13 +15,13 @@ const router = require("./resources/router");
 const db = require("./database/connectionDB");
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static(path.join(__dirname,"public")));
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
-app.post("/form", (req, res)=> {
-  console.log(req.body)
-  main(req.body.email,req.body.name,req.body.message)
+app.post("/form", (req, res) => {
+  console.log(req.body);
+  main(req.body.email, req.body.name, req.body.message);
   async function main(email, name, message) {
     let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
@@ -42,12 +42,9 @@ app.post("/form", (req, res)=> {
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });
     console.log("Message sent: %s", info.messageId);
-       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   }
-
-})
-
-
+});
 
 //declare port
 var port = process.env.PORT || 5000;
