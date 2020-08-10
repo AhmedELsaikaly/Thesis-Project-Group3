@@ -400,17 +400,34 @@ exports.addReservation = function (req, res) {
     });
 };
 
-///..........Get Reservation............
+//..........Get Reservation For Customer............
 exports.GetReservation = function (req, res) {
-  const customerId = req.params.customerId;
+  const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
     .then((result) => {
       console.log(result);
-      if (!result) {
+      if (result.length === 0) {
         console.log(result);
-        return res.status(404).end();
+        return res.status(201).end("there is no booking ");
       }
       return res.status(200).send(result);
+    })
+    .catch((err) => console.log(err));
+};
+/////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
+exports.OwnerBookings = function (req, res) {
+  const ownerId = req.params.id;
+  ReservationModel.find({ ownerId: ownerId })
+    .then((result) => {
+      console.log(result);
+      if (result.length === 0) {
+        console.log(result);
+        return res.status(201).end("there is no booking");
+      }
+      return res.status(200).json({
+        result: result,
+        message: "This is the booking for this Owner",
+      });
     })
     .catch((err) => console.log(err));
 };
