@@ -16,7 +16,7 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
-const mailer = require("./email.js");
+// const mailer = require("./email.js");
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin
 exports.SignInOwner = function (req, res) {
@@ -618,7 +618,8 @@ exports.ShowLastDataServices = function (req, res) {
 /////////// Updata Services//////////////
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate({ _id: servicesId },
+  ServicesModel.findByIdAndUpdate(
+    { _id: servicesId },
     {
       servicesAvailable: {
         PlayGround: req.body.PlayGround,
