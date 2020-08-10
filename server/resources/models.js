@@ -67,6 +67,18 @@ let OwnerSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  ratingPeopleNo: {
+    type: Number,
+    default: 0,
+  },
+  ratingSum: {
+    type: Number,
+    default: 0,
+  },
+  ratingAvg: {
+    type: Number,
+    default: 0,
+  },
 });
 const OwnerModel = mongoose.model("Owner", OwnerSchema);
 //..................................................
@@ -158,7 +170,7 @@ let ReservationSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
- 
+
   mobileNumber: {
     type: Number,
   },
