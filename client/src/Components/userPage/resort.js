@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Resort.css";
 import axios from "axios";
 import Comment from "../Rating&Feedback/Comments";
+import Reservation from "./reservation";
 
 //import CSS
 
@@ -68,44 +69,53 @@ class Resort extends React.Component {
       faclitics: {},
       ownerId: "",
       isFull: false,
+      owner: "",
     };
+  }
+  componentDidMount() {
+    this.setState({ ownerId: this.props.match.params.id });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.ownerId !== this.state.ownerId) {
+      axios
+        .get(`http://localhost:5000/services/${this.state.ownerId}`)
+        .then((res) => {
+          const ser = res.data[0].servicesAvailable;
+          const reight = [];
+          for (var key in ser) {
+            if (ser[key] === true) {
+              reight.push(key);
+            }
+          }
+          this.setState({
+            service: reight,
+          });
+        })
+        .catch((err) => {
+          console.log("ERROR from AXIOS =>", err);
+        });
+      axios
+        .get(`http://localhost:5000/Facilites/${this.state.ownerId}`)
+        .then((res) => {
+          this.setState({ faclitics: res.data[0].facilities });
+        })
+        .catch((err) => {
+          console.log("ERROR from AXIOS =>", err);
+        });
+      axios
+        .get(`http://localhost:5000/Owner/${this.state.ownerId}`)
+        .then((res) => {
+          console.log(res);
+          this.setState({ owner: res.data[0] });
+        })
+        .catch((err) => {
+          console.log("ERROR from AXIOS =>", err);
+        });
+    }
   }
 
   //componentDidMount Function
-  componentDidMount() {
-    axios
-      .get(`http://localhost:5000/services/${this.props.match.params.id}`)
-      .then((res) => {
-        const ser = res.data[0].servicesAvailable;
-        const reight = [];
-        for (var key in ser) {
-          if (ser[key] === true) {
-            reight.push(key);
-          }
-        }
-        this.setState({ service: reight, ownerId: this.props.match.params.id });
-      })
-      .catch((err) => {
-        console.log("ERROR from AXIOS =>", err);
-      });
-    axios
-      .get(`http://localhost:5000/Facilites/${this.props.match.params.id}`)
-      .then((res) => {
-        this.setState({ faclitics: res.data[0].facilities });
-      })
-      .catch((err) => {
-        console.log("ERROR from AXIOS =>", err);
-      });
-    // axios
-    //   .get(`http://localhost:5000/Owner/${this.props.match.params.id}`)
-    //   .then((res) => {
-    //     // console.log(res.data[0], "ffffssssf");
-    //     this.setState({ owner: res.data[0].facilities });
-    //   })
-    //   .catch((err) => {
-    //     console.log("ERROR from AXIOS =>", err);
-    //   });
-  }
+
   //render Resort Compo
   render() {
     // const { id } = this.props.match.params.id;
@@ -114,9 +124,13 @@ class Resort extends React.Component {
     return (
       <div>
         <div class="media" style={{ margin: "100px" }}>
-          <img class="mr-3" src="..." alt="Generic placeholder image"></img>
+          <img
+            class="mr-3"
+            src={this.state.owner.licensePhoto}
+            alt="Generic placeholder image"
+          ></img>
           <div class="media-body">
-            <h5 class="mt-0">ssss</h5>
+            <h5 class="mt-0">{this.state.owner.fullName}</h5>
           </div>
 
           <div style={{ margin: "100px" }}>
@@ -141,6 +155,7 @@ class Resort extends React.Component {
         <div className="facility">
           <Facility faclitics={this.state.faclitics} />
         </div>
+        <Reservation ownerId={this.state.ownerId} />
         <div className="rating">
           <Comment OwnerId={this.state.ownerId} />
         </div>
