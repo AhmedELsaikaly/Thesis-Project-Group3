@@ -1,6 +1,7 @@
 //import used technologies
 import React, { Component } from "react";
 import axiox from "axios";
+import jwt_decode from "jwt-decode";
 
 //import CSS
 
@@ -11,14 +12,20 @@ import ResList from "./resList.js";
 //create UserReservation Compo
 export class UserReservation extends Component {
   state = {
+    customerId: "",
     reservations: [],
   };
 
+  componentDidMount() {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    this.setState({ customerId: decoded.id });
+  }
   handleSubmit(e) {
     // e.preventDefault();
 
     axiox
-      .get("http://localhost:3000/FIX_ME") // Fix the route
+      .get(`http://localhost:3000/reservationCustomer/${this.state.customerId}`) // Fix the route
       .then((result) => {
         const data = result.data;
         this.setState({ reservations: data });
