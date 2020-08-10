@@ -148,6 +148,7 @@ exports.SignInCustomer = function (req, res) {
             const payload = {
               id: customer.id,
               fullName: customer.fullName,
+              mobileNumber: customer.mobileNumber,
             };
             // Sign token
             jwt.sign(
@@ -260,7 +261,11 @@ exports.GetServices = function (req, res) {
   const ownerId = req.params.id;
   ServicesModel.find({ ownerId: ownerId })
     .then((result) => {
-      res.status(200).send(result);
+      if (result) {
+        res.status(200).send(result);
+      } else {
+        res.status(200).end("there is no services for this this owners");
+      }
     })
     .catch((err) => {
       console.log("Error: ", err);
@@ -271,7 +276,11 @@ exports.GetFacilites = function (req, res) {
   const ownerId = req.params.id;
   FacilityModel.find({ ownerId: ownerId })
     .then((result) => {
-      res.status(200).send(result);
+      if (result) {
+        res.status(200).send(result);
+      } else {
+        res.status(200).end("there is no facilites for this this owners");
+      }
     })
     .catch((err) => {
       console.log("Error: ", err);
@@ -345,41 +354,52 @@ exports.AddComment = function (req, res) {
     .then(() => res.status(201).send("Comment Saved"))
     .catch((err) => res.status(500).send(err + "err in Saving Comment"));
 };
-//............. Store Reservation .................
-exports.ReservationStore = function (req, res) {
-  console.log(req.body);
-  console.log("I am inside reservation");
-  // console.log(req.body);
+//............. add Reservation .................
+exports.addReservation = function (req, res) {
+  var quant = 0;
   const {
     customerId,
     customerName,
     date,
-    status,
     mobileNumber,
-    table,
-    SmallTents,
-    LargeTents,
-    totalPrice,
-    placeName,
+    type,
+    ownerId,
   } = req.body;
-  let ReservationDoc = new ReservationModel({
-    customerId,
-    customerName,
-    date,
-    status,
-    mobileNumber,
-    table,
-    SmallTents,
-    LargeTents,
-    totalPrice,
-    placeName,
-  });
-  console.log(ReservationDoc);
-
-  ReservationDoc.save()
-    .then(() => res.status(201).send("Reservation Saved"))
-    .catch((err) => res.status(500).send(err + "err in Saving Reservation"));
+  FacilityModel.findOne({ ownerId: ownerId })
+    .then((faci) => {
+      console.log("The quantity", faci.facilities[type].quantity);
+      quant = faci.facilities[type].quantity;
+      ReservationModel.find({
+        ownerId: ownerId,
+        date: date,
+        type: type,
+      }).then((result) => {
+        console.log("11111111111111111111", result);
+        console.log("22222222222222222222222", quant - result.length);
+        if (quant - result.length > 0) {
+          let ReservationDoc = new ReservationModel({
+            customerId,
+            customerName,
+            date,
+            mobileNumber,
+            type,
+            ownerId,
+          });
+          ReservationDoc.save()
+            .then(() => res.status(201).send("Reservation Saved"))
+            .catch((err) =>
+              res.status(500).send(err + "err in Saving Reservation")
+            );
+        } else {
+          res.end("no avaliliabe place");
+        }
+      });
+    })
+    .catch((err) => {
+      console.log("Error: ", err);
+    });
 };
+
 ///..........Get Reservation............
 exports.GetReservation = function (req, res) {
   const customerId = req.params.customerId;

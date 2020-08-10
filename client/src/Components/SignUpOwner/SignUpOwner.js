@@ -225,7 +225,7 @@ class SignUpOwner extends React.Component {
     return (
       <div className="signup-form">
         <form>
-          <h2>Register</h2>
+          <h2>Owner Signup</h2>
           <p className="hint-text">
             Create your account. It's free and only takes a minute.
           </p>
@@ -341,7 +341,7 @@ class SignUpOwner extends React.Component {
             {this.state.message}
           </p>
           <p className="text-danger">{this.state.errors.licensePhoto}</p>
-          <p>please Upload Your Liecence Photo</p>
+          <p>Please upload Your Licence Photo</p>
           <PhotoUpload handler={this.getLiecencePhotoUrl} />
           <div className="form-group">
             <button
@@ -350,8 +350,11 @@ class SignUpOwner extends React.Component {
               className="btn btn-success btn-lg btn-block"
               onClick={this.handleSubmit}
             >
-              Register Now
+              Sign Up Now
             </button>
+          </div>
+          <div className="text-center">
+            If You Customer Click here? <a href="/signUp">Sign Up Customer</a>
           </div>
           {/* <div className="text-danger"> {this.state.serverRes}</div> */}
         </form>

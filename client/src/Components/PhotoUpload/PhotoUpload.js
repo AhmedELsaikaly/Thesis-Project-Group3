@@ -46,7 +46,7 @@ class PhotoUpload extends React.Component {
         <section className="left-side">
           <form>
             <div className="form-group">
-              <label for="inputsm">Your Uploaded Photo:</label>
+              <label for="inputsm">Upload Photo:</label>
               <br />
               <input
                 type="file"
