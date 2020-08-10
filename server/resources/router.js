@@ -56,5 +56,6 @@ router.get("/showLastDataServesis/:id", controller.ShowLastDataServices);
 router.put("/updateServesis/:id", controller.UpdateServices);
 
 router.post("/addReservation", controller.addReservation);
+router.get("/getResByDateOwner", controller.getResByDateOwner);
 
 module.exports = router;

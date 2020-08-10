@@ -457,13 +457,13 @@ exports.GetReservation = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking");
+        return res.status(201).end("there is no booking ");
       }
       return res.status(200).send(result);
     })
     .catch((err) => console.log(err));
 };
-/////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
+/////////////////////////////  Get Booking  For Owner  /////////////////////////////////
 
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -472,13 +472,15 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking ");
+        return res.status(201).end("there is no booking");
       }
-      return res.status(200).send(result);
+      return res.status(200).json({
+        result: result,
+        message: "This is the booking for this Owner",
+      });
     })
     .catch((err) => console.log(err));
 };
-
 ///////////////  Show data before  Updata Customer /////////////
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
@@ -643,15 +645,27 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-// exports.GetReservation = function (req, res) {
-//   const customerId = req.params.id;
-//   ReservationModel.find({ customerId: customerId })
-//     .then((reserv) => {
-//       if (!reserv) {
-//         console.log(reserv);
-//         return res.status(404).end();
-//       }
-//       return res.status.send(reserv);
-//     })
-//     .catch((err) => next(err));
-// };
+
+// ..................................getResByDateOwner..................................///
+exports.getResByDateOwner = function (req, res) {
+  const { ownerId, date } = req.body;
+  var prameters = ["table", "SmallTents", "LargeTents"];
+  var obj = {};
+  FacilityModel.findOne({ ownerId: ownerId })
+    .then((faci) => {
+      for (var i = 0; i < prameters.length; i++) {
+        obj[prameters[i]] = faci.facilities[prameters[i]].quantity;
+      }
+      ReservationModel.find({
+        ownerId: ownerId,
+        date: date,
+      }).then((result) => {
+        res.status(201).json({ quant: obj, reservation: result });
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
