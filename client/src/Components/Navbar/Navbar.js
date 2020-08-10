@@ -19,32 +19,36 @@ class NavBar extends React.Component {
           <div className="container">
             <div className="main_list" id="mainListDiv">
               <ul>
-              <li><span className="Logo">Ra7a</span></li>
+                <li>
+                  <span className="Logo">Ra7a</span>
+                </li>
                 <Link to="/">
                   <li className="lia">Home </li>
                 </Link>
                 <Link to="/signUp">
-                  <li  className="lia">Sign Up </li>
+                  <li className="lia">Sign Up </li>
                 </Link>
                 <Link to="/signIn">
-                  <li  className="lia"> Sign in </li>
+                  <li className="lia"> Sign in </li>
                 </Link>
-               
+
                 <Link to="/about">
                   <li className="lia">About Us </li>
                 </Link>
                 <Link to="/contact">
-                  <li  className="lia">Contact Us</li>
+                  <li className="lia">Contact Us</li>
                 </Link>
-                
-              
-                
-                <Link to="/customerProfile">
-                  <li  className="lia">My profile</li>
+                <Link to="/Policy">
+                  <li className="lia">Policy</li>
                 </Link>
                
+
+                <Link to="/customerProfile">
+                  <li className="lia">My profile</li>
+                </Link>
+
                 <Link to="/logout">
-                  <li  className="lia">Logout</li>
+                  <li className="lia">Logout</li>
                 </Link>
               </ul>
             </div>

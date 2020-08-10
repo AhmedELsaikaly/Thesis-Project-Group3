@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 var bodyParser = require("body-parser");
 const path = require("path");
-var nodemailer = require('nodemailer');
+var nodemailer = require("nodemailer");
 let app = express();
 app.use(cors());
 
