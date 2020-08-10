@@ -58,4 +58,6 @@ router.put("/updateServesis/:id", controller.UpdateServices);
 
 router.post("/addReservation", controller.addReservation);
 
+router.post("/form",controller.ContactUs)
+
 module.exports = router;
