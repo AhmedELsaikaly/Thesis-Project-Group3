@@ -15,43 +15,50 @@ const router = require("./resources/router");
 const db = require("./database/connectionDB");
 
 app.use(express.json());
-app.use(urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
-// // app.post("/ajax/email", function(request, response) {
-	const transporter = nodemailer.createTransport({
-    service:'gmail',
-		auth: {
-			user: "waealtaqia20152729@gmail.com", // this should be YOUR GMAIL account
-			pass: "Wael2015Rbk" // this should be your password
-		}
-	});
 
-	var mail = {
-		from: "waealtaqia20152729@gmail.com", // sender address
-		to: "your_account@gmail.com", // list of receivers (THIS COULD BE A DIFFERENT ADDRESS or ADDRESSES SEPARATED BY COMMAS)
-		subject: "Mail From Contact Form", // Subject line
-		text: textBody,
-		html: htmlBody
-	};
+app.post("/form", (req, res)=> {
+  console.log(req.body)
+  nodemailer.createTestAccount((err,accunt)=>{
+    const htmlEmail = `
+    <h3>Contact </h3>
+    <ul>
+    <li>Name:${req.body.name}</li>
+    <li>Email:${req.body.email}</li>
+    </ul>
+    <h3>Contact </h3>
+    <p>Message:${req.body.message}</p>
+    `
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'mara.ziemann89@ethereal.email',///
+        pass: '16ycvUbMt1JQ7KTkwa'
+    }
+    });
+    let mailOptions ={
+      from:req.body.email,
+      to:"mara.ziemann89@ethereal.email",
+      replyTo:req.body.email,
+      subject:"Contact us",
+      text:req.body.message,
+      html:htmlEmail
 
-// 	// send mail with defined transport object
-// 	transporter.sendMail(mail, function (err, info) {
-// 		if(err) {
-// 			console.log(err);
-// 			response.json({ message: "message not sent: an error occured; check the server's console log" });
-// 		}
-// 		else {
-// 			response.json({ message: `message sent: ${info.messageId}` });
-// 		}
-// 	});
-// });
+    }
+    transporter.sendMail(mailOptions,(err,info)=>{
+      if(err){
+        return console.log(err);
+      }
+      console.log(info.message);
+    })
+
+  })
+})
 
 
-
-// app.get('/', (req, res) => {
-//   res.send('works!')
-// })
 
 //declare port
 var port = process.env.PORT || 5000;

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as emailjs from "emailjs-com";
 import nodemailer from "nodemailer";
-
+import axios from "axios"
 import {
   Button,
   FormFeedback,
@@ -22,54 +22,72 @@ import Footer from "../Footer/Footer.js";
 
 //create About Compo
 class Contact extends React.Component {
- 
-  // onSubmitEmail = ()=>{
-  //   var obj = new XMLHttpRequest();
-  //   obj.onreadystatechange = ()=>{
-  //     if(obj.readyState == 4){
-  //       if(obj.status == 200){
-  //         var x = JSON.parse(obj.responseText);
-  //         alert(x.message);
-  //       }
-  //       else{
-  //         alert("XMLHttp Status :" +obj.status +" "+obj.statusText)
-  //       }
-  //     }
-  //   }
-  //   // obj.open("post", form.action , true);
-  //   // obj.setRequestHeader("Content-Type","application/json");
-  //   // obj.send(JSON.stringify({
-  //   //   name:form.name.value,
-  //   //   email:form.email.value,
-  //   //   message:form.message.value
-  //   // }))
-  //   return false;
-  // }
+ constructor(){
+   super()
+   this.state={
+     name:"",
+     email:"",
+     message:""
+   }
+   this.handleChange = this.handleChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
+
+
+ }
+ handleChange =(e)=>{
+   this.setState({[e.target.name]:e.target.value})
+ }
+
+ async handleSubmit (e){
+  e.preventDefault()
+  const {name,email,message}= this.state;
+  const form = await axios.post('/form',{name,email,message})
+ }
   //render Contact Compo
   render() {
     return (
+     <Form onSubmit={this.handleSubmit} style={{marginLeft:"20%",marginTop:"10%",maxWidth:'50%'}}>
+       <FormGroup>
+         <Label for="name">
+          Name:
+         </Label>
+         <Input
+         type="text"
+         name="name"
+         value={this.state.name}
+         onChange={this.handleChange}
+          />
+       </FormGroup>
+      
+       <FormGroup>
+         <Label for="email">
+          Email:
+         </Label>
+         <Input
+         type="Email"
+         value={this.state.email}
+
+         name="email"
+         onChange={this.handleChange}
+          />
+       </FormGroup>
+
+       <FormGroup>
+         <Label for="message">
+          Message:
+         </Label>
+         <Input
+         type="textarea"
+         name="message"
+         value={this.state.message}
+
+         onChange={this.handleChange}
+          />
+       </FormGroup>
+       <Button>SEND</Button>
+     </Form>
         
-<div>
-  <h1>Home Page</h1>
-	<p><a href="#contact-id">click here for the contact form</a></p>
-	<div class="contact" id="contact-id">
-		<section><a href="#!">[ close ]</a></section>
-		<form action="/ajax/email" class="contact-form" method="POST" onsubmit="return submitEmailForm(this);">
-			<div>
-				<input type="text" name="name" placeholder="name" class="contact-form-input" required />
-			</div>
-			<div>
-				<input type="email" name="email" placeholder="email" class="contact-form-input" required />
-			</div>
-			<div>
-				<textarea name="message" class="contact-form-input" placeholder="MESSAGE" required></textarea>
-			</div>
-			<div>
-				<button type="submit">send</button>
-			</div>
-		</form>
-	</div>
-</div>
+  
     );
   }
 }
