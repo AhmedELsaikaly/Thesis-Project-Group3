@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import ApiMap from "../../apiMapGoogle/ApiMap";
 
 //import CSS
 import "./Facility.css";
@@ -100,80 +101,71 @@ class Facility extends React.Component {
   //render Facility Compo
   render() {
     return (
-      <div className="Facility">
-        <form>
-          <h1> Tables</h1>
-          <div class="form-group">
-            <label for="inputsm">Quantity:</label>
+      <div className="facility">
+        <form className="form">
+          <div class="table">
+          <span>Tables</span>
+            <label for="inputsm" >Quantity:</label>
             <input
-              style={{ width: "300px" }}
-              class="form-control input-sm"
+              id="inputsm"
+              type="number"
+              name="tableQuant"
+              onChange={this.handleChange}
+            />   
+          
+              <label for="inputsm">Price:</label>
+              <input
+                id="inputsm"
+                type="number"
+                name="tablePrice"
+                onChange={this.handleChange}
+              />
+             <br></br>
+            <label>Photo</label>       
+            <PhotoUpload handler={this.getTableUrl} />
+          </div>
+
+      {/* ///////////////////// */}
+         
+          <div class="small">
+          <span> Small Tents </span>
+          <label for="inputsm" >Quantity:</label>
+            <input
               id="inputsm"
               type="number"
               name="tableQuant"
               onChange={this.handleChange}
             />
-            <div class="form-group">
               <label for="inputsm">Price:</label>
               <input
-                style={{ width: "300px" }}
-                type="number"
-                class="form-control inputsm"
                 id="inputsm"
+                type="number"
                 name="tablePrice"
                 onChange={this.handleChange}
               />
-            </div>
-            <PhotoUpload handler={this.getTableUrl} />
-          </div>
-          <h1> Large Tents </h1>
-          <div class="form-group">
-            <label for="inputsm">Quantity:</label>
-            <input
-              style={{ width: "300px" }}
-              class="form-control input-sm"
-              id="inputsm"
-              type="number"
-              name="LargeTentQuant"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div class="form-group">
-            <label for="inputsm">Price:</label>
-            <input
-              style={{ width: "300px" }}
-              type="number"
-              class="form-control inputsm"
-              id="inputsm"
-              name="LargeTentPrice"
-              onChange={this.handleChange}
-            />
-          </div>
+            <label>Photo</label>  
           <PhotoUpload handler={this.getSmallTentUrl} />
-          <h1> small Tents </h1>
-          <div class="form-group">
-            <label for="inputsm">Quantity:</label>
+          </div>
+          {/* ///////////////////// */}
+          <div class="large">
+          <span> Large Tents </span>
+          <label for="inputsm" >Quantity:</label>
             <input
-              style={{ width: "300px" }}
-              class="form-control input-sm"
               id="inputsm"
               type="number"
-              name="SmallTentQuant"
+              name="tableQuant"
               onChange={this.handleChange}
             />
-          </div>
-          <div class="form-group">
-            <label for="inputsm">Price:</label>
-            <input
-              style={{ width: "300px" }}
-              type="number"
-              class="form-control inputsm"
-              id="inputsm"
-              name="SmallTentPrice"
-              onChange={this.handleChange}
-            />
-          </div>
+              <label for="inputsm">Price:</label>
+              <input
+                id="inputsm"
+                type="number"
+                name="tablePrice"
+                onChange={this.handleChange}
+              />
+            <label>Photo</label>  
           <PhotoUpload handler={this.getLargeTentUrl} />
+          </div>
           <button
             type="submit"
             className="btn btn-lg font-weight-bold btn-secondary btn-block"
@@ -183,6 +175,7 @@ class Facility extends React.Component {
             Send Your Request{" "}
           </button>
         </form>
+        <ApiMap />
       </div>
     );
   }
