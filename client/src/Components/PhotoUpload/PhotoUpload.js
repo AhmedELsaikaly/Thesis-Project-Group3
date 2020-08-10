@@ -46,7 +46,11 @@ class PhotoUpload extends React.Component {
         <section className="left-side">
           <form>
             <div className="form-group">
+<<<<<<< HEAD
               {/* <label for="inputsm">Your Uploaded Photo:</label> */}
+=======
+              <label for="inputsm">Upload Photo:</label>
+>>>>>>> 5a091a08d36decc0749f21540bd22b7f7dc39bb5
               <br />
               <input
                 type="file"

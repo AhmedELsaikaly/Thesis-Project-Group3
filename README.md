@@ -6,7 +6,7 @@
 
 - **Product Owner**: RBK-Anera
 - **Scrum Master**: Khaled Abousheikh
-- **Development Team Members**: Wael A. Abutaqia , Ahmed A. Elsaikaly ,Yousef M. Yasin ,Mohammed S. Abushabban and Khaled I. Abousheikh
+- **Development Team Members**: Ahmed A. Elsaikaly , Yousef M. Yasin , Wael A. Abutaqia , Mohammed S. Abushabban and Khaled I. Abousheikh
 
 ## Table of Contents
 
@@ -29,28 +29,56 @@
 
 ### Backend
 
-- mongoose
-- Nodejs
-- nodemon
+- axios
+- bcryptjs
+- concurrently
 - cors
 - express
+- is-empty
+- jsonwebtoken
+- jwt-decode
+- mongoose
+- node
+- nodemon
+- validator
 
 ### Frontend
 
+- @farbenmeer/react-spring-slider
+- @material-ui/core
 - axios
 - bcryptjs
+- bootstrap
+- concurrently
+- cors
+- cra-template
+- emailjs-com
+- is-empty
+- jsonwebtoken
+- jwt-decode
+- moment
+- mongodb
+- mongoose
+- node
+- nodemon
+- prop-types
 - react
 - react-bootstrap
 - react-dom
+- react-momen
+- react-policies
 - react-router-dom
 - react-scripts
+- react-star-rating-component
+- react-star-rating-input
+- reactstrap
+- validator
 
 ### Testing
 
-- @testing-library/jest-dom
+- @testing-library/jest-dom"
 - @testing-library/react
 - @testing-library/user-event
-- Enzyame
 
 ## Development
 

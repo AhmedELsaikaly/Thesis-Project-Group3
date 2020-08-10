@@ -151,38 +151,25 @@ let ReservationSchema = mongoose.Schema({
   customerId: {
     type: String,
   },
-  customerName:{
-    type:String
+  customerName: {
+    type: String,
   },
   date: {
     type: Date,
     default: Date.now,
   },
-  status: {
-    type: Boolean,
-  },
+ 
   mobileNumber: {
     type: Number,
   },
-  
-  table:{
-    type:Number,
-  },
-  SmallTents:{
-    type:Number,
-  },
-  LargeTents:{
-    type:Number,
-  },
-  totalPrice: {
-    type: Number,
-  },
-  placeName: {
+  type: {
     type: String,
   },
- 
+  ownerId: {
+    type: String,
+  },
 });
-const ReservationModel = mongoose.model("Reserv", ReservationSchema);
+const ReservationModel = mongoose.model("Reservation", ReservationSchema);
 //..................................................
 //Rating & FeedBack Schema
 let RatingSchema = mongoose.Schema({
