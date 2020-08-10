@@ -23,40 +23,39 @@ import Footer from "../Footer/Footer.js";
 //create About Compo
 class Contact extends React.Component {
  
-  onSubmitEmail = ()=>{
-    var obj = new XMLHttpRequest();
-    obj.onreadystatechange = ()=>{
-      if(obj.readyState == 4){
-        if(obj.status == 200){
-          var x = JSON.parse(obj.responseText);
-          alert(x.message);
-        }
-        else{
-          alert("XMLHttp Status :" +obj.status +" "+obj.statusText)
-        }
-      }
-    }
-    // obj.open("post", form.action , true);
-    // obj.setRequestHeader("Content-Type","application/json");
-    // obj.send(JSON.stringify({
-    //   name:form.name.value,
-    //   email:form.email.value,
-    //   message:form.message.value
-    // }))
-    return false;
-  }
+  // onSubmitEmail = ()=>{
+  //   var obj = new XMLHttpRequest();
+  //   obj.onreadystatechange = ()=>{
+  //     if(obj.readyState == 4){
+  //       if(obj.status == 200){
+  //         var x = JSON.parse(obj.responseText);
+  //         alert(x.message);
+  //       }
+  //       else{
+  //         alert("XMLHttp Status :" +obj.status +" "+obj.statusText)
+  //       }
+  //     }
+  //   }
+  //   // obj.open("post", form.action , true);
+  //   // obj.setRequestHeader("Content-Type","application/json");
+  //   // obj.send(JSON.stringify({
+  //   //   name:form.name.value,
+  //   //   email:form.email.value,
+  //   //   message:form.message.value
+  //   // }))
+  //   return false;
+  // }
   //render Contact Compo
   render() {
     return (
-     <div>
-     
-     
-	
+        
+<div>
+  <h1>Home Page</h1>
+	<p><a href="#contact-id">click here for the contact form</a></p>
 	<div class="contact" id="contact-id">
-  
-		<form class="contact-form">
-    <h3>Contact Us</h3>
-      <div>
+		<section><a href="#!">[ close ]</a></section>
+		<form action="/ajax/email" class="contact-form" method="POST" onsubmit="return submitEmailForm(this);">
+			<div>
 				<input type="text" name="name" placeholder="name" class="contact-form-input" required />
 			</div>
 			<div>
@@ -70,7 +69,7 @@ class Contact extends React.Component {
 			</div>
 		</form>
 	</div>
-     </div>
+</div>
     );
   }
 }
