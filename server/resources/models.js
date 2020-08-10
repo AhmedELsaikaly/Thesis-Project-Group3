@@ -155,10 +155,9 @@ let ReservationSchema = mongoose.Schema({
     type: String,
   },
   date: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
- 
+
   mobileNumber: {
     type: Number,
   },

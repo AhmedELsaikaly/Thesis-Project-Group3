@@ -37,7 +37,7 @@ class NavBar extends React.Component {
                 <Link to="/contact">
                   <li>Contact Us</li>
                 </Link>
-                <Link to="/contact">
+                <Link to="/userReservation">
                   <li>My Reservations</li>
                 </Link>
                 <Link to="/customerProfile">

@@ -12,6 +12,7 @@ export class BookingList extends Component {
   //render BookingList Compo
   render() {
     const { booking } = this.props;
+    console.log("dasdas", this.props.booking);
     return (
       <div class="form">
         <ul>
@@ -20,9 +21,8 @@ export class BookingList extends Component {
               <div class="xd">
                 <li>{element.customerName}</li>
                 <li>{element.date}</li>
-                <li>{element.phoneNumber}</li>
-                <li>{element.status}</li>
-                <li>{element.numberOfReservation}</li>
+                <li>{element.mobileNumber}</li>
+                <li>{element.type}</li>
                 <br></br>
               </div>
             );
