@@ -13,6 +13,7 @@ export class ResList extends Component {
 
   //render UserReservation Compo
   render() {
+    console.log(this.props.reservations);
     const { reservations } = this.props;
     return (
       <div>
@@ -24,7 +25,7 @@ export class ResList extends Component {
                 <li>Place: {element.placeName}</li>
                 <li>Date: {element.date}</li>
                 <li>Type: {element.type}</li>
-                <li>Location: {element.location}</li>
+                <li>Mobile Number: {element.mobileNumber}</li>
                 <li>Price: {element.price}</li>
                 <li>Status: {element.status}</li>
               </div>

@@ -24,20 +24,23 @@ Raha App
 
 ## Sub-Heading
 
-Expense Tracker is a simple booking application. Allows you to book a beach facility suits your need and show services you would to have during your sea trip
+RahaApp is a simple booking application. Allows you to book a beach facility suits your need and show services you would to have during your sea trip
 
 > Sub-Heading
 
 ## Summary
 
-It Helps You Stick to Your Desires. Tracking Your Requirements Which Can Reveal Trip Needs
-It Helps You Meet Your Enjoying Your Trip Objectives.
+It Helps You Stick to Your Desires.
+
+- Customers could track their Requirements Which Can Reveal best match Trip Needs
+  It Helps them Meet Your Enjoying their Trip Objectives.
+- Owners could display his facilities , services and track reservations.
 
 > Summary
 
 ## Problem
 
-A single page app that will allow users to explore beach facilities according to whaterver circumstances you want without using trational ways of booking.
+A single page app that will allow users to explore beach facilities according to whaterver circumstances you want without using traditional ways of booking.
 
 > Describe the problem your product solves.
 
