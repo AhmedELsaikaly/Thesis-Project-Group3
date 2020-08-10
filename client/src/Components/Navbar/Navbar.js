@@ -17,37 +17,47 @@ class NavBar extends React.Component {
       <div className="NavBar__div">
         <nav className="nav">
           <div className="container">
-            <div className="logo">
-              <span>Ra7a</span>
-            </div>
             <div className="main_list" id="mainListDiv">
               <ul>
+                <li>
+                  <span className="Logo">Ra7a</span>
+                </li>
                 <Link to="/">
-                  <li>Home </li>
+                  <li className="lia">Home </li>
                 </Link>
                 <Link to="/signUp">
-                  <li>Sign Up </li>
+                  <li className="lia">Sign Up </li>
                 </Link>
                 <Link to="/signIn">
-                  <li>Sign in </li>
+                  <li className="lia"> Sign in </li>
                 </Link>
+
                 <Link to="/about">
-                  <li>About Us </li>
+                  <li className="lia">About Us </li>
                 </Link>
                 <Link to="/contact">
-                  <li>Contact Us</li>
+                  <li className="lia">Contact Us</li>
                 </Link>
+<<<<<<< HEAD
                 <Link to="/userReservation">
+=======
+                <Link to="/Policy">
+                  <li className="lia">Policy</li>
+                </Link>
+                {/* <Link to="/contact">
+>>>>>>> 0089ad7103d34e919a0f963220893bd0972befd9
                   <li>My Reservations</li>
                 </Link>
                 <Link to="/customerProfile">
                   <li>My profile</li>
+                </Link> */}
+
+                <Link to="/customerProfile">
+                  <li className="lia">My profile</li>
                 </Link>
-                <Link to="/Policy">
-                  <li>Policy</li>
-                </Link>
+
                 <Link to="/logout">
-                  <li>Logout</li>
+                  <li className="lia">Logout</li>
                 </Link>
               </ul>
             </div>
