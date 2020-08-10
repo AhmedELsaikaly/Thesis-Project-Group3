@@ -44,10 +44,12 @@ export class CustomerProfile extends Component {
     return (
       <div>
         <div class="lll">
+          <button>Edit</button>
           <h2>Full Name: {this.state.data.fullName}</h2>
           <h2>Email: {this.state.data.email}</h2>
           <h2>Address: {this.state.data.address}</h2>
           <h2>Mobile Number:{this.state.data.mobileNumber}</h2>
+          <button>Save</button>
         </div>
       </div>
     );
