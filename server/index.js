@@ -21,41 +21,30 @@ app.use(router);
 
 app.post("/form", (req, res)=> {
   console.log(req.body)
-  nodemailer.createTestAccount((err,accunt)=>{
-    const htmlEmail = `
-    <h3>Contact </h3>
-    <ul>
-    <li>Name:${req.body.name}</li>
-    <li>Email:${req.body.email}</li>
-    </ul>
-    <h3>Contact </h3>
-    <p>Message:${req.body.message}</p>
-    `
+  main(req.body.email,req.body.name,req.body.message)
+  async function main(email, name, message) {
+    let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: 'mara.ziemann89@ethereal.email',///
-        pass: '16ycvUbMt1JQ7KTkwa'
-    }
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "ra77a99@gmail.com", // generated ethereal user
+        pass: "ra7a123456", // generated ethereal password
+      },
     });
-    let mailOptions ={
-      from:req.body.email,
-      to:"mara.ziemann89@ethereal.email",
-      replyTo:req.body.email,
-      subject:"Contact us",
-      text:req.body.message,
-      html:htmlEmail
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Contact us" <ra77a99@gmail.com>', // sender address
+      to: "ra77a99@gmail.com", // list of receivers
+      subject: "Contact Us", // Subject line
+      text: message, // plain text body
+      html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
+    });
+    console.log("Message sent: %s", info.messageId);
+       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  }
 
-    }
-    transporter.sendMail(mailOptions,(err,info)=>{
-      if(err){
-        return console.log(err);
-      }
-      console.log(info.message);
-    })
-
-  })
 })
 
 
