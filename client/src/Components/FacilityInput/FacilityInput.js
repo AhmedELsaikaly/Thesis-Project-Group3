@@ -48,18 +48,18 @@ class FacilityInput extends React.Component {
         checkArray.push(services[i].value);
       }
     }
-    let CheckedServices = checkArray;
+    // let CheckedServices = checkArray;
 
-    axios
-      .post("http://localhost:4000/FixMe", {
-        services: CheckedServices,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios
+    //   .post("http://localhost:4000/FixMe", {
+    //     services: CheckedServices,
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
   };
 
   //render FacilityInput Compo

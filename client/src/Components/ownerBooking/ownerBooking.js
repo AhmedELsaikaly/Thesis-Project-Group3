@@ -1,7 +1,14 @@
+//import used technologies
 import React from "react";
-import "./bookingList.css";
 import axiox from "axios";
 import jwt_decode from "jwt-decode";
+
+//import CSS
+import "./bookingList.css";
+
+//import used files
+
+//create OwnerBooking Compo
 class OwnerBooking extends React.Component {
   constructor(props) {
     super(props);
@@ -12,22 +19,21 @@ class OwnerBooking extends React.Component {
     };
   }
 
-  //import CSS
-
-  //import used files
-
-  //create OwnerBooking Compo
-
+  // componentDidMount function
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.setState({ ownerId: decoded.id });
   }
+
+  //componentDidUpdate function
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ownerId !== this.state.ownerId) {
       this.GetData();
     }
   }
+
+  // GetData function
   GetData() {
     //axios getting data from booking
     axiox
@@ -47,6 +53,7 @@ class OwnerBooking extends React.Component {
       });
   }
 
+  //renderTableData function
   renderTableData = () => {
     return this.state.bookings.map((booking, index) => {
       const { type, customerName, mobileNumber, date } = booking;
@@ -63,6 +70,8 @@ class OwnerBooking extends React.Component {
       );
     });
   };
+
+  //render OwnerBooking Compo
   render() {
     return (
       <div className="Booking_div">
@@ -82,4 +91,8 @@ class OwnerBooking extends React.Component {
     );
   }
 }
+
+//export OwnerBooking Compo
 export default OwnerBooking;
+
+//Check and Validate
