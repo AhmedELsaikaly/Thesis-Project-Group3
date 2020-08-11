@@ -40,7 +40,7 @@ export class CustomerProfile extends Component {
   //render CustomerProfile Compo
   render() {
     // const b = this.state.data;
-    console.log(this.state.data.result);
+    // console.log(this.state.data.result);
     return (
       <div>
         <div class="lll">

@@ -19,6 +19,10 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
+
+
+
+
 //declare port
 var port = process.env.PORT || 5000;
 
