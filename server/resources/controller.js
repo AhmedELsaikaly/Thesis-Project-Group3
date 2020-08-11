@@ -447,6 +447,7 @@ exports.addReservation = function (req, res) {
     type,
     ownerId,
   } = req.body;
+  
   //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
