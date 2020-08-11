@@ -1,57 +1,108 @@
 import React, { Component } from "react";
-import axiox from "axios";
-import jwt_decode from "jwt-decode";
+import { Form, Button,FormGroup, ControlLabel } from "react-bootstrap";
+import {Input} from "reactstrap";
+import { Grid, Row, Col } from 'react-bootstrap';
+import  axios from "axios";
 
-import "./ownerProfile.css";
-import { element } from "prop-types";
+
 
 export class OwnerProfile extends Component {
-  state = {
-    id: "",
-    data: "",
-  };
-  componentDidMount() {
-    const token = localStorage.usertoken;
-    const decoded = jwt_decode(token);
-    this.setState({ id: decoded.id });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.id !== this.state.id) {
-      console.log("pokemons state has changed.");
-      axiox
-        .get(`http://localhost:5000/Owner/${this.state.id}`) // Fix the route
-        .then((result) => {
-          const data = result.data[0];
-          console.log(data);
-          this.setState({ data: data });
-        })
-        .catch((err) => {
-          console.log("Error", err);
-        });
-    }
-  }
+  constructor(){
+    super()
+    this.state={
+      fullName:"",
+      email:"",
+      area:"",
+      mobileNumber:"",
+      placeName:"",
+      license:""
 
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+ 
+ 
+  }
+  handleChange =(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+  }
+ 
+  async handleSubmit (e){
+   e.preventDefault()
+  //  const {fullName,email,area,mobileNumber}= this.state;
+  //  const form = await axios.put('/form',{name,email,message})
+  }
   render() {
     // const b = this.state.data;
     return (
       <div>
-        <div class="personal-info">
-          <button>Edit</button>
-          <h2>Full Name: {this.state.data.fullName}</h2>
-          <h2>Email: {this.state.data.email}</h2>
-          <h2>Place Name: {this.state.data.placeName}</h2>
-          <h2>Mobile Number:{this.state.data.mobileNumber}</h2>
-          <h2>Place Name: {this.state.data.area}</h2>
-          <img
-            class="card-img-top"
-            src={this.state.data.licensePhoto}
-            alt="Card image cap"
-          ></img>
-          <button>Save</button>
-        </div>
+        <Form onSubmit={this.handleSubmit} style={{marginLeft:"7%",marginTop:"10%",maxWidth:'80%'}}>
+          <Form.Row>
+            <Form.Group as={Col} >
+              <Form.Label>Full Name</Form.Label>
+              <Input
+               type="text"
+               value={this.state.fullName}
+               onChange={this.handleChange}
+                 />
+            </Form.Group>
+
+            <Form.Group as={Col} >
+              <Form.Label>Email</Form.Label>
+              <Input 
+              type="email" 
+              value={this.state.email}
+              onChange={this.handleChange}
+               />
+            </Form.Group>
+
+            <Form.Group as={Col} >
+              <Form.Label>Mobile Number</Form.Label>
+              <Input
+               type="number"
+               maxLength="10"
+               minLength="10"
+               value={this.state.mobileNumber}
+               onChange={this.handleChange}
+          />
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+          <Form.Group as={Col} >
+              <Form.Label>area</Form.Label>
+              <Input 
+                type="text"
+                value={this.state.area}
+                onChange={this.handleChange}
+                 />
+            </Form.Group>
+
+            <Form.Group as={Col} >
+              <Form.Label>Place Name</Form.Label>
+              <Input 
+                type="text"
+                value={this.state.placeName}
+                onChange={this.handleChange}
+                 />
+            </Form.Group>
+
+            <Form.Group as={Col} >
+              <Form.Label>License</Form.Label>
+              <Input 
+                type="file"
+                value={this.state.license}
+                onChange={this.handleChange}
+                 />
+            </Form.Group>
+          </Form.Row>
+          <Button variant="primary" type="submit">
+             SAVE
+          </Button>
+  </Form>
       </div>
     );
   }
 }
+
 
 export default OwnerProfile;
