@@ -546,27 +546,44 @@ exports.ShowLastDataCustomer = function (req, res) {
 /////////// Updata Customer//////////////
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findByIdAndUpdate(
-    { _id: customerId },
-    {
-      fullName: req.body.fullName,
-      email: req.body.email,
-      mobileNumber: req.body.mobileNumber,
-      address: req.body.address,
-    },
-    (err, docs) => {
-      if (err) {
-        console.log(err);
+  CustomerModel.findOne({ _id: customerId },function(err,update){
+    if(err){
+      console.log(err);
+    res.status(500).send()
+    } else{
+      if(!update){
+        res.status(404).send();   
+      } else{
+        if(req.body.fullName){
+          update.fullName = req.body.fullName;
+        }
+        if(req.body.email){
+          update.email = req.body.email;
+        }
+        if(req.body.mobileNumber){
+          update.mobileNumber = req.body.mobileNumber;
+        }
+        if(req.body.address){
+          update.address = req.body.address;
+        }
+        update.save((err,data)=>{
+          if(err){
+            console.log(err);
+            res.status(500).send();
+          } else{
+            res.send(data)
+          }
+
+
+        })
+
       }
-      console.log(docs);
+
     }
-  )
-    .then((result) => {
-      //  console.log(result)
-      res.send(result);
-    })
-    .catch((err) => console.log(err));
+  })
+ 
 };
+ 
 
 ///////////////  Show data before  Updata Owner /////////////
 exports.ShowLastDataOwner = function (req, res) {
@@ -667,8 +684,7 @@ exports.ShowLastDataServices = function (req, res) {
 /////////// Updata Services//////////////
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate(
-    { _id: servicesId },
+  ServicesModel.findByIdAndUpdate({ _id: servicesId },
     {
       servicesAvailable: {
         PlayGround: req.body.PlayGround,
