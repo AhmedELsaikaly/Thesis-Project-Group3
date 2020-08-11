@@ -36,15 +36,18 @@ export class OwnerProfile extends Component {
     return (
       <div>
         <div class="personal-info">
+          <button>Edit</button>
           <h2>Full Name: {this.state.data.fullName}</h2>
           <h2>Email: {this.state.data.email}</h2>
           <h2>Place Name: {this.state.data.placeName}</h2>
           <h2>Mobile Number:{this.state.data.mobileNumber}</h2>
+          <h2>Place Name: {this.state.data.area}</h2>
           <img
             class="card-img-top"
             src={this.state.data.licensePhoto}
             alt="Card image cap"
           ></img>
+          <button>Save</button>
         </div>
       </div>
     );

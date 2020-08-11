@@ -1,6 +1,9 @@
 //require technologies
+// import mailer from './email'
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
+const nodemailer = require("nodemailer");
 //require files
 const ReservationModel = require("./models.js").ReservationModel;
 const {
@@ -13,6 +16,7 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
+// const mailer = require("./email.js");
 //----------------------SignIn For Owner----------------------------//
 //router post request for signin
 exports.SignInOwner = function (req, res) {
@@ -102,7 +106,16 @@ exports.SignUpOwner = function (req, res) {
             //save newOwner
             newOwner
               .save()
-              .then(() => res.send("you signed up successfully"))
+              .then(() => {
+                if (
+                  main(req.body.email, req.body.fullName, req.body.mobileNumber)
+                ) {
+                  res.send("you signed up successfully");
+                } else {
+                  res.send("The emial is not found");
+                }
+                // res.send("you signed up successfully");
+              })
               .catch((err) =>
                 res.status(500).json({
                   error: err,
@@ -118,6 +131,38 @@ exports.SignUpOwner = function (req, res) {
       });
     });
 };
+////////
+async function main(email, name, phone) {
+  let testAccount = await nodemailer.createTestAccount();
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "ra77a99@gmail.com", // generated ethereal user
+      pass: "ra7a123456", // generated ethereal password
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Fred Foo 👻" <ra77a99@gmail.com>', // sender address
+    to: email, // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: name, // plain text body
+    html: `<b>Hello ${name} Wellcome to ra7a App </b><p>${phone}</p>`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+}
+////////
+
 //-------------------------------------------------------------------------------------
 //----------------------SignIn For Custmer ----------------------------//
 //router post request for signin
@@ -189,7 +234,12 @@ exports.SignUpCustomer = function (req, res) {
   CustomerModel.findOne({ email: req.body.email })
     .then((customer) => {
       if (customer) {
-        return res.status(400).json("Email already exists");
+        if (main(req.body.email, req.body.fullName, req.body.mobileNumber)) {
+          res.send("you signed up successfully");
+        } else {
+          res.send("The emial is not found");
+          res.status(400).json("Email already exists");
+        }
       } else {
         //create newCustomer
         const newCustomer = new CustomerModel({
@@ -449,7 +499,11 @@ exports.addReservation = function (req, res) {
     });
 };
 
+<<<<<<< HEAD
 ///..........Get Reservation For Customer............
+=======
+//..........Get Reservation For Customer............
+>>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -463,7 +517,27 @@ exports.GetReservation = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
+<<<<<<< HEAD
 /////////////////////////////  Get Booking  For Owner  /////////////////////////////////
+=======
+/////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
+exports.OwnerBookings = function (req, res) {
+  const ownerId = req.params.id;
+  ReservationModel.find({ ownerId: ownerId })
+    .then((result) => {
+      console.log(result);
+      if (result.length === 0) {
+        console.log(result);
+        return res.status(201).end("there is no booking");
+      }
+      return res.status(200).json({
+        result: result,
+        message: "This is the booking for this Owner",
+      });
+    })
+    .catch((err) => console.log(err));
+};
+>>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -669,3 +743,46 @@ exports.getResByDateOwner = function (req, res) {
       });
     });
 };
+// exports.GetReservation = function (req, res) {
+//   const customerId = req.params.id;
+//   ReservationModel.find({ customerId: customerId })
+//     .then((reserv) => {
+//       if (!reserv) {
+//         console.log(reserv);
+//         return res.status(404).end();
+//       }
+//       return res.status.send(reserv);
+//     })
+//     .catch((err) => next(err));
+// };
+
+
+//////////Contact Us/////////////////
+
+exports.ContactUs = function (req, res){
+  console.log(req.body)
+  main(req.body.email,req.body.name,req.body.message)
+  async function main(email, name, message) {
+    let testAccount = await nodemailer.createTestAccount();
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "ra77a99@gmail.com", // generated ethereal user
+        pass: "ra7a123456", // generated ethereal password
+      },
+    });
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Contact us" <ra77a99@gmail.com>', // sender address
+      to: "ra77a99@gmail.com", // list of receivers
+      subject: "Contact Us", // Subject line
+      text: message, // plain text body
+      html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
+    });
+    console.log("Message sent: %s", info.messageId);
+       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  }
+
+}
