@@ -10,7 +10,6 @@ app.use(cors());
 //const bcrypt = require("bcrypt");
 
 //require used files
-
 const router = require("./resources/router");
 const db = require("./database/connectionDB");
 
