@@ -5,6 +5,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import  axios from "axios";
 
 
+<<<<<<< HEAD
 
 export class OwnerProfile extends Component {
   constructor(){
@@ -32,10 +33,28 @@ export class OwnerProfile extends Component {
   //  const {fullName,email,area,mobileNumber}= this.state;
   //  const form = await axios.put('/form',{name,email,message})
   }
+=======
+import {
+  Button,
+  FormFeedback,
+  Form,
+  Col,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
+
+
+
+export class OwnerProfile extends Component {
+ 
+
+>>>>>>> ebc564cb1ee5af7f95f948e0577fc29a3739cafd
   render() {
     // const b = this.state.data;
     return (
       <div>
+<<<<<<< HEAD
         <Form onSubmit={this.handleSubmit} style={{marginLeft:"7%",marginTop:"10%",maxWidth:'80%'}}>
           <Form.Row>
             <Form.Group as={Col} >
@@ -98,6 +117,20 @@ export class OwnerProfile extends Component {
           <Button variant="primary" type="submit">
              SAVE
           </Button>
+=======
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridName">
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter Your Name" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="Enter Email" />
+            </Form.Group>
+          </Form.Row>
+>>>>>>> ebc564cb1ee5af7f95f948e0577fc29a3739cafd
   </Form>
       </div>
     );

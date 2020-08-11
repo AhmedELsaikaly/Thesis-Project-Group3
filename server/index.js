@@ -10,7 +10,6 @@ app.use(cors());
 //const bcrypt = require("bcrypt");
 
 //require used files
-
 const router = require("./resources/router");
 const db = require("./database/connectionDB");
 
@@ -18,6 +17,10 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
+
+
+
+
 
 //declare port
 var port = process.env.PORT || 5000;
