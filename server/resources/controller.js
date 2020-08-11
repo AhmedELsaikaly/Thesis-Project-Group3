@@ -145,7 +145,7 @@ async function main(email, name, phone) {
   let info = await transporter.sendMail({
     from: '"Raha App" <ra77a99@gmail.com>', // sender address
     to: email, // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: "Hello to RahaApp✔", // Subject line
     text: name, // plain text body
     html: `<b>Hello ${name} Wellcome to ra7a App </b><p>${phone}</p>`, // html body
   });
@@ -447,7 +447,7 @@ exports.addReservation = function (req, res) {
     type,
     ownerId,
   } = req.body;
-  
+
   //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
@@ -475,7 +475,7 @@ exports.addReservation = function (req, res) {
               res.status(500).send(err + "err in Saving Reservation")
             );
         } else {
-          res.end("no avaliliabe place");
+          res.end("no available place");
         }
       });
     })
@@ -484,7 +484,7 @@ exports.addReservation = function (req, res) {
     });
 };
 
-///..........Get Reservation For Customer............
+//Get Reservation For Customer
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -498,7 +498,7 @@ exports.GetReservation = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-/////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
+//Get Booking  For Owner
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
   ReservationModel.find({ ownerId: ownerId })
@@ -506,7 +506,7 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking");
+        return res.status(201).end("no booking yet");
       }
       return res.status(200).json({
         result: result,
@@ -523,7 +523,7 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking");
+        return res.status(201).end("no booking yet");
       }
       return res.status(200).json({
         result: result,
@@ -532,7 +532,7 @@ exports.OwnerBookings = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-///////////////  Show data before  Updata Customer /////////////
+// Show data before  Updata Customer
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
   CustomerModel.findOneAndUpdate({ _id: customerId })
@@ -544,49 +544,43 @@ exports.ShowLastDataCustomer = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Customer//////////////
+// Updata Customer data
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOne({ _id: customerId },function(err,update){
-    if(err){
+  CustomerModel.findOne({ _id: customerId }, function (err, update) {
+    if (err) {
       console.log(err);
-    res.status(500).send()
-    } else{
-      if(!update){
-        res.status(404).send();   
-      } else{
-        if(req.body.fullName){
+      res.status(500).send();
+    } else {
+      if (!update) {
+        res.status(404).send();
+      } else {
+        if (req.body.fullName) {
           update.fullName = req.body.fullName;
         }
-        if(req.body.email){
+        if (req.body.email) {
           update.email = req.body.email;
         }
-        if(req.body.mobileNumber){
+        if (req.body.mobileNumber) {
           update.mobileNumber = req.body.mobileNumber;
         }
-        if(req.body.address){
+        if (req.body.address) {
           update.address = req.body.address;
         }
-        update.save((err,data)=>{
-          if(err){
+        update.save((err, data) => {
+          if (err) {
             console.log(err);
             res.status(500).send();
-          } else{
-            res.send(data)
+          } else {
+            res.send(data);
           }
-
-
-        })
-
+        });
       }
-
     }
-  })
- 
+  });
 };
- 
 
-///////////////  Show data before  Updata Owner /////////////
+//Show data before  Updata Owner
 exports.ShowLastDataOwner = function (req, res) {
   const ownerId = req.params.id;
   OwnerModel.findOneAndUpdate({ _id: ownerId })
@@ -597,7 +591,7 @@ exports.ShowLastDataOwner = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Owner//////////////
+// Updata Owner data
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
   OwnerModel.findByIdAndUpdate(
@@ -623,7 +617,7 @@ exports.UpdateOwner = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-///////////////  Show data before  Updata Facility /////////////
+// Show data before  Updata Facility
 exports.ShowLastDataFacility = function (req, res) {
   const facilityId = req.params.id;
   FacilityModel.findOneAndUpdate({ _id: facilityId })
@@ -634,7 +628,7 @@ exports.ShowLastDataFacility = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-///////// Updata Facility//////////////
+// Updata Facility
 exports.UpdateFacility = function (req, res) {
   const facilityId = req.params.id;
   FacilityModel.findByIdAndUpdate(
@@ -671,7 +665,7 @@ exports.UpdateFacility = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-///////////////  Show data before  Updata Services /////////////
+// Show data before  Updata Services
 exports.ShowLastDataServices = function (req, res) {
   const servicesId = req.params.id;
   ServicesModel.findOneAndUpdate({ _id: servicesId })
@@ -682,10 +676,11 @@ exports.ShowLastDataServices = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Services//////////////
+// Updata Services
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate({ _id: servicesId },
+  ServicesModel.findByIdAndUpdate(
+    { _id: servicesId },
     {
       servicesAvailable: {
         PlayGround: req.body.PlayGround,
@@ -713,7 +708,7 @@ exports.UpdateServices = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-// ..................................getResByDateOwner..................................///
+// get owner booking by date
 exports.getResByDateOwner = function (req, res) {
   const { ownerId, date } = req.body;
   var prameters = ["table", "SmallTents", "LargeTents"];
@@ -749,8 +744,7 @@ exports.getResByDateOwner = function (req, res) {
 //     .catch((err) => next(err));
 // };
 
-//////////Contact Us/////////////////
-
+//Contact Us send mail to extrnal mail
 exports.ContactUs = function (req, res) {
   console.log(req.body);
   main(req.body.email, req.body.name, req.body.message);
@@ -767,9 +761,9 @@ exports.ContactUs = function (req, res) {
     });
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"Contact us" <ra77a99@gmail.com>', // sender address
+      from: '"Contact us RahaApp" <ra77a99@gmail.com>', // sender address
       to: "ra77a99@gmail.com", // list of receivers
-      subject: "Contact Us", // Subject line
+      subject: "Contact Us RahaApp", // Subject line
       text: message, // plain text body
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });
