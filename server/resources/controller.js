@@ -635,7 +635,8 @@ exports.ShowLastDataServices = function (req, res) {
 /////////// Updata Services//////////////
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate({ _id: servicesId },
+  ServicesModel.findByIdAndUpdate(
+    { _id: servicesId },
     {
       servicesAvailable: {
         PlayGround: req.body.PlayGround,

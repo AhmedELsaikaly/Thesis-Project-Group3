@@ -1,19 +1,26 @@
+//import used technologies
 import React, { Component } from "react";
 import axiox from "axios";
 import jwt_decode from "jwt-decode";
 
+//import CSS
 import "./customerProfile.css";
 
+//import used files
+
+//create CustomerProfile Compo
 export class CustomerProfile extends Component {
   state = {
     id: "",
     data: "",
   };
+  //componentDidMount function
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     this.setState({ id: decoded.id });
   }
+  //componentDidUpdate function
   componentDidUpdate(prevProps, prevState) {
     if (prevState.id !== this.state.id) {
       console.log("pokemons state has changed.");
@@ -30,6 +37,7 @@ export class CustomerProfile extends Component {
     }
   }
 
+  //render CustomerProfile Compo
   render() {
     // const b = this.state.data;
     console.log(this.state.data.result);
@@ -48,4 +56,7 @@ export class CustomerProfile extends Component {
   }
 }
 
+//export CustomerProfile Compo
 export default CustomerProfile;
+
+//check and validate
