@@ -499,11 +499,7 @@ exports.addReservation = function (req, res) {
     });
 };
 
-<<<<<<< HEAD
 ///..........Get Reservation For Customer............
-=======
-//..........Get Reservation For Customer............
->>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -517,9 +513,6 @@ exports.GetReservation = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-<<<<<<< HEAD
-/////////////////////////////  Get Booking  For Owner  /////////////////////////////////
-=======
 /////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -537,7 +530,6 @@ exports.OwnerBookings = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
->>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -756,12 +748,11 @@ exports.getResByDateOwner = function (req, res) {
 //     .catch((err) => next(err));
 // };
 
-
 //////////Contact Us/////////////////
 
-exports.ContactUs = function (req, res){
-  console.log(req.body)
-  main(req.body.email,req.body.name,req.body.message)
+exports.ContactUs = function (req, res) {
+  console.log(req.body);
+  main(req.body.email, req.body.name, req.body.message);
   async function main(email, name, message) {
     let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
@@ -782,7 +773,6 @@ exports.ContactUs = function (req, res){
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });
     console.log("Message sent: %s", info.messageId);
-       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   }
-
-}
+};
