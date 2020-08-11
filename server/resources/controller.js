@@ -392,18 +392,67 @@ exports.GetComments = function (req, res) {
 exports.AddComment = function (req, res) {
   // console.log(req.params,'+++++++++')
   const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
-  let CommentDoc = new RFModel({
-    customerId,
-    fullName,
-    ownerId,
-    date,
-    feedback,
-    rating,
-  });
-  CommentDoc.save()
-    .then(() => res.status(201).send("Comment Saved"))
-    .catch((err) => res.status(500).send(err + "err in Saving Comment"));
+  OwnerModel.update(
+    { _id: ownerId },
+    { $inc: { ratingPeopleNo: 1, ratingSum: rating } },
+    { returnOriginal: false }
+  )
+    .then((result) => {
+      if (result.n > 0) {
+        OwnerModel.findOne({ _id: ownerId })
+          .then((result) => {
+            const avg = Math.round(result.ratingSum / result.ratingPeopleNo);
+            OwnerModel.update(
+              { _id: ownerId },
+              { ratingAvg: avg },
+              { returnOriginal: false }
+            )
+              .then((result) => {
+                if (result.n > 0) {
+                  let CommentDoc = new RFModel({
+                    customerId,
+                    fullName,
+                    ownerId,
+                    date,
+                    feedback,
+                    rating,
+                  });
+                  CommentDoc.save()
+                    .then(() => res.status(201).send("Comment Saved"))
+                    .catch((err) =>
+                      res.status(500).send(err + "err in Saving Comment")
+                    );
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                res.send(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send(err);
+          });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 };
+
+//   let CommentDoc = new RFModel({
+//     customerId,
+//     fullName,
+//     ownerId,
+//     date,
+//     feedback,
+//     rating,
+//   });
+//   CommentDoc.save()
+//     .then(() => res.status(201).send("Comment Saved"))
+//     .catch((err) => res.status(500).send(err + "err in Saving Comment"));
+// };
 //............. add Reservation .................
 exports.addReservation = function (req, res) {
   var quant = 0;
@@ -450,7 +499,7 @@ exports.addReservation = function (req, res) {
     });
 };
 
-//..........Get Reservation For Customer............
+///..........Get Reservation For Customer............
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -482,6 +531,22 @@ exports.OwnerBookings = function (req, res) {
     .catch((err) => console.log(err));
 };
 
+exports.OwnerBookings = function (req, res) {
+  const ownerId = req.params.id;
+  ReservationModel.find({ ownerId: ownerId })
+    .then((result) => {
+      console.log(result);
+      if (result.length === 0) {
+        console.log(result);
+        return res.status(201).end("there is no booking");
+      }
+      return res.status(200).json({
+        result: result,
+        message: "This is the booking for this Owner",
+      });
+    })
+    .catch((err) => console.log(err));
+};
 ///////////////  Show data before  Updata Customer /////////////
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
@@ -497,44 +562,38 @@ exports.ShowLastDataCustomer = function (req, res) {
 /////////// Updata Customer//////////////
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOne({ _id: customerId },function(err,update){
-    if(err){
+  CustomerModel.findOne({ _id: customerId }, function (err, update) {
+    if (err) {
       console.log(err);
-    res.status(500).send()
-    } else{
-      if(!update){
-        res.status(404).send();   
-      } else{
-        if(req.body.fullName){
+      res.status(500).send();
+    } else {
+      if (!update) {
+        res.status(404).send();
+      } else {
+        if (req.body.fullName) {
           update.fullName = req.body.fullName;
         }
-        if(req.body.email){
+        if (req.body.email) {
           update.email = req.body.email;
         }
-        if(req.body.mobileNumber){
+        if (req.body.mobileNumber) {
           update.mobileNumber = req.body.mobileNumber;
         }
-        if(req.body.address){
+        if (req.body.address) {
           update.address = req.body.address;
         }
-        update.save((err,data)=>{
-          if(err){
+        update.save((err, data) => {
+          if (err) {
             console.log(err);
             res.status(500).send();
-          } else{
-            res.send(data)
+          } else {
+            res.send(data);
           }
-
-
-        })
-
+        });
       }
-
     }
-  })
- 
+  });
 };
- 
 
 ///////////////  Show data before  Updata Owner /////////////
 exports.ShowLastDataOwner = function (req, res) {
@@ -663,6 +722,35 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
+
+// ..................................getResByDateOwner..................................///
+exports.getResByDateOwner = function (req, res) {
+  console.log(req.query);
+  const { ownerId, date } = req.query;
+  var prameters = ["table", "SmallTents", "LargeTents"];
+  var obj = {};
+  FacilityModel.findOne({ ownerId: ownerId })
+    .then((faci) => {
+      for (var i = 0; i < prameters.length; i++) {
+        obj[prameters[i]] = faci.facilities[prameters[i]].quantity;
+      }
+      ReservationModel.find({
+        ownerId: ownerId,
+        date: date,
+      }).then((result) => {
+        if (result.length > 0) {
+          res.status(201).json({ quant: obj, reservation: result });
+        } else {
+          res.end("there is no reservation in this date");
+        }
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
 // exports.GetReservation = function (req, res) {
 //   const customerId = req.params.id;
 //   ReservationModel.find({ customerId: customerId })
@@ -676,12 +764,11 @@ exports.UpdateServices = function (req, res) {
 //     .catch((err) => next(err));
 // };
 
-
 //////////Contact Us/////////////////
 
-exports.ContactUs = function (req, res){
-  console.log(req.body)
-  main(req.body.email,req.body.name,req.body.message)
+exports.ContactUs = function (req, res) {
+  console.log(req.body);
+  main(req.body.email, req.body.name, req.body.message);
   async function main(email, name, message) {
     let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
@@ -702,7 +789,6 @@ exports.ContactUs = function (req, res){
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });
     console.log("Message sent: %s", info.messageId);
-       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   }
-
-}
+};

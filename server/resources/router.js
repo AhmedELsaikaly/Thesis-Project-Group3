@@ -36,7 +36,6 @@ router.get("/AllComents/:id", controller.GetComments);
 // // Services in place
 // router.post("/servicesStore",controller.ServicesStore);
 // router.get("/reservationFacility/:ownerId", controller.GetFacilites);
-
 ///bookings Owner
 router.get("/OwnerBookings/:id", controller.OwnerBookings);
 //Reservation Customer
@@ -57,7 +56,8 @@ router.get("/showLastDataServesis/:id", controller.ShowLastDataServices);
 router.put("/updateServesis/:id", controller.UpdateServices);
 
 router.post("/addReservation", controller.addReservation);
+router.get("/getResByDateOwner", controller.getResByDateOwner);
 
-router.post("/form",controller.ContactUs)
+router.post("/form", controller.ContactUs);
 
 module.exports = router;
