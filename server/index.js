@@ -19,33 +19,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
-app.post("/form", (req, res)=> {
-  console.log(req.body)
-  main(req.body.email,req.body.name,req.body.message)
-  async function main(email, name, message) {
-    let testAccount = await nodemailer.createTestAccount();
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "ra77a99@gmail.com", // generated ethereal user
-        pass: "ra7a123456", // generated ethereal password
-      },
-    });
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-      from: '"Contact us" <ra77a99@gmail.com>', // sender address
-      to: "ra77a99@gmail.com", // list of receivers
-      subject: "Contact Us", // Subject line
-      text: message, // plain text body
-      html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
-    });
-    console.log("Message sent: %s", info.messageId);
-       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  }
 
-})
 
 
 
