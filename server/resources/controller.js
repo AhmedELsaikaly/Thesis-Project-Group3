@@ -1,10 +1,9 @@
 //require technologies
-// import mailer from './email'
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const nodemailer = require("nodemailer");
-//require files
+
+//require used files
 const ReservationModel = require("./models.js").ReservationModel;
 const {
   CustomerModel,
@@ -16,9 +15,10 @@ const {
 } = require("./models.js");
 const validateSignupInput = require("./validation/signup");
 const validateSigninInput = require("./validation/login");
-// const mailer = require("./email.js");
-//----------------------SignIn For Owner----------------------------//
-//router post request for signin
+
+//SignIn For Owner
+
+//router post request for SignInOwner
 exports.SignInOwner = function (req, res) {
   console.log(req.body);
   //form validation
@@ -29,6 +29,7 @@ exports.SignInOwner = function (req, res) {
   }
   const email = req.body.email;
   const password = req.body.password;
+
   //find Owner by email
   OwnerModel.findOne({ email })
     .then((owner) => {
@@ -73,16 +74,9 @@ exports.SignInOwner = function (req, res) {
       console.log(err);
     });
 };
-//............................SignUp Controller  For Owner..............................//
+//SignUpOwner Controller
 exports.SignUpOwner = function (req, res) {
   console.log(req.body);
-  //form validation
-  // const { errors, isValid } = validateSignupInput(req.body);
-  // //check validation
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
-  //check Owner by email if exists
   OwnerModel.findOne({ email: req.body.email })
     .then((owner) => {
       if (owner) {
@@ -98,6 +92,7 @@ exports.SignUpOwner = function (req, res) {
           area: req.body.area,
           licensePhoto: req.body.licensePhoto,
         });
+
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newOwner.password, salt, (err, hash) => {
@@ -110,11 +105,10 @@ exports.SignUpOwner = function (req, res) {
                 if (
                   main(req.body.email, req.body.fullName, req.body.mobileNumber)
                 ) {
-                  res.send("you signed up successfully");
+                  res.send("Signed up successfully");
                 } else {
-                  res.send("The emial is not found");
+                  res.send("The email not found");
                 }
-                // res.send("you signed up successfully");
               })
               .catch((err) =>
                 res.status(500).json({
@@ -131,10 +125,12 @@ exports.SignUpOwner = function (req, res) {
       });
     });
 };
-////////
+
+//Contact Us form
 async function main(email, name, phone) {
   let testAccount = await nodemailer.createTestAccount();
 
+  //define transport object
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -147,24 +143,18 @@ async function main(email, name, phone) {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <ra77a99@gmail.com>', // sender address
+    from: '"Raha App" <ra77a99@gmail.com>', // sender address
     to: email, // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: "Hello to RahaApp✔", // Subject line
     text: name, // plain text body
     html: `<b>Hello ${name} Wellcome to ra7a App </b><p>${phone}</p>`, // html body
   });
 
   console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
-////////
 
-//-------------------------------------------------------------------------------------
-//----------------------SignIn For Custmer ----------------------------//
+//SignIn For Custmer
 //router post request for signin
 process.env.SECRET_KEY = "secret";
 exports.SignInCustomer = function (req, res) {
@@ -176,6 +166,7 @@ exports.SignInCustomer = function (req, res) {
   }
   const email = req.body.email;
   const password = req.body.password;
+
   //find customer by email
   CustomerModel.findOne({ email })
     .then((customer) => {
@@ -183,6 +174,7 @@ exports.SignInCustomer = function (req, res) {
       if (!customer) {
         return res.status(404).json("Email not found");
       }
+
       //check password
       bcrypt
         .compare(password, customer.password)
@@ -221,23 +213,18 @@ exports.SignInCustomer = function (req, res) {
       console.log(err);
     });
 };
-//............................SignUp Controller  For Costmer ..............................//
+
+//SignUpCustomer Controller
 exports.SignUpCustomer = function (req, res) {
   console.log(req.body);
-  //form validation
-  // const { errors, isValid } = validateSignupInput(req.body);
-  // //check validation
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
   //check Customer by email if exists
   CustomerModel.findOne({ email: req.body.email })
     .then((customer) => {
       if (customer) {
         if (main(req.body.email, req.body.fullName, req.body.mobileNumber)) {
-          res.send("you signed up successfully");
+          res.send("Signed up successfully");
         } else {
-          res.send("The emial is not found");
+          res.send("Email not found");
           res.status(400).json("Email already exists");
         }
       } else {
@@ -249,6 +236,7 @@ exports.SignUpCustomer = function (req, res) {
           mobileNumber: req.body.mobileNumber,
           address: req.body.address,
         });
+
         // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newCustomer.password, salt, (err, hash) => {
@@ -257,7 +245,7 @@ exports.SignUpCustomer = function (req, res) {
             //save newCustomer
             newCustomer
               .save()
-              .then(() => res.send("you signed up successfully"))
+              .then(() => res.send("Signed up successfully"))
               .catch((err) => console.log(err));
           });
         });
@@ -267,8 +255,8 @@ exports.SignUpCustomer = function (req, res) {
       console.log(err);
     });
 };
-//-------------------------------------------------------------------------------------
-////............................Service Storing Controller  For Owner ..............................//
+
+// Service Storing Controller  For Owner
 exports.ServicesStore = function (req, res) {
   // console.log(req.body);
   const { ownerId, otherService, servicesAvailable } = req.body;
@@ -281,7 +269,8 @@ exports.ServicesStore = function (req, res) {
     .then(() => res.status(201).send("saved"))
     .catch((err) => res.status(500).send(err + "err"));
 };
-///// .............................................. Facilites storin Schema for owner ........................//
+
+//Facilites storing Controller  For Owner
 exports.FacilitesStore = function (req, res) {
   // console.log(req.body);
   const { ownerId, facilities } = req.body;
@@ -293,20 +282,22 @@ exports.FacilitesStore = function (req, res) {
     .then(() => res.status(201).send("FacilitesSaved"))
     .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
 };
-//// ...................................... get one User ...............................//
+
+//get single User function
 exports.GetUser = function (req, res) {
   // console.log(req.params,'+++++++++')
   const UserId = req.params.id;
   CustomerModel.find({ _id: UserId })
     .then((result) => {
       res.send(result);
-      console.log(result, "++++++");
+      console.log(result, "Customer found!");
     })
     .catch((err) => {
       res.send(err);
     });
 };
-///// ..............................................  get services  ........................//
+
+//get services function
 exports.GetServices = function (req, res) {
   const ownerId = req.params.id;
   ServicesModel.find({ ownerId: ownerId })
@@ -314,14 +305,15 @@ exports.GetServices = function (req, res) {
       if (result) {
         res.status(200).send(result);
       } else {
-        res.status(200).end("there is no services for this this owners");
+        res.status(200).end("There is no services for this this owner!");
       }
     })
     .catch((err) => {
       console.log("Error: ", err);
     });
 };
-//// ...................................... get facilites ...............................//
+
+//get facilites function
 exports.GetFacilites = function (req, res) {
   const ownerId = req.params.id;
   FacilityModel.find({ ownerId: ownerId })
@@ -329,14 +321,15 @@ exports.GetFacilites = function (req, res) {
       if (result) {
         res.status(200).send(result);
       } else {
-        res.status(200).end("there is no facilites for this this owners");
+        res.status(200).end("There is no facilites for this owner");
       }
     })
     .catch((err) => {
       console.log("Error: ", err);
     });
 };
-//// ...................................... get All ...............................//
+
+// get All owners
 exports.GetAllOwner = function (req, res) {
   OwnerModel.find({})
     .then((result) => {
@@ -347,48 +340,50 @@ exports.GetAllOwner = function (req, res) {
       res.send(err);
     });
 };
-//// ...................................... get one Owner ...............................//
+
+// get single Owner
 exports.GetOwner = function (req, res) {
   // console.log(req.params,'+++++++++')
   const ownerId = req.params.id;
   OwnerModel.find({ _id: ownerId })
     .then((result) => {
       res.send(result);
-      console.log(result, "++++++");
+      console.log(result, "Owner Found!");
     })
     .catch((err) => {
       res.send(err);
     });
 };
 
-//// ...................................... get one User ...............................//
+// get single User
 exports.GetUser = function (req, res) {
   // console.log(req.params,'+++++++++')
   const UserId = req.params.id;
   CustomerModel.find({ _id: UserId })
     .then((result) => {
       res.send(result);
-      console.log(result, "++++++");
+      console.log(result, "Customer found!");
     })
     .catch((err) => {
       res.send(err);
     });
 };
 
-//// ...................................... Get All Comments ...............................//
+//Get All Comments
 exports.GetComments = function (req, res) {
   // console.log(req.params,'+++++++++')
   const ownerId = req.params.id;
   RFModel.find({ ownerId: ownerId })
     .then((result) => {
       res.send(result);
-      console.log(result, "++++++");
+      console.log(result, "Comments got");
     })
     .catch((err) => {
       res.send(err);
     });
 };
-//// ...................................... Add One Comment ...............................//
+
+// Add One Comment
 exports.AddComment = function (req, res) {
   // console.log(req.params,'+++++++++')
   const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
@@ -418,7 +413,7 @@ exports.AddComment = function (req, res) {
                     rating,
                   });
                   CommentDoc.save()
-                    .then(() => res.status(201).send("Comment Saved"))
+                    .then(() => res.status(201).send("Comment Saved!"))
                     .catch((err) =>
                       res.status(500).send(err + "err in Saving Comment")
                     );
@@ -441,19 +436,7 @@ exports.AddComment = function (req, res) {
     });
 };
 
-//   let CommentDoc = new RFModel({
-//     customerId,
-//     fullName,
-//     ownerId,
-//     date,
-//     feedback,
-//     rating,
-//   });
-//   CommentDoc.save()
-//     .then(() => res.status(201).send("Comment Saved"))
-//     .catch((err) => res.status(500).send(err + "err in Saving Comment"));
-// };
-//............. add Reservation .................
+// add Reservation function
 exports.addReservation = function (req, res) {
   var quant = 0;
   const {
@@ -464,6 +447,8 @@ exports.addReservation = function (req, res) {
     type,
     ownerId,
   } = req.body;
+
+  //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
       console.log("The quantity", faci.facilities[type].quantity);
@@ -490,7 +475,7 @@ exports.addReservation = function (req, res) {
               res.status(500).send(err + "err in Saving Reservation")
             );
         } else {
-          res.end("no avaliliabe place");
+          res.end("no available place");
         }
       });
     })
@@ -499,7 +484,7 @@ exports.addReservation = function (req, res) {
     });
 };
 
-///..........Get Reservation For Customer............
+//Get Reservation For Customer
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -513,7 +498,7 @@ exports.GetReservation = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-/////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
+//Get Booking  For Owner
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
   ReservationModel.find({ ownerId: ownerId })
@@ -521,7 +506,7 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking");
+        return res.status(201).end("no booking yet");
       }
       return res.status(200).json({
         result: result,
@@ -538,7 +523,7 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking");
+        return res.status(201).end("no booking yet");
       }
       return res.status(200).json({
         result: result,
@@ -547,7 +532,7 @@ exports.OwnerBookings = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-///////////////  Show data before  Updata Customer /////////////
+// Show data before  Updata Customer
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
   CustomerModel.findOneAndUpdate({ _id: customerId })
@@ -559,7 +544,7 @@ exports.ShowLastDataCustomer = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Customer//////////////
+// Updata Customer data
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
   CustomerModel.findOne({ _id: customerId }, function (err, update) {
@@ -595,7 +580,7 @@ exports.UpdateCustomer = function (req, res) {
   });
 };
 
-///////////////  Show data before  Updata Owner /////////////
+//Show data before  Updata Owner
 exports.ShowLastDataOwner = function (req, res) {
   const ownerId = req.params.id;
   OwnerModel.findOneAndUpdate({ _id: ownerId })
@@ -606,7 +591,7 @@ exports.ShowLastDataOwner = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Owner//////////////
+// Updata Owner data
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
   OwnerModel.findByIdAndUpdate(
@@ -632,7 +617,7 @@ exports.UpdateOwner = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-///////////////  Show data before  Updata Facility /////////////
+// Show data before  Updata Facility
 exports.ShowLastDataFacility = function (req, res) {
   const facilityId = req.params.id;
   FacilityModel.findOneAndUpdate({ _id: facilityId })
@@ -643,7 +628,7 @@ exports.ShowLastDataFacility = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-///////// Updata Facility//////////////
+// Updata Facility
 exports.UpdateFacility = function (req, res) {
   const facilityId = req.params.id;
   FacilityModel.findByIdAndUpdate(
@@ -680,7 +665,7 @@ exports.UpdateFacility = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-///////////////  Show data before  Updata Services /////////////
+// Show data before  Updata Services
 exports.ShowLastDataServices = function (req, res) {
   const servicesId = req.params.id;
   ServicesModel.findOneAndUpdate({ _id: servicesId })
@@ -691,7 +676,7 @@ exports.ShowLastDataServices = function (req, res) {
     .catch((err) => res.status(200).send(err));
 };
 
-/////////// Updata Services//////////////
+// Updata Services
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
   ServicesModel.findByIdAndUpdate(
@@ -723,10 +708,10 @@ exports.UpdateServices = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-// ..................................getResByDateOwner..................................///
+// get owner booking by date
 exports.getResByDateOwner = function (req, res) {
   console.log(req.query);
-  const { ownerId, date } = req.query;
+  const { ownerId, date } = req.body;
   var prameters = ["table", "SmallTents", "LargeTents"];
   var obj = {};
   FacilityModel.findOne({ ownerId: ownerId })
@@ -764,8 +749,7 @@ exports.getResByDateOwner = function (req, res) {
 //     .catch((err) => next(err));
 // };
 
-//////////Contact Us/////////////////
-
+//Contact Us send mail to extrnal mail
 exports.ContactUs = function (req, res) {
   console.log(req.body);
   main(req.body.email, req.body.name, req.body.message);
@@ -782,9 +766,9 @@ exports.ContactUs = function (req, res) {
     });
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"Contact us" <ra77a99@gmail.com>', // sender address
+      from: '"Contact us RahaApp" <ra77a99@gmail.com>', // sender address
       to: "ra77a99@gmail.com", // list of receivers
-      subject: "Contact Us", // Subject line
+      subject: "Contact Us RahaApp", // Subject line
       text: message, // plain text body
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });

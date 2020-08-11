@@ -1,8 +1,10 @@
+//import used technologies
 import React from "react";
-import "./bookingList.css";
 import axiox from "axios";
 import jwt_decode from "jwt-decode";
 import BookingList from "./bookingList";
+
+//create OwnerBooking Compo
 class OwnerBooking extends React.Component {
   constructor(props) {
     super(props);
@@ -18,11 +20,13 @@ class OwnerBooking extends React.Component {
     };
   }
 
-  //import CSS
+//import CSS
 
-  //import used files
+//import used files
 
-  //create OwnerBooking Compo
+
+
+  // componentDidMount function
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
@@ -60,6 +64,24 @@ class OwnerBooking extends React.Component {
             bookings: [],
             reservationCount: { LargeTents: [], SmallTents: [], table: [] },
           });
+  //componentDidUpdate function
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.ownerId !== this.state.ownerId) {
+      this.GetData();
+    }
+  }
+
+  // GetData function
+  GetData() {
+    //axios getting data from booking
+    axiox
+      .get(`http://localhost:5000/OwnerBookings/${this.state.ownerId}`) // Fix the route
+      .then((result) => {
+        console.log(result);
+        if (result.status === 200 && result.data.result.length > 0) {
+          const data = result.data.result;
+          console.log("1111111111111111111111111111111", result);
+          this.setState({ bookings: data });
         } else {
           var reservationCount = {};
           result.data.reservation.forEach((element) => {
@@ -139,4 +161,8 @@ class OwnerBooking extends React.Component {
     );
   }
 }
+
+//export OwnerBooking Compo
 export default OwnerBooking;
+
+//Check and validate
