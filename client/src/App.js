@@ -30,7 +30,7 @@ import OwnerProfile from "./Components/ownerProfile/ownerProfile.js";
 import CustomerProfile from "./Components/customerProfile/customerProfile.js";
 import "./App.css";
 
-import { OwnerBooking } from "./Components/ownerBooking/ownerBooking.js";
+import OwnerBooking from "./Components/ownerBooking/ownerBooking.js";
 import { UserReservation } from "./Components/userReservation/userReservation.js";
 import { ProtectedRoute } from "./Components/RoutesType/ProtectedRoute";
 import { LoggedInRoute } from "./Components/RoutesType/LoggedInRoute";
