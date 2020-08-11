@@ -499,11 +499,7 @@ exports.addReservation = function (req, res) {
     });
 };
 
-<<<<<<< HEAD
 ///..........Get Reservation For Customer............
-=======
-//..........Get Reservation For Customer............
->>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
@@ -517,9 +513,6 @@ exports.GetReservation = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-<<<<<<< HEAD
-/////////////////////////////  Get Booking  For Owner  /////////////////////////////////
-=======
 /////////////////////////////  Get Bookin  For Owner  /////////////////////////////////
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -537,7 +530,6 @@ exports.OwnerBookings = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
->>>>>>> 6bb63d42034c0de10fd3e540dc45476bcf8c2f58
 
 exports.OwnerBookings = function (req, res) {
   const ownerId = req.params.id;
@@ -735,8 +727,6 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-<<<<<<< HEAD
-=======
 
 // ..................................getResByDateOwner..................................///
 exports.getResByDateOwner = function (req, res) {
@@ -773,7 +763,6 @@ exports.getResByDateOwner = function (req, res) {
 //     })
 //     .catch((err) => next(err));
 // };
->>>>>>> 78a1d7d13bbf9ec36fafcd93cf02a05fd7a1e2b5
 
 
 //////////Contact Us/////////////////
