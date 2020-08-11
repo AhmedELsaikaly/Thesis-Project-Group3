@@ -710,6 +710,7 @@ exports.UpdateServices = function (req, res) {
 
 // get owner booking by date
 exports.getResByDateOwner = function (req, res) {
+  console.log(req.query);
   const { ownerId, date } = req.body;
   var prameters = ["table", "SmallTents", "LargeTents"];
   var obj = {};
@@ -722,7 +723,11 @@ exports.getResByDateOwner = function (req, res) {
         ownerId: ownerId,
         date: date,
       }).then((result) => {
-        res.status(201).json({ quant: obj, reservation: result });
+        if (result.length > 0) {
+          res.status(201).json({ quant: obj, reservation: result });
+        } else {
+          res.end("there is no reservation in this date");
+        }
       });
     })
     .catch((err) => {

@@ -32,7 +32,6 @@ router.get("/AllComents/:id", controller.GetComments);
 /////////////////////////////////////
 //////      RESERVATION     ////////
 ///////////////////////////////////
-
 ///bookings Owner
 router.get("/OwnerBookings/:id", controller.OwnerBookings);
 //Reservation Customer
