@@ -635,8 +635,7 @@ exports.ShowLastDataServices = function (req, res) {
 /////////// Updata Services//////////////
 exports.UpdateServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate(
-    { _id: servicesId },
+  ServicesModel.findByIdAndUpdate({ _id: servicesId },
     {
       servicesAvailable: {
         PlayGround: req.body.PlayGround,
@@ -663,18 +662,6 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-// exports.GetReservation = function (req, res) {
-//   const customerId = req.params.id;
-//   ReservationModel.find({ customerId: customerId })
-//     .then((reserv) => {
-//       if (!reserv) {
-//         console.log(reserv);
-//         return res.status(404).end();
-//       }
-//       return res.status.send(reserv);
-//     })
-//     .catch((err) => next(err));
-// };
 
 
 //////////Contact Us/////////////////
