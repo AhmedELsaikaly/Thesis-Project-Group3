@@ -26,16 +26,12 @@ router.get("/Owner/:id", controller.GetOwner);
 router.get("/User/:id", controller.GetUser);
 // Add Comment
 router.post("/comment", controller.AddComment);
-// // Get All Comments
+// Get All Comments
 router.get("/AllComents/:id", controller.GetComments);
 /////////////////////////////////////
 //////      RESERVATION     ////////
 ///////////////////////////////////
-// InfoPlace
-// router.post("/facilitesStore",controller.FacilitesStore);
-// // Services in place
-// router.post("/servicesStore",controller.ServicesStore);
-// router.get("/reservationFacility/:ownerId", controller.GetFacilites);
+
 ///bookings Owner
 router.get("/OwnerBookings/:id", controller.OwnerBookings);
 //Reservation Customer
