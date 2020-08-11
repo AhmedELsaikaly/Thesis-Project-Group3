@@ -20,10 +20,11 @@ class Star extends React.Component {
     return (
       <div className="star">
         <h2>
-          Yor rated the resort with 
+          Yor rated the resort with {"       "}
           {rating}
         </h2>
         <StarRatingComponent
+          className="starElement"
           name="rate1"
           starCount={5}
           value={rating}
@@ -46,6 +47,7 @@ class NotEditStar extends React.Component {
     return (
       <div>
         <StarRatingComponent
+          className="starElement"
           name="rate2"
           starCount={5}
           editing={false}

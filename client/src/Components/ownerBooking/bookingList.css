@@ -1,4 +1,4 @@
-* {
+/* * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
@@ -32,4 +32,12 @@
   background-color: #1abc9c;
   border-radius: 25px;
   margin-top: 10px;
+} */
+
+.Booking_div {
+  overflow: hidden;
+  width: 70%;
+  margin-left: 100px;
+  margin-top: 80px;
+  float: left;
 }
