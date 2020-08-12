@@ -55,4 +55,7 @@ router.get("/getResByDateOwner", controller.getResByDateOwner);
 
 router.post("/form", controller.ContactUs);
 
+//filter for places
+router.get("/filterOwner/:method/:id", controller.filterOwner);
+
 module.exports = router;

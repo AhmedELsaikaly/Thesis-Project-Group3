@@ -333,8 +333,8 @@ exports.GetFacilites = function (req, res) {
 exports.GetAllOwner = function (req, res) {
   OwnerModel.find({})
     .then((result) => {
-      res.send(result);
       console.log(result);
+      res.send(result);
     })
     .catch((err) => {
       res.send(err);
@@ -538,12 +538,11 @@ exports.ShowLastDataCustomer = function (req, res) {
   CustomerModel.find({ _id: customerId })
     .then((result) => {
       res.send(result);
-      console.log(result,"Cusrtomer Found!");
+      console.log(result, "Cusrtomer Found!");
     })
     .catch((err) => {
       res.send(err);
     });
-
 };
 
 // Updata Customer data
@@ -571,7 +570,6 @@ exports.UpdateCustomer = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-
 /////////// Updata Owner//////////////
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
@@ -588,19 +586,16 @@ exports.UpdateOwner = function (req, res) {
     (err, docs) => {
       if (err) {
         console.log(err);
-
       }
-     res.send(docs)
+      res.send(docs);
     }
   )
     .then((result) => {
       res.send(result);
       console.log(result);
-
     })
     .catch((err) => console.log(err));
 };
-
 
 ///////////////  Show data before  Updata Facility /////////////
 exports.ShowLastDataFacility = function (req, res) {
@@ -761,4 +756,29 @@ exports.ContactUs = function (req, res) {
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   }
+};
+
+//filterOwner Function
+exports.filterOwner = function (req, res) {
+  console.log(req.params);
+  const method = req.params.method;
+  const parame = req.params.id;
+  var obj = {};
+  obj[method] = parame;
+  console.log(typeof method, typeof parame, "111111111111111");
+  OwnerModel.find(obj)
+    .then((result) => {
+      console.log(result, "22222222222222222222");
+      if (result.length > 0) {
+        return res.status(201).json({ result: result });
+      }
+      return res
+        .status(200)
+        .json({ result: [], message: "there is no filter results" });
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: err,
+      })
+    );
 };
