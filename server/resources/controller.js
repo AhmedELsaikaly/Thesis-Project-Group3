@@ -535,114 +535,72 @@ exports.OwnerBookings = function (req, res) {
 ///////////////  Show data before  Updata Customer /////////////
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOneAndUpdate({ _id: customerId })
+  CustomerModel.find({ _id: customerId })
     .then((result) => {
-      // res.render(result);
-      console.log(result);
-      res.status(200).send(result);
+      res.send(result);
+      console.log(result,"Cusrtomer Found!");
     })
-    .catch((err) => res.status(200).send(err));
+    .catch((err) => {
+      res.send(err);
+    });
+
 };
 
 /////////// Updata Customer//////////////
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOne({ _id: customerId },function(err,update){
-    if(err){
-      console.log(err);
-    res.status(500).send()
-    } else{
-      if(!update){
-        res.status(404).send();   
-      } else{
-        if(req.body.fullName){
-          update.fullName = req.body.fullName;
-        }
-        if(req.body.email){
-          update.email = req.body.email;
-        }
-        if(req.body.mobileNumber){
-          update.mobileNumber = req.body.mobileNumber;
-        }
-        if(req.body.address){
-          update.address = req.body.address;
-        }
-        update.save((err,data)=>{
-          if(err){
-            console.log(err);
-            res.status(500).send();
-          } else{
-            res.send(data)
-          }
-
-
-        })
-
+  CustomerModel.findByIdAndUpdate(
+    { _id: customerId },
+    {
+      fullName: req.body.fullName,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      address: req.body.address,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
       }
-
+      console.log(docs);
     }
-  })
- 
-};
- 
-
-///////////////  Show data before  Updata Owner /////////////
-exports.ShowLastDataOwner = function (req, res) {
-  const ownerId = req.params.id;
-  OwnerModel.findOneAndUpdate({ _id: ownerId })
+  )
     .then((result) => {
-      console.log(result);
-      res.status(200).send(result);
+      //  console.log(result)
+      res.send(result);
     })
-    .catch((err) => res.status(200).send(err));
+    .catch((err) => console.log(err));
 };
+
+
+
 
 /////////// Updata Owner//////////////
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
-  OwnerModel.findOne({ _id: customerId },function(err,update){
-    if(err){
-      console.log(err);
-    res.status(500).send()
-    } else{
-      if(!update){
-        res.status(404).send();   
-      } else{
-        if(req.body.fullName){
-          update.fullName = req.body.fullName;
-        }
-        if(req.body.email){
-          update.email = req.body.email;
-        }
-        if(req.body.mobileNumber){
-          update.mobileNumber = req.body.mobileNumber;
-        }
-        if(req.body.area){
-          update.area = req.body.area;
-        }
-        if(req.body.placeName){
-          update.placeName = req.body.placeName;
-        }
-        if(req.body.licensePhoto){
-          update.licensePhoto = req.body.licensePhoto;
-        }
-        
-        update.save((err,data)=>{
-          if(err){
-            console.log(err);
-            res.status(500).send();
-          } else{
-            res.send(data)
-          }
-
-
-        })
+  OwnerModel.findOneAndUpdate(
+    { _id: ownerId },
+    {
+      fullName: req.body.fullName,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      placeName: req.body.placeName,
+      area: req.body.area,
+      licensePhoto: req.body.licensePhoto,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
 
       }
-
+     res.send(docs)
     }
-  })
- 
+  )
+    .then((result) => {
+      res.send(result);
+      console.log(result);
+
+    })
+    .catch((err) => console.log(err));
 };
 
 

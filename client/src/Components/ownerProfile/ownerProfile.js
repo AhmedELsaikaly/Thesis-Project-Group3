@@ -3,64 +3,93 @@ import { Form, Button,FormGroup, ControlLabel } from "react-bootstrap";
 import {Input} from "reactstrap";
 import { Grid, Row, Col } from 'react-bootstrap';
 import  axios from "axios";
-
-
-<<<<<<< HEAD
+import jwt_decode from "jwt-decode";
 
 export class OwnerProfile extends Component {
   constructor(){
     super()
     this.state={
+      _id:"",
       fullName:"",
       email:"",
-      area:"",
       mobileNumber:"",
+      area:"",
       placeName:"",
-      license:""
+      license:"",
+    } 
+    // this.handleChange = this.handleChange.bind(this)
+      }
 
+componentDidMount(){
+ const token = localStorage.usertoken;
+ const decoded = jwt_decode(token);
+    this.setState({
+      _id: decoded.id,
+      fullName:"",
+      email:"",
+      mobileNumber:"",
+      area:"",
+      placeName:"",
+      license:"",
+    });
+   
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState._id !== this.state._id) {
+      this.handleSubmit()
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  }
  
- 
+
+handleSubmitSave= (e)=>{
+  e.preventDefault()
+    axios.put(`/updateOwner/${this.state._id}`,{ 
+      fullName:this.state.fullName,
+      email:this.state.email,
+      mobileNumber:this.state.mobileNumber,
+      area:this.state.area,
+      placeName:this.state.placeName,
+      license:this.state.license
+    })
+    .then((res)=>{
+      alert("Save update done")     
+     })
+     .catch((err)=>{
+       console.log(err);
+     })
   }
   handleChange =(e)=>{
     this.setState({[e.target.name]:e.target.value})
   }
- 
-  async handleSubmit (e){
-   e.preventDefault()
-  //  const {fullName,email,area,mobileNumber}= this.state;
-  //  const form = await axios.put('/form',{name,email,message})
+  handleSubmit = ()=>{
+    axios.get(`/Owner/${this.state._id}`)
+    .then((res)=>{
+      console.log(res.data);
+      const data = res.data[0];
+      this.setState({ 
+        fullName:data.fullName,
+        email:data.email,
+        mobileNumber:data.mobileNumber,
+        area:data.area,
+        placeName:data.placeName,
+        license:data.license})
+     })
+     .catch((err)=>{
+       console.log(err);
+     })
   }
-=======
-import {
-  Button,
-  FormFeedback,
-  Form,
-  Col,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
-
-
-
-export class OwnerProfile extends Component {
- 
-
->>>>>>> ebc564cb1ee5af7f95f948e0577fc29a3739cafd
   render() {
     // const b = this.state.data;
     return (
       <div>
-<<<<<<< HEAD
-        <Form onSubmit={this.handleSubmit} style={{marginLeft:"7%",marginTop:"10%",maxWidth:'80%'}}>
+        <Form  style={{ marginLeft:"7%",marginTop:"10%",maxWidth:'80%'}}>
+       
           <Form.Row>
             <Form.Group as={Col} >
               <Form.Label>Full Name</Form.Label>
               <Input
                type="text"
+               name = "fullName"
                value={this.state.fullName}
                onChange={this.handleChange}
                  />
@@ -70,6 +99,7 @@ export class OwnerProfile extends Component {
               <Form.Label>Email</Form.Label>
               <Input 
               type="email" 
+              name = "email"
               value={this.state.email}
               onChange={this.handleChange}
                />
@@ -81,6 +111,7 @@ export class OwnerProfile extends Component {
                type="number"
                maxLength="10"
                minLength="10"
+               name = "mobileNumber"
                value={this.state.mobileNumber}
                onChange={this.handleChange}
           />
@@ -91,6 +122,7 @@ export class OwnerProfile extends Component {
               <Form.Label>area</Form.Label>
               <Input 
                 type="text"
+                name = "area"
                 value={this.state.area}
                 onChange={this.handleChange}
                  />
@@ -100,6 +132,7 @@ export class OwnerProfile extends Component {
               <Form.Label>Place Name</Form.Label>
               <Input 
                 type="text"
+                name = "placeName"
                 value={this.state.placeName}
                 onChange={this.handleChange}
                  />
@@ -109,28 +142,15 @@ export class OwnerProfile extends Component {
               <Form.Label>License</Form.Label>
               <Input 
                 type="file"
+                name = "license"
                 value={this.state.license}
                 onChange={this.handleChange}
                  />
             </Form.Group>
           </Form.Row>
-          <Button variant="primary" type="submit">
+          <Button onClick={this.handleSubmitSave} variant="primary" type="submit">
              SAVE
           </Button>
-=======
-        <Form>
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridName">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter Your Name" />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter Email" />
-            </Form.Group>
-          </Form.Row>
->>>>>>> ebc564cb1ee5af7f95f948e0577fc29a3739cafd
   </Form>
       </div>
     );

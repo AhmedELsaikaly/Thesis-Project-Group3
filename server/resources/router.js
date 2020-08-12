@@ -40,7 +40,6 @@ router.get("/reservationCustomer/:id", controller.GetReservation);
 router.get("/showbeforupdata/:id", controller.ShowLastDataCustomer);
 router.put("/updataCustomer/:id", controller.UpdateCustomer);
 //Update Owner
-router.get("/showLastDataOwner/:id", controller.ShowLastDataOwner);
 router.put("/updateOwner/:id", controller.UpdateOwner);
 
 
