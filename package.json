@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.2",
@@ -19,6 +21,8 @@
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
     "reactstrap": "^8.5.1",
+    "stripe": "^8.84.0",
+    "uuid": "^8.3.0",
     "validator": "^13.1.1"
   },
   "scripts": {

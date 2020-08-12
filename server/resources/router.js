@@ -51,6 +51,7 @@ router.get("/showLastDataServesis/:id", controller.ShowLastDataServices);
 router.put("/updateServesis/:id", controller.UpdateServices);
 
 router.post("/addReservation", controller.addReservation);
+router.post("/pay", controller.pay);
 router.get("/getResByDateOwner", controller.getResByDateOwner);
 
 router.post("/form", controller.ContactUs);
