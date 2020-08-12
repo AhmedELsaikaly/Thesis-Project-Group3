@@ -4,11 +4,6 @@ const jwt = require("jsonwebtoken");
 const stripe = require("stripe")(
   "sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf"
 );
-import { v4 as uuidv4 } from 'uuid';
-
-const uuid = require("uuid/v4");
-const v4 = require("uuid/v4");
-
 
 const nodemailer = require("nodemailer");
 
@@ -717,40 +712,36 @@ exports.UpdateServices = function (req, res) {
     .catch((err) => console.log(err));
 };
 //// ......................................payment ...............................//
-uuidv4(); 
-exports.pay =async  function(req, res) {
-  console.log("Request:", req.body);
+//  import  uuid from UUID
+
+exports.pay = async function (req, res) {
+  console.log("Request:5555555", req.body);
   let error;
   let status;
   try {
     const { product, token } = req.body;
     const customer = await stripe.customers.create({
       email: token.email,
-      source: token.id
+      source: token.id,
     });
-    const idempotency_key = uuid();
-    const charge = await stripe.charges.create(
-      {
-        amount: product.price * 100,
-        currency: "usd",
-        customer: customer.id,
-        receipt_email: token.email,
-        description: `Purchased the ${product.name}`,
-        shipping: {
-          name: token.card.name,
-          address: {
-            line1: token.card.address_line1,
-            line2: token.card.address_line2,
-            city: token.card.address_city,
-            country: token.card.address_country,
-            postal_code: token.card.address_zip
-          }
-        }
+
+    const charge = await stripe.charges.create({
+      amount: product.price * 100,
+      currency: "usd",
+      customer: customer.id,
+      receipt_email: token.email,
+      description: `Purchased the ${product.name}`,
+      shipping: {
+        name: token.card.name,
+        address: {
+          line1: token.card.address_line1,
+          line2: token.card.address_line2,
+          city: token.card.address_city,
+          country: token.card.address_country,
+          postal_code: token.card.address_zip,
+        },
       },
-      {
-        idempotency_key
-      }
-    );
+    });
     console.log("Charge:", { charge });
     status = "success";
   } catch (error) {
@@ -760,8 +751,6 @@ exports.pay =async  function(req, res) {
 
   res.json({ error, status });
 };
-
-
 
 // get owner booking by date
 exports.getResByDateOwner = function (req, res) {

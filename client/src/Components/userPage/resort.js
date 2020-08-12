@@ -156,10 +156,11 @@ class Resort extends React.Component {
           <Facility faclitics={this.state.faclitics} />
         </div>
         <Reservation ownerId={this.state.ownerId}  />
+        <Pay />
         <div className="rating">
           <Comment OwnerId={this.state.ownerId} />
         </div>
-        <Pay />
+      
       </div>
     );
   }
