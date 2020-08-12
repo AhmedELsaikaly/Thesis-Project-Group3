@@ -691,9 +691,8 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
-//// ......................................payment ...............................//
+//payment
 //  import  uuid from UUID
-
 exports.pay = async function (req, res) {
   console.log("Request:5555555", req.body);
   let error;
