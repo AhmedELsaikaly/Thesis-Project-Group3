@@ -1,7 +1,17 @@
 //require technologies
+<<<<<<< HEAD
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+=======
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const stripe = require("stripe")(
+  "sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf"
+);
+
+const nodemailer = require("nodemailer");
+>>>>>>> 0d7e1eadddedbd9032485d3dfa52eb035774fe26
 
 //require used files
 const ReservationModel = require('./models.js').ReservationModel;
@@ -333,8 +343,8 @@ exports.GetFacilites = function (req, res) {
 exports.GetAllOwner = function (req, res) {
   OwnerModel.find({})
     .then((result) => {
-      res.send(result);
       console.log(result);
+      res.send(result);
     })
     .catch((err) => {
       res.send(err);
@@ -538,7 +548,11 @@ exports.ShowLastDataCustomer = function (req, res) {
   CustomerModel.find({ _id: customerId })
     .then((result) => {
       res.send(result);
+<<<<<<< HEAD
       console.log(result, 'Cusrtomer Found!');
+=======
+      console.log(result, "Cusrtomer Found!");
+>>>>>>> 0d7e1eadddedbd9032485d3dfa52eb035774fe26
     })
     .catch((err) => {
       res.send(err);
@@ -677,6 +691,46 @@ exports.UpdateServices = function (req, res) {
     })
     .catch((err) => console.log(err));
 };
+//// ......................................payment ...............................//
+//  import  uuid from UUID
+
+exports.pay = async function (req, res) {
+  console.log("Request:5555555", req.body);
+  let error;
+  let status;
+  try {
+    const { product, token } = req.body;
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id,
+    });
+
+    const charge = await stripe.charges.create({
+      amount: product.price * 100,
+      currency: "usd",
+      customer: customer.id,
+      receipt_email: token.email,
+      description: `Purchased the ${product.name}`,
+      shipping: {
+        name: token.card.name,
+        address: {
+          line1: token.card.address_line1,
+          line2: token.card.address_line2,
+          city: token.card.address_city,
+          country: token.card.address_country,
+          postal_code: token.card.address_zip,
+        },
+      },
+    });
+    console.log("Charge:", { charge });
+    status = "success";
+  } catch (error) {
+    console.error("Error:", error);
+    status = "failure";
+  }
+
+  res.json({ error, status });
+};
 
 // get owner booking by date
 exports.getResByDateOwner = function (req, res) {
@@ -746,4 +800,29 @@ exports.ContactUs = function (req, res) {
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   }
+};
+
+//filterOwner Function
+exports.filterOwner = function (req, res) {
+  console.log(req.params);
+  const method = req.params.method;
+  const parame = req.params.id;
+  var obj = {};
+  obj[method] = parame;
+  console.log(typeof method, typeof parame, "111111111111111");
+  OwnerModel.find(obj)
+    .then((result) => {
+      console.log(result, "22222222222222222222");
+      if (result.length > 0) {
+        return res.status(201).json({ result: result });
+      }
+      return res
+        .status(200)
+        .json({ result: [], message: "there is no filter results" });
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: err,
+      })
+    );
 };

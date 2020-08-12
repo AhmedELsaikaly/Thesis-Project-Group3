@@ -50,9 +50,18 @@ router.put('/updateFacility/:id', controller.UpdateFacility);
 router.get('/showLastDataServesis/:id', controller.ShowLastDataServices);
 router.put('/updateServesis/:id', controller.UpdateServices);
 
+<<<<<<< HEAD
 router.post('/addReservation', controller.addReservation);
 router.get('/getResByDateOwner', controller.getResByDateOwner);
+=======
+router.post("/addReservation", controller.addReservation);
+router.post("/pay", controller.pay);
+router.get("/getResByDateOwner", controller.getResByDateOwner);
+>>>>>>> 0d7e1eadddedbd9032485d3dfa52eb035774fe26
 
 router.post('/form', controller.ContactUs);
+
+//filter for places
+router.get("/filterOwner/:method/:id", controller.filterOwner);
 
 module.exports = router;
