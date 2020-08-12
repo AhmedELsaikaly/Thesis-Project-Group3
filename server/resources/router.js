@@ -1,4 +1,5 @@
 //require technologies
+
 const router = require("express").Router();
 const controller = require("./controller");
 // const controllerUserRservation = require("./controllerUserRservation")
@@ -31,7 +32,6 @@ router.get("/AllComents/:id", controller.GetComments);
 /////////////////////////////////////
 //////      RESERVATION     ////////
 ///////////////////////////////////
-
 ///bookings Owner
 router.get("/OwnerBookings/:id", controller.OwnerBookings);
 //Reservation Customer
@@ -41,7 +41,6 @@ router.get("/showbeforupdata/:id", controller.ShowLastDataCustomer);
 router.put("/updataCustomer/:id", controller.UpdateCustomer);
 //Update Owner
 router.put("/updateOwner/:id", controller.UpdateOwner);
-
 
 //Update Facility
 router.get("/showLastDataFacility/:id", controller.ShowLastDataFacility);

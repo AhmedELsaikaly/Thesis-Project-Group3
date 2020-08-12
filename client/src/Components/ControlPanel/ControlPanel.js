@@ -8,7 +8,6 @@ import "./ControlPanel.css";
 //import used files
 import jessica from "./1.png";
 
-//....................
 // extracting the data from token
 
 //create ContolPanel Compo

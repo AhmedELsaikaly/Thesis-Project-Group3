@@ -18,10 +18,13 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
+// <<<<<<< HEAD
 
 
 
 
+// =======
+// >>>>>>> b847c71335beb2616de8b4a2c07e904d966d7955
 //declare port
 var port = process.env.PORT || 5000;
 

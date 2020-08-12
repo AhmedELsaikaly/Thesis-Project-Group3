@@ -3,14 +3,11 @@ import React from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import ApiMap from "../../apiMapGoogle/ApiMap";
-
 //import CSS
 import "./Facility.css";
-
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import jessica from "./1.png";
-
 //create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
@@ -104,67 +101,64 @@ class Facility extends React.Component {
       <div className="facility">
         <form className="form">
           <div class="table">
-          <span>Tables</span>
-            <label for="inputsm" >Quantity:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="tableQuant"
-              onChange={this.handleChange}
-            />   
-          
-              <label for="inputsm">Price:</label>
-              <input
-                id="inputsm"
-                type="number"
-                name="tablePrice"
-                onChange={this.handleChange}
-              />
-             <br></br>
-            <label>Photo</label>       
-            <PhotoUpload handler={this.getTableUrl} />
-          </div>
-
-      {/* ///////////////////// */}
-         
-          <div class="small">
-          <span> Small Tents </span>
-          <label for="inputsm" >Quantity:</label>
+            <span>Tables</span>
+            <label for="inputsm">Quantity:</label>
             <input
               id="inputsm"
               type="number"
               name="tableQuant"
               onChange={this.handleChange}
             />
-              <label for="inputsm">Price:</label>
-              <input
-                id="inputsm"
-                type="number"
-                name="tablePrice"
-                onChange={this.handleChange}
-              />
-            <label>Photo</label>  
-          <PhotoUpload handler={this.getSmallTentUrl} />
+            <label for="inputsm">Price:</label>
+            <input
+              id="inputsm"
+              type="number"
+              name="tablePrice"
+              onChange={this.handleChange}
+            />
+            <br></br>
+            <label>Photo</label>
+            <PhotoUpload handler={this.getTableUrl} />
+          </div>
+          {/* ///////////////////// */}
+          <div class="small">
+            <span> Small Tents </span>
+            <label for="inputsm">Quantity:</label>
+            <input
+              id="inputsm"
+              type="number"
+              name="SmallTentQuant"
+              onChange={this.handleChange}
+            />
+            <label for="inputsm">Price:</label>
+            <input
+              id="inputsm"
+              type="number"
+              name="SmallTentPrice"
+              onChange={this.handleChange}
+            />
+            <label>Photo</label>
+            <PhotoUpload handler={this.getSmallTentUrl} />
           </div>
           {/* ///////////////////// */}
           <div class="large">
-          <span> Large Tents </span>
-          <label for="inputsm" >Quantity:</label>
+            <span> Large Tents </span>
+            <label for="inputsm">Quantity:</label>
             <input
               id="inputsm"
               type="number"
-              name="tableQuant"
+              name="LargeTentQuant"
               onChange={this.handleChange}
             />
-              <label for="inputsm">Price:</label>
-              <input
-                id="inputsm"
-                type="number"
-                name="tablePrice"
-                onChange={this.handleChange}
-              />
-            <label>Photo</label>  
-          <PhotoUpload handler={this.getLargeTentUrl} />
+            <label for="inputsm">Price:</label>
+            <input
+              id="inputsm"
+              type="number"
+              name="LargeTentPrice"
+              onChange={this.handleChange}
+            />
+            <label>Photo</label>
+            <PhotoUpload handler={this.getLargeTentUrl} />
           </div>
           <button
             type="submit"
