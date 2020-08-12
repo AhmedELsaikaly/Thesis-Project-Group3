@@ -40,7 +40,6 @@ router.get("/reservationCustomer/:id", controller.GetReservation);
 router.get("/showbeforupdata/:id", controller.ShowLastDataCustomer);
 router.put("/updataCustomer/:id", controller.UpdateCustomer);
 //Update Owner
-router.get("/showLastDataOwner/:id", controller.ShowLastDataOwner);
 router.put("/updateOwner/:id", controller.UpdateOwner);
 
 //Update Facility
@@ -52,8 +51,12 @@ router.get("/showLastDataServesis/:id", controller.ShowLastDataServices);
 router.put("/updateServesis/:id", controller.UpdateServices);
 
 router.post("/addReservation", controller.addReservation);
+router.post("/pay", controller.pay);
 router.get("/getResByDateOwner", controller.getResByDateOwner);
 
 router.post("/form", controller.ContactUs);
+
+//filter for places
+router.get("/filterOwner/:method/:id", controller.filterOwner);
 
 module.exports = router;
