@@ -337,8 +337,8 @@ exports.GetFacilites = function (req, res) {
 exports.GetAllOwner = function (req, res) {
   OwnerModel.find({})
     .then((result) => {
-      res.send(result);
       console.log(result);
+      res.send(result);
     })
     .catch((err) => {
       res.send(err);
@@ -539,66 +539,45 @@ exports.OwnerBookings = function (req, res) {
 // Show data before  Updata Customer
 exports.ShowLastDataCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOneAndUpdate({ _id: customerId })
+  CustomerModel.find({ _id: customerId })
     .then((result) => {
-      // res.render(result);
-      console.log(result);
-      res.status(200).send(result);
+      res.send(result);
+      console.log(result, "Cusrtomer Found!");
     })
-    .catch((err) => res.status(200).send(err));
+    .catch((err) => {
+      res.send(err);
+    });
 };
 
 // Updata Customer data
 exports.UpdateCustomer = function (req, res) {
   const customerId = req.params.id;
-  CustomerModel.findOne({ _id: customerId }, function (err, update) {
-    if (err) {
-      console.log(err);
-      res.status(500).send();
-    } else {
-      if (!update) {
-        res.status(404).send();
-      } else {
-        if (req.body.fullName) {
-          update.fullName = req.body.fullName;
-        }
-        if (req.body.email) {
-          update.email = req.body.email;
-        }
-        if (req.body.mobileNumber) {
-          update.mobileNumber = req.body.mobileNumber;
-        }
-        if (req.body.address) {
-          update.address = req.body.address;
-        }
-        update.save((err, data) => {
-          if (err) {
-            console.log(err);
-            res.status(500).send();
-          } else {
-            res.send(data);
-          }
-        });
+  CustomerModel.findByIdAndUpdate(
+    { _id: customerId },
+    {
+      fullName: req.body.fullName,
+      email: req.body.email,
+      mobileNumber: req.body.mobileNumber,
+      address: req.body.address,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
       }
+      console.log(docs);
     }
-  });
-};
-
-//Show data before  Updata Owner
-exports.ShowLastDataOwner = function (req, res) {
-  const ownerId = req.params.id;
-  OwnerModel.findOneAndUpdate({ _id: ownerId })
+  )
     .then((result) => {
-      console.log(result);
-      res.status(200).send(result);
+      //  console.log(result)
+      res.send(result);
     })
-    .catch((err) => res.status(200).send(err));
+    .catch((err) => console.log(err));
 };
 
-// Updata Owner data
+/////////// Updata Owner//////////////
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
-  OwnerModel.findByIdAndUpdate(
+  OwnerModel.findOneAndUpdate(
     { _id: ownerId },
     {
       fullName: req.body.fullName,
@@ -612,16 +591,17 @@ exports.UpdateOwner = function (req, res) {
       if (err) {
         console.log(err);
       }
-      console.log(docs);
+      res.send(docs);
     }
   )
     .then((result) => {
       res.send(result);
+      console.log(result);
     })
     .catch((err) => console.log(err));
 };
 
-// Show data before  Updata Facility
+///////////////  Show data before  Updata Facility /////////////
 exports.ShowLastDataFacility = function (req, res) {
   const facilityId = req.params.id;
   FacilityModel.findOneAndUpdate({ _id: facilityId })
@@ -820,4 +800,29 @@ exports.ContactUs = function (req, res) {
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   }
+};
+
+//filterOwner Function
+exports.filterOwner = function (req, res) {
+  console.log(req.params);
+  const method = req.params.method;
+  const parame = req.params.id;
+  var obj = {};
+  obj[method] = parame;
+  console.log(typeof method, typeof parame, "111111111111111");
+  OwnerModel.find(obj)
+    .then((result) => {
+      console.log(result, "22222222222222222222");
+      if (result.length > 0) {
+        return res.status(201).json({ result: result });
+      }
+      return res
+        .status(200)
+        .json({ result: [], message: "there is no filter results" });
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: err,
+      })
+    );
 };

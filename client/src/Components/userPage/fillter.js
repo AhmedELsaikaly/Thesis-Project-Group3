@@ -1,58 +1,80 @@
-//import used technologies
+///import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
-
 //import CSS
 import "./fillter.css";
 import Resort from "./resort";
 import axios from "axios";
-
 //import used files
-
 //fake names for testing
 const names = ["rani", "sma"];
-
 //create Filtter Compo
 class Filtter extends React.Component {
   constructor() {
     super();
     this.state = {
       AllOwners: [],
-      index: 0,
-      selectVal: "",
-      second: [],
+      searchValues: [],
+      selectedSearchVal: "",
+      selectedVal: "",
+      placeName: [],
+      area: [
+        "Gaza",
+        "North Gaza",
+        "Middle Area",
+        "Khan Younis",
+        "Rafah",
+        "Another place",
+      ],
+      ratingAvg: [1, 2, 3, 4, 5],
+      error: "",
     };
   }
   componentDidMount() {
     axios
       .get("http://localhost:5000/AllOwner")
       .then((res) => {
-        this.setState({ AllOwners: res.data });
-        // setTimeout(function () {
-        //   console.log(this.state.AllOwners, "ddd");
-        // }, 3000);
+        var placeNames = [];
+        res.data.forEach((element) => {
+          placeNames.push(element.placeName);
+        });
+        this.setState({ AllOwners: res.data, placeName: placeNames });
       })
       .catch((err) => {
         console.log("ERROR from AXIOS =>", err);
       });
   }
-
   //handle function
   handle = (e) => {
-    this.setState({ selectVal: e.target.value });
-    // this.setState({ index: e.target });
-    // this.setState({ second: this.state.filtter[e.target.name] });
+    this.setState({
+      selectedVal: e.target.value,
+      searchValues: this.state[e.target.value],
+      selectedSearchVal: "",
+    });
   };
-
   //handleSelect function
   handleSelect = (e) => {
-    this.setState({ selectSecVal: e.target.name });
+    this.setState({ selectedSearchVal: e.target.value });
+    // console.log(
+    //   `111111111${this.state.selectedVal}/22222222222222${this.state.selectedSearchVal}`
+    // );
+    axios
+      .get(
+        `http://localhost:5000/filterOwner/${this.state.selectedVal}/${e.target.value}`
+      )
+      .then((res) => {
+        // if (typeof res.data === "object") {
+        //   this.setState({ AllOwners: res.data });
+        // }
+        this.setState({ error: res.data.message, AllOwners: res.data.result });
+      })
+      .catch((err) => {
+        console.log("ERROR from AXIOS =>", err);
+      });
   };
-
   //render Filtter Compo
   render() {
-    const { data } = this.state;
-    const { second } = this.state;
+    console.log(this.state.AllOwners);
     const { AllOwners } = this.state;
     return (
       <div>
@@ -61,7 +83,7 @@ class Filtter extends React.Component {
           style={{
             width: "1214px",
             height: "70px",
-            backgroundColor: "#dfe5e3",
+            backgroundColor: "#DFE5E3",
             border: "3px",
             borderRadius: "10px",
           }}
@@ -71,41 +93,31 @@ class Filtter extends React.Component {
             id="SelectOptions"
             className="mdb-select md-form"
             searchable="Search here.."
-            value={this.state.selectVal}
-            name={this.state.index}
+            value={this.state.selectedVal}
             onChange={this.handle}
           >
             <option value="">Choose Your Place</option>
-            <option value="name" name="0">
-              Names
-            </option>
-            <option value="rating" name="1">
-              Rating
-            </option>
-            <option value="location" name="2">
-              Location
-            </option>
+            <option value="placeName">Names</option>
+            <option value="ratingAvg">rating</option>
+            <option value="area">Location</option>
           </select>
           <select
             id="SelectOptions"
             className="mdb-select md-form"
             searchable="Search here.."
-            value={this.state.selectVal}
-            name={this.state.index}
+            value={this.state.selectedSearchVal}
             onChange={this.handleSelect}
           >
             <option value="">Choose Your Place</option>
-            {second.map((index, key) => (
-              <option value={index} name>
-                {" "}
-                {index}{" "}
-              </option>
+            {this.state.searchValues.map((element, index) => (
+              <option value={element}> {element} </option>
             ))}
           </select>
         </div>
 
         <div>
-          {AllOwners.map((dataIN, key) => (
+          <p className="text-danger">{this.state.error}</p>
+          {this.state.AllOwners.map((dataIN, key) => (
             <div
               class="card"
               style={{
@@ -126,7 +138,6 @@ class Filtter extends React.Component {
                 <h5 class="card-title">Place: {dataIN.placeName}</h5>
                 <h5 class="card-title">{dataIN.name}</h5>
                 <h5 class="card-title">Mobile: {dataIN.mobileNumber}</h5>
-
                 <Link to={`resort/${dataIN._id}`} className="button is-warning">
                   Details
                 </Link>
@@ -140,5 +151,4 @@ class Filtter extends React.Component {
 }
 //render Filtter Compo
 export { Filtter };
-
 //Check and vaildate

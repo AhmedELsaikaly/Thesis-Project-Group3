@@ -5,7 +5,7 @@ const mongoose = require("mongoose"); //inclode mongoose in our page
 
 //connection to mongodb
 const db = mongoose
-  .connect("mongodb://localhost:27017/myapp", {
+  .connect("mongodb://localhost:27017/raha", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false ,
