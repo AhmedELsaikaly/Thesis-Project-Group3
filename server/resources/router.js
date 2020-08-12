@@ -57,5 +57,6 @@ router.put("/updateServesis/:id", controller.UpdateServices);
 
 
 router.post("/addReservation", controller.addReservation);
+router.post("/pay", controller.pay);
 
 module.exports = router;

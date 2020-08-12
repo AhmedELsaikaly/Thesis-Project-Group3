@@ -33,7 +33,10 @@
     "react-scripts": "^3.4.1",
     "react-star-rating-component": "^1.4.1",
     "react-star-rating-input": "^8.0.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^6.0.8",
     "reactstrap": "^8.5.1",
+    "stripe": "^8.84.0",
     "validator": "^13.1.1"
   },
   "scripts": {

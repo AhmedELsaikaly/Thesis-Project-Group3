@@ -18,14 +18,8 @@ class Filtter extends React.Component {
     super();
     this.state = {
       AllOwners: [],
+      index: 0,
       selectVal: "",
-      selectSecVal: "",
-
-      filtter: [
-        names,
-        [1, 2, 3, 4, 5],
-        ["Rafah", "Khan", "Middle ", "Gaza", "Another place"],
-      ],
       second: [],
     };
   }
@@ -45,18 +39,15 @@ class Filtter extends React.Component {
 
   //handle function
   handle = (e) => {
-    console.log(e.target.id, "dddd");
-    this.setState({ selectVal: e.target.name });
-    this.setState({ second: this.state.filtter[e.target.id] }, () => {});
+    this.setState({ selectVal: e.target.value });
+    // this.setState({ index: e.target });
+    // this.setState({ second: this.state.filtter[e.target.name] });
   };
 
   //handleSelect function
   handleSelect = (e) => {
     this.setState({ selectSecVal: e.target.name });
   };
-  //   handleSelecte = (e) => {
-  //     this.setState({ selectVal: e.target.value });
-  //   };
 
   //render Filtter Compo
   render() {
@@ -76,69 +67,43 @@ class Filtter extends React.Component {
           }}
         >
           <span style={{ margin: "15px" }}>Search by</span>
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style={{ margin: "15px", width: "200px" }}
+          <select
+            id="SelectOptions"
+            className="mdb-select md-form"
+            searchable="Search here.."
+            value={this.state.selectVal}
+            name={this.state.index}
+            onChange={this.handle}
           >
-            {this.state.selectVal}
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a
-              className="dropdown-item"
-              id="0"
-              name="Name"
-              onClick={this.handle}
-            >
-              Name
-            </a>
-
-            <a
-              className="dropdown-item"
-              id="1"
-              name="Rating"
-              onClick={this.handle}
-            >
+            <option value="">Choose Your Place</option>
+            <option value="name" name="0">
+              Names
+            </option>
+            <option value="rating" name="1">
               Rating
-            </a>
-            <a
-              className="dropdown-item"
-              id="2"
-              name="Location"
-              onClick={this.handle}
-            >
+            </option>
+            <option value="location" name="2">
               Location
-            </a>
-          </div>
-        </div>
-        <div>
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style={{ margin: "15px", width: "200px" }}
+            </option>
+          </select>
+          <select
+            id="SelectOptions"
+            className="mdb-select md-form"
+            searchable="Search here.."
+            value={this.state.selectVal}
+            name={this.state.index}
+            onChange={this.handleSelect}
           >
-            {this.state.selectSecVal}
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <option value="">Choose Your Place</option>
             {second.map((index, key) => (
-              <a
-                name={index}
-                className="dropdown-item"
-                onClick={this.handleSelect}
-              >
-                {index}
-              </a>
+              <option value={index} name>
+                {" "}
+                {index}{" "}
+              </option>
             ))}
-          </div>
+          </select>
         </div>
+
         <div>
           {AllOwners.map((dataIN, key) => (
             <div
