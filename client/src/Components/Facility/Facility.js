@@ -1,28 +1,28 @@
 //import used technologies
-import React from "react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import ApiMap from "../../apiMapGoogle/ApiMap";
+import React from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import ApiMap from '../../apiMapGoogle/ApiMap';
 //import CSS
-import "./Facility.css";
+import './Facility.css';
 //import used files
-import PhotoUpload from "../PhotoUpload/PhotoUpload";
-import jessica from "./1.png";
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import jessica from './1.png';
 //create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: "",
+      ownerId: '',
       TableUrl: { url: null, isUploaded: false },
       SmallTentUrl: { url: null, isUploaded: false },
       LargeTentUrl: { url: null, isUploaded: false },
-      tableQuant: "",
-      tablePrice: "",
-      LargeTentQuant: "",
-      LargeTentPrice: "",
-      SmallTentQuant: "",
-      SmallTentPrice: "",
+      tableQuant: '',
+      tablePrice: '',
+      LargeTentQuant: '',
+      LargeTentPrice: '',
+      SmallTentQuant: '',
+      SmallTentPrice: '',
     };
   }
   // Take the id from token
@@ -68,7 +68,7 @@ class Facility extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/Facilites", {
+      .post('http://localhost:5000/Facilites', {
         facilities: {
           table: {
             img: this.state.TableUrl.url,
@@ -98,22 +98,22 @@ class Facility extends React.Component {
   //render Facility Compo
   render() {
     return (
-      <div className="facility">
-        <form className="form">
-          <div class="table">
+      <div className='facility'>
+        <form className='form'>
+          <div class='table'>
             <span>Tables</span>
-            <label for="inputsm">Quantity:</label>
+            <label for='inputsm'>Quantity:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="tableQuant"
+              id='inputsm'
+              type='number'
+              name='tableQuant'
               onChange={this.handleChange}
             />
-            <label for="inputsm">Price:</label>
+            <label for='inputsm'>Price:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="tablePrice"
+              id='inputsm'
+              type='number'
+              name='tablePrice'
               onChange={this.handleChange}
             />
             <br></br>
@@ -121,52 +121,52 @@ class Facility extends React.Component {
             <PhotoUpload handler={this.getTableUrl} />
           </div>
           {/* ///////////////////// */}
-          <div class="small">
+          <div class='small'>
             <span> Small Tents </span>
-            <label for="inputsm">Quantity:</label>
+            <label for='inputsm'>Quantity:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="SmallTentQuant"
+              id='inputsm'
+              type='number'
+              name='SmallTentQuant'
               onChange={this.handleChange}
             />
-            <label for="inputsm">Price:</label>
+            <label for='inputsm'>Price:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="SmallTentPrice"
+              id='inputsm'
+              type='number'
+              name='SmallTentPrice'
               onChange={this.handleChange}
             />
             <label>Photo</label>
             <PhotoUpload handler={this.getSmallTentUrl} />
           </div>
           {/* ///////////////////// */}
-          <div class="large">
+          <div class='large'>
             <span> Large Tents </span>
-            <label for="inputsm">Quantity:</label>
+            <label for='inputsm'>Quantity:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="LargeTentQuant"
+              id='inputsm'
+              type='number'
+              name='LargeTentQuant'
               onChange={this.handleChange}
             />
-            <label for="inputsm">Price:</label>
+            <label for='inputsm'>Price:</label>
             <input
-              id="inputsm"
-              type="number"
-              name="LargeTentPrice"
+              id='inputsm'
+              type='number'
+              name='LargeTentPrice'
               onChange={this.handleChange}
             />
             <label>Photo</label>
             <PhotoUpload handler={this.getLargeTentUrl} />
           </div>
           <button
-            type="submit"
-            className="btn btn-lg font-weight-bold btn-secondary btn-block"
+            type='submit'
+            className='btn btn-lg font-weight-bold btn-secondary btn-block'
             onClick={this.handleSubmit}
           >
-            {" "}
-            Send Your Request{" "}
+            {' '}
+            Send Your Request{' '}
           </button>
         </form>
         <ApiMap />
