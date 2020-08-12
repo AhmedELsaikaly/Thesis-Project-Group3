@@ -3,23 +3,28 @@ const express = require("express");
 const cors = require("cors");
 var bodyParser = require("body-parser");
 const path = require("path");
+var nodemailer = require("nodemailer");
 let app = express();
 app.use(cors());
 
 //const bcrypt = require("bcrypt");
 
 //require used files
-
 const router = require("./resources/router");
 const db = require("./database/connectionDB");
 
 app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
-// app.get('/', (req, res) => {
-//   res.send('works!')
-// })
+// <<<<<<< HEAD
 
+
+
+
+// =======
+// >>>>>>> b847c71335beb2616de8b4a2c07e904d966d7955
 //declare port
 var port = process.env.PORT || 5000;
 
