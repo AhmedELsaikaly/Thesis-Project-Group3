@@ -1,10 +1,10 @@
 //require technologies
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 //require used files
-const ReservationModel = require("./models.js").ReservationModel;
+const ReservationModel = require('./models.js').ReservationModel;
 const {
   CustomerModel,
   OwnerModel,
@@ -12,9 +12,9 @@ const {
   ServicesModel,
 
   RFModel,
-} = require("./models.js");
-const validateSignupInput = require("./validation/signup");
-const validateSigninInput = require("./validation/login");
+} = require('./models.js');
+const validateSignupInput = require('./validation/signup');
+const validateSigninInput = require('./validation/login');
 
 //SignIn For Owner
 
@@ -35,7 +35,7 @@ exports.SignInOwner = function (req, res) {
     .then((owner) => {
       //check if owner exists
       if (!owner) {
-        return res.status(404).json("Email not found");
+        return res.status(404).json('Email not found');
       }
       //check password
       bcrypt
@@ -53,7 +53,7 @@ exports.SignInOwner = function (req, res) {
               payload,
               process.env.SECRET_KEY,
               {
-                expiresIn: "1h", // 1 month in seconds
+                expiresIn: '1h', // 1 month in seconds
               },
               (err, token) => {
                 res.json({
@@ -63,7 +63,7 @@ exports.SignInOwner = function (req, res) {
               }
             );
           } else {
-            return res.status(400).json("Password incorrect");
+            return res.status(400).json('Password incorrect');
           }
         })
         .catch((err) => {
@@ -80,7 +80,7 @@ exports.SignUpOwner = function (req, res) {
   OwnerModel.findOne({ email: req.body.email })
     .then((owner) => {
       if (owner) {
-        return res.status(400).json("Email already exists");
+        return res.status(400).json('Email already exists');
       } else {
         //create newOwner
         const newOwner = new OwnerModel({
@@ -105,9 +105,9 @@ exports.SignUpOwner = function (req, res) {
                 if (
                   main(req.body.email, req.body.fullName, req.body.mobileNumber)
                 ) {
-                  res.send("Signed up successfully");
+                  res.send('Signed up successfully');
                 } else {
-                  res.send("The email not found");
+                  res.send('The email not found');
                 }
               })
               .catch((err) =>
@@ -132,12 +132,12 @@ async function main(email, name, phone) {
 
   //define transport object
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-      user: "ra77a99@gmail.com", // generated ethereal user
-      pass: "ra7a123456", // generated ethereal password
+      user: 'ra77a99@gmail.com', // generated ethereal user
+      pass: 'ra7a123456', // generated ethereal password
     },
   });
 
@@ -145,18 +145,18 @@ async function main(email, name, phone) {
   let info = await transporter.sendMail({
     from: '"Raha App" <ra77a99@gmail.com>', // sender address
     to: email, // list of receivers
-    subject: "Hello to RahaApp✔", // Subject line
+    subject: 'Hello to RahaApp✔', // Subject line
     text: name, // plain text body
     html: `<b>Hello ${name} Wellcome to ra7a App </b><p>${phone}</p>`, // html body
   });
 
-  console.log("Message sent: %s", info.messageId);
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  console.log('Message sent: %s', info.messageId);
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 }
 
 //SignIn For Custmer
 //router post request for signin
-process.env.SECRET_KEY = "secret";
+process.env.SECRET_KEY = 'secret';
 exports.SignInCustomer = function (req, res) {
   //form validation
   const { errors, isValid } = validateSigninInput(req.body);
@@ -172,7 +172,7 @@ exports.SignInCustomer = function (req, res) {
     .then((customer) => {
       //check if customer exists
       if (!customer) {
-        return res.status(404).json("Email not found");
+        return res.status(404).json('Email not found');
       }
 
       //check password
@@ -192,7 +192,7 @@ exports.SignInCustomer = function (req, res) {
               payload,
               process.env.SECRET_KEY,
               {
-                expiresIn: "1h", // 1 h
+                expiresIn: '1h', // 1 h
               },
               (err, token) => {
                 res.json({
@@ -202,7 +202,7 @@ exports.SignInCustomer = function (req, res) {
               }
             );
           } else {
-            return res.status(400).json("Password incorrect");
+            return res.status(400).json('Password incorrect');
           }
         })
         .catch((err) => {
@@ -222,10 +222,10 @@ exports.SignUpCustomer = function (req, res) {
     .then((customer) => {
       if (customer) {
         if (main(req.body.email, req.body.fullName, req.body.mobileNumber)) {
-          res.send("Signed up successfully");
+          res.send('Signed up successfully');
         } else {
-          res.send("Email not found");
-          res.status(400).json("Email already exists");
+          res.send('Email not found');
+          res.status(400).json('Email already exists');
         }
       } else {
         //create newCustomer
@@ -245,7 +245,7 @@ exports.SignUpCustomer = function (req, res) {
             //save newCustomer
             newCustomer
               .save()
-              .then(() => res.send("Signed up successfully"))
+              .then(() => res.send('Signed up successfully'))
               .catch((err) => console.log(err));
           });
         });
@@ -266,8 +266,8 @@ exports.ServicesStore = function (req, res) {
     servicesAvailable,
   });
   ServiceDoc.save()
-    .then(() => res.status(201).send("saved"))
-    .catch((err) => res.status(500).send(err + "err"));
+    .then(() => res.status(201).send('saved'))
+    .catch((err) => res.status(500).send(err + 'err'));
 };
 
 //Facilites storing Controller  For Owner
@@ -279,8 +279,8 @@ exports.FacilitesStore = function (req, res) {
     facilities,
   });
   ServiceDoc.save()
-    .then(() => res.status(201).send("FacilitesSaved"))
-    .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
+    .then(() => res.status(201).send('FacilitesSaved'))
+    .catch((err) => res.status(500).send(err + 'err in Saving Facilit'));
 };
 
 //get single User function
@@ -290,7 +290,7 @@ exports.GetUser = function (req, res) {
   CustomerModel.find({ _id: UserId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Customer found!");
+      console.log(result, 'Customer found!');
     })
     .catch((err) => {
       res.send(err);
@@ -305,11 +305,11 @@ exports.GetServices = function (req, res) {
       if (result) {
         res.status(200).send(result);
       } else {
-        res.status(200).end("There is no services for this this owner!");
+        res.status(200).end('There is no services for this this owner!');
       }
     })
     .catch((err) => {
-      console.log("Error: ", err);
+      console.log('Error: ', err);
     });
 };
 
@@ -321,11 +321,11 @@ exports.GetFacilites = function (req, res) {
       if (result) {
         res.status(200).send(result);
       } else {
-        res.status(200).end("There is no facilites for this owner");
+        res.status(200).end('There is no facilites for this owner');
       }
     })
     .catch((err) => {
-      console.log("Error: ", err);
+      console.log('Error: ', err);
     });
 };
 
@@ -348,7 +348,7 @@ exports.GetOwner = function (req, res) {
   OwnerModel.find({ _id: ownerId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Owner Found!");
+      console.log(result, 'Owner Found!');
     })
     .catch((err) => {
       res.send(err);
@@ -362,7 +362,7 @@ exports.GetUser = function (req, res) {
   CustomerModel.find({ _id: UserId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Customer found!");
+      console.log(result, 'Customer found!');
     })
     .catch((err) => {
       res.send(err);
@@ -376,7 +376,7 @@ exports.GetComments = function (req, res) {
   RFModel.find({ ownerId: ownerId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Comments got");
+      console.log(result, 'Comments got');
     })
     .catch((err) => {
       res.send(err);
@@ -413,9 +413,9 @@ exports.AddComment = function (req, res) {
                     rating,
                   });
                   CommentDoc.save()
-                    .then(() => res.status(201).send("Comment Saved!"))
+                    .then(() => res.status(201).send('Comment Saved!'))
                     .catch((err) =>
-                      res.status(500).send(err + "err in Saving Comment")
+                      res.status(500).send(err + 'err in Saving Comment')
                     );
                 }
               })
@@ -451,15 +451,15 @@ exports.addReservation = function (req, res) {
   //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
-      console.log("The quantity", faci.facilities[type].quantity);
+      console.log('The quantity', faci.facilities[type].quantity);
       quant = faci.facilities[type].quantity;
       ReservationModel.find({
         ownerId: ownerId,
         date: date,
         type: type,
       }).then((result) => {
-        console.log("11111111111111111111", result);
-        console.log("22222222222222222222222", quant - result.length);
+        console.log('11111111111111111111', result);
+        console.log('22222222222222222222222', quant - result.length);
         if (quant - result.length > 0) {
           let ReservationDoc = new ReservationModel({
             customerId,
@@ -470,17 +470,17 @@ exports.addReservation = function (req, res) {
             ownerId,
           });
           ReservationDoc.save()
-            .then(() => res.status(201).send("Reservation Saved"))
+            .then(() => res.status(201).send('Reservation Saved'))
             .catch((err) =>
-              res.status(500).send(err + "err in Saving Reservation")
+              res.status(500).send(err + 'err in Saving Reservation')
             );
         } else {
-          res.end("no available place");
+          res.end('no available place');
         }
       });
     })
     .catch((err) => {
-      console.log("Error: ", err);
+      console.log('Error: ', err);
     });
 };
 
@@ -492,7 +492,7 @@ exports.GetReservation = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("there is no booking ");
+        return res.status(201).end('there is no booking ');
       }
       return res.status(200).send(result);
     })
@@ -506,11 +506,11 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("no booking yet");
+        return res.status(201).end('no booking yet');
       }
       return res.status(200).json({
         result: result,
-        message: "This is the booking for this Owner",
+        message: 'This is the booking for this Owner',
       });
     })
     .catch((err) => console.log(err));
@@ -523,11 +523,11 @@ exports.OwnerBookings = function (req, res) {
       console.log(result);
       if (result.length === 0) {
         console.log(result);
-        return res.status(201).end("no booking yet");
+        return res.status(201).end('no booking yet');
       }
       return res.status(200).json({
         result: result,
-        message: "This is the booking for this Owner",
+        message: 'This is the booking for this Owner',
       });
     })
     .catch((err) => console.log(err));
@@ -538,12 +538,11 @@ exports.ShowLastDataCustomer = function (req, res) {
   CustomerModel.find({ _id: customerId })
     .then((result) => {
       res.send(result);
-      console.log(result,"Cusrtomer Found!");
+      console.log(result, 'Cusrtomer Found!');
     })
     .catch((err) => {
       res.send(err);
     });
-
 };
 
 // Updata Customer data
@@ -571,7 +570,6 @@ exports.UpdateCustomer = function (req, res) {
     .catch((err) => console.log(err));
 };
 
-
 /////////// Updata Owner//////////////
 exports.UpdateOwner = function (req, res) {
   const ownerId = req.params.id;
@@ -588,60 +586,44 @@ exports.UpdateOwner = function (req, res) {
     (err, docs) => {
       if (err) {
         console.log(err);
-
       }
-     res.send(docs)
+      res.send(docs);
     }
   )
     .then((result) => {
       res.send(result);
       console.log(result);
-
     })
     .catch((err) => console.log(err));
 };
 
-
 ///////////////  Show data before  Updata Facility /////////////
 exports.ShowLastDataFacility = function (req, res) {
-  const facilityId = req.params.id;
-  FacilityModel.findOneAndUpdate({ _id: facilityId })
+  const ownerId = req.params.id;
+  FacilityModel.find({ ownerId: ownerId })
     .then((result) => {
-      console.log(result);
-      res.status(200).send(result);
+      if (result) {
+        res.status(201).json({ result: result });
+      } else {
+        res.status(200).json({
+          result: [],
+          message: 'there is no facilites for this owner',
+        });
+      }
     })
-    .catch((err) => res.status(200).send(err));
+    .catch((err) => {
+      console.log('Error: ', err);
+    });
 };
-
 // Updata Facility
 exports.UpdateFacility = function (req, res) {
-  const facilityId = req.params.id;
-  FacilityModel.findByIdAndUpdate(
-    { _id: facilityId },
+  const ownerId = req.params.id;
+  // console.log(req.body.img3);
+  FacilityModel.updateOne(
+    { ownerId: ownerId },
     {
-      facilities: {
-        table: {
-          img: req.body.img,
-          price: req.body.price,
-          quantity: req.body.quantity,
-        },
-        SmallTents: {
-          img: req.body.img,
-          price: req.body.price,
-          quantity: req.body.quantity,
-        },
-        LargeTents: {
-          img: req.body.img,
-          price: req.body.price,
-          quantity: req.body.quantity,
-        },
-      },
-    },
-    (err, docs) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(docs);
+      $set: { facilities: req.body.facilities },
+      $currentDate: { lastModified: true },
     }
   )
     .then((result) => {
@@ -653,7 +635,7 @@ exports.UpdateFacility = function (req, res) {
 // Show data before  Updata Services
 exports.ShowLastDataServices = function (req, res) {
   const servicesId = req.params.id;
-  ServicesModel.findOneAndUpdate({ _id: servicesId })
+  ServicesModel.find({ _id: servicesId })
     .then((result) => {
       console.log(result);
       res.status(200).send(result);
@@ -667,17 +649,20 @@ exports.UpdateServices = function (req, res) {
   ServicesModel.findByIdAndUpdate(
     { _id: servicesId },
     {
-      servicesAvailable: {
-        PlayGround: req.body.PlayGround,
-        SwimmingPool: req.body.SwimmingPool,
-        FoodOffer: req.body.FoodOffer,
-        SoftDrinks: req.body.SoftDrinks,
-        TV: req.body.TV,
-        GrillArea: req.body.GrillArea,
-        Shesha: req.body.Shesha,
-        GreenArea: req.body.GreenArea,
-        KidsArea: req.body.KidsArea,
+      $set: {
+        servicesAvailable: {
+          PlayGround: req.body.PlayGround,
+          SwimmingPool: req.body.SwimmingPool,
+          FoodOffer: req.body.FoodOffer,
+          SoftDrinks: req.body.SoftDrinks,
+          TV: req.body.TV,
+          GrillArea: req.body.GrillArea,
+          Shesha: req.body.Shesha,
+          GreenArea: req.body.GreenArea,
+          KidsArea: req.body.KidsArea,
+        },
       },
+      $currentDate: { lastModified: true },
       otherService: req.body.otherService,
     },
     (err, docs) => {
@@ -697,7 +682,7 @@ exports.UpdateServices = function (req, res) {
 exports.getResByDateOwner = function (req, res) {
   console.log(req.query);
   const { ownerId, date } = req.body;
-  var prameters = ["table", "SmallTents", "LargeTents"];
+  var prameters = ['table', 'SmallTents', 'LargeTents'];
   var obj = {};
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
@@ -711,7 +696,7 @@ exports.getResByDateOwner = function (req, res) {
         if (result.length > 0) {
           res.status(201).json({ quant: obj, reservation: result });
         } else {
-          res.end("there is no reservation in this date");
+          res.end('there is no reservation in this date');
         }
       });
     })
@@ -742,23 +727,23 @@ exports.ContactUs = function (req, res) {
   async function main(email, name, message) {
     let testAccount = await nodemailer.createTestAccount();
     let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
+      host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
-        user: "ra77a99@gmail.com", // generated ethereal user
-        pass: "ra7a123456", // generated ethereal password
+        user: 'ra77a99@gmail.com', // generated ethereal user
+        pass: 'ra7a123456', // generated ethereal password
       },
     });
     // send mail with defined transport object
     let info = await transporter.sendMail({
       from: '"Contact us RahaApp" <ra77a99@gmail.com>', // sender address
-      to: "ra77a99@gmail.com", // list of receivers
-      subject: "Contact Us RahaApp", // Subject line
+      to: 'ra77a99@gmail.com', // list of receivers
+      subject: 'Contact Us RahaApp', // Subject line
       text: message, // plain text body
       html: `<b>Hello ${name}and email : ${email} Wellcome to ra7a App </b><p>${message}</p>`, // html body
     });
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   }
 };
