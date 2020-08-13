@@ -1,6 +1,5 @@
 //import used technologies
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Resort.css";
 import axios from "axios";
 import Comment from "../Rating&Feedback/Comments";

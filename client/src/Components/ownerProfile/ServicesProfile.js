@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import { Form, Button, FormGroup, ControlLabel } from 'react-bootstrap';
-import { Input } from 'reactstrap';
-import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import { MDBInput } from 'mdbreact';
+import React, { Component } from "react";
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { MDBInput } from "mdbreact";
 
 export class ServicesProfile extends Component {
   constructor() {
     super();
     this.state = {
-      _id: '',
-      PlayGround: '',
-      SwimmingPool: '',
-      FoodOffer: '',
-      SoftDrinks: '',
-      TV: '',
-      GrillArea: '',
-      Shesha: '',
-      GreenArea: '',
-      KidsArea: '',
-      otherService: '',
+      _id: "",
+      PlayGround: "",
+      SwimmingPool: "",
+      FoodOffer: "",
+      SoftDrinks: "",
+      TV: "",
+      GrillArea: "",
+      Shesha: "",
+      GreenArea: "",
+      KidsArea: "",
+      otherService: "",
     };
   }
 
@@ -29,16 +27,16 @@ export class ServicesProfile extends Component {
     const decoded = jwt_decode(token);
     this.setState({
       _id: decoded.id,
-      PlayGround: '',
-      SwimmingPool: '',
-      FoodOffer: '',
-      SoftDrinks: '',
-      TV: '',
-      GrillArea: '',
-      Shesha: '',
-      GreenArea: '',
-      KidsArea: '',
-      otherService: '',
+      PlayGround: "",
+      SwimmingPool: "",
+      FoodOffer: "",
+      SoftDrinks: "",
+      TV: "",
+      GrillArea: "",
+      Shesha: "",
+      GreenArea: "",
+      KidsArea: "",
+      otherService: "",
     });
   }
 
@@ -63,7 +61,7 @@ export class ServicesProfile extends Component {
         quantity3: this.state.quantity3,
       })
       .then((res) => {
-        alert('Save update done');
+        alert("Save update done");
       })
       .catch((err) => {
         console.log(err);
@@ -77,58 +75,58 @@ export class ServicesProfile extends Component {
   render() {
     return (
       <div>
-        <Form style={{ marginLeft: '7%', marginTop: '10%', maxWidth: '80%' }}>
+        <Form style={{ marginLeft: "7%", marginTop: "10%", maxWidth: "80%" }}>
           <MDBInput
-            label='Play Ground'
-            type='checkbox'
-            id='checkbox2'
+            label="Play Ground"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <MDBInput
-            label='Swimming Pool'
-            type='checkbox'
-            id='checkbox2'
+            label="Swimming Pool"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <MDBInput
-            label='Food Offer'
-            type='checkbox'
-            id='checkbox2'
+            label="Food Offer"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <MDBInput
-            label='Soft Drinks'
-            type='checkbox'
-            id='checkbox2'
+            label="Soft Drinks"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
-          <MDBInput label='TV' type='checkbox' id='checkbox2' indeterminate />
+          <MDBInput label="TV" type="checkbox" id="checkbox2" indeterminate />
           <MDBInput
-            label='Grill Area'
-            type='checkbox'
-            id='checkbox2'
-            indeterminate
-          />
-          <MDBInput
-            label='Shesha'
-            type='checkbox'
-            id='checkbox2'
+            label="Grill Area"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <MDBInput
-            label='Green Area'
-            type='checkbox'
-            id='checkbox2'
+            label="Shesha"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <MDBInput
-            label='Kids Area'
-            type='checkbox'
-            id='checkbox2'
+            label="Green Area"
+            type="checkbox"
+            id="checkbox2"
+            indeterminate
+          />
+          <MDBInput
+            label="Kids Area"
+            type="checkbox"
+            id="checkbox2"
             indeterminate
           />
           <br></br>
-          <Button variant='primary' type='submit'>
+          <Button variant="primary" type="submit">
             SAVE
           </Button>
         </Form>

@@ -1,6 +1,5 @@
 //import used technologies
 import React, { Component } from "react";
-import { element } from "prop-types";
 
 //import CSS
 import "./resList.css";

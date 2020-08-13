@@ -1,6 +1,5 @@
 //import used technologies
 import React from "react";
-import { Link } from "react-router-dom";
 
 //import used css
 import "./About.css";
