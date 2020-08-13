@@ -1,8 +1,8 @@
 //import used technologies
 import React, { Component } from "react";
-import { Form, Button,FormGroup, ControlLabel } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import {Input} from "reactstrap";
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import  axios from "axios";
 import jwt_decode from "jwt-decode";
 

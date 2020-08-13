@@ -7,12 +7,6 @@ import "./landPage.css";
 
 //import used files
 import Navbar from "../Navbar/Navbar";
-import one from "./one.jpg";
-import two from "./two.jpg";
-import three from "./three.jpg";
-import four from "./four.jpg";
-import five from "./five.jpg";
-import { SignIn } from "../Signing/signIn";
 import Footer from "../SubPages/Footer/Footer.js";
 import SliderCom1 from "./../slider/slider2";
 

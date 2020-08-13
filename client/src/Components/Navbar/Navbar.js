@@ -1,6 +1,6 @@
 //import used technologies
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //import CSS
 import "./NavBar.css";

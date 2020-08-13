@@ -4,13 +4,11 @@ import linked from "./in.png";
 import face from "./face.png";
 import insta from "./insta.png";
 import twitter from "./twitter.png";
-import axios from "axios";
 
 //import used css
 import "./Footer.css";
 
 //import used files
-import Navbar from "../../Navbar/Navbar.js";
 
 //create Footer Compo
 export class Footer extends Component {

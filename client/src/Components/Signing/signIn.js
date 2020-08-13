@@ -1,13 +1,11 @@
 //import used technologies
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 //import CSS
 import "./signIn.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
 
 //create SignIn compo
 class SignIn extends React.Component {

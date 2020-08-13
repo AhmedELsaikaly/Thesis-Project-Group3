@@ -1,7 +1,6 @@
 import React from "react";
 import "./bookingList.css";
-import axiox from "axios";
-import jwt_decode from "jwt-decode";
+
 class BookingList extends React.Component {
   constructor(props) {
     super(props);

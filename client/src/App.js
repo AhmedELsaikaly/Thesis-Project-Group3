@@ -1,12 +1,6 @@
 //import used technologies
 import React from "react";
-import logo from "./logo.svg";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //import CSS
 import "./App.css";

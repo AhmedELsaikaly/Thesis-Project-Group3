@@ -1,6 +1,5 @@
 //import used technologies
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 //import CSS
 import "./ControlPanel.css";

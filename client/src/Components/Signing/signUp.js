@@ -5,7 +5,6 @@ import React from "react";
 import "./signUp.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
 const axios = require("axios");
 
 //create signup compo
