@@ -1,17 +1,10 @@
 //require technologies
-<<<<<<< HEAD
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-=======
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const stripe = require("stripe")(
   "sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf"
 );
-
-const nodemailer = require("nodemailer");
->>>>>>> 0d7e1eadddedbd9032485d3dfa52eb035774fe26
 
 //require used files
 const ReservationModel = require('./models.js').ReservationModel;
@@ -548,11 +541,8 @@ exports.ShowLastDataCustomer = function (req, res) {
   CustomerModel.find({ _id: customerId })
     .then((result) => {
       res.send(result);
-<<<<<<< HEAD
       console.log(result, 'Cusrtomer Found!');
-=======
       console.log(result, "Cusrtomer Found!");
->>>>>>> 0d7e1eadddedbd9032485d3dfa52eb035774fe26
     })
     .catch((err) => {
       res.send(err);
