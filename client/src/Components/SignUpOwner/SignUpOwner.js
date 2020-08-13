@@ -5,7 +5,6 @@ import React from "react";
 import "./SignUpOwner.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 
 const axios = require("axios");

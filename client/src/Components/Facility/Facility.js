@@ -7,7 +7,7 @@ import ApiMap from "../../apiMapGoogle/ApiMap";
 import "./Facility.css";
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
-import jessica from "./1.png";
+
 //create Facility Compo
 class Facility extends React.Component {
   constructor(props) {

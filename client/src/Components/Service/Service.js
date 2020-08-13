@@ -8,7 +8,6 @@ import "./Service.css";
 
 //import used files
 import CheckBox from "./CheckBox.js";
-import Facility from "../Facility/Facility";
 
 //create Service Compo
 class Service extends React.Component {
