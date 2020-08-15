@@ -2,8 +2,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const stripe = require("stripe")(
-  "sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf"
+const stripe = require('stripe')(
+  'sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf'
 );
 
 //require used files
@@ -305,8 +305,8 @@ exports.GetServices = function (req, res) {
   const ownerId = req.params.id;
   ServicesModel.find({ ownerId: ownerId })
     .then((result) => {
-      if (result) {
-        res.status(200).send(result);
+      if (result.length > 0) {
+        res.status(201).send(result);
       } else {
         res.status(200).end('There is no services for this this owner!');
       }
@@ -542,7 +542,7 @@ exports.ShowLastDataCustomer = function (req, res) {
     .then((result) => {
       res.send(result);
       console.log(result, 'Cusrtomer Found!');
-      console.log(result, "Cusrtomer Found!");
+      console.log(result, 'Cusrtomer Found!');
     })
     .catch((err) => {
       res.send(err);
@@ -649,25 +649,16 @@ exports.ShowLastDataServices = function (req, res) {
 
 // Updata Services
 exports.UpdateServices = function (req, res) {
-  const servicesId = req.params.id;
-  ServicesModel.findByIdAndUpdate(
-    { _id: servicesId },
+  const ownerId = req.params.id;
+  console.log(req.body);
+  ServicesModel.update(
+    { ownerId: ownerId },
     {
       $set: {
-        servicesAvailable: {
-          PlayGround: req.body.PlayGround,
-          SwimmingPool: req.body.SwimmingPool,
-          FoodOffer: req.body.FoodOffer,
-          SoftDrinks: req.body.SoftDrinks,
-          TV: req.body.TV,
-          GrillArea: req.body.GrillArea,
-          Shesha: req.body.Shesha,
-          GreenArea: req.body.GreenArea,
-          KidsArea: req.body.KidsArea,
-        },
+        servicesAvailable: req.body.servicesAvailable,
+        otherService: req.body.otherService,
       },
       $currentDate: { lastModified: true },
-      otherService: req.body.otherService,
     },
     (err, docs) => {
       if (err) {
@@ -684,7 +675,7 @@ exports.UpdateServices = function (req, res) {
 //payment
 //  import  uuid from UUID
 exports.pay = async function (req, res) {
-  console.log("Request:5555555", req.body);
+  console.log('Request:5555555', req.body);
   let error;
   let status;
   try {
@@ -696,7 +687,7 @@ exports.pay = async function (req, res) {
 
     const charge = await stripe.charges.create({
       amount: product.price * 100,
-      currency: "usd",
+      currency: 'usd',
       customer: customer.id,
       receipt_email: token.email,
       description: `Purchased the ${product.name}`,
@@ -711,11 +702,11 @@ exports.pay = async function (req, res) {
         },
       },
     });
-    console.log("Charge:", { charge });
-    status = "success";
+    console.log('Charge:', { charge });
+    status = 'success';
   } catch (error) {
-    console.error("Error:", error);
-    status = "failure";
+    console.error('Error:', error);
+    status = 'failure';
   }
 
   res.json({ error, status });
@@ -798,16 +789,16 @@ exports.filterOwner = function (req, res) {
   const parame = req.params.id;
   var obj = {};
   obj[method] = parame;
-  console.log(typeof method, typeof parame, "111111111111111");
+  console.log(typeof method, typeof parame, '111111111111111');
   OwnerModel.find(obj)
     .then((result) => {
-      console.log(result, "22222222222222222222");
+      console.log(result, '22222222222222222222');
       if (result.length > 0) {
         return res.status(201).json({ result: result });
       }
       return res
         .status(200)
-        .json({ result: [], message: "there is no filter results" });
+        .json({ result: [], message: 'there is no filter results' });
     })
     .catch((err) =>
       res.status(500).json({
