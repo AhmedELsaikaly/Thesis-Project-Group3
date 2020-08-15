@@ -23,7 +23,7 @@ class NavBar extends React.Component {
                   <span className="Logo">Ra7a</span>
                 </li>
                 <Link to="/">
-                  <li className="lia">Home </li>
+                  <li className="lia test">Home </li>
                 </Link>
                 <Link to="/signUp">
                   <li className="lia">Sign Up </li>
@@ -45,9 +45,6 @@ class NavBar extends React.Component {
                 <Link to="/customerProfile">
                   <li>My profile</li>
                 </Link> */}
-                <Link to="/Policy">
-                  <li className="lia">Policy</li>
-                </Link>
                 <Link to="/customerProfile">
                   <li className="lia">My profile</li>
                 </Link>
