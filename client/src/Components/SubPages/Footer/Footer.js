@@ -39,6 +39,11 @@ export class Footer extends Component {
                 <img src={linked} alt="linkedin icon" />
               </a>
             </li>
+            <li>
+              <a href="https://wa.me/972595167571" target="_blanck">
+                <img src={Whatsapp} alt="WhatsApp icon" />
+              </a>
+            </li>
           </ul>
         </div>
       </div>
