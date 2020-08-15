@@ -1,6 +1,5 @@
 //import used technologies
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Slider from "@farbenmeer/react-spring-slider";
 import one from "./../landPage/one.jpg";
 import two from "./../landPage/two.jpg";
@@ -11,7 +10,6 @@ import five from "./../landPage/five.jpg";
 import "./slider.css";
 
 //import used files
-// import one from './../landPage/one.jpg'
 
 //create SliderCom Compo
 

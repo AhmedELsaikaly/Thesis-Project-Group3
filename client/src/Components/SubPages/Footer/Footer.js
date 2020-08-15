@@ -4,13 +4,11 @@ import linked from "./in.png";
 import face from "./face.png";
 import insta from "./insta.png";
 import twitter from "./twitter.png";
-import axios from "axios";
 
 //import used css
 import "./Footer.css";
 
 //import used files
-import Navbar from "../../Navbar/Navbar.js";
 
 //create Footer Compo
 export class Footer extends Component {
@@ -22,16 +20,24 @@ export class Footer extends Component {
           <span>Copyright &copy; 2020 RahaApp</span>
           <ul>
             <li>
-              <img src={face} alt="face icon" />
+              <a href="http://www.facebook.com" target="_blanck">
+                <img src={face} alt="face icon" />
+              </a>
             </li>
             <li>
-              <img src={insta} alt="instgram icon" />
+              <a href="http://www.instgram.com" target="_blanck">
+                <img src={insta} alt="instgram icon" />
+              </a>
             </li>
             <li>
-              <img src={twitter} alt="twitter icon" />
+              <a href="http://www.twitter.com" target="_blanck">
+                <img src={twitter} alt="twitter icon" />
+              </a>
             </li>
             <li>
-              <img src={linked} alt="linkedin icon" />
+              <a href="http://www.linkedin.com" target="_blanck">
+                <img src={linked} alt="linkedin icon" />
+              </a>
             </li>
           </ul>
         </div>

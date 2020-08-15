@@ -1,6 +1,6 @@
 //import used technologies
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //import CSS
 import "./NavBar.css";
@@ -23,7 +23,7 @@ class NavBar extends React.Component {
                   <span className="Logo">Ra7a</span>
                 </li>
                 <Link to="/">
-                  <li className="lia">Home </li>
+                  <li className="lia test">Home </li>
                 </Link>
                 <Link to="/signUp">
                   <li className="lia">Sign Up </li>

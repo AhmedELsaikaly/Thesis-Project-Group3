@@ -5,7 +5,6 @@ import React from "react";
 import "./SignUpOwner.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 
 const axios = require("axios");
@@ -350,7 +349,7 @@ class SignUpOwner extends React.Component {
               className="btn btn-success btn-lg btn-block"
               onClick={this.handleSubmit}
             >
-              Sign Up Now
+              Signup as Owner
             </button>
           </div>
           <div className="text-center">

@@ -47,18 +47,18 @@ router.get('/showLastDataFacility/:id', controller.ShowLastDataFacility);
 router.put('/updateFacility/:id', controller.UpdateFacility);
 
 //Update Servesis
-router.get('/showLastDataServesis/:id', controller.ShowLastDataServices);
+// router.get('/showLastDataServesis/:id', controller.ShowLastDataServices);
 router.put('/updateServesis/:id', controller.UpdateServices);
 
 router.post('/addReservation', controller.addReservation);
 router.get('/getResByDateOwner', controller.getResByDateOwner);
-router.post("/addReservation", controller.addReservation);
-router.post("/pay", controller.pay);
-router.get("/getResByDateOwner", controller.getResByDateOwner);
+router.post('/addReservation', controller.addReservation);
+router.post('/pay', controller.pay);
+router.get('/getResByDateOwner', controller.getResByDateOwner);
 
 router.post('/form', controller.ContactUs);
 
 //filter for places
-router.get("/filterOwner/:method/:id", controller.filterOwner);
+router.get('/filterOwner/:method/:id', controller.filterOwner);
 
 module.exports = router;

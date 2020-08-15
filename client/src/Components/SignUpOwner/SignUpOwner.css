@@ -15,6 +15,9 @@
 .btn {
   border-radius: 3px;
 }
+.btn {
+  margin: auto !important;
+}
 .signup-form {
   width: 600px;
   margin: 0 auto;

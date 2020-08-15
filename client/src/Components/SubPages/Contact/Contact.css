@@ -1,0 +1,15 @@
+.test3 {
+  border: 1px solid #ccc;
+  padding: 30px;
+  border-radius: 3px;
+}
+
+.test3 textarea {
+  width: 100% !important;
+  margin: 0 !important;
+  height: 250px !important;
+}
+
+.test3 button {
+  width: 100%;
+}

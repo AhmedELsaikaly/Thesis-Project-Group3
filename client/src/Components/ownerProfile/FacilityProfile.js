@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Form, Button, FormGroup, ControlLabel } from 'react-bootstrap';
-import { Input } from 'reactstrap';
-import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import React, { Component } from "react";
+import { Form, Button } from "react-bootstrap";
+import { Input } from "reactstrap";
+import { Col } from "react-bootstrap";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 export class FacilityProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: '',
-      TableUrl: '',
-      SmallTentUrl: '',
-      LargeTentUrl: '',
-      tableQuant: '',
-      tablePrice: '',
-      LargeTentQuant: '',
-      LargeTentPrice: '',
-      SmallTentQuant: '',
-      SmallTentPrice: '',
+      ownerId: "",
+      TableUrl: "",
+      SmallTentUrl: "",
+      LargeTentUrl: "",
+      tableQuant: "",
+      tablePrice: "",
+      LargeTentQuant: "",
+      LargeTentPrice: "",
+      SmallTentQuant: "",
+      SmallTentPrice: "",
     };
   }
 
@@ -41,24 +41,24 @@ export class FacilityProfile extends Component {
       .put(`/updateFacility/${this.state.ownerId}`, {
         facilities: {
           table: {
-            img: 'vjg',
+            img: "vjg",
             price: this.state.tablePrice,
             quantity: this.state.tableQuant,
           },
           SmallTents: {
-            img: 'vjg',
+            img: "vjg",
             price: this.state.SmallTentPrice,
             quantity: this.state.SmallTentQuant,
           },
           LargeTents: {
-            img: 'vjg',
+            img: "vjg",
             price: this.state.LargeTentPrice,
             quantity: this.state.LargeTentQuant,
           },
         },
       })
       .then((res) => {
-        alert('Save update done');
+        alert("Save update done");
       })
       .catch((err) => {
         console.log(err);
@@ -96,7 +96,7 @@ export class FacilityProfile extends Component {
   render() {
     return (
       <div>
-        <Form style={{ marginLeft: '7%', marginTop: '10%', maxWidth: '80%' }}>
+        <Form style={{ marginLeft: "7%", marginTop: "10%", maxWidth: "80%" }}>
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label>Tabels</Form.Label>
@@ -106,9 +106,9 @@ export class FacilityProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Price</Form.Label>
               <Input
-                type='number'
-                name='tablePrice'
-                value={this.state.tablePrice || ''}
+                type="number"
+                name="tablePrice"
+                value={this.state.tablePrice || ""}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -116,9 +116,9 @@ export class FacilityProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Quantity</Form.Label>
               <Input
-                type='number'
-                name='tableQuant'
-                value={this.state.tableQuant || ''}
+                type="number"
+                name="tableQuant"
+                value={this.state.tableQuant || ""}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -133,8 +133,7 @@ export class FacilityProfile extends Component {
               />
             </Form.Group> */}
           </Form.Row>
-          <hr></hr>
-          <hr></hr>
+          <hr />
 
           {/* ////////////////////// */}
           <Form.Row>
@@ -146,21 +145,21 @@ export class FacilityProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Price</Form.Label>
               <Input
-                type='number'
-                name='SmallTentPrice'
-                value={this.state.SmallTentPrice || ''}
+                type="number"
+                name="SmallTentPrice"
+                value={this.state.SmallTentPrice || ""}
                 onChange={this.handleChange}
-              />{' '}
+              />{" "}
             </Form.Group>
 
             <Form.Group as={Col}>
               <Form.Label>Quantity</Form.Label>
               <Input
-                type='number'
-                name='SmallTentQuant'
-                value={this.state.SmallTentQuant || ''}
+                type="number"
+                name="SmallTentQuant"
+                value={this.state.SmallTentQuant || ""}
                 onChange={this.handleChange}
-              />{' '}
+              />{" "}
             </Form.Group>
 
             {/* <Form.Group as={Col}>
@@ -174,8 +173,7 @@ export class FacilityProfile extends Component {
             </Form.Group> */}
           </Form.Row>
 
-          <hr></hr>
-          <hr></hr>
+          <hr />
 
           {/* ////////////////////// */}
           <Form.Row>
@@ -187,21 +185,21 @@ export class FacilityProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Price</Form.Label>
               <Input
-                type='number'
-                name='LargeTentPrice'
-                value={this.state.LargeTentPrice || ''}
+                type="number"
+                name="LargeTentPrice"
+                value={this.state.LargeTentPrice || ""}
                 onChange={this.handleChange}
-              />{' '}
+              />{" "}
             </Form.Group>
 
             <Form.Group as={Col}>
               <Form.Label>Quantity</Form.Label>
               <Input
-                type='number'
-                name='LargeTentQuant'
-                value={this.state.LargeTentQuant || ''}
+                type="number"
+                name="LargeTentQuant"
+                value={this.state.LargeTentQuant || ""}
                 onChange={this.handleChange}
-              />{' '}
+              />{" "}
             </Form.Group>
 
             {/* <Form.Group as={Col}>
@@ -216,8 +214,8 @@ export class FacilityProfile extends Component {
           </Form.Row>
 
           <Button
-            variant='primary'
-            type='submit'
+            variant="primary"
+            type="submit"
             onClick={this.handleSubmitSave}
           >
             SAVE

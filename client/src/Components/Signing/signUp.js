@@ -5,7 +5,6 @@ import React from "react";
 import "./signUp.css";
 
 //import used files
-import Navbar from "../Navbar/Navbar.js";
 const axios = require("axios");
 
 //create signup compo
@@ -300,7 +299,7 @@ class SignUp extends React.Component {
               className="btn btn-success btn-lg btn-block"
               onClick={this.handleSubmit}
             >
-              Register Now
+              Signup as Customer
             </button>
           </div>
           <div className="text-center">
