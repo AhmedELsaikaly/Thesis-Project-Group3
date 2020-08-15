@@ -4,7 +4,7 @@ import linked from "./in.png";
 import face from "./face.png";
 import insta from "./insta.png";
 import twitter from "./twitter.png";
-
+import Whatsapp from "./WhatsApp.png";
 //import used css
 import "./Footer.css";
 
