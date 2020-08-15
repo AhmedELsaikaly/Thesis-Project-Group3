@@ -27,7 +27,10 @@ class OwnerBooking extends React.Component {
   }
   handleChange = (e) => {
     e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value,
+      reservationCount: { LargeTents: [], SmallTents: [], table: [] },
+    });
   };
   handleClick = (e) => {
     e.preventDefault();
@@ -57,13 +60,9 @@ class OwnerBooking extends React.Component {
             reservationCount: { LargeTents: [], SmallTents: [], table: [] },
           });
         } else {
-          var reservationCount = {};
+          var reservationCount = this.state.reservationCount;
           result.data.reservation.forEach((element) => {
-            if (reservationCount[element.type] === undefined) {
-              reservationCount[element.type] = [element];
-            } else {
-              reservationCount[element.type].push(element);
-            }
+            reservationCount[element.type].push(element);
           });
           this.setState({
             isClicked: false,
@@ -101,6 +100,7 @@ class OwnerBooking extends React.Component {
     });
   };
   render() {
+    console.log(this.state.reservationCount);
     return (
       <div className="Booking_div">
         <input name="date" type="date" onChange={this.handleChange} />
