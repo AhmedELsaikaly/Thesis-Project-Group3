@@ -5,7 +5,7 @@
 
 There is an approach called "working backwards" that is widely used at Amazon. They work backwards from the customer, rather than starting with an idea for a product and trying to bolt customers onto it. While working backwards can be applied to any specific product decision, using this approach is especially important when developing new products or features.
 
-For new initiatives a product manager typically starts by writing an internal press release announcing the finished product. The target audience for the press release is the new/updated product's customers, which can be retail customers or internal users of a tool or technology. Internal press releases are centered around the customer problem, how current solutions (internal or external) fail, and how the new product will blow away existing solutions.
+For new initiatives a product manager typically starts by writing an internal press release announcing the finished product. The target audience for the press release is the new/updated product's customers, which can be retail customers or internal customers of a tool or technology. Internal press releases are centered around the customer problem, how current solutions (internal or external) fail, and how the new product will blow away existing solutions.
 
 If the benefits listed don't sound very interesting or exciting to customers, then perhaps they're not (and shouldn't be built). Instead, the product manager should keep iterating on the press release until they've come up with benefits that actually sound like benefits. Iterating on a press release is a lot less expensive than iterating on the product itself (and quicker!).
 
@@ -40,15 +40,15 @@ It Helps You Stick to Your Desires.
 
 ## Problem
 
-A single page app that will allow users to explore beach facilities according to whaterver circumstances you want without using traditional ways of booking.
+A single page app that will allow customers to explore beach facilities according to whatever circumstances you want without using traditional ways of booking.
 
 > Describe the problem your product solves.
 
 ## Solution
 
-We will display all information, details , services and even photos concerning beach facilities while allowing users to search for the best choice meet their desires .
+We will display all information, details , services and even photos concerning beach facilities while allowing customers to search for the best choice meet their desires .
 
-<!-- Users can also find their expenses by type of expenses. -->
+<!-- customers can also find their expenses by type of expenses. -->
 
 > Describe how your product elegantly solves the problem.
 

@@ -133,8 +133,7 @@ export class FacilityProfile extends Component {
               />
             </Form.Group> */}
           </Form.Row>
-          <hr></hr>
-          <hr></hr>
+          <hr />
 
           {/* ////////////////////// */}
           <Form.Row>
@@ -174,8 +173,7 @@ export class FacilityProfile extends Component {
             </Form.Group> */}
           </Form.Row>
 
-          <hr></hr>
-          <hr></hr>
+          <hr />
 
           {/* ////////////////////// */}
           <Form.Row>
