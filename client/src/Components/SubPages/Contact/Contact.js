@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import Navbar from "../../Navbar/Navbar";
 
 //import used css
 import "./Contact.css";
@@ -32,41 +33,48 @@ class Contact extends React.Component {
   //render Contact Compo
   render() {
     return (
-      <Form
-        onSubmit={this.handleSubmit}
-        style={{ marginLeft: "20%", marginTop: "10%", maxWidth: "50%" }}
-      >
-        <FormGroup>
-          <Label for="name">Name:</Label>
-          <Input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </FormGroup>
+      <div className="custom-form">
+        <Navbar />
+        <Form
+          className="test3"
+          onSubmit={this.handleSubmit}
+          style={{ marginLeft: "20%", marginTop: "10%", maxWidth: "50%" }}
+        >
+          <FormGroup>
+            <Label for="name">Name:</Label>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Enter Your Name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <Label for="email">Email:</Label>
-          <Input
-            type="Email"
-            value={this.state.email}
-            name="email"
-            onChange={this.handleChange}
-          />
-        </FormGroup>
+          <FormGroup>
+            <Label for="email">Email:</Label>
+            <Input
+              type="Email"
+              value={this.state.email}
+              name="email"
+              placeholder="Enter Your E-mail"
+              onChange={this.handleChange}
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <Label for="message">Message:</Label>
-          <Input
-            type="textarea"
-            name="message"
-            value={this.state.message}
-            onChange={this.handleChange}
-          />
-        </FormGroup>
-        <Button>SEND</Button>
-      </Form>
+          <FormGroup>
+            <Label for="message">Message:</Label>
+            <Input
+              type="textarea"
+              name="message"
+              placeholder="Write Your Message Here"
+              value={this.state.message}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <Button>Send Your Message</Button>
+        </Form>
+      </div>
     );
   }
 }

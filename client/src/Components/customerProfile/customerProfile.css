@@ -33,3 +33,6 @@
   margin: 10px auto;
   background-color: rgb(255, 247, 241);
 }
+.edit-profile {
+  border: 1px solid #ccc !important;
+}
