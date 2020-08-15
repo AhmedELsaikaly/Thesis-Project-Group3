@@ -1,29 +1,35 @@
-import React, { Component } from 'react';
-import { Form, Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import React, { Component } from "react";
+import {
+  Form,
+  Button,
+  FormGroup,
+  ControlLabel,
+  Container,
+} from "react-bootstrap";
 // import { Input } from 'reactstrap';
 // import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import CheckBox from '../Service/CheckBox';
-import jwt_decode from 'jwt-decode';
+import axios from "axios";
+import CheckBox from "../Service/CheckBox";
+import jwt_decode from "jwt-decode";
 // import { MDBInput } from 'mdbreact';
 
 export class ServicesProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: '',
+      ownerId: "",
       services: [
-        { id: 1, value: 'PlayGround', isChecked: false },
-        { id: 2, value: 'SwimmingPool', isChecked: false },
-        { id: 3, value: 'FoodOffer', isChecked: false },
-        { id: 4, value: 'SoftDrinks', isChecked: false },
-        { id: 5, value: 'TV', isChecked: false },
-        { id: 6, value: 'GrillArea', isChecked: false },
-        { id: 7, value: 'Shesha', isChecked: false },
-        { id: 8, value: 'GreenArea', isChecked: false },
-        { id: 9, value: 'KidsArea', isChecked: false },
+        { id: 1, value: "PlayGround", isChecked: false },
+        { id: 2, value: "SwimmingPool", isChecked: false },
+        { id: 3, value: "FoodOffer", isChecked: false },
+        { id: 4, value: "SoftDrinks", isChecked: false },
+        { id: 5, value: "TV", isChecked: false },
+        { id: 6, value: "GrillArea", isChecked: false },
+        { id: 7, value: "Shesha", isChecked: false },
+        { id: 8, value: "GreenArea", isChecked: false },
+        { id: 9, value: "KidsArea", isChecked: false },
       ],
-      otherService: '',
+      otherService: "",
     };
   }
 
@@ -80,7 +86,7 @@ export class ServicesProfile extends Component {
         otherService: this.state.otherService,
       })
       .then((res) => {
-        alert('Save update done');
+        alert("Save update done");
       })
       .catch((err) => {
         console.log(err);
@@ -102,35 +108,47 @@ export class ServicesProfile extends Component {
   render() {
     return (
       <div>
-        <div id='serviceElement' className='form-group '>
-          {this.state.services.map((service, index) => {
-            return (
-              <span key={index}>
-                <CheckBox
-                  {...service}
-                  handleCheckChieldElement={this.handleCheckChieldElement}
-                />
-              </span>
-            );
-          })}
-        </div>
-        <div className='form-group'>
-          <label htmlFor='note'>
-            <span>Other Services</span>
-          </label>
-          <textarea
-            className='form-control'
-            onChange={this.handleChange}
-            value={this.state.otherService}
-            name='otherService'
-            id='exampleTextarea'
-            rows='2'
-            placeholder='Write your Other Services'
-          ></textarea>
-          <Button type='submit' onClick={this.handleSubmitSave}>
-            SAVE
-          </Button>
-        </div>
+        <Container>
+          <div id="serviceElement" className="form-group ">
+            {this.state.services.map((service, index) => {
+              return (
+                <span key={index}>
+                  <CheckBox
+                    {...service}
+                    handleCheckChieldElement={this.handleCheckChieldElement}
+                  />
+                </span>
+              );
+            })}
+          </div>
+          <div className="form-group">
+            <label htmlFor="note">
+              <span>Other Services</span>
+            </label>
+            <textarea
+              className="form-control"
+              style={{
+                marginBottom: "40px",
+                width: "100%",
+                marginLeft: "0",
+                height: "250px",
+              }}
+              onChange={this.handleChange}
+              value={this.state.otherService}
+              name="otherService"
+              id="exampleTextarea"
+              rows="2"
+              placeholder="Write your Other Services"
+            ></textarea>
+            <Button
+              style={{ width: "100%" }}
+              type="submit"
+              onClick={this.handleSubmitSave}
+            >
+              SAVE
+            </Button>
+          </div>
+        </Container>
       </div>
     );
   }
