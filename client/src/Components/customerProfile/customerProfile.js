@@ -5,8 +5,8 @@ import { Input } from "reactstrap";
 import { Col, Container } from "react-bootstrap";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import Navbar from "../Navbar/Navbar";
-
+import InternalNav from "../InternalNav/InternalNav"; ///Inner >>>>
+import Footer from "../SubPages/Footer/Footer";
 export class CustomerProfile extends Component {
   constructor() {
     super();
@@ -19,7 +19,6 @@ export class CustomerProfile extends Component {
     };
     // this.handleChange = this.handleChange.bind(this)
   }
-
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
@@ -36,7 +35,6 @@ export class CustomerProfile extends Component {
       this.handleSubmit();
     }
   }
-
   handleSubmitSave = (e) => {
     e.preventDefault();
     axios
@@ -56,7 +54,6 @@ export class CustomerProfile extends Component {
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   handleSubmit = () => {
     axios
       .get(`/showbeforupdata/${this.state._id}`)
@@ -78,13 +75,10 @@ export class CustomerProfile extends Component {
     // const b = this.state.data;
     return (
       <div className="edit-profile">
-        <Navbar />
-        <h2>Edit Your Profile</h2>
+        <InternalNav />
+        <h2>Hello {this.state.fullName} Edit Your Profile</h2>
         <Container>
           <Form style={{ marginTop: "10%" }}>
-            {/* <Button onClick={this.handleSubmit} variant="primary" type="submit">
-             EDIT
-          </Button> */}
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>Full Name</Form.Label>
@@ -95,7 +89,7 @@ export class CustomerProfile extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-
+              ​
               <Form.Group as={Col}>
                 <Form.Label>Email</Form.Label>
                 <Input
@@ -105,7 +99,7 @@ export class CustomerProfile extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
-
+              ​
               <Form.Group as={Col}>
                 <Form.Label>Mobile Number</Form.Label>
                 <Input
@@ -122,11 +116,17 @@ export class CustomerProfile extends Component {
               <Form.Group as={Col}>
                 <Form.Label>Address</Form.Label>
                 <Input
-                  type="text"
+                  type="select"
                   name="address"
                   value={this.state.address}
                   onChange={this.handleChange}
-                />
+                >
+                  <option>Gaza</option>
+                  <option>North Gaza</option>
+                  <option>Middle Area</option>
+                  <option>Khan Younis</option>
+                  <option>Rafah</option>
+                </Input>
               </Form.Group>
             </Form.Row>
             <Button
@@ -138,10 +138,11 @@ export class CustomerProfile extends Component {
             </Button>
           </Form>
         </Container>
+        <br></br>
+        <Footer />
       </div>
     );
   }
 }
-
 export default CustomerProfile;
 //check and validate

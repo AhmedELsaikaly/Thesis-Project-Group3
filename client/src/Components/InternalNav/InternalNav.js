@@ -1,14 +1,14 @@
 //import used technologies
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 //import CSS
-import "./NavBar.css";
-import axios from "axios";
+import "./InternalNav.css";
 
 //import used files
 
 //create NavBar Compo
-class NavBar extends React.Component {
+class InternalNav extends React.Component {
   //render NavBar Compo
   render() {
     return (
@@ -52,18 +52,13 @@ class NavBar extends React.Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/SignUpOwner">
-                  SIGN UP OWNER
+                <a className="nav-link" href="/customerProfile">
+                  My Profile
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/signIn">
-                  SIGN IN{" "}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/signUp">
-                  SIGN UP
+                <a className="nav-link" href="userReservation">
+                  My Bookings
                 </a>
               </li>
             </ul>
@@ -75,6 +70,6 @@ class NavBar extends React.Component {
 }
 
 //export compo
-export default NavBar;
+export default InternalNav;
 
 //Check and vaildate

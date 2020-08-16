@@ -13,3 +13,10 @@
 .test3 button {
   width: 100%;
 }
+
+#message {
+  margin-left: 0;
+}
+#contactUs {
+  margin-top: 2.5%;
+}

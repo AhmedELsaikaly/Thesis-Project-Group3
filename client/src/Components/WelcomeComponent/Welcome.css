@@ -1,0 +1,28 @@
+/* Home Info */
+#home-info {
+  height: 450px;
+  background-color: #f2f2f2;
+}
+
+#home-info .info-img {
+  float: left;
+  width: 50%;
+  min-height: 100%;
+  background: url("./1.jpg") no-repeat center center/cover;
+  background-position-y: -5px;
+}
+
+#home-info .info-content {
+  float: right;
+  width: 50%;
+  height: 100%;
+  color: white;
+  padding: 50px 30px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#home-info .info-content p {
+  padding-bottom: 30px;
+  color: black;
+}
