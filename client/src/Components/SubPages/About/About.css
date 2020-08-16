@@ -1,9 +1,10 @@
-#about-us {
+/**/
+/* #about-us {
   display: block;
   width: 100%;
   line-height: 1.6em;
-}
-#about-us h2 {
+} */
+/* #about-us h2 {
   margin-top: 30px;
   margin-bottom: 50px;
   padding-bottom: 40px;
@@ -11,37 +12,38 @@
   text-align: center;
   text-transform: uppercase;
   border-bottom: 1px solid #cccccc;
-} /* DEMO USE ONLY - CAN BE DELETED */
+} /*DEMO USE ONLY - CAN BE DELETED */
 
-#about-us #about-intro {
-  margin-bottom: 50px;
-  margin-left: 10px;
-  text-align: center;
-}
-#about-intro img {
-  background-size: cover;
-  width: 1000px;
-  height: 10%;
-  overflow: hidden;
-  background-position: center-top;
-  background-position-y: 45%;
-  /* padding:80px; */
-  text-align: center;
-}
-#about-intro .clear {
-  width: 25%;
-}
-#about-us #about-intro p {
+/* #about-us #about-intro {
+    margin-bottom: 50px;
+    margin-left: 10px;
+    text-align: center;
+  }
+  #about-intro img {
+    background-size: cover;
+    width: 1000px;
+    height: 10%;
+    overflow: hidden;
+    background-position: center-top;
+    background-position-y: 45%;
+  
+    padding: 80px;
+    text-align: center;
+  }
+  #about-intro .clear {
+    width: 25%;
+  } */
+/* #about-us #about-intro p {
   margin: 20px 0 20px 0;
   padding: 0;
   font-size: 20px;
   color: #666666;
-}
-#about-us #about-intro p:first-child {
+} */
+/* #about-us #about-intro p:first-child {
   margin-top: 0;
-}
+} */
 
-#about-us #team {
+/* #about-us #team {
   margin-bottom: 0;
 }
 #about-us #team ul {
@@ -62,6 +64,7 @@
   height: 280px;
   border: 1px solid #cccccc;
 }
+
 #about-us #team ul li figure figcaption {
   display: none;
   position: absolute;
@@ -95,7 +98,7 @@
 }
 #about-us #team ul li figure figcaption .team_description {
   text-align: left;
-}
+} 
 
 .one_half,
 .one_third,
@@ -139,46 +142,114 @@
   display: block;
   width: 100%;
   clear: both;
-}
+} */
 
 /*----------------------------------------------Half Grid-------------------------------------*/
+/****************************************************************************************************************************************************************************/
 
-.one_half {
-  width: 470px;
-}
-
-/*----------------------------------------------Third Grid-------------------------------------*/
-
-.one_third {
-  width: 300px;
-}
-.two_third {
-  width: 630px;
+.circle.circle1 {
+  width: 450px;
+  height: 450px;
+  float: left;
+  border-radius: 50%;
+  margin: 20px;
+  shape-outside: circle();
 }
 
-/*----------------------------------------------Quarter Grid-------------------------------------*/
+#visionMission {
+  position: relative;
+  width: 100%;
+  padding: 50px;
+  background: #f2f2f2;
+}
+#visionMission .vision h2 {
+  padding-top: 40px;
+  color: #000;
+  text-align: center;
+  padding-bottom: 25px;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+#visionMission .vision p {
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
 
-.one_quarter {
-  width: 225px;
+#visionMission .mission h2 {
+  padding-top: 40px;
+  color: #000;
+  padding-bottom: 25px;
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
 }
-.two_quarter {
-  width: 470px;
-}
-.three_quarter {
-  width: 715px;
+#visionMission .mission p {
+  color: #000;
+  text-align: center;
+  font-size: 20px;
 }
 
-/*----------------------------------------------Fifth Grid-------------------------------------*/
+.footer {
+  width: 100%;
+}
 
-.one_fifth {
-  width: 176px;
+#prag {
+  margin-right: 100px;
 }
-.two_fifth {
-  width: 372px;
+
+.column {
+  float: left;
+  width: 33.3%;
+  height: 30%;
+  margin-bottom: 16px;
+  padding: 0 8px;
 }
-.three_fifth {
-  width: 568px;
+
+/* Display the columns below each other instead of side by side on small screens */
+/* @media screen and (max-width: 650px) {
+  .column {
+    width: 50%;
+    displa y: block;
+  }
+} */
+
+/* Add some shadows to create a card effect */
+.card {
+  /* max-width: 2000px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.four_fifth {
-  width: 764px;
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 0 16px;
+}
+
+/* Clear floats */
+.container::after,
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
 }
