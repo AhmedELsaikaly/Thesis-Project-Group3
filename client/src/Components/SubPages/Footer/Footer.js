@@ -4,7 +4,7 @@ import linked from "./in.png";
 import face from "./face.png";
 import insta from "./insta.png";
 import twitter from "./twitter.png";
-
+import Whatsapp from "./WhatsApp.png";
 //import used css
 import "./Footer.css";
 
@@ -37,6 +37,11 @@ export class Footer extends Component {
             <li>
               <a href="http://www.linkedin.com" target="_blanck">
                 <img src={linked} alt="linkedin icon" />
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/972595167571" target="_blanck">
+                <img src={Whatsapp} alt="WhatsApp icon" />
               </a>
             </li>
           </ul>
