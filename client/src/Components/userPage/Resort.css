@@ -6,3 +6,10 @@
   overflow: hidden;
   margin-bottom: 100px;
 }
+.StripeCheckout span {
+  color: #171717  !important;
+}
+.StripeCheckout {
+  margin-left: 120px !important;
+  
+}

@@ -3,6 +3,8 @@ import React from "react";
 // import "./style.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import "./facility.css";
+
 
 class Reservation extends React.Component {
   constructor() {
@@ -81,7 +83,9 @@ class Reservation extends React.Component {
   render() {
     return (
       <div>
+    
         <div>
+        <p3>Search by </p3>
           {this.state.errors.map((element, index) => (
             <div className="text-danger">{element}</div>
           ))}
@@ -90,7 +94,11 @@ class Reservation extends React.Component {
             className="mdb-select md-form"
             searchable="Search here.."
             name="resType"
-            style={{ marginLeft: "80px", marginBottom: "100px" }}
+            style={{
+              marginLeft: "80px",
+              marginBottom: "100px",
+              width: "240px",
+            }}
             value={this.state.resType}
             onChange={this.change}
           >
@@ -99,11 +107,20 @@ class Reservation extends React.Component {
             <option value="SmallTents">Small Tents</option>
             <option value="LargeTents"> Large Tents</option>
           </select>
+          <input
+            className="depart input1"
+            type="date"
+            value={this.state.date}
+            onChange={this.change}
+            name="date"
+            style={{ margin: "15px" }}
 
+          />
           <button
-            style={{ margin: "60px" }}
+            style={{ marginLeft: "60px" }}
             type="button"
-            class="btn btn-primary"
+            class="btn btn-primary" 
+            id = 'button1'
             data-toggle="button"
             aria-pressed="false"
             autocomplete="off"
@@ -111,14 +128,6 @@ class Reservation extends React.Component {
           >
             resirve
           </button>
-          <input
-            style={{ margin: "60px" }}
-            className="depart input1"
-            type="date"
-            value={this.state.date}
-            onChange={this.change}
-            name="date"
-          />
         </div>
       </div>
     );
