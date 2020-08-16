@@ -11,7 +11,7 @@ toast.configure();
 function Pay() {
   const [product] = React.useState({
     name: "Tesla Roadster",
-    price: 64998.67,
+    price: 10,
     description: "Cool car",
   });
 
@@ -34,7 +34,7 @@ function Pay() {
     <div className="container">
       <div className="product">
         {/* <h1>{product.name}</h1> */}
-        <h3>On Sale · ${product.price}</h3>
+        {/* <h3>On Sale · ${product.price}</h3> */}
       </div>
       <StripeCheckout
         stripeKey="pk_test_51HFEs6Ey67T81IS2KNo9i3yPO4XXg3nFjEvijNPbhFB5MYClrAfsDbhYYpW6KirbjRovN8obIcQH1RRYtbKzuvHz00Wr6fsRey"

@@ -3,6 +3,7 @@ import { Star, NotEditStar } from "./Rating";
 import "./Rating.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import one from "./1.jpg";
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, "0");
 var mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -95,7 +96,7 @@ class Comment extends React.Component {
           <div className="comment-wrapper">
             <div className="panel panel-info">
               <div className="panel-heading">
-                Customers Opinions About the the resort
+                <p id="rate">Rating</p>{" "}
               </div>
               <div className="panel-body">
                 <Star changeRating={this.changeRating} />
@@ -117,7 +118,41 @@ class Comment extends React.Component {
                 </button>
                 <div className="clearfix"></div>
                 <hr />
-                <ul className="media-list">
+                <div class="row review-section">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h3>Reviews</h3>
+                    <br></br>
+                  </div>
+                  {comments.map((comment, index) => (
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="row">
+                        <div class="col-md-4 col-md-4 col-xs-4 review-part-left">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                              <img src={one} />
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                              {/* <p>{comment.fullName}</p> */}
+                              <span>{comment.fullName}</span>
+                              <p>{comment.date}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-8 review-part-right">
+                          <div class="row">
+                            <NotEditStar rate={1} />
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <p>{comment.feedback}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <NotEditStar rate={1} />
+                </div>
+
+                {/* <ul className="media-list">
                   {comments.map((comment, index) => (
                     <li className="media" key={index}>
                       <div className="media-body">
@@ -132,7 +167,7 @@ class Comment extends React.Component {
                       </div>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>

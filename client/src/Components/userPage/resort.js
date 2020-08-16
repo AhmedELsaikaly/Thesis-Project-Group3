@@ -1,11 +1,19 @@
 //import used technologies
 import React from "react";
 import "./Resort.css";
+import "./styles.css";
+import "./facility.css";
 import axios from "axios";
 import Comment from "../Rating&Feedback/Comments";
 import Reservation from "./reservation";
 import Pay from "./pay";
-//import CSS
+import { Link } from "react-router-dom";
+import one from "./1.jpg";
+import two from "./2.jpg";
+import three from "./3.jpg";
+import { NotEditStar } from "./../Rating&Feedback/Rating";
+import Footer from "./Footer";
+import "./Footer.css";
 
 //import used files
 
@@ -21,35 +29,29 @@ class Facility extends React.Component {
       <div>
         {Object.keys(this.props.faclitics).length !== 0 ? (
           <div>
-            {Object.keys(this.props.faclitics).map((element, index) => (
-              <div
-                class="card"
-                style={{
-                  width: "25%",
-                  marginLeft: "90px",
-                  marginTop: "90px",
-                  float: "left",
-                  padding: "10px",
-                }}
-              >
-                <img
-                  class="card-img-top"
-                  style={{ height: "200px" }}
-                  src={this.props.faclitics[element].img}
-                  alt="Card image cap"
-                ></img>
-                <div class="card-body">
-                  <h5 class="card-title">{element}</h5>
-                  <p class="card-text">
-                    Price {this.props.faclitics[element].price}
-                  </p>
-                  <p class="card-text">
-                    {" "}
-                    Quantity {this.props.faclitics[element].quantity}
-                  </p>
+            <div className="pack">
+              <h1>Our facility</h1>
+            </div>
+            <section id="packages">
+              {Object.keys(this.props.faclitics).map((element, index) => (
+                <div className="all">
+                  <div class="box">
+                    <div class="content2">
+                      <div>
+                        <h2>{element}</h2>
+                        <h3>
+                          <br></br>
+                          <br></br>
+                          quantity: {this.props.faclitics[element].quantity}
+                        </h3>
+                        <h3>Price: {this.props.faclitics[element].price}</h3>
+                      </div>
+                    </div>
+                    <img src={this.props.faclitics[element].img} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </section>
           </div>
         ) : (
           <div></div>
@@ -121,45 +123,133 @@ class Resort extends React.Component {
     const { service } = this.state;
 
     return (
-      <div>
-        <div class="media" style={{ margin: "100px" }}>
-          <img
-            class="mr-3"
-            src={this.state.owner.licensePhoto}
-            alt="Generic placeholder image"
-          ></img>
-          <div class="media-body">
-            <h5 class="mt-0">{this.state.owner.fullName}</h5>
-          </div>
-
-          <div style={{ margin: "100px" }}>
-            <ul class="list-group">
-              <li
-                style={{ width: "400px", height: "50px" }}
-                class="list-group-item active"
-              >
-                Services
-              </li>
-              {service.map((dataIN, key) => (
-                <li
-                  style={{ width: "400px", height: "50px" }}
-                  class="list-group-item"
-                >
-                  {dataIN}
-                </li>
-              ))}
-            </ul>
+      <div style={{ width: "100%" }}>
+        {/* Slider owner */}
+        <div id="slider" className="carousel slide" data-ride="carousel">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src={one} className="d-block w-100" alt="slide1" />
+              <div id="caption">
+                <h1>{this.state.owner.placeName}</h1>
+                <div className="blured"></div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img src={two} className="d-block w-100" alt="slide2" />
+              <div id="caption">
+                <h1>{this.state.owner.placeName}</h1>
+                <div className="blured"></div>
+              </div>
+            </div>
+            <div className="carousel-item">
+              <img src={three} className="d-block w-100" alt="slide3" />
+              <div id="caption">
+                <h1>{this.state.owner.placeName}</h1>
+                <div className="blured"></div>
+              </div>
+            </div>
           </div>
         </div>
+        {/* ******************************** */}
+        {/* *************Owner Information************** */}
+        <div class="garden">
+          <div class="imgBx">
+            <img src={this.state.owner.licensePhoto} />
+          </div>
+          <div class="content">
+            <h1>{this.state.owner.placeName}</h1>
+            <p>rating</p>
+            <NotEditStar rate={this.state.owner.ratingAvg} />
+            <p>
+              We work to provide everything necessary to ensure your comfort and
+              enjoy your trip in our facilities
+            </p>
+            <h5 class="features">Services</h5>
+            <ul>
+              {service.map((dataIN, key) => (
+                <li style={{ width: "400px", height: "50px" }}>{dataIN}</li>
+              ))}
+            </ul>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              data-whatever="@mdo"
+            >
+              Book Now
+            </button>
+
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Booking
+                    </h5>
+                    <button
+                      type="button"
+                      class="close "
+                      id="cl"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group"></div>
+                      <div class="form-group">
+                        <Reservation ownerId={this.state.ownerId} />
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    {/* **************Pay ******************** */}
+                    <Pay />
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+
+                    {/* <button type="button" class="btn btn-primary" onClick ={Pay}>
+                      Send message
+                    </button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* *************faclitics***************** */}
         <div className="facility">
           <Facility faclitics={this.state.faclitics} />
         </div>
-        <Reservation ownerId={this.state.ownerId}  />
-        <Pay />
+        {/* *************Reservation***************** */}
+
+        {/* <Reservation ownerId={this.state.ownerId} /> */}
+
         <div className="rating">
+          {/* *************Comment ***************** */}
+
           <Comment OwnerId={this.state.ownerId} />
+          {/* *************Footer***************** */}
+          <Footer />
         </div>
-      
       </div>
     );
   }

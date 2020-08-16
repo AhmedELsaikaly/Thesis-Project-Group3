@@ -2,20 +2,12 @@
 import React from "react";
 import { Filtter } from "./fillter";
 import { Link } from "react-router-dom";
-
-//import CSS
-import "./userPage.css";
-
 //import used files
 import one from "./../landPage/one.jpg";
 import two from "./../landPage/two.jpg";
 import three from "./../landPage/three.jpg";
-// import { url } from "inspector";
-
-// declare axios for routing
 var axios = require("axios");
 
-//create UserPage Compo
 class UserPage extends React.Component {
   constructor() {
     super();
