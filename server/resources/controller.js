@@ -461,8 +461,6 @@ exports.addReservation = function (req, res) {
         date: date,
         type: type,
       }).then((result) => {
-        console.log("11111111111111111111", result);
-        console.log("22222222222222222222222", quant - result.length);
         if (quant - result.length > 0) {
           let ReservationDoc = new ReservationModel({
             customerId,
@@ -810,4 +808,22 @@ exports.filterOwner = function (req, res) {
         error: err,
       })
     );
+};
+
+/// exports sorted owners by rating
+exports.SortedOwner = function (req, res) {
+  OwnerModel.find({})
+    .sort({ ratingAvg: -1 })
+    .then((result) => {
+      if (result.length > 0) {
+        res
+          .status(201)
+          .json({ result: result, message: "Success Sorted Owners data " });
+      } else {
+        res.json({ result: [], message: "there is no Owners Tents" });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 };

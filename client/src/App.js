@@ -9,7 +9,7 @@ import "./App.css";
 import { SignIn } from "./Components/Signing/signIn";
 import SignUp from "./Components/Signing/signUp.js";
 import { About } from "./Components/SubPages/About/About";
-import { Contact } from "./Components/SubPages/Contact/Contact";
+import Contact from "./Components/SubPages/Contact/Contact";
 import LandPage from "./Components/landPage/landPage";
 import { UserPage } from "./Components/userPage/userPage";
 // import { Reservation } from "./Components/userPage/reservation";
@@ -25,7 +25,7 @@ import CustomerProfile from "./Components/customerProfile/customerProfile.js";
 import "./App.css";
 
 import OwnerBooking from "./Components/ownerBooking/ownerBooking.js";
-import { UserReservation } from "./Components/userReservation/userReservation.js";
+import UserReservation from "./Components/userReservation/userReservation.js";
 import { ProtectedRoute } from "./Components/RoutesType/ProtectedRoute";
 import { LoggedInRoute } from "./Components/RoutesType/LoggedInRoute";
 
@@ -45,7 +45,7 @@ class App extends React.Component {
             <Route exact path="/signIn" component={SignIn} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
-            <Route exact path="/logout" component={UserPage} />
+            <Route exact path="/resorts" component={UserPage} />
             {/* <Route exact path="/reservation" component={Reservation} /> */}
             <Route exact path="/Policy" component={Policy} />
             <Route exact path="/SignUpOwner" component={SignUpOwner} />

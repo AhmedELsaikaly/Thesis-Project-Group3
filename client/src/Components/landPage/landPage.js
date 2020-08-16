@@ -1,14 +1,14 @@
 //import used technologies
 import React from "react";
-import { Link } from "react-router-dom";
-
+import FeaturedResorts from "../FeaturedResorts/FeaturedResorts";
 //import CSS
 import "./landPage.css";
 
 //import used files
+import Welcome from "../WelcomeComponent/Welcome";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../SubPages/Footer/Footer.js";
-import SliderCom1 from "./../slider/slider2";
+import Slider from "./../slider/slider";
 
 //create LandPage Compo
 class LandPage extends React.Component {
@@ -21,11 +21,11 @@ class LandPage extends React.Component {
   //render LandPage Compo
   render() {
     return (
-      <div className="container">
+      <div className="landPage">
         <Navbar />
-        {/* <SliderCom /> */}
-        {/* send the imageUrl array to sliderCom  */}
-        <SliderCom1 />
+        <Slider />
+        <Welcome />
+        <FeaturedResorts />
         <Footer />
       </div>
     );
