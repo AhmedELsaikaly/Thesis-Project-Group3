@@ -1,13 +1,17 @@
-.content {
+.control {
   overflow: hidden;
-  margin-left: 250px;
+}
+.Reservation {
+  overflow: hidden;
+  margin-left: 25%;
+  margin-top: 10%;
   /* background: url(background.png) no-repeat;
   background-position: center;
   background-size: cover;
   height: 100vh;
   transition: 0.5s; */
 }
-.content p {
+.Reservation p {
   overflow: hidden;
   float: center;
   margin-top: 70px;
@@ -15,7 +19,7 @@
   font-weight: bold;
   font-size: 20px;
 }
-p span {
+.Reservation p span {
   display: block;
 }
 
@@ -26,25 +30,27 @@ p span {
   margin-left: 10px;
 } */
 
-.form-group {
+.Reservation .form-group {
   font-size: 20px;
   font-weight: bold;
   float: center;
 }
-.form-group textarea {
-  margin-left: 70px;
+.Reservation .form-group textarea {
+  margin-left: 45px;
   width: 80%;
+  margin-bottom: 20px;
 }
-.form-group button {
+.Reservation button {
   margin-top: 20px;
+  margin-right: 100px;
   margin-left: 200px;
   width: 50%;
 }
 
-#serviceElement {
+.Reservation #serviceElement {
   margin-left: 30px;
 }
-#checkElement {
+.Reservation #checkElement {
   width: 35%;
   display: inline-block;
   margin-left: 20px;

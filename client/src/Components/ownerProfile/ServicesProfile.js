@@ -90,8 +90,9 @@ export class ServicesProfile extends Component {
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
-      if (service.value === event.target.value);
-      service.isChecked = event.target.checked;
+      if (service.value === event.target.value) {
+        service.isChecked = event.target.checked;
+      }
     });
     this.setState({ services: services });
   };
@@ -101,7 +102,7 @@ export class ServicesProfile extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginLeft: "20%" }}>
         <h2 style={{ marginLeft: "6%" }}>Edit Your Services</h2>
         <div
           style={{ marginLeft: "5%" }}
