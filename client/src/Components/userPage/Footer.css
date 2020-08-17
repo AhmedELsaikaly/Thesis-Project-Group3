@@ -1,0 +1,119 @@
+/* FOOTER */
+.footer {
+  width: 100%;
+  background: #000;
+  display: block;
+}
+.inner-footer {
+  width: 95%;
+  margin: auto;
+  padding: 30px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.footer-items {
+  width: 25%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.inner-footer h1 {
+  padding: 10px 0;
+  font-size: 25px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.footer-items p {
+  color: gray;
+  font-size: 16px;
+  text-align: justify;
+  line-height: 22px;
+}
+.inner-footer h2 {
+  margin: 10px 0;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.inner-footer .border {
+  height: 2px;
+  width: 40px;
+  background: #c9c9c9;
+}
+.inner-footer ul {
+  list-style: none;
+  color: #c9c9c9;
+  font-size: 15px;
+}
+.inner-footer ul a {
+  text-decoration: none;
+  outline: none;
+  color: #c9c9c9;
+  transition: 0.3s;
+}
+.inner-footer ul a:hover {
+  color: #fff;
+}
+.inner-footer ul li {
+  margin: 10px 0;
+}
+.inner-footer ul li i {
+  margin-right: 20px;
+  padding: 0;
+}
+.inner-footer .newsletter {
+  color: gray;
+  font-size: 16px;
+  text-align: justify;
+  line-height: 22px;
+  padding-top: 10px;
+}
+.inner-footer form input[type="submit"] {
+  background: #008fff;
+  border: none;
+  padding: 3px 15px;
+  color: #fff;
+}
+.inner-footer form input[type="submit"]:hover {
+  background: #006cbd;
+}
+.inner-footer form input[type="email"] {
+  border: none;
+  padding: 3px 15px;
+  margin-bottom: 5px;
+  color: #000000;
+}
+.footer-bottom {
+  padding: 10px;
+  background: #1c1c1c;
+  color: #c4c4c4;
+  font-size: 15px;
+  text-align: center;
+}
+@media screen and (max-width: 1085px) {
+  .footer-items {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .footer-items {
+    width: 100%;
+  }
+}
+#footer ul {
+  float: right;
+  list-style: none;
+  padding-left: 0;
+  margin: 5px 0 0;
+}
+#footer li {
+  display: inline-block;
+  margin-right: 3px;
+}
+#footer li img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(50%);
+  margin-top: -12px;
+}

@@ -69,7 +69,7 @@ class Comment extends React.Component {
       rating: this.state.rating,
     };
     var joined = this.state.comments.concat(newValue);
-    this.setState({ comments: joined });
+    this.setState({ comments: joined, feedback: "" });
     this.cancelCourse();
     axios
       .post("http://localhost:5000/comment", {

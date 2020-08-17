@@ -19,10 +19,6 @@ class Star extends React.Component {
 
     return (
       <div className="star">
-        <h2>
-          Yor rated the resort with {"       "}
-          {rating}
-        </h2>
         <StarRatingComponent
           className="starElement"
           name="rate1"

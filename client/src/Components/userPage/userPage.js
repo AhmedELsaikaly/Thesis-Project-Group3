@@ -1,49 +1,21 @@
 //import used technologies
 import React from "react";
-import { Filtter } from "./fillter";
+import { Fillter } from "./fillter";
 import { Link } from "react-router-dom";
-
-//import CSS
-import "./userPage.css";
-
 //import used files
-import one from "./../landPage/one.jpg";
-import two from "./../landPage/two.jpg";
-import three from "./../landPage/three.jpg";
+// import one from "./../landPage/one.jpg";
+// import two from "./../landPage/two.jpg";
+// import three from "./../landPage/three.jpg";
 // import { url } from "inspector";
 
 // declare axios for routing
 var axios = require("axios");
 
-//create UserPage Compo
 class UserPage extends React.Component {
   constructor() {
     super();
     // this.handleSubmet = this.handleSubmet.bind(this);
-    this.state = {
-      data: [
-        {
-          imgurl: one,
-          name: "Ra7aa 1",
-          Rating: "5",
-        },
-        {
-          imgurl: two,
-          name: "Ra7aa 2",
-          Rating: "5",
-        },
-        {
-          imgurl: three,
-          name: "Ra7aa 3",
-          Rating: "5",
-        },
-        {
-          imgurl: three,
-          name: "Ra7aa 3",
-          Rating: "5",
-        },
-      ],
-    };
+    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -72,25 +44,8 @@ class UserPage extends React.Component {
   //render UserPage Compo
   render() {
     return (
-      <div className="NavBar__div">
-        <nav className="nav">
-          <div className="container">
-            <div className="logo">
-              <span>Ra7a</span>
-            </div>
-            <div className="main_list" id="mainListDiv">
-              <ul>
-                <Link to="/reservation">
-                  <li>Reservation</li>
-                </Link>
-              </ul>
-            </div>
-            <br></br>
-            <br></br>
-
-            <Filtter />
-          </div>
-        </nav>
+      <div>
+        <Fillter />
       </div>
     );
   }

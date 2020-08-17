@@ -4,6 +4,8 @@ import jwt_decode from "jwt-decode";
 //import CSS
 import "./ControlPanel.css";
 
+import axios from "axios";
+
 //import used files
 import jessica from "./1.png";
 
@@ -11,44 +13,76 @@ import jessica from "./1.png";
 
 //create ContolPanel Compo
 class ContolPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+  constructor() {
+    super();
+    this.state = {
+      _id: "",
+      fullName: "",
+    };
   }
 
   componentDidMount() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
-    console.log(decoded);
+    this.setState({
+      _id: decoded.id,
+      fullName: "",
+    });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState._id !== this.state._id) {
+      this.handleSubmit();
+    }
+  }
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  handleSubmit = () => {
+    axios
+      .get(`/Owner/${this.state._id}`)
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data[0];
+        this.setState({
+          fullName: data.fullName,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //render ContolPanel Compo
   render() {
     return (
       <div className="ConrolPanel">
         <input type="checkbox" id="check" />
         <header>
-          <label htmlFor="check">
-            <i className="fas fa-bars" id="sidebar_btn"></i>
-          </label>
-          <div className="left_area">
+          <br />
+          <div className="left_area" style={{ marginLeft: "5%" }}>
             <h3>
               Ra<span>7</span>ha
             </h3>
           </div>
           <div className="right_area">
-            <a href="#" className="logout_btn">
+            <a href="/logout" className="logout_btn">
               Logout
             </a>
           </div>
         </header>
         <div className="sidebar">
-          <center>
+          <center style={{ marginLeft: "-5%" }}>
             <img src={jessica} className="profile_image" alt="" />
-            <h4>Jessica</h4>
+
+            <h4 style={{ lineHeight: "60px", color: "#fff" }}>
+              {" "}
+              Hi {this.state.fullName}
+            </h4>
           </center>
           <a href="/">
             <i className="fas fa-desktop"></i>
-            <span>Dashboard</span>
+            <span>Home Page</span>
           </a>
           <a href="/service">
             <i className="fas fa-cogs"></i>
@@ -66,13 +100,7 @@ class ContolPanel extends React.Component {
             <i className="fas fa-info-circle"></i>
             <span>Bookings</span>
           </a>
-          <a href="#">
-            <i className="fas fa-sliders-h"></i>
-            <span>Settings</span>
-          </a>
         </div>
-
-        {/* <div className="content"></div> */}
       </div>
     );
   }

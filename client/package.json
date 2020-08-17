@@ -25,6 +25,7 @@
     "jsdom-global": "^3.0.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
+    "mdbreact": "^4.27.0",
     "moment": "^2.27.0",
     "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
