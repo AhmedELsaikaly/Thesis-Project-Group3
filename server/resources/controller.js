@@ -470,36 +470,41 @@ exports.addReservation = function (req, res) {
     mobileNumber,
     type,
     ownerId,
+    placeName,
   } = req.body;
-
+  console.log(req.body);
   //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
-      console.log("The quantity", faci.facilities[type].quantity);
-      quant = faci.facilities[type].quantity;
-      ReservationModel.find({
-        ownerId: ownerId,
-        date: date,
-        type: type,
-      }).then((result) => {
-        if (quant - result.length > 0) {
-          let ReservationDoc = new ReservationModel({
-            customerId,
-            customerName,
-            date,
-            mobileNumber,
-            type,
-            ownerId,
-          });
-          ReservationDoc.save()
-            .then(() => res.status(201).send("Reservation Saved"))
-            .catch((err) =>
-              res.status(500).send(err + "err in Saving Reservation")
-            );
-        } else {
-          res.end("no available place");
-        }
-      });
+      if (faci !== null) {
+        var quant = faci.facilities[type].quantity;
+        ReservationModel.find({
+          ownerId: ownerId,
+          date: date,
+          type: type,
+        }).then((result) => {
+          if (quant - result.length > 0) {
+            let ReservationDoc = new ReservationModel({
+              customerId,
+              customerName,
+              date,
+              mobileNumber,
+              type,
+              ownerId,
+              placeName,
+            });
+            ReservationDoc.save()
+              .then(() => res.status(201).send("Reservation Saved"))
+              .catch((err) =>
+                res.status(500).send(err + "err in Saving Reservation")
+              );
+          } else {
+            res.end("no available place");
+          }
+        });
+      } else {
+        res.end("There is no Facilities for this Owner to reserve");
+      }
     })
     .catch((err) => {
       console.log("Error: ", err);

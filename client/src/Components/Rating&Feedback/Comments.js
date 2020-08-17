@@ -49,7 +49,6 @@ class Comment extends React.Component {
         });
     }
   }
-
   changeRating = (starRate) => {
     this.setState({ rating: starRate });
   };

@@ -71,11 +71,21 @@ class Resort extends React.Component {
       ownerId: "",
       isFull: false,
       owner: "",
+      selectedFacility: "",
+      SelectedPrice: 0,
     };
   }
+
+  handleSelection = (selectedVal) => {
+    this.setState({
+      selectedFacility: selectedVal,
+      SelectedPrice: this.state.faclitics[selectedVal].price,
+    });
+  };
   componentDidMount() {
     this.setState({ ownerId: this.props.match.params.id });
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ownerId !== this.state.ownerId) {
       axios
@@ -210,13 +220,22 @@ class Resort extends React.Component {
                     <form>
                       <div class="form-group"></div>
                       <div class="form-group">
-                        <Reservation ownerId={this.state.ownerId} />
+                        <Reservation
+                          handleSelection={this.handleSelection}
+                          ownerId={this.state.ownerId}
+                          PlaceName={this.state.owner.placeName}
+                        />
                       </div>
                     </form>
                   </div>
                   <div class="modal-footer">
                     {/* **************Pay ******************** */}
-                    <Pay />
+                    <Pay
+                      description={this.state.selectedFacility}
+                      owner={this.state.owner}
+                      price={this.state.SelectedPrice}
+                      PlaceName={this.state.owner.placeName}
+                    />
                     <button
                       type="button"
                       class="btn btn-info pull-right"

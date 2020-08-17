@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,13 +8,11 @@ import "./Resort.css";
 
 toast.configure();
 
-function Pay() {
-  const [product] = React.useState({
-    name: "Tesla Roadster",
-    price: 10,
-    description: "Cool car",
-  });
-
+function Pay(props) {
+  const [product, setProduct] = useState(props)
+  useEffect(() => {
+    setProduct(props);
+}, [props])
   async function handleToken(token, addresses) {
     console.log(token, addresses);
     const response = await axios.post("http://localhost:5000/pay", {
