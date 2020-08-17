@@ -12,6 +12,7 @@ class UserReservation extends React.Component {
     this.state = {
       customerId: "",
       reservations: [],
+      err: "",
     };
   }
 
@@ -27,8 +28,18 @@ class UserReservation extends React.Component {
           `http://localhost:5000/reservationCustomer/${this.state.customerId}`
         ) // Fix the route
         .then((result) => {
-          const data = result.data;
-          this.setState({ reservations: data });
+          // console.log(result);
+          if (result.data === "there is no booking") {
+            console.log(result);
+            this.setState({
+              reservations: [],
+              err: "There is No Reservation For You",
+            });
+          } else {
+            console.log(result);
+            const data = result.data;
+            this.setState({ reservations: data });
+          }
         })
         .catch((err) => {
           console.log("Error", err);
@@ -41,7 +52,7 @@ class UserReservation extends React.Component {
       return (
         <tr key={index}>
           <td>{index}</td>
-          <td>{element.ownerId}</td>
+          <td>{element.placeName}</td>
           <td>{element.type}</td>
           <td>{element.date}</td>
           <td>
@@ -61,6 +72,7 @@ class UserReservation extends React.Component {
         <InternalNav />
         <SliderForPages head={"Your Reservation"} />
         <div className="UserReservationTable">
+          <div className="text-danger">{this.state.err}</div>
           <table className="table table-striped table-bordered table-hover">
             <thead className="thead-dark">
               <tr>
@@ -71,7 +83,12 @@ class UserReservation extends React.Component {
                 <th scope="col">Resort Details</th>
               </tr>
             </thead>
-            <tbody>{this.renderTableData()}</tbody>
+            {this.state.reservations.length >= 0 ? (
+              <tbody>{this.renderTableData()}</tbody>
+            ) : (
+              <div></div>
+            )}
+            {/* <tbody>{this.renderTableData()}</tbody> */}
           </table>
         </div>
         <Footer />

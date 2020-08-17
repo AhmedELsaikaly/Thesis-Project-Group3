@@ -516,12 +516,10 @@ exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
     .then((result) => {
-      console.log(result);
-      if (result.length === 0) {
-        console.log(result);
-        return res.status(201).end("there is no booking ");
+      if (result.length !== 0) {
+        return res.status(200).send(result);
       }
-      return res.status(200).send(result);
+      return res.status(201).end("there is no booking");
     })
     .catch((err) => console.log(err));
 };
