@@ -1,5 +1,4 @@
 import React from "react";
-import { toast } from "react-toastify";
 
 // import "./style.css";
 import axios from "axios";
