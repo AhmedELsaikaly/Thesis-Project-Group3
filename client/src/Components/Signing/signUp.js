@@ -176,7 +176,7 @@ class SignUp extends React.Component {
           // alert("sign up success please sign in");
           // console.log("result   ", res);
           // this.setState({ singup: "sign up success please sign in" });
-          this.props.history.push(`/signIn`);
+          this.props.history.push(`/`);
         })
         .catch((err) => {
           // console.log(err);

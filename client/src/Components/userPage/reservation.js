@@ -1,10 +1,10 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 // import "./style.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import "./facility.css";
-
 
 class Reservation extends React.Component {
   constructor() {
@@ -62,6 +62,8 @@ class Reservation extends React.Component {
       this.setState({
         errors: [],
       });
+
+
       axios
         .post(`http://localhost:5000/addReservation`, {
           customerId: this.state.customerId,
@@ -71,8 +73,22 @@ class Reservation extends React.Component {
           type: this.state.resType,
           ownerId: this.state.ownerId,
         })
+        
         .then((res) => {
-          console.log(res, "ppppp");
+
+          // console.log(res, "ppppp");
+          if (res.data === "Reservation Saved") {
+            toast("the reservation is done", {
+              type: "success",
+            });
+          } else {
+            toast("No available Facility", {
+              type: "error",
+            });
+          }
+      
+            window.location.href = `/resort/${this.state.ownerId}`;
+          
         })
         .catch((err) => {
           console.log("ERROR from AXIOS =>", err);
@@ -83,15 +99,14 @@ class Reservation extends React.Component {
   render() {
     return (
       <div>
-    
         <div>
-        <p3>Select one  </p3>
+          <p3>Select one </p3>
           {this.state.errors.map((element, index) => (
             <div className="text-danger">{element}</div>
           ))}
           <select
             id="SelectOptions"
-            className="mdb-select md-form"
+            className="selectpicker show-tick"
             searchable="Search here.."
             name="resType"
             style={{
@@ -114,13 +129,12 @@ class Reservation extends React.Component {
             onChange={this.change}
             name="date"
             style={{ margin: "15px" }}
-
           />
           <button
             style={{ marginLeft: "60px" }}
             type="button"
-            class="btn btn-primary" 
-            id = 'button1'
+            class="btn btn-info pull-right"
+            id="button1"
             data-toggle="button"
             aria-pressed="false"
             autocomplete="off"

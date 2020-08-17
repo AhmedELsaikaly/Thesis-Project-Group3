@@ -7,9 +7,19 @@
   margin-bottom: 100px;
 }
 .StripeCheckout span {
-  color: #171717  !important;
+  color: #ff0a0a;
+  /* background-image: linear-gradient(
+    rgb(48, 162, 228),
+    rgb(48, 162, 228) 85%,
+    rgb(48, 162, 228)
+  ); */
+  display: contents;
 }
 .StripeCheckout {
   margin-left: 120px !important;
-  
 }
+.StripeCheckout span {
+  /* color: #970000 !important; */
+  display: contents !important;
+}
+
