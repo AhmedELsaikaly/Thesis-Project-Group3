@@ -27,7 +27,7 @@ class FeaturedResorts extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className= "Featured">
         <div className="pack">
           <hr />
           <h1>Featured SeaSide</h1>

@@ -63,7 +63,7 @@ export class Footer extends Component {
           </div>
         </div>
         <div className="footer-bottom">
-          <div classNameName="container">
+          <div  id = "footer"className="container">
             <ul>
               <li>
                 <a href="http://www.facebook.com" target="_blanck">

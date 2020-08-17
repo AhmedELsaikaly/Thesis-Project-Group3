@@ -85,7 +85,7 @@ class Reservation extends React.Component {
       <div>
     
         <div>
-        <p3>Search by </p3>
+        <p3>Select one  </p3>
           {this.state.errors.map((element, index) => (
             <div className="text-danger">{element}</div>
           ))}

@@ -152,11 +152,11 @@ class Resort extends React.Component {
         </div>
         {/* ******************************** */}
         {/* *************Owner Information************** */}
-        <div class="garden">
-          <div class="imgBx">
+        <div id="gar" class="garden3">
+          <div class="imgBx2">
             <img src={this.state.owner.licensePhoto} />
           </div>
-          <div class="content">
+          <div class="content4">
             <h1>{this.state.owner.placeName}</h1>
             <p>rating</p>
             <NotEditStar rate={this.state.owner.ratingAvg} />
@@ -239,15 +239,15 @@ class Resort extends React.Component {
         <div className="facility">
           <Facility faclitics={this.state.faclitics} />
         </div>
-        <Reservation ownerId={this.state.ownerId} />
-        <Pay />
+        {/* <Reservation ownerId={this.state.ownerId} /> */}
+        {/* <Pay /> */}
         <div className="rating">
           {/* *************Comment ***************** */}
 
           <Comment OwnerId={this.state.ownerId} />
           {/* *************Footer***************** */}
-          <Footer />
         </div>
+        <Footer />
       </div>
     );
   }

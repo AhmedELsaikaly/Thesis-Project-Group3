@@ -1,149 +1,134 @@
 #slider #caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #ffffff;
-  }
-  
-  #slider {
-    background: #000;
-  }
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #ffffff;
+}
+
+#slider {
+  background: #000;
+}
+
+#slider #caption h1 {
+  font-size: 80px;
+}
+
+.carousel-item img {
+  filter: opacity(0.7);
+}
+
+@media screen and (max-width: 922px) {
   #slider #caption h1 {
-    font-size: 80px;
+    font-size: 50px;
   }
-  
-  .carousel-item img {
-    filter: opacity(0.7);
+}
+
+@media screen and (max-width: 576px) {
+  #slider #caption h1 {
+    font-size: 20px;
   }
-  
-  @media screen and (max-width: 922px) {
-    #slider #caption h1 {
-      font-size: 50px;
-    }
+}
+
+/* GARDEN3 VIEW PACKAGE DETAILS */
+.garden3 {
+  height: auto;
+  display: flex;
+  background: #ececec;
+}
+
+.garden3 .imgBx2 {
+  top: 0;
+  min-width: 30%;
+  height: auto;
+  background: #000;
+  width: 300px;
+  height: 600px;
+}
+
+.garden3 .imgBx2 img {
+  width: 120%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.garden3 .content4 {
+  padding: 60px;
+  margin-left: 50px;
+}
+
+.garden3 .content4 h1 {
+  margin: 0 0 30px;
+  padding-bottom: 15px;
+  font-size: 60px;
+  border-bottom: 5px solid #c7c7c7;
+}
+
+.garden3 .content4 p {
+  margin: 0 0 30px;
+  padding: 0;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.garden3 .content4 h4 {
+  margin: 0 0 30px;
+  padding: 0;
+  font-size: 30px;
+  text-align: justify;
+}
+
+.garden3 .content4 .features {
+  margin: 0 0 20px;
+}
+
+.garden3 .content4 .amenities {
+  margin: 0 0 20px;
+}
+
+.garden3 .content4 li {
+  list-style: none;
+  padding-left: 25px;
+  padding-bottom: 5px;
+  font-style: italic;
+}
+
+.garden3 .content4 ul {
+  padding-bottom: 25px;
+}
+
+.garden3 .content4 button {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .garden3 {
+    height: auto;
+    display: block;
+    background: #ececec;
   }
-  
-  @media screen and (max-width: 576px) {
-    #slider #caption h1 {
-      font-size: 20px;
-    }
+
+  .garden3 .imgBx2 {
+    display: none;
   }
-  
-  /* GARDEN VIEW PACKAGE DETAILS */
-  .garden
-  {
-      height: auto;
-      display: flex;
-      background: #ECECEC;
+
+  .garden3 .content4 h1 {
+    margin: 0 0 30px;
+    padding-bottom: 15px;
+    font-size: 35px;
+    border-bottom: 5px solid #c7c7c7;
   }
-  
-  .garden .imgBx
-  {
-      top: 0;
-      min-width: 30%;
-      height: auto;
-      background: #000;
+
+  .garden3 .content4 h4 {
+    margin: 0 0 30px;
+    padding: 0;
+    font-size: 20px;
+    text-align: justify;
   }
-  
-  .garden .imgBx img
-  {
-      width: 170%;
-      height: 100%;
-      object-fit: cover;
-  }
-  
-  .garden .content
-  {
-      padding: 60px;
-  }
-  
-  .garden .content h1
-  {
-      margin: 0 0 30px;
-      padding-bottom: 15px;
-      font-size: 60px;
-      border-bottom: 5px solid #C7C7C7;
-  }
-  
-  .garden .content p
-  {
-      margin: 0 0 30px;
-      padding: 0;
-      font-size: 20px;
-      text-align: justify;
-  }
-  
-  .garden .content h4
-  {
-      margin: 0 0 30px;
-      padding: 0;
-      font-size: 30px;
-      text-align: justify;
-  }
-  
-  .garden .content .features
-  {
-      margin: 0 0 20px;
-  }
-  
-  .garden .content .amenities
-  {
-      margin: 0 0 20px;
-  }
-  
-  .garden .content li
-  {
-      list-style: none;
-      padding-left: 25px;
-      padding-bottom: 5px;
-      font-style: italic;
-  }
-  
-  .garden .content ul
-  {
-      padding-bottom: 25px;
-  }
-  
-  .garden .content button
-  {
-      margin: 0;
-      padding: 0;
-      width: 200px;
-      height: 50px;
-      font-size: 20px;
-  }
-  
-  @media only screen and (max-width: 800px)
-  {
-      .garden
-      {
-          height: auto;
-          display: block;
-          background: #ECECEC;
-      }
-      
-      .garden .imgBx
-      {
-          display: none;
-      }
-      
-      .garden .content h1
-      {
-          margin: 0 0 30px;
-          padding-bottom: 15px;
-          font-size: 35px;
-          border-bottom: 5px solid #C7C7C7;
-      }
-      
-      .garden .content h4
-      {
-          margin: 0 0 30px;
-          padding: 0;
-          font-size: 20px;
-          text-align: justify;
-      }
-  }
-  /* *******Facelites**************0 */
-  
+}
+/* *******Facelites**************0 */

@@ -12,7 +12,7 @@ class Welcome extends React.Component {
   //render LandPage Compo
   render() {
     return (
-      <div>
+      <div className="Welcome">
         <section id="title">
           <div>
             <h4>Welcome To</h4>

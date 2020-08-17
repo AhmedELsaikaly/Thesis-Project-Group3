@@ -61,8 +61,6 @@ class App extends React.Component {
               path="/userReservation"
               component={UserReservation}
             ></Route>
-
-            {/* <Route exact path="/" component={booking}></Route> */}
           </Switch>
         </Router>
       </div>

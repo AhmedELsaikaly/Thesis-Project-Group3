@@ -101,17 +101,17 @@
     width: 100%;
   }
 }
-.container ul {
+#footer ul {
   float: right;
   list-style: none;
   padding-left: 0;
   margin: 5px 0 0;
 }
-.container li {
+#footer li {
   display: inline-block;
   margin-right: 3px;
 }
-.container li img {
+#footer li img {
   width: 30px;
   height: 30px;
   filter: brightness(50%);
