@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Navbar } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { Col } from "react-bootstrap";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import FacilityProfile from "./FacilityProfile";
 import ServicesProfile from "./ServicesProfile";
-
+import Footer from "../SubPages/Footer/Footer";
+// import NavBar from '../Navbar/Navbar';
 export class OwnerProfile extends Component {
   constructor() {
     super();
@@ -85,8 +86,10 @@ export class OwnerProfile extends Component {
     // const b = this.state.data;
     return (
       <div>
-        <h2 style={{ textAlign: "center" }}>Test</h2>
+        {/* <NavBar /> */}
         <Form style={{ marginLeft: "7%", marginTop: "10%", maxWidth: "80%" }}>
+          <h2>Hi {this.state.fullName} Inside Your Edit Page</h2>
+          <br></br>
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label>Full Name</Form.Label>
@@ -124,11 +127,17 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>area</Form.Label>
               <Input
-                type="text"
+                type="select"
                 name="area"
                 value={this.state.area}
                 onChange={this.handleChange}
-              />
+              >
+                <option>Gaza</option>
+                <option>North Gaza</option>
+                <option>Middle Area</option>
+                <option>Khan Younis</option>
+                <option>Rafah</option>
+              </Input>
             </Form.Group>
 
             <Form.Group as={Col}>
@@ -159,10 +168,11 @@ export class OwnerProfile extends Component {
             SAVE
           </Button>
         </Form>
-        <hr />
+        <hr></hr>
         <FacilityProfile />
         <hr />
         <ServicesProfile />
+        <Footer />
       </div>
     );
   }

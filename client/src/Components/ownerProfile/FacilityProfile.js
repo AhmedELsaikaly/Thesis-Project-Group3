@@ -28,7 +28,7 @@ export class FacilityProfile extends Component {
       ownerId: decoded.id,
     });
   }
-
+  ///////////as well as State and Lifecycle.
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ownerId !== this.state.ownerId) {
       this.GetData();
@@ -95,8 +95,9 @@ export class FacilityProfile extends Component {
   };
   render() {
     return (
-      <div>
+      <div style={{ marginTop: "-7%" }}>
         <Form style={{ marginLeft: "7%", marginTop: "10%", maxWidth: "80%" }}>
+          <h2>Edit Your Facility</h2>
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label>Tabels</Form.Label>
@@ -123,15 +124,15 @@ export class FacilityProfile extends Component {
               />
             </Form.Group>
 
-            {/* <Form.Group as={Col}>
+            <Form.Group as={Col}>
               <Form.Label>Image Tabels</Form.Label>
               <Input
-                type='file'
-                name='TableUrl'
-                value={this.state.TableUrl}
+                type="file"
+                name="TableUrl"
+                value={this.state.TableUrl.img}
                 onChange={this.handleChange}
               />
-            </Form.Group> */}
+            </Form.Group>
           </Form.Row>
           <hr />
 
@@ -162,15 +163,15 @@ export class FacilityProfile extends Component {
               />{" "}
             </Form.Group>
 
-            {/* <Form.Group as={Col}>
+            <Form.Group as={Col}>
               <Form.Label>Image Small Tents</Form.Label>
               <Input
-                type='file'
-                name='SmallTentUrl'
-                value={this.state.SmallTentUrl}
+                type="file"
+                name="SmallTentUrl"
+                value={this.state.SmallTentUrl.img}
                 onChange={this.handleChange}
-              />{' '}
-            </Form.Group> */}
+              />{" "}
+            </Form.Group>
           </Form.Row>
 
           <hr />
@@ -202,15 +203,15 @@ export class FacilityProfile extends Component {
               />{" "}
             </Form.Group>
 
-            {/* <Form.Group as={Col}>
+            <Form.Group as={Col}>
               <Form.Label>Image Large Tents</Form.Label>
               <Input
-                type='file'
-                name='LargeTentUrl'
-                value={this.state.LargeTentUrl}
+                type="file"
+                name="LargeTentUrl"
+                value={this.state.LargeTentUrl.img}
                 onChange={this.handleChange}
-              />{' '}
-            </Form.Group> */}
+              />{" "}
+            </Form.Group>
           </Form.Row>
 
           <Button
