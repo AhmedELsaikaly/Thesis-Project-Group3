@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import FacilityProfile from "./FacilityProfile";
 import ServicesProfile from "./ServicesProfile";
 import Footer from "../SubPages/Footer/Footer";
+import ContolPanel from "../ControlPanel/ControlPanel";
 // import NavBar from '../Navbar/Navbar';
 export class OwnerProfile extends Component {
   constructor() {
@@ -86,9 +87,13 @@ export class OwnerProfile extends Component {
     // const b = this.state.data;
     return (
       <div>
-        {/* <NavBar /> */}
-        <Form style={{ marginLeft: "7%", marginTop: "10%", maxWidth: "80%" }}>
-          <h2>Hi {this.state.fullName} Inside Your Edit Page</h2>
+        <div className="control">
+          <ContolPanel />
+        </div>
+        <Form
+          style={{ marginLeft: "25%", marginTop: "-125%", maxWidth: "80%" }}
+        >
+          <h2> Edit Your Profile </h2>
           <br></br>
           <Form.Row>
             <Form.Group as={Col}>
