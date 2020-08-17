@@ -7,8 +7,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import InternalNavControl from "./InternalNavControl/InternalNavControl";
 
-import axios from "axios";
-
 //import used files
 import jessica from "./1.png";
 
