@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import "./styles.css";
+import "./Resort.css";
 
 toast.configure();
 

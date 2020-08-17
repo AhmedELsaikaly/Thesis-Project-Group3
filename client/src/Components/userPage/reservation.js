@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 // import "./style.css";
 import axios from "axios";
@@ -122,7 +123,7 @@ class Reservation extends React.Component {
           ))}
           <select
             id="SelectOptions"
-            className="mdb-select md-form"
+            className="selectpicker show-tick"
             searchable="Search here.."
             name="resType"
             style={{

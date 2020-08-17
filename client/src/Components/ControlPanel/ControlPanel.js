@@ -71,7 +71,7 @@ class ContolPanel extends React.Component {
               {" "}
               Hi {this.state.fullName}
             </h4>
-          </center >
+          </center>
           <a href="/service">
             <i className="fas fa-cogs"></i>
             <span>Services</span>
