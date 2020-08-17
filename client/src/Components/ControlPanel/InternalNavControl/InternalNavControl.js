@@ -4,7 +4,7 @@ import { Link, withRouter, Redirect } from "react-router-dom";
 import logo from "./Logo.png";
 import { toast } from "react-toastify";
 //import CSS
-import "./InternalNav.css";
+import "./InternalNavControl.css";
 
 //import used files
 
@@ -46,11 +46,7 @@ class InternalNav extends React.Component {
                   HOME
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/resorts">
-                  RESORTS
-                </a>
-              </li>
+
               <li className="nav-item">
                 <a className="nav-link" href="/contact">
                   CONTACT
@@ -61,16 +57,7 @@ class InternalNav extends React.Component {
                   ABOUT US
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/customerProfile">
-                  My Profile
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/userReservation">
-                  My Bookings
-                </a>
-              </li>
+
               <li className="nav-item">
                 <a className="nav-link" href="/" onClick={this.logout}>
                   LOGOUT

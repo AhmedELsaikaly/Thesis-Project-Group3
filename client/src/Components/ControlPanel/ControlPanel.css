@@ -49,13 +49,14 @@
 
 .sidebar {
   background: #2f323a;
-  margin-top: 60px;
-  padding-top: 10px;
-  position: fixed;
+  margin-top: 0px;
+  padding-top: 30px;
+  /* position: fixed; */
   left: 0;
   width: 250px;
-  height: 100%;
+  height: 1700px;
   transition: 0.5s;
+  overflow: hidden;
   transition-property: left;
 }
 
@@ -142,6 +143,10 @@ label #sidebar_btn:hover {
 
 #check {
   display: none;
+}
+.sidebar a {
+  /* color: #212529; */
+  background-color: #212529;
 }
 
 /* */

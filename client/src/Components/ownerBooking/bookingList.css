@@ -1,7 +1,10 @@
 .Booking_div {
   overflow: hidden;
   width: 70%;
-  margin-left: 100px;
-  margin-top: 80px;
+  margin-left: 25%;
+  margin-top: 10%;
   float: left;
+}
+.BookingList_div {
+  margin-left: 0;
 }

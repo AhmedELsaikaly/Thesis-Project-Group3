@@ -1,8 +1,10 @@
 //import used technologies
 import React from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
-
+import ContolPanel from "../ControlPanel/ControlPanel";
+import { Redirect } from "react-router-dom";
 //import CSS
 import "./Service.css";
 
@@ -28,6 +30,7 @@ class Service extends React.Component {
       ],
       otherService: "",
     };
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
   //componentDidMount function
   componentDidMount() {
@@ -47,8 +50,9 @@ class Service extends React.Component {
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
-      if (service.value === event.target.value)
+      if (service.value === event.target.value) {
         service.isChecked = event.target.checked;
+      }
     });
     this.setState({ services: services });
   };
@@ -70,6 +74,16 @@ class Service extends React.Component {
       })
       .then(function (response) {
         console.log(response);
+        if (response.data === "You already have services") {
+          toast("You already have services ❤", {
+            type: "error",
+          });
+        } else {
+          toast("Your Services Added Successfully ❤", {
+            type: "success",
+          });
+          window.location.href = "/ownerProfile";
+        }
       })
       .catch(function (error) {
         console.error(error);
@@ -78,48 +92,50 @@ class Service extends React.Component {
 
   //render Service Compo
   render() {
+    console.log(this.props.history);
     return (
-      <div className="content">
-        <p>
-          <span>Hi {/* you need to put the owner name*/} Saeed</span>
-          <span>AL Husam Resort</span>
-        </p>
-        <fieldset className="form-group">
-          <label htmlFor="service">
-            <span>Which services that You have in your Resort?</span>
-          </label>
-          <div id="serviceElement" className="form-group ">
-            {this.state.services.map((service) => {
-              return (
-                <CheckBox
-                  {...service}
-                  handleCheckChieldElement={this.handleCheckChieldElement}
-                />
-              );
-            })}
-          </div>
-          <div className="form-group">
-            <label htmlFor="note">
-              <span>Other Services</span>
+      <div>
+        <div className="control">
+          <ContolPanel />
+        </div>
+        <div className="Reservation" style={{ marginTop: "-125%" }}>
+          <fieldset className="form-group">
+            <label htmlFor="service">
+              <span>Which services that You have in your Resort?</span>
             </label>
-            <textarea
-              className="form-control"
-              onChange={this.handleChange}
-              value={this.state.otherService}
-              name="otherService"
-              id="exampleTextarea"
-              rows="2"
-              placeholder="Write message"
-            ></textarea>
-            <button
-              type="submit"
-              className="btn btn-lg font-weight-bold btn-secondary btn-block"
-              onClick={this.handleSubmit}
-            >
-              Send Your Request
-            </button>
-          </div>
-        </fieldset>
+            <div id="serviceElement" className="form-group ">
+              {this.state.services.map((service) => {
+                return (
+                  <CheckBox
+                    {...service}
+                    handleCheckChieldElement={this.handleCheckChieldElement}
+                  />
+                );
+              })}
+            </div>
+            <div className="form-group">
+              <label htmlFor="note">
+                <span>Other Services</span>
+              </label>
+              <textarea
+                className="form-control"
+                onChange={this.handleChange}
+                value={this.state.otherService}
+                name="otherService"
+                id="exampleTextarea"
+                rows="2"
+                placeholder="Write message"
+              ></textarea>
+              <button
+                type="submit"
+                className="btn btn-lg font-weight-bold btn-primary btn-block"
+                onClick={this.handleSubmit}
+              >
+                Send Your Request
+              </button>
+            </div>
+          </fieldset>
+        </div>
       </div>
     );
   }
