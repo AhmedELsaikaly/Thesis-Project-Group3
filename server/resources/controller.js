@@ -263,27 +263,48 @@ exports.SignUpCustomer = function (req, res) {
 exports.ServicesStore = function (req, res) {
   // console.log(req.body);
   const { ownerId, otherService, servicesAvailable } = req.body;
-  let ServiceDoc = new ServicesModel({
-    ownerId,
-    otherService,
-    servicesAvailable,
-  });
-  ServiceDoc.save()
-    .then(() => res.status(201).send("saved"))
-    .catch((err) => res.status(500).send(err + "err"));
+  ServicesModel.findOne({ ownerId: ownerId })
+    .then((result) => {
+      console.log(result);
+      if (result === null) {
+        let ServiceDoc = new ServicesModel({
+          ownerId,
+          otherService,
+          servicesAvailable,
+        });
+        ServiceDoc.save()
+          .then(() => res.status(201).send("Your Services saved"))
+          .catch((err) => res.status(500).send(err + "err"));
+      } else {
+        res.end("You already have services");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err + "err");
+    });
 };
 
 //Facilites storing Controller  For Owner
 exports.FacilitesStore = function (req, res) {
   // console.log(req.body);
   const { ownerId, facilities } = req.body;
-  let ServiceDoc = new FacilityModel({
-    ownerId,
-    facilities,
-  });
-  ServiceDoc.save()
-    .then(() => res.status(201).send("FacilitesSaved"))
-    .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
+  FacilityModel.findOne({ ownerId: ownerId })
+    .then((result) => {
+      if (result === null) {
+        let FacilityDoc = new FacilityModel({
+          ownerId,
+          facilities,
+        });
+        FacilityDoc.save()
+          .then(() => res.status(201).send("FacilitesSaved"))
+          .catch((err) => res.status(500).send(err + "err in Saving Facilit"));
+      } else {
+        res.end("You already have Facilities");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err + "err in Saving Facilit");
+    });
 };
 
 //get single User function

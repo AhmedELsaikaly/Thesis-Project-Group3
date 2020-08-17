@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  FormGroup,
-  ControlLabel,
-  Container,
-} from "react-bootstrap";
+import { Form, Button, FormGroup, ControlLabel } from "react-bootstrap";
 // import { Input } from 'reactstrap';
 // import { Grid, Row, Col } from 'react-bootstrap';
 import axios from "axios";
@@ -96,8 +90,9 @@ export class ServicesProfile extends Component {
   handleCheckChieldElement = (event) => {
     let services = this.state.services;
     services.forEach((service) => {
-      if (service.value === event.target.value)
+      if (service.value === event.target.value) {
         service.isChecked = event.target.checked;
+      }
     });
     this.setState({ services: services });
   };
@@ -107,48 +102,49 @@ export class ServicesProfile extends Component {
 
   render() {
     return (
-      <div>
-        <Container>
-          <div id="serviceElement" className="form-group ">
-            {this.state.services.map((service, index) => {
-              return (
-                <span key={index}>
-                  <CheckBox
-                    {...service}
-                    handleCheckChieldElement={this.handleCheckChieldElement}
-                  />
-                </span>
-              );
-            })}
-          </div>
-          <div className="form-group">
-            <label htmlFor="note">
-              <span>Other Services</span>
-            </label>
-            <textarea
-              className="form-control"
-              style={{
-                marginBottom: "40px",
-                width: "100%",
-                marginLeft: "0",
-                height: "250px",
-              }}
-              onChange={this.handleChange}
-              value={this.state.otherService}
-              name="otherService"
-              id="exampleTextarea"
-              rows="2"
-              placeholder="Write your Other Services"
-            ></textarea>
-            <Button
-              style={{ width: "100%" }}
-              type="submit"
-              onClick={this.handleSubmitSave}
-            >
-              SAVE
-            </Button>
-          </div>
-        </Container>
+      <div style={{ marginLeft: "20%" }}>
+        <h2 style={{ marginLeft: "6%" }}>Edit Your Services</h2>
+        <div
+          style={{ marginLeft: "5%" }}
+          id="serviceElement"
+          className="form-group "
+        >
+          {this.state.services.map((service, index) => {
+            return (
+              <span key={index}>
+                <CheckBox
+                  {...service}
+                  handleCheckChieldElement={this.handleCheckChieldElement}
+                />
+              </span>
+            );
+          })}
+        </div>
+        <div style={{ marginLeft: "7%" }} className="form-group">
+          <label htmlFor="note">
+            <span>Other Services</span>
+          </label>
+          <textarea
+            style={{ marginLeft: "0", marginRight: "0" }}
+            className="form-control w-200"
+            onChange={this.handleChange}
+            value={this.state.otherService}
+            name="otherService"
+            id="exampleTextarea"
+            rows="2"
+            placeholder="Write your Other Services"
+          ></textarea>
+          <br></br>
+          <Button
+            style={{ width: "60px" }}
+            onClick={this.handleSubmitSave}
+            variant="primary"
+            type="submit"
+          >
+            SAVE
+          </Button>
+          <br></br>
+        </div>
       </div>
     );
   }

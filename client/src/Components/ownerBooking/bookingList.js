@@ -22,8 +22,8 @@ class BookingList extends React.Component {
   };
   render() {
     return (
-      <div className="Booking_div">
-        <table className="table">
+      <div className="BookingList_div">
+        <table className="table table-striped table-bordered table-hover">
           <thead className="thead-dark">
             <tr>
               <th scope="col">type</th>
