@@ -127,7 +127,7 @@ class SignIn extends React.Component {
               value={this.state.input.email}
             />
           </div>
-          <div className="text-danger">{this.state.errors.email}</div>
+          <div className="text-danger">{this.state.errors.password}</div>
           <div className="form-group">
             <input
               type="password"

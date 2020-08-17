@@ -173,9 +173,8 @@ class Resort extends React.Component {
 
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-info pull-right"
               type="button"
-              class="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModal"
               data-whatever="@mdo"
@@ -220,7 +219,7 @@ class Resort extends React.Component {
                     <Pay />
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-info pull-right"
                       data-dismiss="modal"
                     >
                       Close
