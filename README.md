@@ -102,3 +102,17 @@ View the project roadmap [here](https://github.com/Thesis-Project-Group3/Thesis-
 ## Contributing
 
 See [CONTRIBUTING.md](https://github.com/Thesis-Project-Group3/Thesis-Project-Group3/blob/master/_CONTRIBUTING.md) for contribution guidelines.
+
+<!-- :point_right: You will present the project as a group SO YOU NEED TO PRACTICE AS A GROUP.
+ What is Required:
+a Recorded Demo VERY VERY VERY IMPORTANT.
+- Fill the sheet in here
+- You have 15 min for the presentation including the staff discussion.
+- Your Presentation Should go as follows (divided between team members):
+- Present the Team members with their roles.
+- Present the Project Idea and what problem does it solve.
+Used Technologies.
+The Recorded Demo with explanation.
+The challenges you faced.
+Please PRACTICE and PRACTICE As A group before the presentation, it seems easy but it’s not!
+Again Can't wait to see your projects  -->
