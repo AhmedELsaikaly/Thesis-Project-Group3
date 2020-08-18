@@ -28,7 +28,7 @@
 .footer-items p {
   color: gray;
   font-size: 16px;
-  text-align: justify;
+  text-align: left !important;
   line-height: 22px;
 }
 .inner-footer h2 {
@@ -90,7 +90,7 @@
   background: #1c1c1c;
   color: #c4c4c4;
   font-size: 15px;
-  text-align: center;
+  text-align: left;
 }
 @media screen and (max-width: 1085px) {
   .footer-items {

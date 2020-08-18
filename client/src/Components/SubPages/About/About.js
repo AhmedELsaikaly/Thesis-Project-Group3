@@ -20,52 +20,40 @@ class About extends React.Component {
         {/* <h1>ABOUT US</h1> */}
         <div>
           <div>
-            <section id="about-intro" className="clear">
+            <section
+              id="about-intro"
+              className="clear"
+              style={{
+                marginBottom: "20%",
+                marginRight: "5%",
+                fontSize: "22px",
+              }}
+            >
               <img
                 src={one} /*add the web site photo */
                 /*add the photo for the site */ alt=""
                 class="circle circle1"
               />
-              <p id="prag">
-                Every great city deserves a truly great international hotel - a
-                special place that reflects the importance and the beauty of its
-                location with world-class luxury and the very finest service.
-                Royal Arcade Five-Star Hotel, Colombo is delighted to welcome
-                you to the enchanting capital of Sri Lanka - a precious jewel in
-                the Indian Ocean, with a glittering cultural heritage and a
-                long, proud history. The hotel benefits from a prime location by
-                the sea that is in the heart of the business district and
-                buzzing social hotspot. A personal tropical sanctuary that is
-                for escaping the city, it offers some of the finest, modern
-                accommodation in the country, with 200 luxurious guest rooms and
-                suites. An exciting new dining and social scene has come to life
-                around the hotel's outstanding group of restaurants and bars,
-                and the exclusive Horizon Club Lounge is the largest of its kind
-                in Colombo. The Spa presents 7 private rooms and a soothing
-                selection of traditional Sri Lankan and Asian treatments and
-                therapies. The spa is complemented by a state-of-the-art,
-                24-hour Health Club and one of the largest outdoor swimming
-                pools in Colombo. To meet the needs of Colombo's dynamic
-                business community, Royal Arcade Five-Star Hotel, Colombo, is
-                pleased to offer the largest and extensive hotel conference and
-                event facilities in the region, which can cater to up to 2,000
-                guests. Colombo is the gateway city to discovering the rich
-                culture, wildlife, mountains and beaches that make Sri Lanka so
-                unique. Royal Arcade Five-Star Hotel, Colombo, looks forward to
-                welcoming you soon.
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-              </p>
+              <div>
+                <p id="prag" style={{ fontWeight: "700" }}>
+                  <br />
+                  <br />
+                  RahaApp is a simple booking application. Allows you to book a
+                  beach facility suits your need and show services you would to
+                  have during your sea trip.
+                  <br /> It Helps You Stick to Your Desires, Customers could
+                  track their Requirements Which Can Reveal best match Trip
+                  Needs It Helps them Meet Your Enjoying their Trip Objectives.
+                  Owners could display his facilities , services and track
+                  reservations. A single page app that will allow customers to
+                  explore beach facilities according to whatever circumstances
+                  you want without using traditional ways of booking. We will
+                  display all information, details , services and even photos
+                  concerning beach facilities while allowing customers to search
+                  for the best choice meet their desires . If you like our idea,
+                  Please send us your feedback anytime you like.
+                </p>
+              </div>
             </section>
             <section id="visionMission">
               <div class="vision">
@@ -81,10 +69,10 @@ class About extends React.Component {
                   To delight our guests every time by creating engaging
                   experiences straight from our heart.
                 </p>
+                <h2>Our Team</h2>
               </div>
             </section>
 
-            <h2>Our Team</h2>
             <div class="row">
               <div class="column">
                 <div class="card">
@@ -96,9 +84,14 @@ class About extends React.Component {
                     <h2>Khaled Abousheikh</h2>
                     <p class="title">Screm Master</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>Khaled.abousheikh@gmail.com</p>
                     <p>
-                      <button class="button">Contact</button>
+                      <a
+                        href="https://mail.google.com/mail/u/0/#inbox"
+                        target="_blanck"
+                      >
+                        <button class="button">Contact</button>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -112,11 +105,16 @@ class About extends React.Component {
                   />
                   <div class="container">
                     <h2>Wael Taqia</h2>
-                    <p class="title">Art Director</p>
+                    <p class="title">Full stack developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>waealtaqia20152729@gmail.com</p>
                     <p>
-                      <button class="button">Contact</button>
+                      <a
+                        href="https://mail.google.com/mail/u/0/#inbox"
+                        target="_blanck"
+                      >
+                        <button class="button">Contact</button>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -130,11 +128,16 @@ class About extends React.Component {
                   />
                   <div class="container">
                     <h2>Ahmad El Saikaly</h2>
-                    <p class="title">Designer</p>
+                    <p class="title">Full stack developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>ahmedelsaikaly@gmail.com</p>
                     <p>
-                      <button class="button">Contact</button>
+                      <a
+                        href="https://mail.google.com/mail/u/0/#inbox"
+                        target="_blanck"
+                      >
+                        <button class="button">Contact</button>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -147,11 +150,16 @@ class About extends React.Component {
                   />
                   <div class="container">
                     <h2>Yousef Yasin</h2>
-                    <p class="title">Art Director</p>
+                    <p class="title">Full stack developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>Yossefyasssen@gmail.com</p>
                     <p>
-                      <button class="button">Contact</button>
+                      <a
+                        href="https://mail.google.com/mail/u/0/#inbox"
+                        target="_blanck"
+                      >
+                        <button class="button">Contact</button>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -163,9 +171,14 @@ class About extends React.Component {
                     <h2>Mohammed AbuShaaban</h2>
                     <p class="title">Full stack developer</p>
                     <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                    <p>example@example.com</p>
+                    <p>mohammad.d.h.2000@gmail.com</p>
                     <p>
-                      <button class="button">Contact</button>
+                      <a
+                        href="https://mail.google.com/mail/u/0/#inbox"
+                        target="_blanck"
+                      >
+                        <button class="button">Contact</button>
+                      </a>
                     </p>
                   </div>
                 </div>

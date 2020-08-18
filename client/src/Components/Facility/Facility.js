@@ -1,33 +1,33 @@
 //import used technologies
-import React from "react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import ApiMap from "../../apiMapGoogle/ApiMap";
-import { Form, Button } from "react-bootstrap";
-import { Input } from "reactstrap";
-import { Col } from "react-bootstrap";
-import ContolPanel from "../ControlPanel/ControlPanel";
-import { toast } from "react-toastify";
+import React from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import ApiMap from '../../apiMapGoogle/ApiMap';
+import { Form, Button } from 'react-bootstrap';
+import { Input } from 'reactstrap';
+import { Col } from 'react-bootstrap';
+import ContolPanel from '../ControlPanel/ControlPanel';
+import { toast } from 'react-toastify';
 //import CSS
-import "./Facility.css";
+import './Facility.css';
 //import used files
-import PhotoUpload from "../PhotoUpload/PhotoUpload";
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
 
 //create Facility Compo
 class Facility extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: "",
+      ownerId: '',
       TableUrl: { url: null, isUploaded: false },
       SmallTentUrl: { url: null, isUploaded: false },
       LargeTentUrl: { url: null, isUploaded: false },
-      tableQuant: "",
-      tablePrice: "",
-      LargeTentQuant: "",
-      LargeTentPrice: "",
-      SmallTentQuant: "",
-      SmallTentPrice: "",
+      tableQuant: '',
+      tablePrice: '',
+      LargeTentQuant: '',
+      LargeTentPrice: '',
+      SmallTentQuant: '',
+      SmallTentPrice: '',
     };
   }
   // Take the id from token
@@ -73,7 +73,7 @@ class Facility extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/Facilites", {
+      .post('http://localhost:5000/Facilites', {
         facilities: {
           table: {
             img: this.state.TableUrl.url,
@@ -94,15 +94,15 @@ class Facility extends React.Component {
         ownerId: this.state.ownerId,
       })
       .then(function (response) {
-        if (response.data === "You already have Facilities") {
-          toast("You already have Facilities ❤", {
-            type: "error",
+        if (response.data === 'You already have Facilities') {
+          toast('You already have Facilities ❤', {
+            type: 'error',
           });
         } else {
-          toast("Your Facilities Added Successfully ❤", {
-            type: "success",
+          toast('Your Facilities Added Successfully ❤', {
+            type: 'success',
           });
-          window.location.href = "/ownerProfile";
+          window.location.href = '/ownerProfile';
         }
       })
       .catch(function (error) {
@@ -113,11 +113,11 @@ class Facility extends React.Component {
   render() {
     return (
       <div>
-        <div className="FacilityStore">
+        <div className='FacilityStore'>
           <ContolPanel />
         </div>
-        <div style={{ marginLeft: "22%", marginTop: "-125%" }}>
-          <Form className="form">
+        <div style={{ marginLeft: '22%', marginTop: '-125%' }}>
+          <Form className='form'>
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>Tabels</Form.Label>
@@ -127,8 +127,8 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Price</Form.Label>
                 <Input
-                  type="number"
-                  name="tablePrice"
+                  type='number'
+                  name='tablePrice'
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -136,8 +136,8 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Quantity</Form.Label>
                 <Input
-                  type="number"
-                  name="tableQuant"
+                  type='number'
+                  name='tableQuant'
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -158,8 +158,8 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Quantity:</Form.Label>
                 <Input
-                  type="number"
-                  name="SmallTentQuant"
+                  type='number'
+                  name='SmallTentQuant'
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -167,8 +167,8 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Price:</Form.Label>
                 <Input
-                  type="number"
-                  name="SmallTentPrice"
+                  type='number'
+                  name='SmallTentPrice'
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -188,8 +188,8 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Quantity:</Form.Label>
                 <Input
-                  type="number"
-                  name="LargeTentQuant"
+                  type='number'
+                  name='LargeTentQuant'
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -197,28 +197,28 @@ class Facility extends React.Component {
               <Form.Group as={Col}>
                 <Form.Label>Price:</Form.Label>
                 <Input
-                  type="number"
-                  name="LargeTentPrice"
+                  type='number'
+                  name='LargeTentPrice'
                   onChange={this.handleChange}
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Image Large Tents</Form.Label>
-                <PhotoUpload handler={this.getLargeTentUrl} />{" "}
+                <PhotoUpload handler={this.getLargeTentUrl} />{' '}
               </Form.Group>
             </Form.Row>
             <button
-              type="submit"
-              className="btn btn-lg font-weight-bold btn-primary btn-block"
+              type='submit'
+              style={{ maxWidth: '50%' }}
+              class='btn btn-lg font-weight-bold btn-primary btn-block'
               onClick={this.handleSubmit}
             >
-              {" "}
-              Send Your Request{" "}
+              Send Your Request
             </button>
-            <ApiMap />
+            <br />
+            <ApiMap style={{ marginLeft: '50%' }} />
           </Form>
-          {/* <ApiMap /> */}
         </div>
       </div>
     );

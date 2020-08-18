@@ -25,20 +25,20 @@ export class Footer extends Component {
           </div>
           ​
           <div className="footer-items">
-            <h2>Quick Links</h2>
+            <h2> QUICK LINKS </h2>
             <div className="border"></div>
             <ul>
-              <a href="index.html">
-                <li>Home</li>
+              <a href="/">
+                <li>HOME</li>
               </a>
-              <a href="packages.html">
+              <a href="/resorts">
                 <li>RESORTS</li>
               </a>
-              <a href="about.html">
-                <li>About Us</li>
+              <a href="/about">
+                <li>ABOUT US</li>
               </a>
-              <a href="contact.html">
-                <li>Contact</li>
+              <a href="/contact">
+                <li>CONTACT</li>
               </a>
             </ul>
           </div>
