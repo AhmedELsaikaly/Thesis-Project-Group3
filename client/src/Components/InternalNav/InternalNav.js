@@ -63,12 +63,12 @@ class InternalNav extends React.Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/customerProfile">
-                  My Profile
+                  MY PROFILE
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/userReservation">
-                  My Bookings
+                  My BOOKINGS
                 </a>
               </li>
               <li className="nav-item">

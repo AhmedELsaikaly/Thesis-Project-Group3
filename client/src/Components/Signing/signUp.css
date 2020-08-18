@@ -6,10 +6,10 @@
 .form-control {
   height: 40px;
   box-shadow: none;
-  color: #969fa4;
+  color: #007bff;
 }
 .form-control:focus {
-  border-color: #5cb85c;
+  border-color: #007bff;
 }
 .form-control,
 .btn {

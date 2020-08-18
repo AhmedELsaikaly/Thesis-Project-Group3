@@ -1,18 +1,20 @@
 //import used technologies
-import React, { Component } from "react";
-import "./userReservation.css";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import InternalNav from "../InternalNav/InternalNav";
-import Footer from "../SubPages/Footer/Footer";
-import SliderForPages from "../SliderForPages/SliderForPages";
+import React, { Component } from 'react';
+import './userReservation.css';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import InternalNav from '../InternalNav/InternalNav';
+import Footer from '../SubPages/Footer/Footer';
+import SliderForPages from '../SliderForPages/SliderForPages';
+import { Form, Button } from 'react-bootstrap';
+import { Input } from 'reactstrap';
 class UserReservation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerId: "",
+      customerId: '',
       reservations: [],
-      err: "",
+      err: '',
     };
   }
 
@@ -29,11 +31,11 @@ class UserReservation extends React.Component {
         ) // Fix the route
         .then((result) => {
           // console.log(result);
-          if (result.data === "there is no booking") {
+          if (result.data === 'there is no booking') {
             console.log(result);
             this.setState({
               reservations: [],
-              err: "There is No Reservation For You",
+              err: 'There is No Reservation For You',
             });
           } else {
             console.log(result);
@@ -42,7 +44,7 @@ class UserReservation extends React.Component {
           }
         })
         .catch((err) => {
-          console.log("Error", err);
+          console.log('Error', err);
         });
     }
   }
@@ -56,9 +58,18 @@ class UserReservation extends React.Component {
           <td>{element.type}</td>
           <td>{element.date}</td>
           <td>
-            <button>
+            <Button variant='primary' type='submit'>
+              <a
+                href={`resort/${element.ownerId}`}
+                style={{ color: '#fff' }}
+                target='_blank'
+              >
+                More Details
+              </a>
+            </Button>
+            {/* <button>
               <a href={`resort/${element.ownerId}`}>More Details</a>
-            </button>
+            </button> */}
           </td>
         </tr>
       );
@@ -70,17 +81,20 @@ class UserReservation extends React.Component {
     return (
       <div>
         <InternalNav />
-        <SliderForPages head={"Your Reservation"} />
-        <div className="UserReservationTable">
-          <div className="text-danger">{this.state.err}</div>
-          <table className="table table-striped table-bordered table-hover">
-            <thead className="thead-dark">
+        <SliderForPages head={'Your Reservation'} />
+        <div className='UserReservationTable'>
+          <div className='text-danger'>{this.state.err}</div>
+          <table
+            className='table table-striped table-bordered table-hover'
+            style={{ margin: '5%', maxWidth: '80%' }}
+          >
+            <thead className='thead-dark'>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Facility Name</th>
-                <th scope="col">Facility Type</th>
-                <th scope="col">Reservation Date</th>
-                <th scope="col">Resort Details</th>
+                <th scope='col'>#</th>
+                <th scope='col'>Facility Name</th>
+                <th scope='col'>Facility Type</th>
+                <th scope='col'>Reservation Date</th>
+                <th scope='col'>Resort Details</th>
               </tr>
             </thead>
             {this.state.reservations.length >= 0 ? (

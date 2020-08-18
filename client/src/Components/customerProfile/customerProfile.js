@@ -76,7 +76,10 @@ export class CustomerProfile extends Component {
     return (
       <div className="edit-profile">
         <InternalNav />
-        <h2>Hello {this.state.fullName} Edit Your Profile</h2>
+        <h2 style={{ marginLeft: "45%" }}>Welcome {this.state.fullName}</h2>
+        <h2 style={{ marginLeft: "38%" }}>
+          Here you can edit your profile
+        </h2>{" "}
         <Container>
           <Form style={{ marginTop: "10%" }}>
             <Form.Row>

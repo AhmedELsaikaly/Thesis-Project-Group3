@@ -1,6 +1,7 @@
 //import used technologies
 import React from "react";
-
+import { Form, Button } from 'react-bootstrap';
+import { Input } from 'reactstrap';
 //import CSS
 import "./SignUpOwner.css";
 

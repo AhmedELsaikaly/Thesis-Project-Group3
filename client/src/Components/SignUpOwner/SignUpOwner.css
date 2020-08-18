@@ -9,7 +9,7 @@
   color: #969fa4;
 }
 .form-control:focus {
-  border-color: #5cb85c;
+  border-color: #007bff;
 }
 .form-control,
 .btn {
@@ -69,6 +69,7 @@
   font-weight: bold;
   min-width: 140px;
   outline: none !important;
+  background: #007bff;
 }
 .signup-form .row div:first-child {
   padding-right: 10px;
@@ -77,15 +78,15 @@
   padding-left: 10px;
 }
 .signup-form a {
-  color: black;
+  color: #007bff;
   text-decoration: underline;
 }
 .signup-form a:hover {
   text-decoration: none;
 }
 .signup-form form a {
-  color: black;
   text-decoration: none;
+  color: #007bff;
 }
 .signup-form form a:hover {
   text-decoration: underline;
