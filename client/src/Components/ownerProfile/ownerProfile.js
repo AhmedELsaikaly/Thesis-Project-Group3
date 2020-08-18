@@ -177,7 +177,7 @@ export class OwnerProfile extends Component {
         <FacilityProfile />
         <hr />
         <ServicesProfile />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
