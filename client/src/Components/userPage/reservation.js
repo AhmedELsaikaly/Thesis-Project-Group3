@@ -1,29 +1,31 @@
-import React from "react";
+import React from 'react';
 
 // import "./style.css";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import "./facility.css";
-import { toast } from "react-toastify";
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import './facility.css';
+import { toast } from 'react-toastify';
+import { Form, Button, Navbar } from 'react-bootstrap';
+import { Input } from 'reactstrap';
 class Reservation extends React.Component {
   constructor() {
     super();
     this.state = {
-      date: "",
-      customerId: "",
-      resType: "",
-      fullName: "",
-      ownerId: "",
+      date: '',
+      customerId: '',
+      resType: '',
+      fullName: '',
+      ownerId: '',
       errors: [],
-      serverErr: "",
+      serverErr: '',
     };
   }
   CheckDate = (inputDate) => {
     var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-    today = yyyy + "-" + mm + "-" + dd;
+    today = yyyy + '-' + mm + '-' + dd;
     var CurrentDate = new Date();
     var GivenDate = new Date(inputDate);
     if (inputDate === today) {
@@ -38,13 +40,13 @@ class Reservation extends React.Component {
   validate() {
     let isValid = true;
     let errors = [];
-    if (this.state.resType === "") {
+    if (this.state.resType === '') {
       isValid = false;
-      errors.push("please fill the reservation type");
+      errors.push('please fill the reservation type');
     }
-    if (this.state.date === "") {
+    if (this.state.date === '') {
       isValid = false;
-      errors.push("please fill the reservation Dates");
+      errors.push('please fill the reservation Dates');
     }
     this.setState({
       errors: errors,
@@ -53,7 +55,7 @@ class Reservation extends React.Component {
     return isValid;
   }
   change = (e) => {
-    this.setState({ [e.target.name]: e.target.value, serverErr: "" });
+    this.setState({ [e.target.name]: e.target.value, serverErr: '' });
   };
   componentDidMount() {
     // this.setState({ ownerId: this.props.OwnerId });
@@ -96,69 +98,111 @@ class Reservation extends React.Component {
           })
           .then((res) => {
             if (
-              res.data === "no available place" ||
-              res.data === "There is no Facilities for this Owner to reserve"
+              res.data === 'no available place' ||
+              res.data === 'There is no Facilities for this Owner to reserve'
             ) {
               this.setState({ serverErr: res.data });
             } else {
-              toast("Success! Your Reserved Sucessfully", { type: "success" });
+              toast('Success! Your Reserved Sucessfully', { type: 'success' });
             }
           })
           .catch((err) => {
-            console.log("ERROR from AXIOS =>", err);
+            console.log('ERROR from AXIOS =>', err);
           });
       }
     } else {
-      this.setState({ serverErr: "Please Choose Date Today of After" });
+      this.setState({ serverErr: 'Please Choose Date Today of After' });
     }
   };
   render() {
     return (
       <div>
         <div>
-          <p3>Select one </p3>
+          <p3 style={{ fontSize: '18px', fontWeight: '500' }}>Select one </p3>
           {this.state.errors.map((element, index) => (
-            <div className="text-danger">{element}</div>
+            <div className='text-danger'>{element}</div>
           ))}
           <select
-            id="SelectOptions"
-            className="selectpicker show-tick"
-            searchable="Search here.."
-            name="resType"
+            id='SelectOptions'
+            className='selectpicker show-tick'
+            searchable='Search here..'
+            name='resType'
             style={{
-              marginLeft: "80px",
-              marginBottom: "100px",
-              width: "240px",
+              marginLeft: '10%',
+              marginBottom: '100px',
+              width: '240px',
+              fontSize: '18px',
             }}
             value={this.state.resType}
             onChange={this.change}
           >
-            <option value="">Select one</option>
-            <option value="table">Table</option>
-            <option value="SmallTents">Small Tents</option>
-            <option value="LargeTents"> Large Tents</option>
+            <option
+              style={{
+                fontWeight: '400',
+                fontSize: '18px',
+              }}
+              value=''
+            >
+              Select one
+            </option>
+            <option
+              style={{
+                fontWeight: '400',
+                fontSize: '18px',
+              }}
+              value='table'
+            >
+              Table
+            </option>
+            <option
+              style={{
+                fontWeight: '400',
+                fontSize: '18px',
+              }}
+              value='SmallTents'
+            >
+              Small Tents
+            </option>
+            <option
+              style={{
+                fontWeight: '400',
+                fontSize: '18px',
+              }}
+              value='LargeTents'
+            >
+              {' '}
+              Large Tents
+            </option>
           </select>
           <input
-            className="depart input1"
-            type="date"
+            className='depart input1'
+            type='date'
             value={this.state.date}
             onChange={this.change}
-            name="date"
-            style={{ margin: "15px" }}
+            name='date'
+            style={{
+              margin: '15px',
+              marginTop: '5px',
+              height: '50px',
+              borderRadius: '5px',
+              fontWeight: '400',
+            }}
           />
-          <button
-            style={{ marginLeft: "60px" }}
-            type="button"
-            class="btn btn-primary"
-            id="button1"
-            data-toggle="button"
-            aria-pressed="false"
-            autocomplete="off"
+
+          <Button
             onClick={this.addReserve}
+            variant='primary'
+            data-toggle='modal'
+            data-target='#exampleModal'
+            data-whatever='@mdo'
+            aria-pressed='false'
+            type='button'
           >
-            resirve
-          </button>
-          <div className="text-danger">{this.state.serverErr}</div>
+            Resirve
+          </Button>
+
+          {/* </button> */}
+          <div className='text-danger'>{this.state.serverErr}</div>
         </div>
       </div>
     );

@@ -1,21 +1,23 @@
-import React from "react";
-import "./bookingList.css";
-import axiox from "axios";
-import jwt_decode from "jwt-decode";
-import BookingList from "./bookingList";
-import ContolPanel from "../ControlPanel/ControlPanel";
+import React from 'react';
+import './bookingList.css';
+import axiox from 'axios';
+import jwt_decode from 'jwt-decode';
+import BookingList from './bookingList';
+import ContolPanel from '../ControlPanel/ControlPanel';
+import { Form, Button } from 'react-bootstrap';
+import { Input } from 'reactstrap';
 class OwnerBooking extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       bookings: [],
-      ownerId: "",
-      error: "",
-      date: "",
+      ownerId: '',
+      error: '',
+      date: '',
       facilitesCount: { LargeTents: 0, SmallTents: 0, table: 0 },
       reservationCount: { LargeTents: [], SmallTents: [], table: [] },
       isClicked: false,
-      clickedElement: "",
+      clickedElement: '',
     };
   }
   //import CSS
@@ -40,7 +42,7 @@ class OwnerBooking extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({
-      error: "",
+      error: '',
     });
     axiox
       .get(`http://localhost:5000/getResByDateOwner`, {
@@ -51,11 +53,11 @@ class OwnerBooking extends React.Component {
       })
       .then((result) => {
         if (
-          result.data === "there is no reservation in this date" &&
+          result.data === 'there is no reservation in this date' &&
           result.status === 200
         ) {
           this.setState({
-            error: "There is no reservation in this date",
+            error: 'There is no reservation in this date',
             isClicked: false,
             bookings: [],
             reservationCount: { LargeTents: [], SmallTents: [], table: [] },
@@ -74,11 +76,11 @@ class OwnerBooking extends React.Component {
         }
       })
       .catch((err) => {
-        console.log("Error", err);
+        console.log('Error', err);
       });
   };
   renderTableData = () => {
-    const keys = ["table", "SmallTents", "LargeTents"];
+    const keys = ['table', 'SmallTents', 'LargeTents'];
     return keys.map((element, index) => {
       const { table, SmallTents, LargeTents } = this.state.facilitesCount;
       // const { table, SmallTents, LargeTents } = this.state.reservationCount;
@@ -92,9 +94,15 @@ class OwnerBooking extends React.Component {
               this.state.reservationCount[element].length}
           </td>
           <td>
-            <button name={element} onClick={this.handleClick}>
+            <Button
+              variant='primary'
+              type='submit'
+              name={element}
+              onClick={this.handleClick}
+              style={{ marginLeft: '60%' }}
+            >
               More Details
-            </button>
+            </Button>
           </td>
         </tr>
       );
@@ -106,22 +114,34 @@ class OwnerBooking extends React.Component {
         <div>
           <ContolPanel />
         </div>
-        <div className="Booking_div" style={{ marginTop: "-120%" }}>
-          <input name="date" type="date" onChange={this.handleChange} />
-          <button onClick={this.handleSubmit}>display data</button>
-          <table className="table table-striped table-bordered table-hover">
-            <thead className="thead-dark">
+        <div className='Booking_div' style={{ marginTop: '-120%' }}>
+          <input
+            name='date'
+            type='date'
+            onChange={this.handleChange}
+            style={{
+              marginBottom: '5%',
+              border: 'solid 2px',
+              marginRight: '5%',
+            }}
+          />
+
+          <Button variant='primary' type='submit' onClick={this.handleSubmit}>
+            Display Data
+          </Button>
+          <table className='table table-striped table-bordered table-hover'>
+            <thead className='thead-dark'>
               <tr>
-                <th scope="col">Facility Type</th>
-                <th scope="col">Total No.</th>
-                <th scope="col">Reserved No</th>
-                <th scope="col">Free NO.</th>
-                <th scope="col">usersDetails</th>
+                <th scope='col'>Facility Type</th>
+                <th scope='col'>Total No.</th>
+                <th scope='col'>Reserved No</th>
+                <th scope='col'>Free NO.</th>
+                <th scope='col'>usersDetails</th>
               </tr>
             </thead>
             <tbody>{this.renderTableData()}</tbody>
           </table>
-          <p className="text-danger">{this.state.error}</p>
+          <p className='text-danger'>{this.state.error}</p>
           {this.state.isClicked === true ? (
             <BookingList
               bookings={this.state.reservationCount[this.state.clickedElement]}
