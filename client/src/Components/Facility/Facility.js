@@ -32,7 +32,7 @@ class Facility extends React.Component {
   }
   // Take the id from token
   componentDidMount() {
-    const token = localStorage.usertoken;
+    const token = localStorage.ownertoken;
     const decoded = jwt_decode(token);
     // console.log(decoded.id);
     this.setState({ ownerId: decoded.id });

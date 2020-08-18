@@ -3,8 +3,10 @@ import React from "react";
 import { NotEditStar } from "../Rating&Feedback/Rating";
 import Footer from "../SubPages/Footer/Footer";
 import InternalNav from "../InternalNav/InternalNav";
+import Navbar from "./../Navbar/Navbar";
 import axios from "axios";
 import "./fillter.css";
+
 //import used files
 
 //create Fillter Compo
@@ -59,6 +61,13 @@ class Fillter extends React.Component {
       AllOwners: this.state.ReturnAll,
     });
   };
+  // componentDidMount(){
+  // if(localStorage.usertoken!==""){
+  //  InternalNav
+  // }else {
+  //   return Navbar
+  // }
+  // }
   //handleSelect function
   handleSelect = (e) => {
     this.setState({ selectedSearchVal: e.target.value });
@@ -79,7 +88,8 @@ class Fillter extends React.Component {
     const { AllOwners } = this.state;
     return (
       <div>
-        <InternalNav />
+        {localStorage.usertoken !== undefined ? <InternalNav /> : <Navbar />}
+        {/*  */}
         <hr></hr>
         <div>
           <div className="dropdown">

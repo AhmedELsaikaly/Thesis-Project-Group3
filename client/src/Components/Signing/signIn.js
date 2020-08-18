@@ -1,12 +1,23 @@
 //import used technologies
 import React from "react";
 import axios from "axios";
+import { authintication } from "./../RoutesType/ProtectedRoute";
 
 //import CSS
 import "./signIn.css";
 
-//import used files
-
+// var authintication = {
+//   isLoggedIn: false,
+//   onAuthintication() {
+//     this.isLoggedIn = true;
+//   },
+//   ofAuthintication() {
+//     this.isLoggedIn = false;
+//   },
+//   getLoginStatus() {
+//     return this.isLoggedIn;
+//   },
+// };
 //create SignIn compo
 class SignIn extends React.Component {
   constructor() {
@@ -69,7 +80,9 @@ class SignIn extends React.Component {
           })
           .then((response) => {
             console.log(response);
-            localStorage.setItem("usertoken", response.data.token);
+            localStorage.setItem("ownertoken", response.data.token);
+
+            // authintication.onAuthintication();
             this.props.history.push(`/ContolPanel`);
             return response.data;
             // alert("sign up success please sign in");
@@ -92,7 +105,10 @@ class SignIn extends React.Component {
             console.log(response);
             localStorage.setItem("usertoken", response.data.token);
             this.props.history.push(`/`);
+            authintication.onAuthintication();
+            console.log('555555555',authintication.isLoggedIn);
             return response.data;
+
             // alert("sign up success please sign in");
             // console.log("result   ", res);
             // this.setState({ singup: "sign up success please sign in" });

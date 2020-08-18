@@ -26,7 +26,7 @@ import "./App.css";
 
 import OwnerBooking from "./Components/ownerBooking/ownerBooking.js";
 import UserReservation from "./Components/userReservation/userReservation.js";
-import { ProtectedRoute } from "./Components/RoutesType/ProtectedRoute";
+import { ProtectedRoute ,ProtectedRouteOwner} from "./Components/RoutesType/ProtectedRoute";
 import { LoggedInRoute } from "./Components/RoutesType/LoggedInRoute";
 
 //create App Compo
@@ -49,18 +49,30 @@ class App extends React.Component {
             {/* <Route exact path="/reservation" component={Reservation} /> */}
             <Route exact path="/Policy" component={Policy} />
             <Route exact path="/SignUpOwner" component={SignUpOwner} />
-            <Route exact path="/ContolPanel" component={ContolPanel} />
+            <ProtectedRouteOwner exact path="/ContolPanel" component={ContolPanel} />
             <Route exact path="/Facility" component={Facility} />
             <Route exact path="/Service" component={Service} />
-            <Route exact path="/resort/:id" component={Resort} />
-            <Route exact path="/ownerProfile" component={OwnerProfile} />
-            <Route exact path="/customerProfile" component={CustomerProfile} />
-            <Route exact path="/ownerBooking" component={OwnerBooking}></Route>
-            <Route
+            <ProtectedRoute exact path="/resort/:id" component={Resort} />
+            <ProtectedRouteOwner
+              exact
+              path="/ownerProfile"
+              component={OwnerProfile}
+            />
+            <ProtectedRoute
+              exact
+              path="/customerProfile"
+              component={CustomerProfile}
+            />
+            <ProtectedRoute
+              exact
+              path="/ownerBooking"
+              component={OwnerBooking}
+            ></ProtectedRoute>
+            <ProtectedRoute
               exact
               path="/userReservation"
               component={UserReservation}
-            ></Route>
+            ></ProtectedRoute>
           </Switch>
         </Router>
       </div>

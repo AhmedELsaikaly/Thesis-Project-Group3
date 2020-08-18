@@ -193,7 +193,6 @@ class Reservation extends React.Component {
             onClick={this.addReserve}
             variant='primary'
             data-toggle='modal'
-            data-target='#exampleModal'
             data-whatever='@mdo'
             aria-pressed='false'
             type='button'

@@ -6,6 +6,8 @@ import "./About.css";
 
 //import used files
 import Navbar from "../../Navbar/Navbar.js";
+import InternalNav from "./../../InternalNav/InternalNav";
+
 import Footer from "../Footer/Footer.js";
 import one from "./one.jpg";
 //create About Compo
@@ -13,7 +15,8 @@ class About extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {localStorage.usertoken !== undefined ? <InternalNav /> : <Navbar />}
+
         {/* <h1>ABOUT US</h1> */}
         <div>
           <div>
