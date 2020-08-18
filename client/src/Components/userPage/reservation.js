@@ -1,11 +1,10 @@
 import React from "react";
-import { toast } from "react-toastify";
 
 // import "./style.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import "./facility.css";
-
+import { toast } from "react-toastify";
 class Reservation extends React.Component {
   constructor() {
     super();
@@ -16,8 +15,26 @@ class Reservation extends React.Component {
       fullName: "",
       ownerId: "",
       errors: [],
+      serverErr: "",
     };
   }
+  CheckDate = (inputDate) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    var CurrentDate = new Date();
+    var GivenDate = new Date(inputDate);
+    if (inputDate === today) {
+      return true;
+    }
+    if (GivenDate > CurrentDate) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   validate() {
     let isValid = true;
     let errors = [];
@@ -36,8 +53,7 @@ class Reservation extends React.Component {
     return isValid;
   }
   change = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state.date, "ddddd", e.target.value);
+    this.setState({ [e.target.name]: e.target.value, serverErr: "" });
   };
   componentDidMount() {
     // this.setState({ ownerId: this.props.OwnerId });
@@ -56,44 +72,44 @@ class Reservation extends React.Component {
       this.setState({ ownerId: nextProps.ownerId });
     }
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.resType !== this.state.resType) {
+      this.props.handleSelection(this.state.resType);
+    }
+  }
   addReserve = (e) => {
     e.preventDefault();
-    if (this.validate()) {
-      this.setState({
-        errors: [],
-      });
-
-
-      axios
-        .post(`http://localhost:5000/addReservation`, {
-          customerId: this.state.customerId,
-          customerName: this.state.fullName,
-          date: this.state.date,
-          mobileNumber: this.state.mobileNumber,
-          type: this.state.resType,
-          ownerId: this.state.ownerId,
-        })
-        
-        .then((res) => {
-
-          // console.log(res, "ppppp");
-          if (res.data === "Reservation Saved") {
-            toast("the reservation is done", {
-              type: "success",
-            });
-          } else {
-            toast("No available Facility", {
-              type: "error",
-            });
-          }
-      
-            window.location.href = `/resort/${this.state.ownerId}`;
-          
-        })
-        .catch((err) => {
-          console.log("ERROR from AXIOS =>", err);
+    if (this.CheckDate(this.state.date)) {
+      if (this.validate()) {
+        this.setState({
+          errors: [],
         });
+        axios
+          .post(`http://localhost:5000/addReservation`, {
+            customerId: this.state.customerId,
+            customerName: this.state.fullName,
+            date: this.state.date,
+            mobileNumber: this.state.mobileNumber,
+            type: this.state.resType,
+            ownerId: this.state.ownerId,
+            placeName: this.props.PlaceName,
+          })
+          .then((res) => {
+            if (
+              res.data === "no available place" ||
+              res.data === "There is no Facilities for this Owner to reserve"
+            ) {
+              this.setState({ serverErr: res.data });
+            } else {
+              toast("Success! Your Reserved Sucessfully", { type: "success" });
+            }
+          })
+          .catch((err) => {
+            console.log("ERROR from AXIOS =>", err);
+          });
+      }
     } else {
+      this.setState({ serverErr: "Please Choose Date Today of After" });
     }
   };
   render() {
@@ -133,7 +149,7 @@ class Reservation extends React.Component {
           <button
             style={{ marginLeft: "60px" }}
             type="button"
-            class="btn btn-info pull-right"
+            class="btn btn-primary"
             id="button1"
             data-toggle="button"
             aria-pressed="false"
@@ -142,6 +158,7 @@ class Reservation extends React.Component {
           >
             resirve
           </button>
+          <div className="text-danger">{this.state.serverErr}</div>
         </div>
       </div>
     );

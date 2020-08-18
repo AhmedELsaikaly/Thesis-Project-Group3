@@ -470,36 +470,41 @@ exports.addReservation = function (req, res) {
     mobileNumber,
     type,
     ownerId,
+    placeName,
   } = req.body;
-
+  console.log(req.body);
   //find facilitiy using ownerId
   FacilityModel.findOne({ ownerId: ownerId })
     .then((faci) => {
-      console.log("The quantity", faci.facilities[type].quantity);
-      quant = faci.facilities[type].quantity;
-      ReservationModel.find({
-        ownerId: ownerId,
-        date: date,
-        type: type,
-      }).then((result) => {
-        if (quant - result.length > 0) {
-          let ReservationDoc = new ReservationModel({
-            customerId,
-            customerName,
-            date,
-            mobileNumber,
-            type,
-            ownerId,
-          });
-          ReservationDoc.save()
-            .then(() => res.status(201).send("Reservation Saved"))
-            .catch((err) =>
-              res.status(500).send(err + "err in Saving Reservation")
-            );
-        } else {
-          res.end("no available place");
-        }
-      });
+      if (faci !== null) {
+        var quant = faci.facilities[type].quantity;
+        ReservationModel.find({
+          ownerId: ownerId,
+          date: date,
+          type: type,
+        }).then((result) => {
+          if (quant - result.length > 0) {
+            let ReservationDoc = new ReservationModel({
+              customerId,
+              customerName,
+              date,
+              mobileNumber,
+              type,
+              ownerId,
+              placeName,
+            });
+            ReservationDoc.save()
+              .then(() => res.status(201).send("Reservation Saved"))
+              .catch((err) =>
+                res.status(500).send(err + "err in Saving Reservation")
+              );
+          } else {
+            res.end("no available place");
+          }
+        });
+      } else {
+        res.end("There is no Facilities for this Owner to reserve");
+      }
     })
     .catch((err) => {
       console.log("Error: ", err);
@@ -511,12 +516,10 @@ exports.GetReservation = function (req, res) {
   const customerId = req.params.id;
   ReservationModel.find({ customerId: customerId })
     .then((result) => {
-      console.log(result);
-      if (result.length === 0) {
-        console.log(result);
-        return res.status(201).end("there is no booking ");
+      if (result.length !== 0) {
+        return res.status(200).send(result);
       }
-      return res.status(200).send(result);
+      return res.status(201).end("there is no booking");
     })
     .catch((err) => console.log(err));
 };
