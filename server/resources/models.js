@@ -179,6 +179,9 @@ let ReservationSchema = mongoose.Schema({
   ownerId: {
     type: String,
   },
+  placeName: {
+    type: String,
+  },
 });
 const ReservationModel = mongoose.model("Reservation", ReservationSchema);
 

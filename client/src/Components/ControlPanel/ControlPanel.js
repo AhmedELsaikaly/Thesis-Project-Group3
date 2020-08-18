@@ -3,8 +3,9 @@ import React from "react";
 import jwt_decode from "jwt-decode";
 //import CSS
 import "./ControlPanel.css";
-
+import { toast } from "react-toastify";
 import axios from "axios";
+import InternalNavControl from "./InternalNavControl/InternalNavControl";
 
 //import used files
 import jessica from "./1.png";
@@ -52,25 +53,16 @@ class ContolPanel extends React.Component {
         console.log(err);
       });
   };
+  logout = () => {
+    toast("Success! Logging out, Thank you❤", { type: "success" });
+    localStorage.removeItem("usertoken");
+  };
 
   //render ContolPanel Compo
   render() {
     return (
       <div className="ConrolPanel">
-        <input type="checkbox" id="check" />
-        <header>
-          <br />
-          <div className="left_area" style={{ marginLeft: "5%" }}>
-            <h3>
-              Ra<span>7</span>ha
-            </h3>
-          </div>
-          <div className="right_area">
-            <a href="/logout" className="logout_btn">
-              Logout
-            </a>
-          </div>
-        </header>
+        <InternalNavControl />
         <div className="sidebar">
           <center style={{ marginLeft: "-5%" }}>
             <img src={jessica} className="profile_image" alt="" />
@@ -80,10 +72,6 @@ class ContolPanel extends React.Component {
               Hi {this.state.fullName}
             </h4>
           </center>
-          <a href="/">
-            <i className="fas fa-desktop"></i>
-            <span>Home Page</span>
-          </a>
           <a href="/service">
             <i className="fas fa-cogs"></i>
             <span>Services</span>

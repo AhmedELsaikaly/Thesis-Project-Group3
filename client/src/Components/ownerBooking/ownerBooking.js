@@ -3,6 +3,7 @@ import "./bookingList.css";
 import axiox from "axios";
 import jwt_decode from "jwt-decode";
 import BookingList from "./bookingList";
+import ContolPanel from "../ControlPanel/ControlPanel";
 class OwnerBooking extends React.Component {
   constructor(props) {
     super(props);
@@ -100,36 +101,35 @@ class OwnerBooking extends React.Component {
     });
   };
   render() {
-    console.log(this.state.reservationCount);
     return (
-      <div className="Booking_div">
-        <input name="date" type="date" onChange={this.handleChange} />
-        <button onClick={this.handleSubmit}>display data</button>
-        <table className="table">
-          <thead className="thead-dark">
-            {/* <thead className="thead-dark">
+      <div>
+        <div>
+          <ContolPanel />
+        </div>
+        <div className="Booking_div" style={{ marginTop: "-120%" }}>
+          <input name="date" type="date" onChange={this.handleChange} />
+          <button onClick={this.handleSubmit}>display data</button>
+          <table className="table table-striped table-bordered table-hover">
+            <thead className="thead-dark">
               <tr>
                 <th scope="col">Facility Type</th>
+                <th scope="col">Total No.</th>
+                <th scope="col">Reserved No</th>
+                <th scope="col">Free NO.</th>
+                <th scope="col">usersDetails</th>
               </tr>
-            </thead> */}
-            <tr>
-              <th scope="col">Facility Type</th>
-              <th scope="col">Total No.</th>
-              <th scope="col">Reserved No</th>
-              <th scope="col">Free NO.</th>
-              <th scope="col">usersDetails</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderTableData()}</tbody>
-        </table>
-        <p className="text-danger">{this.state.error}</p>
-        {this.state.isClicked === true ? (
-          <BookingList
-            bookings={this.state.reservationCount[this.state.clickedElement]}
-          />
-        ) : (
-          <div></div>
-        )}
+            </thead>
+            <tbody>{this.renderTableData()}</tbody>
+          </table>
+          <p className="text-danger">{this.state.error}</p>
+          {this.state.isClicked === true ? (
+            <BookingList
+              bookings={this.state.reservationCount[this.state.clickedElement]}
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
     );
   }

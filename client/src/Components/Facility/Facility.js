@@ -3,6 +3,11 @@ import React from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import ApiMap from "../../apiMapGoogle/ApiMap";
+import { Form, Button } from "react-bootstrap";
+import { Input } from "reactstrap";
+import { Col } from "react-bootstrap";
+import ContolPanel from "../ControlPanel/ControlPanel";
+import { toast } from "react-toastify";
 //import CSS
 import "./Facility.css";
 //import used files
@@ -89,7 +94,16 @@ class Facility extends React.Component {
         ownerId: this.state.ownerId,
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data === "You already have Facilities") {
+          toast("You already have Facilities ❤", {
+            type: "error",
+          });
+        } else {
+          toast("Your Facilities Added Successfully ❤", {
+            type: "success",
+          });
+          window.location.href = "/ownerProfile";
+        }
       })
       .catch(function (error) {
         console.error(error);
@@ -98,78 +112,114 @@ class Facility extends React.Component {
   //render Facility Compo
   render() {
     return (
-      <div className="facility">
-        <form className="form">
-          <div class="table">
-            <span>Tables</span>
-            <label for="inputsm">Quantity:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="tableQuant"
-              onChange={this.handleChange}
-            />
-            <label for="inputsm">Price:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="tablePrice"
-              onChange={this.handleChange}
-            />
-            <br></br>
-            <label>Photo</label>
-            <PhotoUpload handler={this.getTableUrl} />
-          </div>
-          {/* ///////////////////// */}
-          <div class="small">
-            <span> Small Tents </span>
-            <label for="inputsm">Quantity:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="SmallTentQuant"
-              onChange={this.handleChange}
-            />
-            <label for="inputsm">Price:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="SmallTentPrice"
-              onChange={this.handleChange}
-            />
-            <label>Photo</label>
-            <PhotoUpload handler={this.getSmallTentUrl} />
-          </div>
-          {/* ///////////////////// */}
-          <div class="large">
-            <span> Large Tents </span>
-            <label for="inputsm">Quantity:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="LargeTentQuant"
-              onChange={this.handleChange}
-            />
-            <label for="inputsm">Price:</label>
-            <input
-              id="inputsm"
-              type="number"
-              name="LargeTentPrice"
-              onChange={this.handleChange}
-            />
-            <label>Photo</label>
-            <PhotoUpload handler={this.getLargeTentUrl} />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-lg font-weight-bold btn-secondary btn-block"
-            onClick={this.handleSubmit}
-          >
-            {" "}
-            Send Your Request{" "}
-          </button>
-        </form>
-        <ApiMap />
+      <div>
+        <div className="FacilityStore">
+          <ContolPanel />
+        </div>
+        <div style={{ marginLeft: "22%", marginTop: "-125%" }}>
+          <Form className="form">
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Tabels</Form.Label>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Price</Form.Label>
+                <Input
+                  type="number"
+                  name="tablePrice"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Quantity</Form.Label>
+                <Input
+                  type="number"
+                  name="tableQuant"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Image Tabels</Form.Label>
+                <PhotoUpload handler={this.getTableUrl} />
+              </Form.Group>
+            </Form.Row>
+
+            {/* ///////////////////// */}
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Small Tents </Form.Label>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Quantity:</Form.Label>
+                <Input
+                  type="number"
+                  name="SmallTentQuant"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Price:</Form.Label>
+                <Input
+                  type="number"
+                  name="SmallTentPrice"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Image Small Tents</Form.Label>
+                <PhotoUpload handler={this.getSmallTentUrl} />
+              </Form.Group>
+            </Form.Row>
+            {/* ///////////////////// */}
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label> Large Tents </Form.Label>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label>Quantity:</Form.Label>
+                <Input
+                  type="number"
+                  name="LargeTentQuant"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Price:</Form.Label>
+                <Input
+                  type="number"
+                  name="LargeTentPrice"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label>Image Large Tents</Form.Label>
+                <PhotoUpload handler={this.getLargeTentUrl} />{" "}
+              </Form.Group>
+            </Form.Row>
+            <button
+              type="submit"
+              className="btn btn-lg font-weight-bold btn-primary btn-block"
+              onClick={this.handleSubmit}
+            >
+              {" "}
+              Send Your Request{" "}
+            </button>
+            <ApiMap />
+          </Form>
+          {/* <ApiMap /> */}
+        </div>
       </div>
     );
   }
