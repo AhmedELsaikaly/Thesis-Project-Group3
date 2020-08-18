@@ -28,7 +28,7 @@
 .footer-items p {
   color: gray;
   font-size: 16px;
-  text-align: left !;
+  text-align: left !important;
   line-height: 22px;
 }
 .inner-footer h2 {
