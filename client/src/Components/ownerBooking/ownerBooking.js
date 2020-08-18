@@ -22,7 +22,7 @@ class OwnerBooking extends React.Component {
   //import used files
   //create OwnerBooking Compo
   componentDidMount() {
-    const token = localStorage.usertoken;
+    const token = localStorage.ownertoken;
     const decoded = jwt_decode(token);
     this.setState({ ownerId: decoded.id });
   }

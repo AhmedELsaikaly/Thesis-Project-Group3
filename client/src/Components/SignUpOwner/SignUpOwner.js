@@ -197,15 +197,11 @@ class SignUpOwner extends React.Component {
         })
         .then((response) => {
           console.log(response);
-          // alert("sign up success please sign in");
-          // console.log("result   ", res);
-          // this.setState({ singup: "sign up success please sign in" });
-          this.props.history.push(`/ContolPanel`);
+
+          // this.props.history.push(`/ContolPanel`);
+          window.location.href = "/ContolPanel";
         })
         .catch((err) => {
-          // console.log(err);
-          // this.setState({ serverRes: err.response.data });
-          // alert(err.response.data);
           console.log("ERROR FROM AXIOS ", err);
           this.props.history.push(`/SignUpOwner`);
         });

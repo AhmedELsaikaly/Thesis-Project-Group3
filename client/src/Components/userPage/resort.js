@@ -14,6 +14,8 @@ import three from "./3.jpg";
 import { NotEditStar } from "./../Rating&Feedback/Rating";
 import Footer from "./Footer";
 import "./Footer.css";
+import InternalNav from "./../InternalNav/InternalNav";
+ 
 
 //import used files
 
@@ -27,6 +29,7 @@ class Facility extends React.Component {
   render() {
     return (
       <div>
+      
         {Object.keys(this.props.faclitics).length !== 0 ? (
           <div>
             <div className="pack">
@@ -125,8 +128,6 @@ class Resort extends React.Component {
     }
   }
 
-  //componentDidMount Function
-
   //render Resort Compo
   render() {
     // const { id } = this.props.match.params.id;
@@ -134,13 +135,16 @@ class Resort extends React.Component {
 
     return (
       <div style={{ width: "100%" }}>
+          <div>
+          <InternalNav/>
+        </div>
         {/* Slider owner */}
         <div id="slider" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img src={one} className="d-block w-100" alt="slide1" />
               <div id="caption">
-                <h1>{this.state.owner.placeName}</h1>
+                <h1>welcome to {this.state.owner.placeName}</h1>
                 <div className="blured"></div>
               </div>
             </div>
@@ -184,10 +188,10 @@ class Resort extends React.Component {
             <button
               type="button"
               class="btn btn-info pull-right"
-              type="button"
               data-toggle="modal"
               data-target="#exampleModal"
               data-whatever="@mdo"
+ 
             >
               Book Now
             </button>
@@ -204,7 +208,7 @@ class Resort extends React.Component {
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                      Booking
+                      Booking facility
                     </h5>
                     <button
                       type="button"
@@ -236,13 +240,6 @@ class Resort extends React.Component {
                       price={this.state.SelectedPrice}
                       PlaceName={this.state.owner.placeName}
                     />
-                    <button
-                      type="button"
-                      class="btn btn-info pull-right"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
 
                     {/* <button type="button" class="btn btn-primary" onClick ={Pay}>
                       Send message

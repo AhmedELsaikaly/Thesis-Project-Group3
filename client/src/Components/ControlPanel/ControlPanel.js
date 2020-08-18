@@ -23,7 +23,7 @@ class ContolPanel extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.usertoken;
+    const token = localStorage.ownertoken;
     const decoded = jwt_decode(token);
     this.setState({
       _id: decoded.id,
