@@ -24,7 +24,7 @@ class InternalNav extends React.Component {
     return (
       <section id="nav-bar">
         <nav className="navbar navbar-expand-lg navbar-light">
-          <a className="navbar-brand" href="index.html">
+          <a className="navbar-brand" href="/">
             <img src={logo} />
           </a>
           <h1>Raha</h1>

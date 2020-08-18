@@ -3,6 +3,7 @@ import React from "react";
 import FeaturedResorts from "../FeaturedResorts/FeaturedResorts";
 //import CSS
 import "./landPage.css";
+import InternalNav from "../InternalNav/InternalNav";
 
 //import used files
 import Welcome from "../WelcomeComponent/Welcome";
@@ -22,7 +23,7 @@ class LandPage extends React.Component {
   render() {
     return (
       <div className="landPage">
-        <Navbar />
+        {localStorage.usertoken !== undefined ? <InternalNav /> : <Navbar />}
         <Slider />
         <Welcome />
         <FeaturedResorts />

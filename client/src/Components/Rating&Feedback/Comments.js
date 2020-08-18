@@ -124,7 +124,9 @@ class Comment extends React.Component {
                           {comment.fullName}
                         </strong>
                         <span className="text-muted pull-right">
-                          <small className="text-muted">{comment.date}</small>
+                          <small className="text-muted">
+                            {comment.date.substring(0, 10)}
+                          </small>
                         </span>
                         <NotEditStar rate={comment.rating} />
                         <p className="commentmessage">{comment.feedback}</p>

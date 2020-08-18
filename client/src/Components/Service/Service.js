@@ -34,7 +34,7 @@ class Service extends React.Component {
   }
   //componentDidMount function
   componentDidMount() {
-    const token = localStorage.usertoken;
+    const token = localStorage.ownertoken;
     const decoded = jwt_decode(token);
     // console.log(decoded.id);
     this.setState({ ownerId: decoded.id });
