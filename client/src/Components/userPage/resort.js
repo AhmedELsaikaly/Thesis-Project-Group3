@@ -1,4 +1,5 @@
 //import used technologies
+<<<<<<< HEAD
 import React from 'react';
 import './Resort.css';
 import './styles.css';
@@ -14,6 +15,24 @@ import { NotEditStar } from './../Rating&Feedback/Rating';
 import Footer from './Footer';
 import './Footer.css';
 import InternalNav from './../InternalNav/InternalNav';
+=======
+import React from "react";
+import "./Resort.css";
+import "./styles.css";
+import "./facility.css";
+import axios from "axios";
+import Comment from "../Rating&Feedback/Comments";
+import Reservation from "./reservation";
+import Pay from "./pay";
+import { Link } from "react-router-dom";
+import one from "./1.jpg";
+import two from "./2.jpg";
+import three from "./3.jpg";
+import { NotEditStar } from "./../Rating&Feedback/Rating";
+import Footer from "./Footer";
+import "./Footer.css";
+import InternalNav from "./../InternalNav/InternalNav";
+>>>>>>> 0414bedac45bef26da59ea8aa030874691122a4c
 
 //import used files
 
@@ -127,7 +146,11 @@ class Resort extends React.Component {
     const { service } = this.state;
 
     return (
+<<<<<<< HEAD
       <div style={{ width: '100%' }}>
+=======
+      <div style={{ width: "100%" }}>
+>>>>>>> 0414bedac45bef26da59ea8aa030874691122a4c
         <div>
           <InternalNav />
         </div>
@@ -179,11 +202,19 @@ class Resort extends React.Component {
             </ul>
 
             <button
+<<<<<<< HEAD
               type='button'
               class='btn btn-info pull-right'
               data-toggle='modal'
               data-target='#exampleModal'
               data-whatever='@mdo'
+=======
+              type="button"
+              class="btn btn-info pull-right"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              data-whatever="@mdo"
+>>>>>>> 0414bedac45bef26da59ea8aa030874691122a4c
             >
               Book Now
             </button>

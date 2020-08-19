@@ -97,9 +97,16 @@ class Service extends React.Component {
         <div className='control'>
           <ContolPanel />
         </div>
+<<<<<<< HEAD
         <div className='Reservation' style={{ marginTop: '-125%' }}>
           <fieldset className='form-group'>
             <label htmlFor='service'>
+=======
+        <h2>Welcome to Services page</h2>
+        <div className="Reservation" style={{ marginTop: "-125%" }}>
+          <fieldset className="form-group">
+            <label htmlFor="service">
+>>>>>>> 0414bedac45bef26da59ea8aa030874691122a4c
               <span>Which services that You have in your Resort?</span>
             </label>
             <div id='serviceElement' className='form-group '>
@@ -129,6 +136,7 @@ class Service extends React.Component {
                 type='submit'
                 className='btn btn-lg font-weight-bold btn-primary btn-block'
                 onClick={this.handleSubmit}
+                style={{ width: "250px" }}
               >
                 Send Your Request
               </button>

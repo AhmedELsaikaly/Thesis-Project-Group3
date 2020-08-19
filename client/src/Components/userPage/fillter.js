@@ -93,7 +93,11 @@ class Fillter extends React.Component {
         <hr></hr>
         <div>
           <div className="dropdown">
-            <span className="spanSearch">Search By ::</span>
+            <h2 style={{ marginLeft: "42%" }}>Welcome to Resorts</h2>
+            <h2 style={{ marginLeft: "28%" }}>
+              Here you can filter the resorts in the way you wants
+            </h2>
+            <span className="spanSearch">Filter By :</span>
             <select
               id="SelectOptions"
               className="selectOption"
