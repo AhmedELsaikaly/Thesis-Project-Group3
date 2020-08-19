@@ -1,13 +1,13 @@
 //import used technologies
-import React, { Component } from 'react';
+import React from 'react';
 import './userReservation.css';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import InternalNav from '../InternalNav/InternalNav';
 import Footer from '../SubPages/Footer/Footer';
 import SliderForPages from '../SliderForPages/SliderForPages';
-import { Form, Button } from 'react-bootstrap';
-import { Input } from 'reactstrap';
+import { Button } from 'react-bootstrap';
+// import { Input } from 'reactstrap';
 class UserReservation extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ class UserReservation extends React.Component {
         .then((result) => {
           // console.log(result);
           if (result.data === 'there is no booking') {
-            console.log(result);
+            console.log('data', result);
             this.setState({
               reservations: [],
               err: 'There is No Reservation For You',
