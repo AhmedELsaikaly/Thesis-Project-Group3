@@ -27,10 +27,9 @@ class Welcome extends React.Component {
               <span className="text-dark">About Us</span>
             </h2>
             <p>
-              To meet the needs of Colombo's dynamic business community, Royal
-              Arcade, Colombo, is pleased to offer the largest and extensive
-              hotel conference and event facilities in the region, which can
-              cater to up to 2,000 guests.
+              To meet your needs of Gaza's Seaside, Raha App, is pleased to
+              offer the largest and extensive beach facilities refernce in Gaza
+              strip, which can Helps You Stick to Your Desires.
             </p>
             <button type="button" className="btn btn-primary">
               <a className="button" href="/about">
