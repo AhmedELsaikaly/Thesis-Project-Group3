@@ -18,18 +18,12 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname,"public")));
 app.use(router);
 
-// <<<<<<< HEAD
-
-
-
-
-// =======
-// >>>>>>> b847c71335beb2616de8b4a2c07e904d966d7955
 //declare port
 var port = process.env.PORT || 5000;
 
 //herokuapp config. using static files presented after the build
 if (process.env.NODE_ENV === "production") {
+  console.log();
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));

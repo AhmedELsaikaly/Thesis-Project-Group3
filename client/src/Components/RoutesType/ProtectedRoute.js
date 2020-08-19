@@ -30,7 +30,7 @@ const ProtectedRouteOwner = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-        localStorage.ownertoken !== undefined  ? (
+      localStorage.ownertoken !== undefined ? (
         <Component {...props} />
       ) : (
         <Redirect to="/signIn" />

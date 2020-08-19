@@ -45,12 +45,6 @@ class InternalNav extends React.Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link" href="/">
-                  HOME
-                </a>
-              </li>
-
-              <li className="nav-item">
                 <a className="nav-link" href="/contact">
                   CONTACT
                 </a>

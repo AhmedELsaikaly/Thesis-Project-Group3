@@ -94,7 +94,7 @@ export default function Map(props) {
   //////////////////// onMap CLick .......................//////
   const onMapClick = React.useCallback((e) => {
     setMarkers({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-    props.changeState({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    // props.changeState({ lat: e.latLng.lat(), lng: e.latLng.lng() });
   });
   //////////////////// onMarkerDragEnd .......................//////
   const onMarkerDragEnd = (e) => {
@@ -179,7 +179,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" />
+      {/* <img src="/compass.svg" alt="compass" /> */}
     </button>
   );
 }
