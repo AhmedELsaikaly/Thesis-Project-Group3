@@ -5,11 +5,14 @@ const mongoose = require("mongoose"); //inclode mongoose in our page
 
 //connection to mongodb
 const db = mongoose
-  .connect("mongodb://localhost:27017/raha", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false ,
-  })
+  .connect(
+    "mongodb+srv://wael:1234@cluster0.kpnvv.mongodb.net/raha?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    }
+  )
   .then(() => {
     console.log("connected successfully DB");
   })

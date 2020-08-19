@@ -98,6 +98,7 @@ class Service extends React.Component {
         <div className="control">
           <ContolPanel />
         </div>
+        <h2>Welcome to Services page</h2>
         <div className="Reservation" style={{ marginTop: "-125%" }}>
           <fieldset className="form-group">
             <label htmlFor="service">
@@ -130,6 +131,7 @@ class Service extends React.Component {
                 type="submit"
                 className="btn btn-lg font-weight-bold btn-primary btn-block"
                 onClick={this.handleSubmit}
+                style={{ width: "250px" }}
               >
                 Send Your Request
               </button>
