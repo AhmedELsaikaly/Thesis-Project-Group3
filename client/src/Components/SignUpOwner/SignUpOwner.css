@@ -6,7 +6,7 @@
 .form-control {
   height: 40px;
   box-shadow: none;
-  color: #969fa4;
+  color: #f2f2f2;
 }
 .form-control:focus {
   border-color: #007bff;
@@ -105,7 +105,7 @@
   text-align: center;
 }
 .dropdown-item a {
-  color: black;
+  color: f2f3f7;
 }
 #SelectOptions {
   width: 540px;

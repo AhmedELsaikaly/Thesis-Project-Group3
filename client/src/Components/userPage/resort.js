@@ -1,4 +1,19 @@
 //import used technologies
+import React from 'react';
+import './Resort.css';
+import './styles.css';
+import './facility.css';
+import axios from 'axios';
+import Comment from '../Rating&Feedback/Comments';
+import Reservation from './reservation';
+import Pay from './pay';
+import one from './1.jpg';
+import two from './2.jpg';
+import three from './3.jpg';
+import { NotEditStar } from './../Rating&Feedback/Rating';
+import Footer from './Footer';
+import './Footer.css';
+import InternalNav from './../InternalNav/InternalNav';
 import React from "react";
 import "./Resort.css";
 import "./styles.css";
@@ -17,28 +32,25 @@ import "./Footer.css";
 import InternalNav from "./../InternalNav/InternalNav";
 import FixedMap from "./../../apiMapGoogle/FixedMap";
 
+
 //import used files
 
 //create Facility Compo
 class Facility extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   //render Facility Compo
   render() {
     return (
       <div>
         {Object.keys(this.props.faclitics).length !== 0 ? (
           <div>
-            <div className="pack">
+            <div className='pack'>
               <h1>Our facility</h1>
             </div>
-            <section id="packages">
+            <section id='packages'>
               {Object.keys(this.props.faclitics).map((element, index) => (
-                <div className="all">
-                  <div class="box">
-                    <div class="content2">
+                <div className='all'>
+                  <div class='box'>
+                    <div class='content2'>
                       <div>
                         <h2>{element}</h2>
                         <h3>
@@ -70,10 +82,10 @@ class Resort extends React.Component {
     this.state = {
       service: [],
       faclitics: {},
-      ownerId: "",
+      ownerId: '',
       isFull: false,
-      owner: "",
-      selectedFacility: "",
+      owner: '',
+      selectedFacility: '',
       SelectedPrice: 0,
     };
   }
@@ -105,7 +117,7 @@ class Resort extends React.Component {
           });
         })
         .catch((err) => {
-          console.log("ERROR from AXIOS =>", err);
+          console.log('ERROR from AXIOS =>', err);
         });
       axios
         .get(`http://localhost:5000/Facilites/${this.state.ownerId}`)
@@ -113,7 +125,7 @@ class Resort extends React.Component {
           this.setState({ faclitics: res.data[0].facilities });
         })
         .catch((err) => {
-          console.log("ERROR from AXIOS =>", err);
+          console.log('ERROR from AXIOS =>', err);
         });
       axios
         .get(`http://localhost:5000/Owner/${this.state.ownerId}`)
@@ -122,7 +134,7 @@ class Resort extends React.Component {
           this.setState({ owner: res.data[0] });
         })
         .catch((err) => {
-          console.log("ERROR from AXIOS =>", err);
+          console.log('ERROR from AXIOS =>', err);
         });
     }
   }
@@ -133,43 +145,43 @@ class Resort extends React.Component {
     const { service } = this.state;
 
     return (
-      <div style={{ width: "100%" }}>
+      <div style={{ width: '100%' }}>
         <div>
           <InternalNav />
         </div>
         {/* Slider owner */}
-        <div id="slider" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src={one} className="d-block w-100" alt="slide1" />
-              <div id="caption">
+        <div id='slider' className='carousel slide' data-ride='carousel'>
+          <div className='carousel-inner'>
+            <div className='carousel-item active'>
+              <img src={one} className='d-block w-100' alt='slide1' />
+              <div id='caption'>
                 <h1>welcome to {this.state.owner.placeName}</h1>
-                <div className="blured"></div>
+                <div className='blured'></div>
               </div>
             </div>
-            <div className="carousel-item">
-              <img src={two} className="d-block w-100" alt="slide2" />
-              <div id="caption">
+            <div className='carousel-item'>
+              <img src={two} className='d-block w-100' alt='slide2' />
+              <div id='caption'>
                 <h1>{this.state.owner.placeName}</h1>
-                <div className="blured"></div>
+                <div className='blured'></div>
               </div>
             </div>
-            <div className="carousel-item">
-              <img src={three} className="d-block w-100" alt="slide3" />
-              <div id="caption">
+            <div className='carousel-item'>
+              <img src={three} className='d-block w-100' alt='slide3' />
+              <div id='caption'>
                 <h1>{this.state.owner.placeName}</h1>
-                <div className="blured"></div>
+                <div className='blured'></div>
               </div>
             </div>
           </div>
         </div>
         {/* ******************************** */}
         {/* *************Owner Information************** */}
-        <div id="gar" class="garden3">
-          <div class="imgBx2">
+        <div id='gar' class='garden3'>
+          <div class='imgBx2'>
             <img src={this.state.owner.licensePhoto} />
           </div>
-          <div class="content4">
+          <div class='content4'>
             <h1>{this.state.owner.placeName}</h1>
             <p>rating</p>
             <NotEditStar rate={this.state.owner.ratingAvg} />
@@ -177,14 +189,15 @@ class Resort extends React.Component {
               We work to provide everything necessary to ensure your comfort and
               enjoy your trip in our facilities
             </p>
-            <h5 class="features">Services</h5>
+            <h5 class='features'>Services</h5>
             <ul>
               {service.map((dataIN, key) => (
-                <li style={{ width: "400px", height: "50px" }}>{dataIN}</li>
+                <li style={{ width: '400px', height: '50px' }}>{dataIN}</li>
               ))}
             </ul>
 
             <button
+
               type="button"
               class="btn btn-info pull-right"
               data-toggle="modal"
@@ -195,33 +208,33 @@ class Resort extends React.Component {
             </button>
 
             <div
-              class="modal fade"
-              id="exampleModal"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
+              class='modal fade'
+              id='exampleModal'
+              tabindex='-1'
+              role='dialog'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'
             >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
+              <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                  <div class='modal-header'>
+                    <h5 class='modal-title' id='exampleModalLabel'>
                       Booking facility
                     </h5>
                     <button
-                      type="button"
-                      class="close "
-                      id="cl"
-                      data-dismiss="modal"
-                      aria-label="Close"
+                      type='button'
+                      class='close '
+                      id='cl'
+                      data-dismiss='modal'
+                      aria-label='Close'
                     >
-                      <span aria-hidden="true">&times;</span>
+                      <span aria-hidden='true'>&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div class='modal-body'>
                     <form>
-                      <div class="form-group"></div>
-                      <div class="form-group">
+                      <div class='form-group'></div>
+                      <div class='form-group'>
                         <Reservation
                           handleSelection={this.handleSelection}
                           ownerId={this.state.ownerId}
@@ -230,7 +243,7 @@ class Resort extends React.Component {
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <div class='modal-footer'>
                     {/* **************Pay ******************** */}
                     <Pay
                       description={this.state.selectedFacility}
@@ -258,7 +271,7 @@ class Resort extends React.Component {
         </div>
         {/* <Reservation ownerId={this.state.ownerId} /> */}
         {/* <Pay /> */}
-        <div className="rating">
+        <div className='rating'>
           {/* *************Comment ***************** */}
 
           <Comment OwnerId={this.state.ownerId} />

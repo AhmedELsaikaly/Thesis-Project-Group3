@@ -43,6 +43,9 @@ class ContolPanel extends React.Component {
     axios
       .get(`/Owner/${this.state._id}`)
       .then((res) => {
+        if (!res) {
+          window.location.href = '/ownerProfile';
+        }
         console.log(res.data);
         const data = res.data[0];
         this.setState({
@@ -72,6 +75,10 @@ class ContolPanel extends React.Component {
               Hi {this.state.fullName}
             </h4>
           </center>
+          <a href='/ContolPanel'>
+            <i className='fas fa-th'></i>
+            <span>Home</span>
+          </a>
           <a href='/service'>
             <i className='fas fa-cogs'></i>
             <span>Services</span>
