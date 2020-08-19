@@ -50,6 +50,7 @@ exports.SignInOwner = function (req, res) {
             const payload = {
               id: owner.id,
               fullName: owner.fullName,
+              placeName: owner.placeName,
             };
             // Sign token
             jwt.sign(
@@ -303,7 +304,8 @@ exports.FacilitesStore = function (req, res) {
       }
     })
     .catch((err) => {
-      res.status(500).send(err + "err in Saving Facilit");
+      console.log(err);
+      res.status(500).send(err + "err in Saving Facilities");
     });
 };
 
@@ -372,7 +374,6 @@ exports.GetOwner = function (req, res) {
   OwnerModel.find({ _id: ownerId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Owner Found!");
     })
     .catch((err) => {
       res.send(err);
@@ -386,7 +387,6 @@ exports.GetUser = function (req, res) {
   CustomerModel.find({ _id: UserId })
     .then((result) => {
       res.send(result);
-      console.log(result, "Customer found!");
     })
     .catch((err) => {
       res.send(err);
@@ -849,5 +849,48 @@ exports.SortedOwner = function (req, res) {
     })
     .catch((err) => {
       res.send(err);
+    });
+};
+
+/// update Position for the Owner
+exports.UpdatePosition = function (req, res) {
+  console.log(req.body);
+  var ownerId = req.body.ownerId;
+  var position = req.body.position;
+  OwnerModel.update(
+    { _id: ownerId },
+    {
+      $set: {
+        position: position,
+      },
+    }
+  )
+    .then((result) => {
+      res.status(200).send("position updated Successfully");
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: err,
+      })
+    );
+};
+
+//////////////////... check Position...........////////////////////////
+
+exports.CheckPosition = function (req, res) {
+  var ownerId = req.params.ownerId;
+  OwnerModel.findOne({ _id: ownerId })
+    .then((result) => {
+      if (result.position.lat === 0 && result.position.lng === 0) {
+        res.status(200).json({ state: false });
+      } else {
+        res.status(201).json({ state: true, position: result.position });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+      console.log(err);
     });
 };
