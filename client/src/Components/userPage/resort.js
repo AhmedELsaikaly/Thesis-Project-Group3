@@ -15,7 +15,7 @@ import { NotEditStar } from "./../Rating&Feedback/Rating";
 import Footer from "./Footer";
 import "./Footer.css";
 import InternalNav from "./../InternalNav/InternalNav";
- 
+import FixedMap from "./../../apiMapGoogle/FixedMap";
 
 //import used files
 
@@ -29,7 +29,6 @@ class Facility extends React.Component {
   render() {
     return (
       <div>
-      
         {Object.keys(this.props.faclitics).length !== 0 ? (
           <div>
             <div className="pack">
@@ -135,8 +134,8 @@ class Resort extends React.Component {
 
     return (
       <div style={{ width: "100%" }}>
-          <div>
-          <InternalNav/>
+        <div>
+          <InternalNav />
         </div>
         {/* Slider owner */}
         <div id="slider" className="carousel slide" data-ride="carousel">
@@ -191,7 +190,6 @@ class Resort extends React.Component {
               data-toggle="modal"
               data-target="#exampleModal"
               data-whatever="@mdo"
- 
             >
               Book Now
             </button>
@@ -251,6 +249,10 @@ class Resort extends React.Component {
           </div>
         </div>
         {/* *************faclitics***************** */}
+        <FixedMap
+          placeName={this.state.owner.placeName}
+          position={this.state.owner.position}
+        />
         <div className="facility">
           <Facility faclitics={this.state.faclitics} />
         </div>
