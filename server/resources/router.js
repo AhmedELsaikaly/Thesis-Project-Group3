@@ -61,4 +61,7 @@ router.post("/form", controller.ContactUs);
 //filter for places
 router.get("/filterOwner/:method/:id", controller.filterOwner);
 router.get("/sortedOwners", controller.SortedOwner);
+// update position
+router.put("/UpdatePosition", controller.UpdatePosition);
+router.get("/CheckPosition/:ownerId", controller.CheckPosition);
 module.exports = router;

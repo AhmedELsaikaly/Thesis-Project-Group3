@@ -1,3 +1,16 @@
 .FacilityStore {
   overflow: hidden;
 }
+.mapIn {
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+.MapLabel {
+  margin-left: 300px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.Label {
+  font-weight: bold;
+  font-size: 20px;
+}

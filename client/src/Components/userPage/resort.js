@@ -4,17 +4,21 @@ import "./Resort.css";
 import "./styles.css";
 import "./facility.css";
 import axios from "axios";
-import Comment from "../Rating&Feedback/Comments";
 import Reservation from "./reservation";
 import Pay from "./pay";
-import { Link } from "react-router-dom";
 import one from "./1.jpg";
 import two from "./2.jpg";
 import three from "./3.jpg";
+import "./Resort.css";
+import "./styles.css";
+import "./facility.css";
+import Comment from "../Rating&Feedback/Comments";
+import { Link } from "react-router-dom";
 import { NotEditStar } from "./../Rating&Feedback/Rating";
 import Footer from "./Footer";
 import "./Footer.css";
 import InternalNav from "./../InternalNav/InternalNav";
+import FixedMap from "./../../apiMapGoogle/FixedMap";
 
 //import used files
 
@@ -244,6 +248,10 @@ class Resort extends React.Component {
           </div>
         </div>
         {/* *************faclitics***************** */}
+        <FixedMap
+          placeName={this.state.owner.placeName}
+          position={this.state.owner.position}
+        />
         <div className="facility">
           <Facility faclitics={this.state.faclitics} />
         </div>

@@ -20,7 +20,7 @@ class InternalNav extends React.Component {
     localStorage.removeItem("ownertoken");
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <section id="nav-bar">
         <nav
