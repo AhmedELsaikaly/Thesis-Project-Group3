@@ -226,9 +226,7 @@ class Facility extends React.Component {
             <div className="MapLabel">
               <Form.Label>Put Your Location On Map</Form.Label>
             </div>
-            <div className="mapIn">
-              <Map />
-            </div>
+            <div className="mapIn"></div>
             <div className="text-danger">{this.state.err}</div>
             <button
               type="submit"
@@ -236,13 +234,13 @@ class Facility extends React.Component {
               class="btn btn-lg font-weight-bold btn-primary btn-block"
               onClick={this.handleSubmit}
               style={{ width: "250px" }}
-              s
             >
               Send Your Request
             </button>
             <br />
           </Form>
         </div>
+        <Map />
       </div>
     );
   }
