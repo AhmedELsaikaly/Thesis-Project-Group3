@@ -65234,7 +65234,6 @@ C:.
 |   |       |   |       comment-dots.svg
 |   |       |   |       comment.svg
 |   |       |   |       comments.svg
-|   |       |   |       compass.svg
 |   |       |   |       copy.svg
 |   |       |   |       copyright.svg
 |   |       |   |       credit-card.svg
