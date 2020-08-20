@@ -1,9 +1,11 @@
 //import used technologies
 import React from "react";
-import { Form, Button } from 'react-bootstrap';
-import { Input } from 'reactstrap';
+import { Form, Button } from "react-bootstrap";
+import { Input } from "reactstrap";
 //import CSS
 import "./SignUpOwner.css";
+import Footer from "./../SubPages/Footer/Footer";
+import three from "./3.jpg";
 
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
@@ -219,143 +221,152 @@ class SignUpOwner extends React.Component {
       area,
     };
     return (
-      <div className="signup-form">
-        <form>
-          <h2>Owner Signup</h2>
-          <p className="hint-text">
-            Create your account. It's free and only takes a minute.
-          </p>
-          <p className="text-danger">{this.state.errors.fullName}</p>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="fullName"
-              placeholder="Full Name"
-              required="required"
-              value={this.state.input.fullName}
-              onChange={this.handleChange}
-            />
-          </div>
-          <p className="text-danger">{this.state.errors.placeName}</p>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="placeName"
-              placeholder="Place Name"
-              required="required"
-              value={this.state.input.placeName}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="text-danger">{this.state.errors.mobileNumber}</div>
-          <div className="form-group">
-            <input
-              type="tel"
-              className="form-control"
-              name="mobileNumber"
-              placeholder="Mobile No."
-              required="required"
-              value={this.state.input.mobileNumber}
-              onChange={this.handleChange}
-            />
-          </div>
-          <p className="text-danger">{this.state.errors.Email}</p>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              name="Email"
-              value={this.state.input.Email}
-              placeholder="Email"
-              required="required"
-              onChange={this.handleChange}
-            />
-          </div>
-          <p className="text-danger">{this.state.errors.fblink}</p>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="fblink"
-              value={this.state.input.fblink}
-              placeholder="Facebook Link"
-              required="required"
-              onChange={this.handleChange}
-            />
-          </div>
-          <p className="text-danger">{this.state.errors.area}</p>
-          <select
-            id="SelectOptions"
-            className="mdb-select md-form"
-            searchable="Search here.."
-            value={this.state.input.area}
-            onChange={this.handleSelect}
-          >
-            <option value="">Choose Your Place</option>
-            <option value="Gaza">Gaza</option>
-            <option value="North Gaza">North Gaza</option>
-            <option value="Middle Area">Middle Area</option>
-            <option value="Khan Younis">Khan Younis</option>
-            <option value="Rafah">Rafah</option>
-            <option value="Another place">Another place</option>
-          </select>
-          <p className="text-danger">{this.state.errors.password}</p>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              required="required"
-              value={this.state.input.password}
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="confirm"
-              placeholder="Confirm Password"
-              required="required"
-              value={this.state.input.confirm}
-              onChange={this.handleChange}
-              onKeyUp={this.handle}
-            />
-          </div>
-          <p
-            style={
-              this.state.message === "The two passwords in not matched"
-                ? { color: "red" }
-                : { color: "green" }
-            }
-          >
-            {" "}
-            {this.state.message}
-          </p>
-          <p className="text-danger">{this.state.errors.licensePhoto}</p>
-          <p>Please upload Your Licence Photo</p>
-          <PhotoUpload handler={this.getLiecencePhotoUrl} />
-          <div className="form-group">
-            <button
-              id="signUpBtn"
-              type="submit"
-              className="btn btn-success btn-lg btn-block"
-              onClick={this.handleSubmit}
+      <div className="all">
+        <div className="signup-form" style={{ marginLeft: "100px" }}>
+          <form>
+            <h2>Owner Signup</h2>
+            <p className="hint-text">
+              Create your account. It's free and only takes a minute.
+            </p>
+            <p className="text-danger">{this.state.errors.fullName}</p>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="fullName"
+                placeholder="Full Name"
+                required="required"
+                value={this.state.input.fullName}
+                onChange={this.handleChange}
+              />
+            </div>
+            <p className="text-danger">{this.state.errors.placeName}</p>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="placeName"
+                placeholder="Place Name"
+                required="required"
+                value={this.state.input.placeName}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="text-danger">{this.state.errors.mobileNumber}</div>
+            <div className="form-group">
+              <input
+                type="tel"
+                className="form-control"
+                name="mobileNumber"
+                placeholder="Mobile No."
+                required="required"
+                value={this.state.input.mobileNumber}
+                onChange={this.handleChange}
+              />
+            </div>
+            <p className="text-danger">{this.state.errors.Email}</p>
+            <div className="form-group">
+              <input
+                type="email"
+                className="form-control"
+                name="Email"
+                value={this.state.input.Email}
+                placeholder="Email"
+                required="required"
+                onChange={this.handleChange}
+              />
+            </div>
+            <p className="text-danger">{this.state.errors.fblink}</p>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="fblink"
+                value={this.state.input.fblink}
+                placeholder="Facebook Link"
+                required="required"
+                onChange={this.handleChange}
+              />
+            </div>
+            <p className="text-danger">{this.state.errors.area}</p>
+            <select
+              id="SelectOptions"
+              className="mdb-select md-form"
+              searchable="Search here.."
+              value={this.state.input.area}
+              onChange={this.handleSelect}
             >
-              Signup as Owner
-            </button>
-          </div>
+              <option value="">Choose Your Place</option>
+              <option value="Gaza">Gaza</option>
+              <option value="North Gaza">North Gaza</option>
+              <option value="Middle Area">Middle Area</option>
+              <option value="Khan Younis">Khan Younis</option>
+              <option value="Rafah">Rafah</option>
+              <option value="Another place">Another place</option>
+            </select>
+            <p className="text-danger">{this.state.errors.password}</p>
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
+                value={this.state.input.password}
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control"
+                name="confirm"
+                placeholder="Confirm Password"
+                required="required"
+                value={this.state.input.confirm}
+                onChange={this.handleChange}
+                onKeyUp={this.handle}
+              />
+            </div>
+            <p
+              style={
+                this.state.message === "The two passwords in not matched"
+                  ? { color: "red" }
+                  : { color: "green" }
+              }
+            >
+              {" "}
+              {this.state.message}
+            </p>
+            <p className="text-danger">{this.state.errors.licensePhoto}</p>
+            <p>Please upload Your Licence Photo</p>
+            <PhotoUpload handler={this.getLiecencePhotoUrl} />
+            <div className="form-group">
+              <button
+                id="signUpBtn"
+                type="submit"
+                className="btn btn-success btn-lg btn-block"
+                onClick={this.handleSubmit}
+              >
+                Signup as Owner
+              </button>
+            </div>
+            <div className="text-center">
+              If You Customer Click here? <a href="/signUp">Sign Up Customer</a>
+            </div>
+            {/* <div className="text-danger"> {this.state.serverRes}</div> */}
+          </form>
           <div className="text-center">
-            If You Customer Click here? <a href="/signUp">Sign Up Customer</a>
+            Already have an account? <a href="/signIn">Sign in</a>
           </div>
-          {/* <div className="text-danger"> {this.state.serverRes}</div> */}
-        </form>
-        <div className="text-center">
-          Already have an account? <a href="/signIn">Sign in</a>
+        </div>
+        <div className="imgDiv">
+        </div>
+        <img className="boxImg" src={three}></img>
+
+        <div>
+          <Footer />
         </div>
       </div>
     );
