@@ -25,10 +25,7 @@ const mapContainerStyle = {
   height: "80vh",
   width: "100vw",
 };
-var center = {
-  lat: 31.506154,
-  lng: 34.459686,
-};
+
 const options = {
   disableDefaultUI: true,
   zoomControl: true,
@@ -39,7 +36,7 @@ export default function FixedMap(props) {
     googleMapsApiKey: "AIzaSyCNGRdW3zFEPsfPJbHvFSMFh1OTbv78kcY",
     libraries,
   });
-  const [markers, setMarkers] = useState(center);
+  const [markers, setMarkers] = useState(props.position);
   useEffect(() => {
     setMarkers(props.position);
   }, [props.position]);
@@ -58,7 +55,7 @@ export default function FixedMap(props) {
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={14}
-          center={center}
+          center={props.position}
           options={props.position}
           onLoad={onMapLoad}
         >

@@ -22,6 +22,7 @@ import SignUpOwner from "./Components/SignUpOwner/SignUpOwner";
 import Resort from "./Components/userPage/resort";
 import OwnerProfile from "./Components/ownerProfile/ownerProfile.js";
 import CustomerProfile from "./Components/customerProfile/customerProfile.js";
+import NotFound from "../src/Components/404Page/notFoundPage";
 import "./App.css";
 
 import OwnerBooking from "./Components/ownerBooking/ownerBooking.js";
@@ -57,8 +58,8 @@ class App extends React.Component {
               path="/ContolPanel"
               component={ContolPanel}
             />
-            <Route exact path="/Facility" component={Facility} />
-            <Route exact path="/Service" component={Service} />
+            <ProtectedRouteOwner exact path="/Facility" component={Facility} />
+            <ProtectedRouteOwner exact path="/Service" component={Service} />
             <ProtectedRoute exact path="/resort/:id" component={Resort} />
             <ProtectedRouteOwner
               exact
@@ -80,6 +81,7 @@ class App extends React.Component {
               path="/userReservation"
               component={UserReservation}
             ></ProtectedRoute>
+            <Route path="*" component={NotFound} />
           </Switch>
         </Router>
       </div>
