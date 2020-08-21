@@ -75,7 +75,7 @@ class ContolPanel extends React.Component {
               Hi {this.state.fullName}
             </h4>
           </center>
-          <a href="/ContolPanel">
+          <a href="/ownerRender">
             <i className="fas fa-th"></i>
             <span>Home</span>
           </a>

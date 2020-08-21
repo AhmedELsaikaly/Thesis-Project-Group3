@@ -27,6 +27,7 @@ import "./App.css";
 
 import OwnerBooking from "./Components/ownerBooking/ownerBooking.js";
 import UserReservation from "./Components/userReservation/userReservation.js";
+import RenderOwnerData from "./Components/renderOwnerData/RenderOwnerData";
 import {
   ProtectedRoute,
   ProtectedRouteOwner,
@@ -82,6 +83,11 @@ class App extends React.Component {
               component={UserReservation}
             ></ProtectedRoute>
             <Route path="*" component={NotFound} />
+            <ProtectedRouteOwner
+              exact
+              path="/ownerRender"
+              component={RenderOwnerData}
+            />
           </Switch>
         </Router>
       </div>

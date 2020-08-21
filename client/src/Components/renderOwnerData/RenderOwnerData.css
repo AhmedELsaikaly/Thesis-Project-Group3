@@ -1,0 +1,87 @@
+.ownerData {
+  margin-left: 15%;
+}
+.ownerFacilites {
+  margin-left: 20%;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.ownerFacilites .box {
+  position: relative;
+  width: 410;
+  height: 410;
+  background: #000000;
+  margin: 10px;
+}
+
+.ownerFacilites .content2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  align-items: center;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.ownerFacilites .content2 a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1px solid #008fff;
+  text-decoration: none;
+  color: #ffffff;
+  transition: 0.5s;
+  border-radius: 2px;
+}
+
+.ownerFacilites .content2 a:hover {
+  color: #ffffff;
+  background: #008fff;
+  text-decoration: none;
+}
+
+.ownerFacilites .box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transition: 0.8s;
+}
+
+.ownerFacilites .box:hover img {
+  -webkit-clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+}
+
+.ownerFacilites .pack {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ownerFacilites .modal-header {
+  background-color: #c9cdd078;
+}
+.ownerFacilites #cl {
+  width: 50px;
+}
+.ownerFacilites .modal-body,
+.ownerFacilites .modal-footer {
+  background-color: #dbdcdf;
+}
+.dataP {
+  font-weight: 600 !important;
+  font-size: 25px;
+  margin: 10px;
+  color: rgb(0, 0, 0);
+}
