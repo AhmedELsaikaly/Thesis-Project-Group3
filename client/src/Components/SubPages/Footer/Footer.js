@@ -1,10 +1,10 @@
 //import used technologies
 import React, { Component } from "react";
-import linked from "./in.png";
-import face from "./face.png";
-import insta from "./insta.png";
-import twitter from "./twitter.png";
-import Whatsapp from "./WhatsApp.png";
+// import linked from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029910/mxy6ktntldyhxx3y67k8.png";
+// import face from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029911/bjjjrd0irryi7ch0xflw.png";
+// import insta from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029914/lti259aaljekwf7je0uq.png";
+// import twitter from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029913/rlvriotqakti9rhmfkpk.png";
+// import Whatsapp from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029911/rnoiu6dwvw3h3htubejs.png";
 //import used css
 import "./Footer.css";
 //import used files
@@ -67,27 +67,27 @@ export class Footer extends Component {
             <ul>
               <li>
                 <a href="http://www.facebook.com" target="_blanck">
-                  <img src={face} alt="face icon" />
+                  <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029911/bjjjrd0irryi7ch0xflw.png"alt="face icon" />
                 </a>
               </li>
               <li>
                 <a href="http://www.instgram.com" target="_blanck">
-                  <img src={insta} alt="instgram icon" />
+                  <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029914/lti259aaljekwf7je0uq.png" alt="instgram icon" />
                 </a>
               </li>
               <li>
                 <a href="http://www.twitter.com" target="_blanck">
-                  <img src={twitter} alt="twitter icon" />
+                  <img src= "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029913/rlvriotqakti9rhmfkpk.png"alt="twitter icon" />
                 </a>
               </li>
               <li>
                 <a href="http://www.linkedin.com" target="_blanck">
-                  <img src={linked} alt="linkedin icon" />
+                  <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029910/mxy6ktntldyhxx3y67k8.png" alt="linkedin icon" />
                 </a>
               </li>
               <li>
                 <a href="https://wa.me/972595167571" target="_blanck">
-                  <img src={Whatsapp} alt="WhatsApp icon" />
+                  <img src= "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029911/rnoiu6dwvw3h3htubejs.png" alt="WhatsApp icon" />
                 </a>
               </li>
             </ul>

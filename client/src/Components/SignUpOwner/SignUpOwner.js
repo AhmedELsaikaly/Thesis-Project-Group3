@@ -6,7 +6,7 @@ import { Input } from "reactstrap";
 import "./SignUpOwner.css";
 import { toast } from "react-toastify";
 import Footer from "./../SubPages/Footer/Footer";
-import three from "./3.jpg";
+// import three from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029144/eajqot3wug4lcwvz5doc.jpg";
 
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
@@ -371,7 +371,7 @@ class SignUpOwner extends React.Component {
           </div>
         </div>
         <div className="imgDiv"></div>
-        <img className="boxImg" src={three}></img>
+        <img className="boxImg" src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029144/eajqot3wug4lcwvz5doc.jpg"></img>
 
         <div>
           <Footer />

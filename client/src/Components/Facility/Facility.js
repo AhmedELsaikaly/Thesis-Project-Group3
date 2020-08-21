@@ -233,7 +233,7 @@ class Facility extends React.Component {
               style={{ maxWidth: "50%" }}
               class="btn btn-lg font-weight-bold btn-primary btn-block"
               onClick={this.handleSubmit}
-              style={{ width: "250px" }}
+              // style={{ width: "250px" }}
             >
               Send Your Request
             </button>

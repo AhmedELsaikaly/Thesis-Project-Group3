@@ -1,11 +1,11 @@
 //import used technologies
 import React from "react";
 import { Link } from "react-router-dom";
-import one from "./one.jpg";
-import two from "./two.jpg";
-import three from "./three.jpg";
-import four from "./four.jpg";
-import five from "./five.jpg";
+// import one from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029407/uofy1uqz5uokzq4vtpc5.jpg";
+// import two from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029555/bjw0tllkvz9s9d3tmy3i.jpg";
+// import three from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029434/nvwl69sv662ucwzwi01n.jpg	";
+// import four from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029400/ldcevlcptqjgwoccicjx.jpg";
+// import five from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029409/b33qzo1d9trerwu2g5m9.jpg";
 //import CSS
 import "./slider.css";
 
@@ -34,19 +34,23 @@ class Slider extends React.Component {
             </ol>
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <img src={one} className="d-block w-100" alt="first slide" />
+                <img
+                  src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029407/uofy1uqz5uokzq4vtpc5.jpg"
+                  className="d-block w-100"
+                  alt="first slide"
+                />
               </div>
               <div className="carousel-item">
-                <img src={two} className="d-block w-100" alt="second slide" />
+                <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029555/bjw0tllkvz9s9d3tmy3i.jpg" className="d-block w-100" alt="second slide" />
               </div>
               <div className="carousel-item">
-                <img src={three} className="d-block w-100" alt="third slide" />
+                <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029434/nvwl69sv662ucwzwi01n.jpg" className="d-block w-100" alt="third slide" />
               </div>
               <div className="carousel-item">
-                <img src={four} className="d-block w-100" alt="fourth slide" />
+                <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029400/ldcevlcptqjgwoccicjx.jpg" className="d-block w-100" alt="fourth slide" />
               </div>
               <div className="carousel-item">
-                <img src={five} className="d-block w-100" alt="fifth slide" />
+                <img src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029409/b33qzo1d9trerwu2g5m9.jpg" className="d-block w-100" alt="fifth slide" />
               </div>
             </div>
             <a

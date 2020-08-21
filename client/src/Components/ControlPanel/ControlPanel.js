@@ -8,7 +8,6 @@ import axios from "axios";
 import InternalNavControl from "./InternalNavControl/InternalNavControl";
 
 //import used files
-import jessica from "./1.png";
 
 // extracting the data from token
 
@@ -68,7 +67,7 @@ class ContolPanel extends React.Component {
         <InternalNavControl />
         <div className="sidebar">
           <center style={{ marginLeft: "-5%" }}>
-            <img src={jessica} className="profile_image" alt="" />
+            <img src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598027857/cmmz2hqjwoa2xqamyea1.png' className="profile_image" alt="" />
 
             <h4 style={{ lineHeight: "60px", color: "#fff" }}>
               {" "}
