@@ -1,11 +1,11 @@
 //import used technologies
-import React from 'react';
-
+import React from "react";
+import { toast } from "react-toastify";
 //import CSS
-import './signUp.css';
+import "./signUp.css";
 
 //import used files
-const axios = require('axios');
+const axios = require("axios");
 
 //create signup compo
 class SignUp extends React.Component {
@@ -15,22 +15,22 @@ class SignUp extends React.Component {
     //change to shcema
     this.state = {
       input: {
-        fullName: '',
-        password: '',
-        Email: '',
-        mobileNumber: '',
-        address: '',
-        confirm: '',
+        fullName: "",
+        password: "",
+        Email: "",
+        mobileNumber: "",
+        address: "",
+        confirm: "",
       },
-      serverRes: '',
+      serverRes: "",
       errors: {},
-      message: '',
-      fullName: '',
-      password: '',
-      Email: '',
-      mobileNumber: '',
-      address: '',
-      confirm: '',
+      message: "",
+      fullName: "",
+      password: "",
+      Email: "",
+      mobileNumber: "",
+      address: "",
+      confirm: "",
     };
   }
 
@@ -38,12 +38,12 @@ class SignUp extends React.Component {
   handle = () => {
     if (
       this.state.confirm === this.state.password &&
-      this.state.password !== '' &&
-      this.state.confirm !== ''
+      this.state.password !== "" &&
+      this.state.confirm !== ""
     ) {
-      this.setState({ message: 'The password is correct' });
+      this.setState({ message: "The password is correct" });
     } else {
-      this.setState({ message: 'The two passwords in not confirmed' });
+      this.setState({ message: "The two passwords in not matched" });
     }
   };
 
@@ -52,7 +52,6 @@ class SignUp extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
     input[e.target.name] = e.target.value;
-
     this.setState({
       input,
     });
@@ -62,7 +61,7 @@ class SignUp extends React.Component {
   handleSelect = (e) => {
     this.setState({ address: e.target.value });
     let input = this.state.input;
-    input['address'] = e.target.value;
+    input["address"] = e.target.value;
 
     this.setState({
       input,
@@ -75,69 +74,69 @@ class SignUp extends React.Component {
     let errors = {};
     let isValid = true;
 
-    if (!input['fullName']) {
+    if (!input["fullName"]) {
       isValid = false;
-      errors['fullName'] = 'Please enter your Full Name.';
+      errors["fullName"] = "Please enter your Full Name.";
     }
 
-    if (!input['address'] && input['address'] !== '') {
+    if (!input["address"] && input["address"] !== "") {
       isValid = false;
-      errors['address'] = 'Please choose your Address.';
+      errors["address"] = "Please choose your Address.";
     }
 
-    if (!input['Email']) {
+    if (!input["Email"]) {
       isValid = false;
-      errors['Email'] = 'Please enter your email Address.';
+      errors["Email"] = "Please enter your email Address.";
     }
 
-    if (typeof input['Email'] !== 'undefined') {
+    if (typeof input["Email"] !== "undefined") {
       var pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
-      if (!pattern.test(input['Email'])) {
+      if (!pattern.test(input["Email"])) {
         isValid = false;
-        errors['Email'] = 'Please enter valid email address.';
+        errors["Email"] = "Please enter valid email address.";
       }
     }
-    if (!input['password']) {
+    if (!input["password"]) {
       isValid = false;
-      errors['password'] = 'Please enter your password.';
+      errors["password"] = "Please enter your password.";
     }
-    if (typeof input['password'] !== 'undefined') {
-      if (input['password'].length < 6) {
+    if (typeof input["password"] !== "undefined") {
+      if (input["password"].length < 6) {
         isValid = false;
-        errors['password'] = 'Please add at least 6 charachter.';
+        errors["password"] = "Please add at least 6 charachter.";
       }
     }
 
-    if (!input['confirm']) {
+    if (!input["confirm"]) {
       isValid = false;
-      errors['confirm'] = 'Please enter your confirm password.';
+      errors["confirm"] = "Please enter your confirm password.";
     }
-    if (!input['mobileNumber']) {
+    if (!input["mobileNumber"]) {
       isValid = false;
-      errors['mobileNumber'] = 'Please enter your phone number.';
+      errors["mobileNumber"] = "Please enter your phone number.";
     }
 
-    if (typeof input['mobileNumber'] !== 'undefined') {
+    if (typeof input["mobileNumber"] !== "undefined") {
       var pattern = new RegExp(/^[0-9\b]+$/);
-      var numLen = input['mobileNumber'].length;
-      var num = Number(input['mobileNumber']);
+      var numLen = input["mobileNumber"].length;
+      var num = Number(input["mobileNumber"]);
       if (!pattern.test(num)) {
         isValid = false;
-        errors['mobileNumber'] = 'Please enter only number.';
+        errors["mobileNumber"] = "Please enter only number.";
       } else if (numLen !== 10) {
         isValid = false;
-        errors['mobileNumber'] = 'Please enter valid phone number.';
+        errors["mobileNumber"] = "Please enter valid phone number.";
       }
     }
     if (
-      typeof input['password'] !== 'undefined' &&
-      typeof input['confirm'] !== 'undefined'
+      typeof input["password"] !== "undefined" &&
+      typeof input["confirm"] !== "undefined"
     ) {
-      if (input['password'] !== input['confirm']) {
+      if (input["password"] !== input["confirm"]) {
         isValid = false;
-        errors['password'] = "Passwords don't match.";
+        errors["password"] = "Passwords don't match.";
       }
     }
 
@@ -155,16 +154,16 @@ class SignUp extends React.Component {
     console.log(this.validate());
     if (this.validate()) {
       let input = {};
-      input['fullName'] = '';
-      input['Email'] = '';
-      input['password'] = '';
-      input['mobileNumber'] = '';
-      input['address'] = '';
-      input['confirm'] = '';
-      this.setState({ message: '', serverRes: '' });
+      input["fullName"] = "";
+      input["Email"] = "";
+      input["password"] = "";
+      input["mobileNumber"] = "";
+      input["address"] = "";
+      input["confirm"] = "";
+      this.setState({ message: "", serverRes: "" });
       this.setState({ input: input });
       axios
-        .post('http://localhost:5000/signUpCustomer', {
+        .post("http://localhost:5000/signUpCustomer", {
           fullName: this.state.fullName,
           password: this.state.password,
           email: this.state.Email,
@@ -172,17 +171,21 @@ class SignUp extends React.Component {
           address: this.state.address,
         })
         .then((response) => {
-          console.log(response);
-          // alert("sign up success please sign in");
-          // console.log("result   ", res);
-          // this.setState({ singup: "sign up success please sign in" });
-          this.props.history.push(`/`);
+          if (response.data.success === false) {
+            toast(response.data.message, {
+              type: "error",
+            });
+          } else {
+            localStorage.setItem("usertoken", response.data.token);
+            toast("Your Signed Up succesfully ❤", {
+              type: "success",
+            });
+            this.props.history.push(`/`);
+            return response.data;
+          }
         })
         .catch((err) => {
-          // console.log(err);
-          this.setState({ serverRes: err.response.data });
-          // alert(err.response.data);
-          console.log('ERROR FROM AXIOS ', err.response.data);
+          console.log("ERROR FROM AXIOS ", err.response.data);
           this.props.history.push(`/signUp`);
         });
     }
@@ -199,84 +202,84 @@ class SignUp extends React.Component {
     //   address,
     // };
     return (
-      <div className='signup-form'>
+      <div className="signup-form">
         <form>
           <h2>Sign Up</h2>
-          <p className='hint-text'>
+          <p className="hint-text">
             Create your account. It's free and only takes a minute.
           </p>
-          <p className='text-danger'>{this.state.errors.fullName}</p>
-          <div className='form-group'>
+          <p className="text-danger">{this.state.errors.fullName}</p>
+          <div className="form-group">
             <input
-              type='text'
-              className='form-control'
-              name='fullName'
-              placeholder='Full Name'
-              required='required'
+              type="text"
+              className="form-control"
+              name="fullName"
+              placeholder="Full Name"
+              required="required"
               value={this.state.input.fullName}
               onChange={this.handleChange}
             />
           </div>
-          <div className='text-danger'>{this.state.errors.mobileNumber}</div>
-          <div className='form-group'>
+          <div className="text-danger">{this.state.errors.mobileNumber}</div>
+          <div className="form-group">
             <input
-              type='tel'
-              className='form-control'
-              name='mobileNumber'
-              placeholder='Mobile No.'
-              required='required'
+              type="tel"
+              className="form-control"
+              name="mobileNumber"
+              placeholder="Mobile No."
+              required="required"
               value={this.state.input.mobileNumber}
               onChange={this.handleChange}
             />
           </div>
-          <p className='text-danger'>{this.state.errors.Email}</p>
-          <div className='form-group'>
+          <p className="text-danger">{this.state.errors.Email}</p>
+          <div className="form-group">
             <input
-              type='email'
-              className='form-control'
-              name='Email'
+              type="email"
+              className="form-control"
+              name="Email"
               value={this.state.input.Email}
-              placeholder='Email'
-              required='required'
+              placeholder="Email"
+              required="required"
               onChange={this.handleChange}
             />
           </div>
-          <p className='text-danger'>{this.state.errors.address}</p>
+          <p className="text-danger">{this.state.errors.address}</p>
           <select
-            id='SelectOptions'
-            className='mdb-select md-form'
-            searchable='Search here..'
+            id="SelectOptions"
+            className="mdb-select md-form"
+            searchable="Search here.."
             value={this.state.input.address}
             onChange={this.handleSelect}
           >
-            <option value=''>Choose Your Place</option>
-            <option value='Gaza'>Gaza</option>
-            <option value='North Gaza'>North Gaza</option>
-            <option value='Middle Area'>Middle Area</option>
-            <option value='Khan Younis'>Khan Younis</option>
-            <option value='Rafah'>Rafah</option>
-            <option value='Another place'>Other</option>
+            <option value="">Choose Your Place</option>
+            <option value="Gaza">Gaza</option>
+            <option value="North Gaza">North Gaza</option>
+            <option value="Middle Area">Middle Area</option>
+            <option value="Khan Younis">Khan Younis</option>
+            <option value="Rafah">Rafah</option>
+            <option value="Another place">Other</option>
           </select>
-          <p className='text-danger'>{this.state.errors.password}</p>
-          <div className='form-group'>
+          <p className="text-danger">{this.state.errors.password}</p>
+          <div className="form-group">
             <input
-              type='password'
-              className='form-control'
-              name='password'
-              placeholder='Password'
-              required='required'
+              type="password"
+              className="form-control"
+              name="password"
+              placeholder="Password"
+              required="required"
               value={this.state.input.password}
               onChange={this.handleChange}
             />
           </div>
 
-          <div className='form-group'>
+          <div className="form-group">
             <input
-              type='password'
-              className='form-control'
-              name='confirm'
-              placeholder='Confirm Password'
-              required='required'
+              type="password"
+              className="form-control"
+              name="confirm"
+              placeholder="Confirm Password"
+              required="required"
               value={this.state.input.confirm}
               onChange={this.handleChange}
               onKeyUp={this.handle}
@@ -284,31 +287,31 @@ class SignUp extends React.Component {
           </div>
           <p
             style={
-              this.state.message === 'The two passwords in not confirmed'
-                ? { color: 'red' }
-                : { color: 'green' }
+              this.state.message === "The two passwords in not matched"
+                ? { color: "red" }
+                : { color: "green" }
             }
           >
-            {' '}
+            {" "}
             {this.state.message}
           </p>
-          <div className='form-group'>
+          <div className="form-group">
             <button
-              id='signUpBtn'
-              type='submit'
-              className='btn btn-success btn-lg btn-block'
+              id="signUpBtn"
+              type="submit"
+              className="btn btn-success btn-lg btn-block"
               onClick={this.handleSubmit}
             >
               Signup as Customer
             </button>
           </div>
-          <div className='text-center'>
-            If You Owner Click here? <a href='/SignUpOwner'>Sign Up Owner</a>
+          <div className="text-center">
+            If You Owner Click here? <a href="/SignUpOwner">Sign Up Owner</a>
           </div>
-          <div className='text-danger'> {this.state.serverRes}</div>
+          <div className="text-danger"> {this.state.serverRes}</div>
         </form>
-        <div className='text-center'>
-          Already have an account? <a href='/signIn'>Sign in</a>
+        <div className="text-center">
+          Already have an account? <a href="/signIn">Sign in</a>
         </div>
       </div>
     );

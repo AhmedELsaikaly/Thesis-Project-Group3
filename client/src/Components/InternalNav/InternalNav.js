@@ -16,8 +16,8 @@ class InternalNav extends React.Component {
     this.state = {};
   }
   logout = () => {
-    toast("Success! Logging out, Thank you❤", { type: "success" });
     localStorage.removeItem("usertoken");
+    window.location.href = `/`;
   };
   render() {
     console.log(this.props);
@@ -72,7 +72,7 @@ class InternalNav extends React.Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/" onClick={this.logout}>
+                <a className="nav-link" onClick={this.logout}>
                   LOGOUT
                 </a>
               </li>

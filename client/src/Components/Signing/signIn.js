@@ -2,23 +2,10 @@
 import React from "react";
 import axios from "axios";
 import { authintication } from "./../RoutesType/ProtectedRoute";
-
+import { toast } from "react-toastify";
 //import CSS
 import "./signIn.css";
 
-// var authintication = {
-//   isLoggedIn: false,
-//   onAuthintication() {
-//     this.isLoggedIn = true;
-//   },
-//   ofAuthintication() {
-//     this.isLoggedIn = false;
-//   },
-//   getLoginStatus() {
-//     return this.isLoggedIn;
-//   },
-// };
-//create SignIn compo
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -79,19 +66,20 @@ class SignIn extends React.Component {
             email: this.state.email,
           })
           .then((response) => {
-            console.log(response);
-            localStorage.setItem("ownertoken", response.data.token);
-
-            // authintication.onAuthintication();
-            this.props.history.push(`/ContolPanel`);
-            return response.data;
-            // alert("sign up success please sign in");
-            // console.log("result   ", res);
-            // this.setState({ singup: "sign up success please sign in" });
+            if (response.data.success === false) {
+              toast(response.data.message, {
+                type: "error",
+              });
+            } else {
+              localStorage.setItem("ownertoken", response.data.token);
+              toast("Your Signed In succesfully ❤", {
+                type: "success",
+              });
+              this.props.history.push(`/ContolPanel`);
+              return response.data;
+            }
           })
           .catch((err) => {
-            this.setState({ serverRes: err.response.data });
-            // alert("please use a different email or user name");
             console.log("ERROR FROM AXIOS ", err.response.data);
             this.props.history.push(`/signIn`);
           });
@@ -102,20 +90,21 @@ class SignIn extends React.Component {
             email: this.state.email,
           })
           .then((response) => {
-            console.log(response);
-            localStorage.setItem("usertoken", response.data.token);
-            this.props.history.push(`/`);
-            authintication.onAuthintication();
-            console.log('555555555',authintication.isLoggedIn);
-            return response.data;
-
-            // alert("sign up success please sign in");
-            // console.log("result   ", res);
-            // this.setState({ singup: "sign up success please sign in" });
+            if (response.data.success === false) {
+              toast(response.data.message, {
+                type: "error",
+              });
+            } else {
+              localStorage.setItem("usertoken", response.data.token);
+              toast("Your Signed In succesfully ❤", {
+                type: "success",
+                autoClose: 2000,
+              });
+              this.props.history.push(`/`);
+              return response.data;
+            }
           })
           .catch((err) => {
-            this.setState({ serverRes: err.response.data });
-            // alert("please use a different email or user name");
             console.log("ERROR FROM AXIOS ", err.response.data);
             this.props.history.push(`/signIn`);
           });

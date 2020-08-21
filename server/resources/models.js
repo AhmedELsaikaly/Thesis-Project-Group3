@@ -55,13 +55,13 @@ let OwnerSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  area: {
-    type: { type: String },
-    coordinates: { type: Number },
-  },
+  area: { type: String },
   date: {
     type: Date,
     default: Date.now,
+  },
+  fblink: {
+    type: String,
   },
   licensePhoto: {
     type: String,
@@ -200,7 +200,6 @@ let RatingSchema = mongoose.Schema({
   customerId: {
     type: String,
     required: true,
-    unique: true,
   },
   ownerId: {
     type: String,

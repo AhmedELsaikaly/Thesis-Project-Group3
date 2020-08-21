@@ -1,10 +1,10 @@
 //import used technologies
 import React from "react";
-import { Form, Button } from 'react-bootstrap';
-import { Input } from 'reactstrap';
+import { Form, Button } from "react-bootstrap";
+import { Input } from "reactstrap";
 //import CSS
 import "./SignUpOwner.css";
-
+import { toast } from "react-toastify";
 //import used files
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 
@@ -197,10 +197,18 @@ class SignUpOwner extends React.Component {
           licensePhoto: this.state.licensePhoto.url,
         })
         .then((response) => {
-          console.log(response);
-
-          // this.props.history.push(`/ContolPanel`);
-          window.location.href = "/ContolPanel";
+          if (response.data.success === false) {
+            toast(response.data.message, {
+              type: "error",
+            });
+          } else {
+            localStorage.setItem("ownertoken", response.data.token);
+            toast("Your Signed Up succesfully ❤", {
+              type: "success",
+            });
+            this.props.history.push(`/ContolPanel#`);
+            return response.data;
+          }
         })
         .catch((err) => {
           console.log("ERROR FROM AXIOS ", err);
@@ -339,6 +347,7 @@ class SignUpOwner extends React.Component {
           <p className="text-danger">{this.state.errors.licensePhoto}</p>
           <p>Please upload Your Licence Photo</p>
           <PhotoUpload handler={this.getLiecencePhotoUrl} />
+          <div className="text-danger"> {this.state.serverRes}</div>
           <div className="form-group">
             <button
               id="signUpBtn"
@@ -352,7 +361,6 @@ class SignUpOwner extends React.Component {
           <div className="text-center">
             If You Customer Click here? <a href="/signUp">Sign Up Customer</a>
           </div>
-          {/* <div className="text-danger"> {this.state.serverRes}</div> */}
         </form>
         <div className="text-center">
           Already have an account? <a href="/signIn">Sign in</a>

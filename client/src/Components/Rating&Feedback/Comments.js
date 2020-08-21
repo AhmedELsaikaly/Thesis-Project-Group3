@@ -21,6 +21,7 @@ class Comment extends React.Component {
       date: "",
       feedback: "",
       rating: "",
+      message: "",
     };
   }
 
@@ -39,7 +40,6 @@ class Comment extends React.Component {
       axios
         .get(`http://localhost:5000/AllComents/${nextProps.OwnerId}`)
         .then((res) => {
-          console.log(res);
           this.setState({
             comments: res.data,
           });
@@ -58,32 +58,43 @@ class Comment extends React.Component {
   cancelCourse = () => {
     document.getElementById("commentInput").value = "";
   };
+  check = () => {
+    for (var i = 0; i < this.state.comments.length; i++) {
+      if (this.state.comments[i].customerId === this.state.customerId) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   AddComment = (e) => {
     e.preventDefault();
-    var newValue = {
-      date: today,
-      fullName: this.state.fullName,
-      feedback: this.state.feedback,
-      rating: this.state.rating,
-    };
-    var joined = this.state.comments.concat(newValue);
-    this.setState({ comments: joined, feedback: "" });
-    this.cancelCourse();
-    axios
-      .post("http://localhost:5000/comment", {
+    if (!this.check()) {
+      var newValue = {
+        date: today,
         customerId: this.state.customerId,
-        fullName: this.state.fullName,
         ownerId: this.state.ownerId,
+        fullName: this.state.fullName,
         feedback: this.state.feedback,
         rating: this.state.rating,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+      };
+      var joined = this.state.comments.concat(newValue);
+      this.setState({ comments: joined, feedback: "", rating: 0 });
+      this.cancelCourse();
+      axios
+        .post("http://localhost:5000/comment", newValue)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    } else {
+      this.setState({ message: "You can't add two rating For the same owner" });
+      setTimeout(() => {
+        this.setState({ message: "" });
+      }, 2000);
+    }
   };
 
   render() {
@@ -107,6 +118,7 @@ class Comment extends React.Component {
                   rows="3"
                 ></textarea>
                 <br />
+                <p className="text-danger">{this.state.message}</p>
                 <button
                   type="button"
                   className="btn btn-info pull-right"
