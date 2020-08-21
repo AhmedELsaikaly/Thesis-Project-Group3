@@ -78,9 +78,10 @@ class Resort extends React.Component {
   }
 
   handleSelection = (selectedVal) => {
+    console.log("1111111111111111111111111",selectedVal);
     this.setState({
       selectedFacility: selectedVal,
-      SelectedPrice: this.state.faclitics[selectedVal].price,
+      SelectedPrice: this.state.faclitics[selectedVal].price || 0,
     });
   };
   componentDidMount() {
@@ -170,7 +171,6 @@ class Resort extends React.Component {
           </div>
           <div class="content4">
             <h1>{this.state.owner.placeName}</h1>
-            <p>rating</p>
             <NotEditStar rate={this.state.owner.ratingAvg} />
             <p>
               We work to provide everything necessary to ensure your comfort and

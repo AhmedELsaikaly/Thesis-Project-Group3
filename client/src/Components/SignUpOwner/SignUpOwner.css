@@ -123,3 +123,30 @@
   font-size: 15px;
   overflow: hidden;
 }
+.all {
+  background-color: #63738a;
+
+  /* background-image: url("./4.jpg"); */
+  height: 1050px;
+  width: 100%;
+  background-size: auto;
+  background-position: center;
+}
+.boxImg {
+  height: 916px;
+  width: 40%;
+  float: right;
+  margin-right: 108px;
+  margin-top: -983px;
+  border: 15px;
+  border-radius: 15px;
+
+}
+.imgDiv {
+  width: 40%;
+  float: right;
+  margin-right: 109px;
+  margin-top: -697px;
+  height: 697px;
+  background-color: #63738a;
+}
