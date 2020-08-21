@@ -2,7 +2,6 @@
 import React from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import Map from "../../apiMapGoogle/Map";
 import { Form, Button } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { Col } from "react-bootstrap";
@@ -159,7 +158,7 @@ class Facility extends React.Component {
 
               <Form.Group as={Col}>
                 <Form.Label className="Label">Image Tabels</Form.Label>
-                <PhotoUpload handler={this.getTableUrl} />
+                <PhotoUpload handler={this.getTableUrl} Id={"TableUrl"} />
               </Form.Group>
             </Form.Row>
 
@@ -190,7 +189,10 @@ class Facility extends React.Component {
 
               <Form.Group as={Col}>
                 <Form.Label className="Label">Image Small Tents</Form.Label>
-                <PhotoUpload handler={this.getSmallTentUrl} />
+                <PhotoUpload
+                  handler={this.getSmallTentUrl}
+                  Id={"SmallTentUrl"}
+                />
               </Form.Group>
             </Form.Row>
             {/* ///////////////////// */}
@@ -220,7 +222,10 @@ class Facility extends React.Component {
 
               <Form.Group as={Col}>
                 <Form.Label className="Label">Image Large Tents</Form.Label>
-                <PhotoUpload handler={this.getLargeTentUrl} />{" "}
+                <PhotoUpload
+                  handler={this.getLargeTentUrl}
+                  Id={"SmallLargeTentUrl"}
+                />{" "}
               </Form.Group>
             </Form.Row>
             <div className="MapLabel">
@@ -240,7 +245,6 @@ class Facility extends React.Component {
             <br />
           </Form>
         </div>
-        <Map />
       </div>
     );
   }
