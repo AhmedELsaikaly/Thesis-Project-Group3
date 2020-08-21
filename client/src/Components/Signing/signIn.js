@@ -82,7 +82,6 @@ class SignIn extends React.Component {
             }
           })
           .catch((err) => {
-            console.log("ERROR FROM AXIOS ", err.response.data);
             this.props.history.push(`/signIn`);
           });
       } else {
@@ -107,7 +106,6 @@ class SignIn extends React.Component {
             }
           })
           .catch((err) => {
-            console.log("ERROR FROM AXIOS ", err.response.data);
             this.props.history.push(`/signIn`);
           });
       }
@@ -177,7 +175,7 @@ class SignIn extends React.Component {
 
           <img className="imgBox1" src={one}></img>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
