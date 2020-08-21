@@ -3,9 +3,8 @@ import React from "react";
 import axios from "axios";
 import { authintication } from "./../RoutesType/ProtectedRoute";
 import { toast } from "react-toastify";
-// import one from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029252/bfzj2vat3m27z38jhomw.jpg";
-import Footer from "./../SubPages/Footer/Footer";
-//import CSS
+import Footer from './../SubPages/Footer/Footer'
+// import one from "./1.jpg";
 import "./signIn.css";
 
 class SignIn extends React.Component {
@@ -173,7 +172,7 @@ class SignIn extends React.Component {
             </div>
           </div>
 
-          <img className="imgBox1" src= "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029252/bfzj2vat3m27z38jhomw.jpg"></img>
+          <img className="imgBox1" src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029252/bfzj2vat3m27z38jhomw.jpg' alt =''></img>
         </div>
         <Footer />
       </div>
