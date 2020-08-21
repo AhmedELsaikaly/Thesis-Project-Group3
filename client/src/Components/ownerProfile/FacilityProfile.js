@@ -30,6 +30,24 @@ export class FacilityProfile extends Component {
       ownerId: decoded.id,
     });
   }
+  handleSmallTentUrl = (element) => {
+    console.log(element);
+    this.setState({
+      SmallTentUrl: element,
+    });
+  };
+  handleLargeTentUrl = (element) => {
+    console.log(element);
+    this.setState({
+      LargeTentUrl: element,
+    });
+  };
+  handleTableUrl = (element) => {
+    console.log(element);
+    this.setState({
+      TableUrl: element,
+    });
+  };
   ///////////as well as State and Lifecycle.
   componentDidUpdate(prevProps, prevState) {
     if (prevState.ownerId !== this.state.ownerId) {
@@ -43,17 +61,17 @@ export class FacilityProfile extends Component {
       .put(`/updateFacility/${this.state.ownerId}`, {
         facilities: {
           table: {
-            img: "",
+            img: this.state.TableUrl,
             price: this.state.tablePrice,
             quantity: this.state.tableQuant,
           },
           SmallTents: {
-            img: "",
+            img: this.state.SmallTentUrl,
             price: this.state.SmallTentPrice,
             quantity: this.state.SmallTentQuant,
           },
           LargeTents: {
-            img: "",
+            img: this.state.LargeTentUrl,
             price: this.state.LargeTentPrice,
             quantity: this.state.LargeTentQuant,
           },
@@ -61,15 +79,15 @@ export class FacilityProfile extends Component {
       })
       .then((res) => {
         // alert("Save update done");
-        toast("Your Services Added Successfully ❤", {
+        toast("Your Facilities Edited Successfully ❤", {
           type: "success",
         });
       })
       .catch((err) => {
         // console.log(err);
-        // toast("You already have services ❤", {
-        //   type: "error",
-        // });
+        toast("Your Facilities Not Edited Successfully ❤", {
+          type: "error",
+        });
       });
   };
 
@@ -134,11 +152,11 @@ export class FacilityProfile extends Component {
 
             <Form.Group as={Col}>
               <Form.Label>Image Tabels</Form.Label>
-              {/* <Input
-                type="file"
-                name="TableUrl"
-                value={this.state.TableUrl.img}
-                onChange={this.handleChange}
+              <PhotoUpload handler={this.handleTableUrl} Id={"Table"} />
+              {/* <img
+                style={{ width: "250px", height: "250px" }}
+                src={this.state.TableUrl}
+                className="displayed-image"
               /> */}
             </Form.Group>
           </Form.Row>
@@ -173,12 +191,12 @@ export class FacilityProfile extends Component {
 
             <Form.Group as={Col}>
               <Form.Label>Image Small Tents</Form.Label>
-              {/* <Input
-                type="file"
-                name="SmallTentUrl"
-                value={this.state.SmallTentUrl.img}
-                onChange={this.handleChange}
-              />{" "} */}
+              <PhotoUpload handler={this.handleSmallTentUrl} Id={"SmallTent"} />
+              {/* <img
+                style={{ width: "250px", height: "250px" }}
+                src={this.state.SmallTentUrl}
+                className="displayed-image"
+              /> */}
             </Form.Group>
           </Form.Row>
 
@@ -213,12 +231,12 @@ export class FacilityProfile extends Component {
 
             <Form.Group as={Col}>
               <Form.Label>Image Large Tents</Form.Label>
-              {/* <Input
-                type="file"
-                name="LargeTentUrl"
-                value={this.state.LargeTentUrl.img}
-                onChange={this.handleChange}
-              />{" "} */}
+              <PhotoUpload handler={this.handleLargeTentUrl} Id={"LargeTent"} />
+              {/* <img
+                style={{ width: "250px", height: "250px" }}
+                src={this.state.LargeTentUrl}
+                className="displayed-image"
+              /> */}
             </Form.Group>
           </Form.Row>
 

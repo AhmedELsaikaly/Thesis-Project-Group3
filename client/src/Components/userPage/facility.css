@@ -70,14 +70,13 @@
 .modal-header {
   background-color: #c9cdd078;
 }
-#cl{
-    width: 50px;
+#cl {
+  width: 50px;
 }
-button1 {
-    margin-left: 60px;
+.button1 {
+  margin-left: 60px;
 }
-.modal-body, .modal-footer
-{
-    background-color: #dbdcdf;
-
+.modal-body,
+.modal-footer {
+  background-color: #dbdcdf;
 }

@@ -1,29 +1,31 @@
-import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 // import { Input } from 'reactstrap';
 // import { Grid, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import CheckBox from '../Service/CheckBox';
-import jwt_decode from 'jwt-decode';
+import axios from "axios";
+import CheckBox from "../Service/CheckBox";
+import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
+
 // import { MDBInput } from 'mdbreact';
 
 export class ServicesProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ownerId: '',
+      ownerId: "",
       services: [
-        { id: 1, value: 'PlayGround', isChecked: false },
-        { id: 2, value: 'SwimmingPool', isChecked: false },
-        { id: 3, value: 'FoodOffer', isChecked: false },
-        { id: 4, value: 'SoftDrinks', isChecked: false },
-        { id: 5, value: 'TV', isChecked: false },
-        { id: 6, value: 'GrillArea', isChecked: false },
-        { id: 7, value: 'Shesha', isChecked: false },
-        { id: 8, value: 'GreenArea', isChecked: false },
-        { id: 9, value: 'KidsArea', isChecked: false },
+        { id: 1, value: "PlayGround", isChecked: false },
+        { id: 2, value: "SwimmingPool", isChecked: false },
+        { id: 3, value: "FoodOffer", isChecked: false },
+        { id: 4, value: "SoftDrinks", isChecked: false },
+        { id: 5, value: "TV", isChecked: false },
+        { id: 6, value: "GrillArea", isChecked: false },
+        { id: 7, value: "Shesha", isChecked: false },
+        { id: 8, value: "GreenArea", isChecked: false },
+        { id: 9, value: "KidsArea", isChecked: false },
       ],
-      otherService: '',
+      otherService: "",
     };
   }
 
@@ -80,7 +82,9 @@ export class ServicesProfile extends Component {
         otherService: this.state.otherService,
       })
       .then((res) => {
-        alert('Save update done');
+        toast("Your Services Added Successfully ❤", {
+          type: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -102,12 +106,12 @@ export class ServicesProfile extends Component {
 
   render() {
     return (
-      <div style={{ marginLeft: '20%' }}>
-        <h2 style={{ marginLeft: '6%' }}>Edit Your Services</h2>
+      <div style={{ marginLeft: "20%" }}>
+        <h2 style={{ marginLeft: "6%" }}>Edit Your Services</h2>
         <div
-          style={{ marginLeft: '5%' }}
-          id='serviceElement'
-          className='form-group '
+          style={{ marginLeft: "5%" }}
+          id="serviceElement"
+          className="form-group "
         >
           {this.state.services.map((service, index) => {
             return (
@@ -120,26 +124,26 @@ export class ServicesProfile extends Component {
             );
           })}
         </div>
-        <div style={{ marginLeft: '7%' }} className='form-group'>
-          <label htmlFor='note'>
+        <div style={{ marginLeft: "7%" }} className="form-group">
+          <label htmlFor="note">
             <span>Other Services</span>
           </label>
           <textarea
-            style={{ marginLeft: '0', marginRight: '0' }}
-            className='form-control w-200'
+            style={{ marginLeft: "0", marginRight: "0" }}
+            className="form-control w-200"
             onChange={this.handleChange}
             value={this.state.otherService}
-            name='otherService'
-            id='exampleTextarea'
-            rows='2'
-            placeholder='Write your Other Services'
+            name="otherService"
+            id="exampleTextarea"
+            rows="2"
+            placeholder="Write your Other Services"
           ></textarea>
           <br></br>
           <Button
-            style={{ width: '60px' }}
+            style={{ width: "60px" }}
             onClick={this.handleSubmitSave}
-            variant='primary'
-            type='submit'
+            variant="primary"
+            type="submit"
           >
             SAVE
           </Button>

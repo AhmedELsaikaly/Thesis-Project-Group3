@@ -6,7 +6,8 @@ import { Form, Button } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { Col } from "react-bootstrap";
 import ContolPanel from "../ControlPanel/ControlPanel";
-class RenderOwnerData extends Component {
+import Map from "../../apiMapGoogle/Map";
+class RenderOwnerData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +43,7 @@ class RenderOwnerData extends Component {
 
   render() {
     return (
-      <dev>
+      <div>
         <ContolPanel />
         <div
           className="formData"
@@ -82,20 +83,17 @@ class RenderOwnerData extends Component {
                       </p>
                     </Form.Group>
                   </Form.Row>
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <p className="dataP">
-                        Your License :{" "}
-                        {this.state.ownerDetail.ownerData.licensePhoto}
-                      </p>
-                    </Form.Group>
-                  </Form.Row>
+                  <Form.Row></Form.Row>
                 </div>
+                <div style={{ marginLeft: "15%" }}>
+                  <Map />
+                </div>
+
                 <section className="ownerFacilites">
                   {Object.keys(
                     this.state.ownerDetail.facilities[0].facilities
                   ).map((element, index) => (
-                    <div className="all">
+                    <div className="OwnerImage">
                       <div class="box">
                         <div class="content2">
                           <div>
@@ -132,27 +130,29 @@ class RenderOwnerData extends Component {
                     </div>
                   ))}
                 </section>
-                <Button
+                <div
                   style={{
-                    marginLeft: "auto",
+                    marginLeft: "55%",
                   }}
                 >
-                  <a
-                    style={{
-                      color: "black",
-                    }}
-                    href="/ownerProfile"
-                  >
-                    Edit Your Data
-                  </a>
-                </Button>
+                  <Button>
+                    <a
+                      style={{
+                        color: "black",
+                      }}
+                      href="/ownerProfile"
+                    >
+                      Edit Your Data
+                    </a>
+                  </Button>
+                </div>
               </div>
             ) : (
               <div></div>
             )}
           </Form>
         </div>
-      </dev>
+      </div>
     );
   }
 }

@@ -82,12 +82,12 @@ class App extends React.Component {
               path="/userReservation"
               component={UserReservation}
             ></ProtectedRoute>
-            <Route path="*" component={NotFound} />
             <ProtectedRouteOwner
               exact
               path="/ownerRender"
               component={RenderOwnerData}
             />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Router>
       </div>

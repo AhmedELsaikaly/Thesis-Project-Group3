@@ -1,26 +1,28 @@
-import React, { Component } from 'react';
-import { Form, Button, Navbar } from 'react-bootstrap';
-import { Input } from 'reactstrap';
-import { Col } from 'react-bootstrap';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import FacilityProfile from './FacilityProfile';
-import ServicesProfile from './ServicesProfile';
-import Footer from '../SubPages/Footer/Footer';
-import ContolPanel from '../ControlPanel/ControlPanel';
+import React, { Component } from "react";
+import { Form, Button, Navbar } from "react-bootstrap";
+import { Input } from "reactstrap";
+import { Col } from "react-bootstrap";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import FacilityProfile from "./FacilityProfile";
+import ServicesProfile from "./ServicesProfile";
+import Footer from "../SubPages/Footer/Footer";
+import ContolPanel from "../ControlPanel/ControlPanel";
+import { toast } from "react-toastify";
+import PhotoUpload from "../PhotoUpload/PhotoUpload";
 // import NavBar from '../Navbar/Navbar';
-import RenderOwnerData from '../renderOwnerData/RenderOwnerData';
+import RenderOwnerData from "../renderOwnerData/RenderOwnerData";
 export class OwnerProfile extends Component {
   constructor() {
     super();
     this.state = {
-      _id: '',
-      fullName: '',
-      email: '',
-      mobileNumber: '',
-      area: '',
-      placeName: '',
-      license: '',
+      _id: "",
+      fullName: "",
+      email: "",
+      mobileNumber: "",
+      area: "",
+      placeName: "",
+      license: "",
     };
     // this.handleChange = this.handleChange.bind(this)
   }
@@ -30,12 +32,12 @@ export class OwnerProfile extends Component {
     const decoded = jwt_decode(token);
     this.setState({
       _id: decoded.id,
-      fullName: '',
-      email: '',
-      mobileNumber: '',
-      area: '',
-      placeName: '',
-      license: '',
+      fullName: "",
+      email: "",
+      mobileNumber: "",
+      area: "",
+      placeName: "",
+      license: "",
     });
   }
   componentDidUpdate(prevProps, prevState) {
@@ -56,7 +58,9 @@ export class OwnerProfile extends Component {
         license: this.state.license,
       })
       .then((res) => {
-        alert('Save update done');
+        toast("Your Services Added Successfully ❤", {
+          type: "success",
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -88,11 +92,11 @@ export class OwnerProfile extends Component {
     // const b = this.state.data;
     return (
       <div>
-        <div className='control'>
+        <div className="control">
           <ContolPanel />
         </div>
         <Form
-          style={{ marginLeft: '25%', marginTop: '-125%', maxWidth: '80%' }}
+          style={{ marginLeft: "25%", marginTop: "-125%", maxWidth: "80%" }}
         >
           <h2> Edit Your Profile </h2>
           <br></br>
@@ -100,8 +104,8 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Full Name</Form.Label>
               <Input
-                type='text'
-                name='fullName'
+                type="text"
+                name="fullName"
                 value={this.state.fullName}
                 onChange={this.handleChange}
               />
@@ -110,8 +114,8 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Email</Form.Label>
               <Input
-                type='email'
-                name='email'
+                type="email"
+                name="email"
                 value={this.state.email}
                 onChange={this.handleChange}
               />
@@ -120,10 +124,10 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Mobile Number</Form.Label>
               <Input
-                type='number'
-                maxLength='10'
-                minLength='10'
-                name='mobileNumber'
+                type="number"
+                maxLength="10"
+                minLength="10"
+                name="mobileNumber"
                 value={this.state.mobileNumber}
                 onChange={this.handleChange}
               />
@@ -133,8 +137,8 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>area</Form.Label>
               <Input
-                type='select'
-                name='area'
+                type="select"
+                name="area"
                 value={this.state.area}
                 onChange={this.handleChange}
               >
@@ -149,8 +153,8 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>Place Name</Form.Label>
               <Input
-                type='text'
-                name='placeName'
+                type="text"
+                name="placeName"
                 value={this.state.placeName}
                 onChange={this.handleChange}
               />
@@ -159,17 +163,17 @@ export class OwnerProfile extends Component {
             <Form.Group as={Col}>
               <Form.Label>License</Form.Label>
               <Input
-                type='file'
-                name='license'
-                value={this.state.license || ''}
+                type="file"
+                name="license"
+                value={this.state.license || ""}
                 onChange={this.handleChange}
               />
             </Form.Group>
           </Form.Row>
           <Button
             onClick={this.handleSubmitSave}
-            variant='primary'
-            type='submit'
+            variant="primary"
+            type="submit"
           >
             SAVE
           </Button>
@@ -178,8 +182,6 @@ export class OwnerProfile extends Component {
         <FacilityProfile />
         <hr />
         <ServicesProfile />
-        {/* <Footer /> */}
-        <RenderOwnerData />
       </div>
     );
   }
