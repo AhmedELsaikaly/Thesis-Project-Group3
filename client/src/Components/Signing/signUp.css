@@ -1,6 +1,6 @@
 .signup-form {
   color: #fff;
-  background: #63738a;
+  background: #8a6370;
   font-family: "Roboto", sans-serif;
 }
 .form-control {
@@ -17,6 +17,7 @@
 }
 .signup-form {
   width: 600px;
+
   margin: 0 auto;
   padding: 30px 0;
 }
@@ -118,4 +119,30 @@
   color: black;
   font-size: 15px;
   overflow: hidden;
+}
+.all {
+  background-color: #63738a;
+
+  /* background-image: url("./4.jpg"); */
+  height: 700px;
+  width: 100%;
+  background-size: auto;
+  background-position: center;
+}
+.boxImg {
+  height: 605px;
+  width: 40%;
+  float: right;
+  margin-right: 108px;
+  margin-top: -670px;
+  border: 15px;
+  border-radius: 15px;
+}
+.imgDiv {
+  width: 40%;
+  float: right;
+  margin-right: 109px;
+  margin-top: -697px;
+  height: 697px;
+  background-color: #63738a;
 }

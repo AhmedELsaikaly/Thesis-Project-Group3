@@ -5,8 +5,11 @@
   color: #999;
   background: #f5f5f5;
   font-family: "Varela Round", sans-serif;
+  border: 5px;
+  border-radius: 15px;
+  /* margin-left: 200px; */
 }
-.form-control {
+login-form .form-control {
   box-shadow: none;
   border-color: #ddd;
 }
@@ -17,6 +20,9 @@
   width: 350px;
   margin: 0 auto;
   padding: 30px 0;
+  /* height: 200px; */
+
+  height: "400px";
 }
 .login-form form {
   color: #434343;
@@ -28,14 +34,14 @@
   padding: 30px;
 }
 .login-form h4 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 22px;
   margin-bottom: 20px;
 }
 .login-form .avatar {
   color: #fff;
   margin: 0 auto 30px;
-  text-align: center;
+  /* text-align: center; */
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -88,4 +94,24 @@
 .checkbox {
   font-weight: 500;
   font-size: 20px;
+}
+.imgBox1 {
+  margin: 0 auto;
+  padding: 30px 0;
+  height: 554px;
+  border: 25px;
+  border-radius: 45px;
+  margin-top: 40px;
+  margin-left: 439px;
+  padding-left: 200px;
+  width: 568px;
+  overflow: auto;
+}
+
+.all1 {
+  background-image: url("./4.jpg");
+  height: 657px;
+  width: 100%;
+  background-size: auto;
+  background-position: center;
 }

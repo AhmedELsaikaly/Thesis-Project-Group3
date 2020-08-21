@@ -3,6 +3,8 @@ import React from "react";
 import axios from "axios";
 import { authintication } from "./../RoutesType/ProtectedRoute";
 import { toast } from "react-toastify";
+import one from "./1.jpg";
+import Footer from "./../SubPages/Footer/Footer";
 //import CSS
 import "./signIn.css";
 
@@ -115,59 +117,67 @@ class SignIn extends React.Component {
   //render SignIn compo
   render() {
     return (
-      <div className="login-form">
-        <form>
-          <div className="avatar">
-            <i className="material-icons">&#xE7FF;</i>
+      <div>
+        <div className="all1">
+          <div
+            className="login-form"
+            style={{
+              marginLeft: "300px",
+              marginTop: "69px",
+              height: "400px",
+              position: "absolute",
+            }}
+          >
+            <form>
+              <div className="avatar">
+                <i className="material-icons">&#xE7FF;</i>
+              </div>
+              <h4 className="modal-title">Login to Your Account</h4>
+              <div className="text-danger">{this.state.errors.email}</div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Email"
+                  name="email"
+                  onChange={this.handleChange}
+                  value={this.state.input.email}
+                />
+              </div>
+              <div className="text-danger">{this.state.errors.password}</div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={this.state.input.Password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox">
+                  <input id="checkbox" type="checkbox" required="required" />{" "}
+                  Login as Owner
+                </label>
+              </div>
+              <input
+                type="submit"
+                className="btn btn-primary btn-block btn-lg"
+                value="Login"
+                onClick={this.handleSubmit}
+              />
+            </form>
+            <p className="text-danger">{this.state.serverRes}</p>
+            <div className="text-center large">
+              Don't have an account? <a href="/signUp">Sign up</a>
+            </div>
           </div>
-          <h4 className="modal-title">Login to Your Account</h4>
-          <div className="text-danger">{this.state.errors.email}</div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.input.email}
-            />
-          </div>
-          <div className="text-danger">{this.state.errors.password}</div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={this.state.input.Password}
-              placeholder="Password"
-              onChange={this.handleChange}
-            />
-          </div>
-          {/* <div className="form-group small clearfix">
-            <label className="checkbox-inline">
-              <input type="checkbox" /> Remember me
-            </label>
-            <a href="#" className="forgot-link">
-              Forgot Password?
-            </a>
-          </div> */}
-          <div class="form-group">
-            <label class="checkbox">
-              <input id="checkbox" type="checkbox" required="required" /> Login
-              as Owner
-            </label>
-          </div>
-          <input
-            type="submit"
-            className="btn btn-primary btn-block btn-lg"
-            value="Login"
-            onClick={this.handleSubmit}
-          />
-        </form>
-        <p className="text-danger">{this.state.serverRes}</p>
-        <div className="text-center large">
-          Don't have an account? <a href="/signUp">Sign up</a>
+
+          <img className="imgBox1" src={one}></img>
         </div>
+        <Footer/>
       </div>
     );
   }

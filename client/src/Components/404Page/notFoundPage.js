@@ -8,8 +8,7 @@ class NotFound extends React.Component {
         <img class="ops" src={notFoundPhotov} />
         <br />
         <h3>
-          Halaman yang Anda cari tidak ditemukan.
-          <br /> Bisa jadi karena url tersebut salah atau tidak tersedia.
+          Sorry page NotFound <br /> Welcome to Raha App
         </h3>
         <br />
         <a class="buton" href="/">
