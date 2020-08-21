@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { Input } from "reactstrap";
 //import CSS
 import "./SignUpOwner.css";
+import { toast } from "react-toastify";
 import Footer from "./../SubPages/Footer/Footer";
 import three from "./3.jpg";
 
@@ -199,10 +200,18 @@ class SignUpOwner extends React.Component {
           licensePhoto: this.state.licensePhoto.url,
         })
         .then((response) => {
-          console.log(response);
-
-          // this.props.history.push(`/ContolPanel`);
-          window.location.href = "/ContolPanel";
+          if (response.data.success === false) {
+            toast(response.data.message, {
+              type: "error",
+            });
+          } else {
+            localStorage.setItem("ownertoken", response.data.token);
+            toast("Your Signed Up succesfully ❤", {
+              type: "success",
+            });
+            this.props.history.push(`/ContolPanel#`);
+            return response.data;
+          }
         })
         .catch((err) => {
           console.log("ERROR FROM AXIOS ", err);
@@ -361,8 +370,7 @@ class SignUpOwner extends React.Component {
             Already have an account? <a href="/signIn">Sign in</a>
           </div>
         </div>
-        <div className="imgDiv">
-        </div>
+        <div className="imgDiv"></div>
         <img className="boxImg" src={three}></img>
 
         <div>

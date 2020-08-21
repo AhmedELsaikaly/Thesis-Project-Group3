@@ -1,5 +1,8 @@
 //import used technologies
 import React from "react";
+import { toast } from "react-toastify";
+//import CSS
+import "./signUp.css";
 
 //import CSS
 import "./signUp.css";
@@ -44,7 +47,7 @@ class SignUp extends React.Component {
     ) {
       this.setState({ message: "The password is correct" });
     } else {
-      this.setState({ message: "The two passwords in not confirmed" });
+      this.setState({ message: "The two passwords in not matched" });
     }
   };
 
@@ -53,7 +56,6 @@ class SignUp extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
     let input = this.state.input;
     input[e.target.name] = e.target.value;
-
     this.setState({
       input,
     });
@@ -127,7 +129,7 @@ class SignUp extends React.Component {
       if (!pattern.test(num)) {
         isValid = false;
         errors["mobileNumber"] = "Please enter only number.";
-      } else if (numLen != 10) {
+      } else if (numLen !== 10) {
         isValid = false;
         errors["mobileNumber"] = "Please enter valid phone number.";
       }
@@ -136,7 +138,7 @@ class SignUp extends React.Component {
       typeof input["password"] !== "undefined" &&
       typeof input["confirm"] !== "undefined"
     ) {
-      if (input["password"] != input["confirm"]) {
+      if (input["password"] !== input["confirm"]) {
         isValid = false;
         errors["password"] = "Passwords don't match.";
       }
@@ -173,16 +175,20 @@ class SignUp extends React.Component {
           address: this.state.address,
         })
         .then((response) => {
-          console.log(response);
-          // alert("sign up success please sign in");
-          // console.log("result   ", res);
-          // this.setState({ singup: "sign up success please sign in" });
-          this.props.history.push(`/`);
+          if (response.data.success === false) {
+            toast(response.data.message, {
+              type: "error",
+            });
+          } else {
+            localStorage.setItem("usertoken", response.data.token);
+            toast("Your Signed Up succesfully ❤", {
+              type: "success",
+            });
+            this.props.history.push(`/`);
+            return response.data;
+          }
         })
         .catch((err) => {
-          // console.log(err);
-          this.setState({ serverRes: err.response.data });
-          // alert(err.response.data);
           console.log("ERROR FROM AXIOS ", err.response.data);
           this.props.history.push(`/signUp`);
         });
@@ -313,8 +319,7 @@ class SignUp extends React.Component {
             Already have an account? <a href="/signIn">Sign in</a>
           </div>
         </div>
-        <div className="imgDiv">
-        </div>
+        <div className="imgDiv"></div>
         <img className="boxImg" src={three}></img>
 
         <div>

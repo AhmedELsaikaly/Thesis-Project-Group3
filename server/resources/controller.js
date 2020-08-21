@@ -5,7 +5,18 @@ const nodemailer = require("nodemailer");
 const stripe = require("stripe")(
   "sk_test_51HFEs6Ey67T81IS2h074yJxZRh0P2vlQZT0kEOEarNqerFw7MrSvvQoMe1y6cnMBLJ0vHZpaHdIyEztbGp0obR5A00t6fUTPdf"
 );
+const Nexmo = require("nexmo");
 
+const nexmo = new Nexmo(
+  {
+    apiKey: "d9629ad7",
+    apiSecret: "XsiUhb8zi7Ft4Bpw",
+  },
+  { debug: "true" }
+);
+const validateSignupInput = require("./validation/signup");
+const validateSigninInput = require("./validation/login");
+const expressValidator = require("express-validator");
 //require used files
 const ReservationModel = require("./models.js").ReservationModel;
 const {
@@ -16,8 +27,6 @@ const {
 
   RFModel,
 } = require("./models.js");
-const validateSignupInput = require("./validation/signup");
-const validateSigninInput = require("./validation/login");
 
 //SignIn For Owner
 
@@ -38,7 +47,9 @@ exports.SignInOwner = function (req, res) {
     .then((owner) => {
       //check if owner exists
       if (!owner) {
-        return res.status(404).json("Email not found");
+        return res
+          .status(200)
+          .json({ success: false, message: "Email not found" });
       }
       //check password
       bcrypt
@@ -57,77 +68,150 @@ exports.SignInOwner = function (req, res) {
               payload,
               process.env.SECRET_KEY,
               {
-                expiresIn: "1h", // 1 month in seconds
+                expiresIn: "1h",
               },
               (err, token) => {
                 res.json({
                   success: true,
                   token: token,
+                  message: "signedIn sucessfully",
                 });
               }
             );
           } else {
-            return res.status(400).json("Password incorrect");
+            return res
+              .status(200)
+              .json({ success: false, message: "Password incorrect" });
           }
         })
         .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-//SignUpOwner Controller
-exports.SignUpOwner = function (req, res) {
-  console.log(req.body);
-  OwnerModel.findOne({ email: req.body.email })
-    .then((owner) => {
-      if (owner) {
-        return res.status(400).json("Email already exists");
-      } else {
-        //create newOwner
-        const newOwner = new OwnerModel({
-          fullName: req.body.fullName,
-          password: req.body.password,
-          email: req.body.email,
-          mobileNumber: req.body.mobileNumber,
-          placeName: req.body.placeName,
-          area: req.body.area,
-          licensePhoto: req.body.licensePhoto,
-        });
-
-        // Hash password before saving in database
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newOwner.password, salt, (err, hash) => {
-            if (err) throw err;
-            newOwner.password = hash;
-            //save newOwner
-            newOwner
-              .save()
-              .then(() => {
-                if (
-                  main(req.body.email, req.body.fullName, req.body.mobileNumber)
-                ) {
-                  res.send("Signed up successfully");
-                } else {
-                  res.send("The email not found");
-                }
-              })
-              .catch((err) =>
-                res.status(500).json({
-                  error: err,
-                })
-              );
+          res.status(500).json({
+            error: err,
           });
         });
-      }
     })
     .catch((err) => {
       res.status(500).json({
         error: err,
       });
     });
+};
+//SignUpOwner Controller
+exports.SignUpOwner = function (req, res) {
+  var fail = {};
+  const {
+    fullName,
+    password,
+    email,
+    mobileNumber,
+    placeName,
+    area,
+    licensePhoto,
+    fblink,
+  } = req.body;
+  const { errors, isValid } = validateSignupInput(req.body);
+  if (!isValid) {
+    res.status(200).json({ success: false, errors: errors });
+  }
+  OwnerModel.findOne({ email: req.body.email })
+    .then((owner) => {
+      if (owner) {
+        return res
+          .status(200)
+          .json({ success: false, message: "email already exists" });
+      }
+      OwnerModel.findOne({ mobileNumber: req.body.mobileNumber }).then(
+        (mobile) => {
+          if (mobile) {
+            return res.status(200).json({
+              success: false,
+              message: "mobile Number already used",
+            });
+          }
+        }
+      );
+      OwnerModel.findOne({ placeName: req.body.placeName }).then((place) => {
+        if (place) {
+          return res
+            .status(200)
+            .json({ success: false, message: "place Name already used" });
+        }
+      });
+      const newOwner = new OwnerModel({
+        fullName: fullName,
+        password: password,
+        email: email,
+        mobileNumber: mobileNumber,
+        placeName: placeName,
+        fblink: fblink,
+        area: area,
+        licensePhoto: licensePhoto,
+      });
+
+      // Hash password before saving in database
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newOwner.password, salt, (err, hash) => {
+          if (err) throw err;
+          newOwner.password = hash;
+          //save newOwner
+          newOwner.save().then(() => {
+            if (
+              main(req.body.email, req.body.fullName, req.body.mobileNumber)
+            ) {
+              // nexmo.message.sendSms(
+              //   "Vonage APIs",
+              //   970595815717,
+              //   `${req.body.fullName}
+              //   signed with ${req.body.mobileNumber}`,
+              //   { type: "unicode" },
+              //   (err, responseData) => {
+              //     if (err) {
+              //       res.json({
+              //         success: false,
+              //         message: "Error in sending sms to owner",
+              //         err: err,
+              //       });
+              //     } else {
+              //       console.log(responseData);
+              //     }
+              //   }
+
+              // );
+              // Create JWT Payload
+              const payload = {
+                id: newOwner.id,
+                fullName: newOwner.fullName,
+                placeName: newOwner.placeName,
+              };
+              // Sign token
+              jwt.sign(
+                payload,
+                process.env.SECRET_KEY,
+                {
+                  expiresIn: "1h",
+                },
+                (err, token) => {
+                  res.json({
+                    success: true,
+                    message: "Signed up successfully",
+                    token: token,
+                  });
+                }
+              );
+            } else {
+              return res
+                .status(200)
+                .json({ success: false, message: "Email not Found" });
+            }
+          });
+        });
+      });
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: err,
+      })
+    );
 };
 
 //Contact Us form
@@ -166,7 +250,7 @@ exports.SignInCustomer = function (req, res) {
   const { errors, isValid } = validateSigninInput(req.body);
   //check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(200).json({ success: false, errors: errors });
   }
   const email = req.body.email;
   const password = req.body.password;
@@ -176,7 +260,9 @@ exports.SignInCustomer = function (req, res) {
     .then((customer) => {
       //check if customer exists
       if (!customer) {
-        return res.status(404).json("Email not found");
+        return res
+          .status(200)
+          .json({ success: false, message: "Email not Found" });
       }
 
       //check password
@@ -206,7 +292,9 @@ exports.SignInCustomer = function (req, res) {
               }
             );
           } else {
-            return res.status(400).json("Password incorrect");
+            return res
+              .status(200)
+              .json({ success: false, message: "Password incorrect" });
           }
         })
         .catch((err) => {
@@ -214,7 +302,9 @@ exports.SignInCustomer = function (req, res) {
         });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
     });
 };
 
@@ -222,41 +312,87 @@ exports.SignInCustomer = function (req, res) {
 exports.SignUpCustomer = function (req, res) {
   console.log(req.body);
   //check Customer by email if exists
+
   CustomerModel.findOne({ email: req.body.email })
     .then((customer) => {
       if (customer) {
-        if (main(req.body.email, req.body.fullName, req.body.mobileNumber)) {
-          res.send("Signed up successfully");
-        } else {
-          res.send("Email not found");
-          res.status(400).json("Email already exists");
-        }
-      } else {
-        //create newCustomer
-        const newCustomer = new CustomerModel({
-          fullName: req.body.fullName,
-          password: req.body.password,
-          email: req.body.email,
-          mobileNumber: req.body.mobileNumber,
-          address: req.body.address,
-        });
-
-        // Hash password before saving in database
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newCustomer.password, salt, (err, hash) => {
-            if (err) throw err;
-            newCustomer.password = hash;
-            //save newCustomer
-            newCustomer
-              .save()
-              .then(() => res.send("Signed up successfully"))
-              .catch((err) => console.log(err));
-          });
-        });
+        return res
+          .status(200)
+          .json({ success: false, message: "email already exists" });
       }
+      CustomerModel.findOne({ mobileNumber: req.body.mobileNumber }).then(
+        (user) => {
+          if (user) {
+            return res
+              .status(200)
+              .json({ success: false, message: "mobile Number already used" });
+          }
+          const newCustomer = new CustomerModel({
+            fullName: req.body.fullName,
+            password: req.body.password,
+            email: req.body.email,
+            mobileNumber: req.body.mobileNumber,
+            address: req.body.address,
+          });
+
+          // Hash password before saving in database
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newCustomer.password, salt, (err, hash) => {
+              if (err) throw err;
+              newCustomer.password = hash;
+              //save newCustomer
+              newCustomer
+                .save()
+                .then(() => {
+                  if (
+                    main(
+                      req.body.email,
+                      req.body.fullName,
+                      req.body.mobileNumber
+                    )
+                  ) {
+                    // Create JWT Payload
+                    const payload = {
+                      id: newCustomer.id,
+                      fullName: newCustomer.fullName,
+                      placeName: newCustomer.placeName,
+                    };
+                    // Sign token
+                    jwt.sign(
+                      payload,
+                      process.env.SECRET_KEY,
+                      {
+                        expiresIn: "1h",
+                      },
+                      (err, token) => {
+                        res.json({
+                          success: true,
+                          message: "Signed up successfully",
+                          token: token,
+                        });
+                      }
+                    );
+                  } else {
+                    res.json({
+                      success: false,
+                      message: "Email not found",
+                    });
+                  }
+                })
+                .catch((err) => {
+                  res.status(500).json({
+                    error: err,
+                  });
+                });
+            });
+          });
+        }
+      );
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
     });
 };
 
@@ -409,7 +545,6 @@ exports.GetComments = function (req, res) {
 
 // Add One Comment
 exports.AddComment = function (req, res) {
-  // console.log(req.params,'+++++++++')
   const { customerId, fullName, ownerId, date, feedback, rating } = req.body;
   OwnerModel.update(
     { _id: ownerId },
@@ -418,6 +553,7 @@ exports.AddComment = function (req, res) {
   )
     .then((result) => {
       if (result.n > 0) {
+        console.log(result);
         OwnerModel.findOne({ _id: ownerId })
           .then((result) => {
             const avg = Math.round(result.ratingSum / result.ratingPeopleNo);
@@ -438,9 +574,10 @@ exports.AddComment = function (req, res) {
                   });
                   CommentDoc.save()
                     .then(() => res.status(201).send("Comment Saved!"))
-                    .catch((err) =>
-                      res.status(500).send(err + "err in Saving Comment")
-                    );
+                    .catch((err) => {
+                      console.log(err);
+                      res.status(500).send(err + "err in Saving Comment");
+                    });
                 }
               })
               .catch((err) => {
