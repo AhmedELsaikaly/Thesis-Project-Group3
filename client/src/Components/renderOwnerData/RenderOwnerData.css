@@ -1,6 +1,8 @@
-/* PACKAGES */
-#packages {
-  margin: 0;
+.ownerData {
+  margin-left: 15%;
+}
+.ownerFacilites {
+  margin-left: 20%;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -8,15 +10,15 @@
   align-items: center;
 }
 
-.box {
+.ownerFacilites .box {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 410;
+  height: 410;
   background: #000000;
   margin: 10px;
 }
 
-.content2 {
+.ownerFacilites .content2 {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +31,7 @@
   text-align: center;
 }
 
-.content2 a {
+.ownerFacilites .content2 a {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
@@ -40,14 +42,14 @@
   border-radius: 2px;
 }
 
-.content2 a:hover {
+.ownerFacilites .content2 a:hover {
   color: #ffffff;
   background: #008fff;
   text-decoration: none;
 }
 
-.box img {
-  position: absolute;
+.ownerFacilites .box img {
+  position: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -58,25 +60,28 @@
   transition: 0.8s;
 }
 
-.box:hover img {
+.ownerFacilites .box:hover img {
   -webkit-clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
   clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
 }
 
-.pack {
+.ownerFacilites .pack {
   text-align: center;
   margin-bottom: 40px;
 }
-.modal-header {
+.ownerFacilites .modal-header {
   background-color: #c9cdd078;
 }
-#cl {
+.ownerFacilites #cl {
   width: 50px;
 }
-.button1 {
-  margin-left: 60px;
-}
-.modal-body,
-.modal-footer {
+.ownerFacilites .modal-body,
+.ownerFacilites .modal-footer {
   background-color: #dbdcdf;
+}
+.dataP {
+  font-weight: 600 !important;
+  font-size: 25px;
+  margin: 10px;
+  color: rgb(0, 0, 0);
 }

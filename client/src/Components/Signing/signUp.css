@@ -120,10 +120,8 @@
   font-size: 15px;
   overflow: hidden;
 }
-.all {
+.all6 {
   background-color: #63738a;
-
-  /* background-image: url("./4.jpg"); */
   height: 700px;
   width: 100%;
   background-size: auto;

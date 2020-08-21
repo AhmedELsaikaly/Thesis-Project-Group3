@@ -5,7 +5,7 @@ import React from "react";
 //import used files
 
 //create PhotoUpload Compo
-class PhotoUpload extends React.Component {
+class PhotoUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,6 @@ class PhotoUpload extends React.Component {
 
   handleChange = () => {
     const { files } = document.querySelector(`#${this.props.Id}`);
-    console.log("111111111111111111", files);
     const formData = new FormData();
     formData.append("file", files[0]);
     // replace this with your upload preset name
@@ -26,7 +25,7 @@ class PhotoUpload extends React.Component {
       body: formData,
     };
     return fetch(
-      "https://api.Cloudinary.com/v1_1/dsaehutja/image/upload",
+      "https://api.Cloudinary.com/v1_1/dplbducwt/image/upload",
       options
     )
       .then((res) => res.json())
@@ -46,7 +45,7 @@ class PhotoUpload extends React.Component {
     const { imageUrl, imageAlt } = this.state;
 
     return (
-      <main className="Upload">
+      <main className="Update">
         <section className="left-side">
           <form>
             <div className="form-group">
@@ -55,14 +54,14 @@ class PhotoUpload extends React.Component {
               <br />
               <input
                 type="file"
-                id={this.props.Id}
+                id="UplodePhoto"
                 // style={{ width: "200px" }}
                 accept="image/*"
                 onChange={this.handleChange}
               />
             </div>
           </form>
-          {imageUrl && (
+          {/* {imageUrl && (
             <a href={imageUrl}>
               <img
                 style={{ width: "250px", height: "250px" }}
@@ -71,13 +70,13 @@ class PhotoUpload extends React.Component {
                 className="displayed-image"
               />
             </a>
-          )}
+          )} */}
         </section>
       </main>
     );
   }
 }
 //export compo
-export default PhotoUpload;
+export default PhotoUpdate;
 
 //Check and vaildate

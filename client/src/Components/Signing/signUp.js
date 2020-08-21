@@ -206,7 +206,7 @@ class SignUp extends React.Component {
       address,
     };
     return (
-      <div className="all">
+      <div className="all6">
         <div className="signup-form" style={{ marginLeft: "100px" }}>
           <form>
             <h2>Sign Up</h2>

@@ -230,7 +230,7 @@ class SignUpOwner extends React.Component {
       area,
     };
     return (
-      <div className="all">
+      <div className="all7">
         <div className="signup-form" style={{ marginLeft: "100px" }}>
           <form>
             <h2>Owner Signup</h2>

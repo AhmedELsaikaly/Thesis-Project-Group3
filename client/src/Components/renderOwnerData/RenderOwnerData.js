@@ -1,57 +1,40 @@
-import React, { Component } from 'react';
-// import { Form, Button, Navbar } from 'react-bootstrap';
-// import { Input } from 'reactstrap';
-// import { Col } from 'react-bootstrap';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
-export class RenderOwnerData extends Component {
+import React, { Component } from "react";
+import "./RenderOwnerData.css";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { Form, Button } from "react-bootstrap";
+import { Input } from "reactstrap";
+import { Col } from "react-bootstrap";
+import ContolPanel from "../ControlPanel/ControlPanel";
+import Map from "../../apiMapGoogle/Map";
+class RenderOwnerData extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      _id: '',
-      fullName: '',
-      email: '',
-      mobileNumber: '',
-      area: '',
-      placeName: '',
-      license: '',
+      _id: "",
+      ownerDetail: [],
+      status: false,
     };
   }
   componentDidMount() {
     const token = localStorage.ownertoken;
     const decoded = jwt_decode(token);
     this.setState({
-      _id: decoded._id,
-      fullName: '',
-      email: '',
-      mobileNumber: '',
-      area: '',
-      placeName: '',
-      license: '',
+      ownerId: decoded.id,
     });
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevState._id !== this.state._id) {
-      this.handleSubmit();
+    if (prevState.ownerId !== this.state.ownerId) {
+      this.GetData();
     }
   }
 
-  handleSubmit = () => {
+  GetData = () => {
     axios
-      .get(`/Owner/${this.state._id}`)
-      .then((res) => {
-        console.log('test', res.data);
-        const data = res.data[0];
-        console.log(data);
-        this.setState({
-          fullName: data.fullName,
-          email: data.email,
-          mobileNumber: data.mobileNumber,
-          area: data.area,
-          placeName: data.placeName,
-          license: data.license,
-        });
+      .get(`/getAllOwnerData/${this.state.ownerId}`)
+      .then((result) => {
+        const data = result.data;
+        this.setState({ ownerDetail: data, status: true });
       })
       .catch((err) => {
         console.log(err);
@@ -61,12 +44,114 @@ export class RenderOwnerData extends Component {
   render() {
     return (
       <div>
-        <p>{this.state.fullName}</p>
-        <p>{this.state.email}</p>
-        <p>{this.state.mobileNumber}</p>
-        <p>{this.state.area}</p>
-        <p>{this.state.placeName}</p>
-        <p>{this.state.license}</p>
+        <ContolPanel />
+        <div
+          className="formData"
+          // style={{
+          //   backgroundImage: `url(${this.state.ownerDetail.ownerData.licensePhoto})`,
+          // }}
+        >
+          <Form
+            style={{
+              marginLeft: "10%",
+              marginTop: "-120%",
+              maxWidth: "80%",
+            }}
+          >
+            {this.state.status === true ? (
+              <div>
+                {console.log(
+                  Object.keys(this.state.ownerDetail.facilities[0].facilities)
+                )}
+                <div className="ownerData">
+                  <Form.Row>
+                    <Form.Group as={Col}>
+                      <p className="dataP">
+                        Hi {this.state.ownerDetail.ownerData.fullName}
+                      </p>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <p className="dataP">
+                        Your Phone :{" "}
+                        {this.state.ownerDetail.ownerData.mobileNumber}
+                      </p>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <p className="dataP">
+                        Your Resorts Name :{" "}
+                        {this.state.ownerDetail.ownerData.placeName}
+                      </p>
+                    </Form.Group>
+                  </Form.Row>
+                  <Form.Row></Form.Row>
+                </div>
+                <div style={{ marginLeft: "15%" }}>
+                  <Map />
+                </div>
+
+                <section className="ownerFacilites">
+                  {Object.keys(
+                    this.state.ownerDetail.facilities[0].facilities
+                  ).map((element, index) => (
+                    <div className="OwnerImage">
+                      <div class="box">
+                        <div class="content2">
+                          <div>
+                            <h2>{element}</h2>
+                            <h3>
+                              <br></br>
+                              <br></br>
+                              quantity:{" "}
+                              {
+                                this.state.ownerDetail.facilities[0].facilities[
+                                  element
+                                ].quantity
+                              }
+                            </h3>
+                            <h3>
+                              Price:{" "}
+                              {
+                                this.state.ownerDetail.facilities[0].facilities[
+                                  element
+                                ].price
+                              }
+                            </h3>
+                          </div>
+                        </div>
+                        <img
+                          className="img-rounded"
+                          src={
+                            this.state.ownerDetail.facilities[0].facilities[
+                              element
+                            ].img
+                          }
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </section>
+                <div
+                  style={{
+                    marginLeft: "55%",
+                  }}
+                >
+                  <Button>
+                    <a
+                      style={{
+                        color: "black",
+                      }}
+                      href="/ownerProfile"
+                    >
+                      Edit Your Data
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </Form>
+        </div>
       </div>
     );
   }

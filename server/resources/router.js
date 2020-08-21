@@ -64,4 +64,6 @@ router.get("/sortedOwners", controller.SortedOwner);
 // update position
 router.put("/UpdatePosition", controller.UpdatePosition);
 router.get("/CheckPosition/:ownerId", controller.CheckPosition);
+
+router.get("/getAllOwnerData/:id", controller.GetAllOwnerData);
 module.exports = router;

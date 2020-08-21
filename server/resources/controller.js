@@ -1031,3 +1031,33 @@ exports.CheckPosition = function (req, res) {
       console.log(err);
     });
 };
+
+//GetAllOwnerData function
+exports.GetAllOwnerData = function (req, res) {
+  let ownerData = [];
+  let facilities = [];
+  let services = [];
+  const ownerId = req.params.id;
+  OwnerModel.findOne({ _id: ownerId })
+    .then((result) => {
+      if (result !== null) {
+        ownerData = result;
+        FacilityModel.find({ ownerId: ownerId }).then((owner) => {
+          facilities = owner;
+          ServicesModel.find({ ownerId: ownerId }).then((service) => {
+            services = service;
+            res.status(201).json({
+              ownerData: ownerData,
+              facilities: facilities,
+              services: services,
+            });
+          });
+        });
+      } else {
+        res.end("there is no owner with this data");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
