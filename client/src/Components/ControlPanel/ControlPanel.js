@@ -67,8 +67,11 @@ class ContolPanel extends React.Component {
         <InternalNavControl />
         <div className="sidebar">
           <center style={{ marginLeft: "-5%" }}>
-            <img src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598027857/cmmz2hqjwoa2xqamyea1.png' className="profile_image" alt="" />
-
+            <img
+              src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598027857/cmmz2hqjwoa2xqamyea1.png"
+              className="profile_image"
+              alt=""
+            />
             <h4 style={{ lineHeight: "60px", color: "#fff" }}>
               {" "}
               Hi {this.state.fullName}

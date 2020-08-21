@@ -350,7 +350,7 @@ class SignUpOwner extends React.Component {
             </p>
             <p className="text-danger">{this.state.errors.licensePhoto}</p>
             <p>Please upload Your Licence Photo</p>
-            <PhotoUpload handler={this.getLiecencePhotoUrl} />
+            <PhotoUpload handler={this.getLiecencePhotoUrl} Id={"photoOwner"} />
             <div className="form-group">
               <button
                 id="signUpBtn"
@@ -371,7 +371,10 @@ class SignUpOwner extends React.Component {
           </div>
         </div>
         <div className="imgDiv"></div>
-        <img className="boxImg" src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029144/eajqot3wug4lcwvz5doc.jpg"></img>
+        <img
+          className="boxImg"
+          src="https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029144/eajqot3wug4lcwvz5doc.jpg"
+        ></img>
 
         <div>
           <Footer />

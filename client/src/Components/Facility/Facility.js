@@ -228,9 +228,7 @@ class Facility extends React.Component {
                 />{" "}
               </Form.Group>
             </Form.Row>
-            <div className="MapLabel">
-              <Form.Label>Put Your Location On Map</Form.Label>
-            </div>
+            <div className="MapLabel"></div>
             <div className="mapIn"></div>
             <div className="text-danger">{this.state.err}</div>
             <button
