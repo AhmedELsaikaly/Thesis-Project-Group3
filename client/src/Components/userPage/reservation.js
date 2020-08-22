@@ -198,7 +198,7 @@ class Reservation extends React.Component {
             aria-pressed="false"
             type="button"
           >
-            Resirve
+            Book
           </Button>
 
           {/* </button> */}

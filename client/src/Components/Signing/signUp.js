@@ -320,7 +320,7 @@ class SignUp extends React.Component {
           </div>
         </div>
         <div className="imgDiv"></div>
-        <img className="boxImg" src={three}></img>
+        <img className="boxImg" src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029144/eajqot3wug4lcwvz5doc.jpg' alt =''></img>
 
         <div>
           <Footer />

@@ -40,7 +40,7 @@ It Helps You Stick to Your Desires.
 
 ## Problem
 
-A single page app that will allow customers to explore beach facilities according to whatever circumstances you want without using traditional ways of booking.
+A simple app that will allow customers to explore beach facilities according to whatever circumstances you want without using traditional ways of booking.
 
 > Describe the problem your product solves.
 

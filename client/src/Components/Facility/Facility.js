@@ -228,9 +228,7 @@ class Facility extends React.Component {
                 />{" "}
               </Form.Group>
             </Form.Row>
-            <div className="MapLabel">
-              <Form.Label>Put Your Location On Map</Form.Label>
-            </div>
+            <div className="MapLabel"></div>
             <div className="mapIn"></div>
             <div className="text-danger">{this.state.err}</div>
             <button
@@ -238,7 +236,7 @@ class Facility extends React.Component {
               style={{ maxWidth: "50%" }}
               class="btn btn-lg font-weight-bold btn-primary btn-block"
               onClick={this.handleSubmit}
-              style={{ width: "250px" }}
+              // style={{ width: "250px" }}
             >
               Send Your Request
             </button>

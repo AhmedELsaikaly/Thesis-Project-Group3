@@ -1,6 +1,6 @@
 //import used technologies
 import React from "react";
-import logo from "./Logo.png";
+// import logo from "https://res.cloudinary.com/dtm3d0erl/image/upload/v1598028349/qxlfxngk85zraezgxmsp.png";
 //import CSS
 import "./NavBar.css";
 import axios from "axios";
@@ -15,7 +15,7 @@ class NavBar extends React.Component {
       <section id="nav-bar">
         <nav className="navbar navbar-expand-lg navbar-light">
           <a className="navbar-brand" href="/">
-            <img src={logo} />
+            <img src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598028349/qxlfxngk85zraezgxmsp.png' />
           </a>
           <h1>Raha</h1>
           <button

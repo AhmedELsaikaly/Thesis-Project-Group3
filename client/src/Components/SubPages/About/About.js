@@ -9,7 +9,7 @@ import Navbar from '../../Navbar/Navbar.js';
 import InternalNav from './../../InternalNav/InternalNav';
 
 import Footer from '../Footer/Footer.js';
-import one from './one.jpg';
+// import one from 'https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029871/relg2zca6w9z4vbqdr1p.jpg';
 //create About Compo
 class About extends React.Component {
   render() {
@@ -30,7 +30,7 @@ class About extends React.Component {
               }}
             >
               <img
-                src={one} /*add the web site photo */
+                src='https://res.cloudinary.com/dtm3d0erl/image/upload/v1598029871/relg2zca6w9z4vbqdr1p.jpg' /*add the web site photo */
                 /*add the photo for the site */ alt=''
                 class='circle circle1'
               />
