@@ -76,7 +76,7 @@ class SignIn extends React.Component {
               toast("Your Signed In succesfully ❤", {
                 type: "success",
               });
-              this.props.history.push(`/ContolPanel`);
+              this.props.history.push(`/ownerRender`);
               return response.data;
             }
           })

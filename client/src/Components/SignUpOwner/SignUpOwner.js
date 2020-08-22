@@ -209,7 +209,7 @@ class SignUpOwner extends React.Component {
             toast("Your Signed Up succesfully ❤", {
               type: "success",
             });
-            this.props.history.push(`/ContolPanel#`);
+            this.props.history.push(`/ownerRender`);
             return response.data;
           }
         })
