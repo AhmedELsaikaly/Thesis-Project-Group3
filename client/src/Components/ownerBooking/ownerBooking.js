@@ -52,12 +52,9 @@ class OwnerBooking extends React.Component {
         },
       })
       .then((result) => {
-        if (
-          result.data === 'there is no reservation in this date' &&
-          result.status === 200
-        ) {
+        if (result.data.success === false) {
           this.setState({
-            error: 'There is no reservation in this date',
+            error:result.data.message,
             isClicked: false,
             bookings: [],
             reservationCount: { LargeTents: [], SmallTents: [], table: [] },

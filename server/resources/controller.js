@@ -884,7 +884,10 @@ exports.getResByDateOwner = function (req, res) {
           obj[prameters[i]] = faci.facilities[prameters[i]].quantity;
         }
       } else {
-        res.end("There is no facilites for this Owner");
+        res.json({
+          success: false,
+          message: "There is no Facilites for this owner",
+        });
       }
       ReservationModel.find({
         ownerId: ownerId,
@@ -892,9 +895,14 @@ exports.getResByDateOwner = function (req, res) {
       }).then((result) => {
         console.log(result);
         if (result.length > 0) {
-          res.status(201).json({ quant: obj, reservation: result });
+          res
+            .status(201)
+            .json({ success: true, quant: obj, reservation: result });
         } else {
-          res.end("there is no reservation in this date");
+          res.json({
+            success: false,
+            message: "there is no reservation in this date",
+          });
         }
       });
     })
