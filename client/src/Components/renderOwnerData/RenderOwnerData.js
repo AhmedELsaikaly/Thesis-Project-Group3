@@ -33,6 +33,7 @@ class RenderOwnerData extends React.Component {
     axios
       .get(`/getAllOwnerData/${this.state.ownerId}`)
       .then((result) => {
+        console.log(result);
         const data = result.data;
         this.setState({ ownerDetail: data, status: true });
       })
@@ -60,75 +61,83 @@ class RenderOwnerData extends React.Component {
           >
             {this.state.status === true ? (
               <div>
-                {console.log(
-                  Object.keys(this.state.ownerDetail.facilities[0].facilities)
-                )}
                 <div className="ownerData">
                   <Form.Row>
                     <Form.Group as={Col}>
                       <p className="dataP">
                         Hi {this.state.ownerDetail.ownerData.fullName}
                       </p>
+                      <br />
                     </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+
                     <Form.Group as={Col}>
                       <p className="dataP">
                         Your Phone :{" "}
                         {this.state.ownerDetail.ownerData.mobileNumber}
-                      </p>
+                      </p>{" "}
+                      <br />
                     </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+
                     <Form.Group as={Col}>
                       <p className="dataP">
                         Your Resorts Name :{" "}
                         {this.state.ownerDetail.ownerData.placeName}
-                      </p>
+                      </p>{" "}
+                      <br />
                     </Form.Group>
-                  </Form.Row>
-                  <Form.Row></Form.Row>
+                    </Form.Row>
+
                 </div>
                 <div style={{ marginLeft: "15%" }}>
                   <Map />
                 </div>
 
                 <section className="ownerFacilites">
-                  {Object.keys(
-                    this.state.ownerDetail.facilities[0].facilities
-                  ).map((element, index) => (
-                    <div className="OwnerImage">
-                      <div class="box">
-                        <div class="content2">
-                          <div>
-                            <h2>{element}</h2>
-                            <h3>
-                              <br></br>
-                              <br></br>
-                              quantity:{" "}
-                              {
-                                this.state.ownerDetail.facilities[0].facilities[
-                                  element
-                                ].quantity
-                              }
-                            </h3>
-                            <h3>
-                              Price:{" "}
-                              {
-                                this.state.ownerDetail.facilities[0].facilities[
-                                  element
-                                ].price
-                              }
-                            </h3>
+                  {this.state.ownerDetail.facilities.length > 0 ? (
+                    Object.keys(
+                      this.state.ownerDetail.facilities[0].facilities
+                    ).map((element, index) => (
+                      <div className="OwnerImage">
+                        <div class="box">
+                          <div class="content2">
+                            <div>
+                              <h2>{element}</h2>
+                              <h3>
+                                <br></br>
+                                <br></br>
+                                quantity:{" "}
+                                {
+                                  this.state.ownerDetail.facilities[0]
+                                    .facilities[element].quantity
+                                }
+                              </h3>
+                              <h3>
+                                Price:{" "}
+                                {
+                                  this.state.ownerDetail.facilities[0]
+                                    .facilities[element].price
+                                }
+                              </h3>
+                            </div>
                           </div>
+                          <img
+                            className="img-rounded"
+                            src={
+                              this.state.ownerDetail.facilities[0].facilities[
+                                element
+                              ].img
+                            }
+                          />
                         </div>
-                        <img
-                          className="img-rounded"
-                          src={
-                            this.state.ownerDetail.facilities[0].facilities[
-                              element
-                            ].img
-                          }
-                        />
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <div></div>
+                  )}
                 </section>
                 <div
                   style={{
